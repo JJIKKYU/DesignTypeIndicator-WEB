@@ -36,3 +36,163 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  background-color: rgb(245, 245, 245);
+  background-image: url("/images/mainBGArticle.png");
+}
+
+.dptiMainCircle {
+  position: relative;
+  background-color: white;
+  border-radius: 520px;
+  margin: 0 auto;
+  width: 520px;
+  height: 520px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.mainCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#center {
+
+  padding-top: 120px;
+}
+
+.dptiMainCircle .subTitle {
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #FF7D5F;
+  margin-bottom: 0.5em;
+}
+
+.dptiMainCircle .mainLine {
+  border: 1px solid #FF7D5F;
+  width: 168px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.dptiMainCircle #longLine {
+  width: 320px;
+}
+
+.dptiMainCircle .questionText {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+
+  color: #141414;
+}
+
+.participantBox {
+  position: relative;
+  width: 480px;
+  height: 56px;
+  background: #FFFFFF;
+  border: 2px solid #FF7D5F;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  margin: 80px auto 0px auto;
+
+  /* visibility: hidden; */
+}
+
+.participantBoxHidden {
+  position: relative;
+  width: 480px;
+  height: 56px;
+  background: #FFFFFF;
+  border: 2px solid #FF7D5F;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  margin: 80px auto 0px auto;
+
+  visibility: hidden;
+}
+
+.participantBox span{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: #FF7D5F;
+}
+
+.participantBox .participantTitle {
+  /* text-align: left; */
+  position: absolute;
+  left: 32px;
+  line-height: 52px;
+}
+
+.participantBox .participantNum {
+  position: absolute;
+  right: 32px;
+  line-height: 52px;
+}
+
+.startBox {
+  margin: 16px auto;
+  border: none;
+  width: 480px;
+  height: 56px;
+  background: #FF7D5F;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 52px;
+  letter-spacing: -0.01em;
+  color: white;
+
+  cursor: pointer;
+}
+
+.mainCopyright {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #BEBEBE;
+}
+
+.infoText {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: -0.01em;
+
+  color: #141414;
+}
+
+.infoHighlight {
+  color: #FF7D5F;
+  font-weight: 900;
+}
