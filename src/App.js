@@ -83,12 +83,102 @@ class MainScreen extends Component {
   }
 }
 
+class SurveySelectBox extends Component {
+  constructor(props)
+  {
+    super(props);
+    this.state.button = this.props.button
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  state = {
+    button : 0
+  }
+
+  handleClick = () => {
+    this.setState(
+      {
+        button : this.props.button
+      }
+    );
+  }
+
+  render() {
+    return(
+      <>
+      <input type="Button" className="selectBox" value={this.props.text} onClick={function()
+      {
+        console.log(this.state.button);
+      }.bind(this)}>
+      </input>
+      </>
+    );
+  }
+}
+
+class SurveyCard extends Component {
+  render() {
+    const answerList = [
+      "맞아요 매우 그래요",
+      "맞는것 같아요",
+      "그냥 그래요",
+      "아닌것 같아요",
+      "아니요 저는 안그래요"
+    ]
+    return(
+      <>
+      <div className="surveyBox">
+        <h1>Q{this.props.number}.</h1>
+          <p>{this.props.title}</p>
+          <SurveySelectBox text="맞아요 매우 그래요" button="0"></SurveySelectBox>
+          <SurveySelectBox text="맞는것 같아요" button="1"></SurveySelectBox>
+          <SurveySelectBox text="그냥 그래요" button="2"></SurveySelectBox>
+          <SurveySelectBox text="아닌것 같아요" button="3"></SurveySelectBox>
+          <SurveySelectBox text="아니요 저는 안그래요" button="4"></SurveySelectBox>
+          
+        </div>
+      </>
+    );
+  }
+}
+
+class Survey extends Component {
+  render() {
+    const questionList = [
+      "의견을 결정해야 할 때 너의 의견을 어필하는 편이니?",
+      "의견을 결정해야 할 때 너의 의견을 어필하는 편이니?",
+      "의견을 결정해야 할 때 너의 의견을 어필하는 편이니?",
+    ]
+    const question = questionList.map((questionText, index) => (<SurveyCard key={index + 1} number={index + 1} title={questionText}></SurveyCard>));
+
+    return(
+      <>
+
+      
+      <div className="main">
+        <div className="mainCenter" id="surveyMainCenter">
+          {question}
+          {/* <SurveyCard number="1" title="의견을 결정해야 할 때 너의 의견을 어필하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard>
+          <SurveyCard number="2" title="혼자만의 시간을 가지면서 에너지를 충전하는 편이니?"></SurveyCard> */}
+        </div>
+      </div>
+      </>
+    );
+  }
+}
+
 function App() {
   var currentPage = 0;
 
   return (
     <>
-    <MainScreen page={currentPage}></MainScreen>
+    {/* <MainScreen page={currentPage}></MainScreen> */}
+    <Survey></Survey>
     </>
   );
 }
