@@ -410,6 +410,7 @@ class ResultCalculate extends Component {
   constructor(props) {
     super(props);
     this.checkType = this.checkType.bind(this);
+    this.calcResult = this.calcResult.bind(this);
     console.log("constructor : " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD)
     this.checkType();
   }
@@ -436,45 +437,145 @@ class ResultCalculate extends Component {
       isTypeC = true;
     }
 
+    let typeAB = "";
+
     if (isTypeA) {
       // E
       if (this.props.typeA < 0) {
         console.log("E");
+        typeAB = "E";
       }
       // I
       else if (this.props.typeA >= 0) {
         console.log("I");
+        typeAB = "I";
       }
     } else if (isTypeB) {
       // S
       if (this.props.typeB < 0) {
         console.log("S");
+        typeAB = "S";
       }
       // N
       else if (this.props.typeB >= 0) {
         console.log("N");
+        typeAB = "N";
       }
     }
+
+    let typeCD = "";
 
     if (isTypeC) {
       // T
       if (this.props.typeC < 0) {
         console.log("T");
+        typeCD = "T";
       }
       // F
       else if (this.props.typeC >= 0) {
         console.log("F");
+        typeCD = "F";
       }
     } else if (isTypeD) {
       // J
       if (this.props.typeD < 0) {
         console.log("J");
+        typeCD = "D";
       }
       // P
       else if (this.props.typeD >= 0) {
         console.log("P");
+        typeCD = "P";
       }
     } 
+
+    this.calcResult(typeAB, typeCD);
+
+    
+  }
+
+  calcResult = (typeAB, typeCD) => {
+    // const type = typeAB + typeCD;
+    const type = "TI";
+    
+    let result = 
+      {
+        title : "",
+        image : "",
+        desc : "",
+        position : "",
+        design : [
+          "", "", ""
+        ],
+        tools : [
+          "", "", 
+        ],
+        todo : ""
+      };
+      
+    let title = "";
+    let image = "";
+    let desc = "";
+    let position = "";
+    let design = [
+      "", "", ""
+    ]
+    let tools = [
+      "", "", ""
+    ];
+    let todo = "";
+
+    switch (type) {
+      case "TI":
+        result.title = "혼자 있고싶은 논리대장 디자이너";
+        result.image = "resultGreen"
+        result.desc = "무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행함에 있어서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!";
+        result.position = "모든걸 기록하고 기억하는 팔만대장경!";
+        result.design[0] = "UX";
+        result.design[1] = "인포메이션";
+        result.design[2] = "편집";
+        result.tools[0] = "sketch";
+        result.tools[1] = "illustrator";
+        result.tools[2] = "indesign";
+        result.todo = "사실 당신은 답을 알고 계실 거에요. 온전히 혼자 있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!";
+        console.log("result" + result);
+        break;
+      case "TN":
+        break;
+      case "TS":
+        break;
+      case "TE":
+        break;
+      case "FI":
+        break;
+      case "FN":
+        break;
+      case "FS":
+        break;
+      case "FE":
+        break;
+      case "JI":
+        break;
+      case "JN":
+        break;
+      case "JS":
+        break;
+      case "JE":
+        break;
+      case "PI":
+        break;
+      case "PN":
+        break;
+      case "PS":
+        break;
+      case "PE":
+        break;
+    }    
+
+    setTimeout(function() {
+      this.props.onSearchCalcResult(result);
+      this.props.onSearchSubmit(4);
+    }.bind(this), 3000);
   }
 
   render() {
@@ -518,12 +619,10 @@ class ResultCalculate extends Component {
 class Result extends Component {
   constructor(props) {
     super(props);
+    this.comp = this.comp.bind(this);
+    console.log("constructor ResultPage! " + ", " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD);
   }
-
-  state = {
-
-  }
-
+  
   render() {
     return(
       <>
@@ -536,9 +635,9 @@ class Result extends Component {
         <div className="resultScreen">
 
           <div className="resultCard">
-              <h1 className="resultTitle">혼밥하는 논리대장 디자이너</h1>
-              <img src="/images/resultGreen.png" alt=""/>
-              <p className="desc">무슨 생각 중이야?라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하는 데에 있어서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거예요! 당신은 스스로를 속이지 않으니까요!</p>
+              <h1 className="resultTitle">{this.props.result.title}</h1>
+              <img src={"/images/"+ this.props.result.image + ".png"} alt=""/>
+              <p className="desc">{this.props.result.desc}</p>
             </div>
             <div className="resultDesc">
               <div className="leftBox">
@@ -559,36 +658,36 @@ class Result extends Component {
 
                   <div className="type">
                     <div className="leftTypeTitle">
-                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescTitle">감각</p>
                       <p className="typeDescValue" id="typeBleftValue">68%</p>
                     </div>
                     <div className="line"><div className="lineProgress" id="typeBprogress"></div></div>
                     <div className="rightTypeTitle">
-                    <p className="typeDescTitle">내향</p>
+                    <p className="typeDescTitle">직관</p>
                       <p className="typeDescValue" id="typeBrightValue">32%</p>
                     </div>
                   </div>
 
                   <div className="type">
                     <div className="leftTypeTitle">
-                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescTitle">사고</p>
                       <p className="typeDescValue" id="typeCleftValue">68%</p>
                     </div>
                     <div className="line"><div className="lineProgress" id="typeCprogress"></div></div>
                     <div className="rightTypeTitle">
-                    <p className="typeDescTitle">내향</p>
+                    <p className="typeDescTitle">감정</p>
                       <p className="typeDescValue" id="typeCrightValue">32%</p>
                     </div>
                   </div>
 
                   <div className="type">
                     <div className="leftTypeTitle">
-                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescTitle">실천</p>
                       <p className="typeDescValue" id="typeDleftValue">68%</p>
                     </div>
                     <div className="line"><div className="lineProgress" id="typeDprogress"></div></div>
                     <div className="rightTypeTitle">
-                    <p className="typeDescTitle">내향</p>
+                    <p className="typeDescTitle">인식</p>
                       <p className="typeDescValue" id="typeDrightValue">32%</p>
                     </div>
                   </div>
@@ -598,45 +697,45 @@ class Result extends Component {
                 <div className="todo">
                   <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
                   <p className="desc" id="designDesc">
-                  사실 당신은 답을 알고계실거에요. 온전히 혼자있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!
+                  {this.props.result.todo}
                   </p>
                 </div>
               </div>
               <div className="rightBox">
                 <div className="position">
                   <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
-                  <div className="positionBox">똘망똘망한 길잡이</div>
+                  <div className="positionBox">{this.props.result.position}</div>
                 </div>
                 <div className="design">
                   <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
                     <div className="designDesc">
                       <p className="number">1</p>
-                      연구 개발
+                      {this.props.result.design[0]}
                     </div>
                     <div className="designDesc">
                       <p className="number">2</p>
-                      UX*UI
+                      {this.props.result.design[1]}
                     </div>
                     <div className="designDesc">
                       <p className="number">3</p>
-                      멀티미디어
+                      {this.props.result.design[2]}
                     </div>
                 </div>
                 <div className="tools">
                   <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">1</p>
-                      <img src="/images/sketch.png" alt=""/>
+                      <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
                     </div>
 
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">2</p>
-                      <img src="/images/figma.png" alt=""/>
+                      <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
                     </div>
 
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">3</p>
-                      <img src="/images/figma.png" alt=""/>
+                      <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
                     </div>
                 </div>
                 <button className="exitBtn">검사 종료하기</button>
@@ -660,6 +759,7 @@ class App extends Component {
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.surveyResultCalc = this.surveyResultCalc.bind(this);
     this.surveyCalc = this.surveyCalc.bind(this);
+    this.onSearchCalcResult = this.onSearchCalcResult.bind(this);
   }
   
   state = {
@@ -670,6 +770,14 @@ class App extends Component {
     this.setState({
       currentPage : props
     });
+  }
+
+  // 계산한 결과 내용을 받는 함수
+  onSearchCalcResult(result) {
+    console.log("결과를 받았습니다 : " + result);
+    this.setState({
+      result : result
+    })
   }
 
   surveyCalc() {
@@ -722,17 +830,17 @@ class App extends Component {
     else if (this.state.currentPage == 2)
       return <Survey onSubmit={this.onSearchSubmit} surveyCalc={this.surveyResultCalc}></Survey>;
     else if (this.state.currentPage == 3)
-      return <ResultCalculate typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue}></ResultCalculate>
+      return <ResultCalculate typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue} onSearchCalcResult={this.onSearchCalcResult} onSearchSubmit={this.onSearchSubmit}></ResultCalculate>
     else if (this.state.currentPage == 4)
-      return <Result></Result>
+      return <Result result={this.state.result} typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue}></Result>
   }
 
   render()
   {
     return (
       <>
-      {/* {this.screenRender()} */}
-      {<Result></Result>}
+      {this.screenRender()}
+      {/* {<Result></Result>} */}
       {/* <ResultCalculate></ResultCalculate> */}
       {/* <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen> */}
       {/* <Survey></Survey> */}
