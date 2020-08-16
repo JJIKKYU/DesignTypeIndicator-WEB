@@ -111,31 +111,33 @@ class SurveySelectBox extends Component {
   state = {
     type : 'A',
     button : 0,
+    surveyResult : [
+      {name : "", value : ""}
+    ]
   }
 
   eventHandler = (e) => {
-    console.log("name : " + e.target.name +", " + "value : " + e.target.value);
+    const targetName = e.target.name;
+    const targetValue = e.target.value;
+    // console.log("name : " + targtName +", " + "value : " + tagetValue);
 
-    this.setState ({
-      [e.target.name] : e.target.value
+    this.setState({
+      [targetName]: targetValue,
+    }, () => {
+      // console.log(this.state[targetName]);
+      this.props.getStateSurvey(targetName, targetValue)
     });
-    // this.props.handler();
-
-    if (e.target.name == 4) {
-      for (var i = 0; i < 4; ++i) {
-        console.log("i : " + this.state.[i]]);
-      }
-    }
   }
 
   render() {
     return(
       <>
-      <input className="checkBoxBtn" type="radio" name={this.props.id} id={"Q" + this.props.id + this.state.button}
-      value={"Q" + this.props.id + "-" + this.state.button} onClick={function()
+      <input className="checkBoxBtn" type="radio" name={"Q" + this.props.id} id={"Q" + this.props.id + this.state.button}
+      value={"Q" + this.props.id + "_" + this.state.button}
+      onClick={function()
       {
-        console.log(this.state.type + this.state.button);
-        console.log("Q" + this.props.id + "-" + this.state.button);
+        // console.log(this.state.type + this.state.button);
+        // console.log("Q" + this.props.id + "-" + this.state.button);
         // this.props.handler()
       }.bind(this)}
       onChange={this.eventHandler}
@@ -153,6 +155,7 @@ class SurveyCard extends Component {
     // this.state.isHidden = this.props.isHidden;
 
     this.hiddenState = this.hiddenState.bind(this);
+    this.reverseSelectValue = this.reverseSelectValue.bind(this);
   }
 
   state = {
@@ -160,24 +163,38 @@ class SurveyCard extends Component {
     opacity : 1
   }
 
-  checkType = () => {
-    if (this.state.number < 5)
-      return 'A';
-    else if (this.state.number < 10)
-      return 'B';
-    else if (this.state.number < 15)
-      return 'C';
-    else if (this.state.number < 20)
-      return 'D';
-  }
+  // getStateSurvey = (targetName, targetValue) => {
+  //   // event.preventDefault();
 
-  handleInputChange = (event) => {
-    // event.preventDefault();
+  //   console.log("handleInputChange() 호출!" + targetName + " , " + targetValue);
+  //   // GetSurveyResult(targetName, targetvalue)
+  //   this.setState({
+  //     [targetName] : targetValue
+  //   })
+    
+    /*
+    const targetParse = targetName.split('Q')[1];
 
-    console.log("handleInputChange() 호출!" + event);
+    if (targetParse <= 6)
+    {
+      console.log(targetParse);
+    }
+    else if (targetParse <= 12)
+    {
+
+    }
+    else if (targetParse <= 18)
+    {
+
+    }
+    else if (targetParse <= 24)
+    {
+    }
+    console.log(targetValue.split('-')[1]);
     // const target = event.target;
     // const name = target.name;
-  }
+    */
+  // }
 
   hiddenState = () => {
 
@@ -197,6 +214,21 @@ class SurveyCard extends Component {
 
   }
 
+  reverseSelectValue = (index) => {
+
+    // reverse 되는 문장 선택
+    if (this.state.number == 3 || this.state.number == 5 || this.state.number == 6 ||
+      this.state.number == 8 || this.state.number == 10 || this.state.number == 12 ||
+      this.state.number == 14 || this.state.number == 16 || this.state.number == 18 ||
+      this.state.number == 20 || this.state.number == 22 || this.state.number == 24
+      ) {
+      return index - 2;
+    }
+    else {
+      return -index + 2;
+    }
+  }
+
   render() {
     const answerList = [
       "맞아요 매우 그래요",
@@ -206,15 +238,14 @@ class SurveyCard extends Component {
       "아니요 저는 안그래요"
     ]
 
-    const answers = answerList.map((answerText, index) => (<SurveySelectBox id={this.state.number} text={answerText} button={index} type={this.checkType()} handler={this.handleInputChange}></SurveySelectBox>));
+    // const answers = answerList.map((answerText, index) => (<SurveySelectBox id={this.state.number} text={answerText} button={index - 2}getStateSurvey={this.props.GetSurveyResult}></SurveySelectBox>));
 
-    let hiddenStyle = {
-      opacity : this.state.opacity
-    }
+    const answers = answerList.map((answerText, index) => (<SurveySelectBox id={this.state.number} text={answerText} button={this.reverseSelectValue(index)}      
+      getStateSurvey={this.props.GetSurveyResult}></SurveySelectBox>));
 
     return(
       <>
-      <div style={hiddenStyle} className="surveyBox">
+      <div id={"boxQ"+this.state.number} className="surveyBox">
         <h1>Q{this.state.number}.</h1>
           <p>{this.props.title}</p>
           {answers}
@@ -232,6 +263,7 @@ class Survey extends Component {
     this.state.xPosTransitionStep = 454;
     this.state.maxSurveycnt = 24;
     this.nextSurveyCard = this.nextSurveyCard.bind(this);
+    this.getSurveyResult = this.getSurveyResult.bind(this);
   }
 
   state = {
@@ -241,6 +273,16 @@ class Survey extends Component {
     maxSurveycnt : 24,
     progressBar : (100 * (1 / 24)),
     isHidden : false
+  }
+
+  getSurveyResult = (targetName, targetValue) => {
+
+    // Main App으로 전달
+    this.props.surveyCalc(targetName, targetValue);
+
+    // this.setState({
+    //   [targetName.split('Q')[1]] : targetValue.split('-')[1]
+    // })
   }
 
   nextSurveyCard = () => { 
@@ -253,7 +295,7 @@ class Survey extends Component {
     }
 
     // 안 클릭했을 때를 체크
-    var selectbuttons = document.getElementsByName(this.state.currentSurvey);
+    var selectbuttons = document.getElementsByName("Q"+this.state.currentSurvey);
     var checkCount = 0;
     for (var i = 0; i < selectbuttons.length; ++i) {
       if (selectbuttons[i].checked == true) {
@@ -261,12 +303,21 @@ class Survey extends Component {
           break;
       }        
     }
-
+  
     if (checkCount == 0)
     {
-      // alert("체크해주세요!");
-      console.log("체크해주세요!");
-      // return;
+      alert("체크해주세요!");
+      // console.log("체크해주세요!");
+      return;
+    }
+
+    var nextBox = document.getElementById("boxQ"+Number(this.state.currentSurvey + 1));
+    nextBox.style.opacity = 1;
+    if (this.state.currentSurvey > 0)
+    {
+      var prevBox = document.getElementById("boxQ"+Number(this.state.currentSurvey));
+      prevBox.style.opacity = 0.2;
+      console.log(prevBox);
     }
 
     const finalXpos = this.state.currentXpos - this.state.xPosTransitionStep;
@@ -277,11 +328,6 @@ class Survey extends Component {
     });
 
     console.log("현재 진행 중인 문제 : " + this.state.currentSurvey);
-  }
-
-  makeSurveyCardHidden = (props) => {
-    console.log(props + "를 받았습니다");
-    console.log("hidden으로 변경");
   }
 
   questionRender = () => {
@@ -312,8 +358,14 @@ class Survey extends Component {
       "땡땡땡! 쉬는시간이 되면 무조건 쉬고, 일할 시간이 되면 꼭 일을 해"
     ]
 
-    const question = questionList.map((questionText, index) => (<SurveyCard key={index + 1} number={index + 1} title={questionText} isHidden={this.makeSurveyCardHidden}></SurveyCard>));
+    const question = questionList.map((questionText, index) => (<SurveyCard key={index + 1} number={index + 1} title={questionText} isHidden={this.makeSurveyCardHidden} GetSurveyResult={this.getSurveyResult}></SurveyCard>));
     return question;
+  }
+
+  defaultCardOpacity =() => {
+    var boxHidden = document.getElementById("boxQ1");
+    console.log(boxHidden);
+    // boxHidden.style.opacity = 1;
   }
 
   render() {
@@ -357,10 +409,72 @@ class Survey extends Component {
 class ResultCalculate extends Component {
   constructor(props) {
     super(props);
+    this.checkType = this.checkType.bind(this);
+    console.log("constructor : " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD)
+    this.checkType();
   }
 
   state = {
 
+  }
+
+  checkType() {
+    let isTypeA = false;
+    let isTypeB = false;
+    let isTypeC = false;
+    let isTypeD = false;
+
+    if (this.props.typeA < this.props.typeB) {
+      isTypeB = true;
+    } else {
+      isTypeA = true;
+    }
+
+    if (this.props.typeC < this.props.typeC) {
+      isTypeD = true;
+    } else {
+      isTypeC = true;
+    }
+
+    if (isTypeA) {
+      // E
+      if (this.props.typeA < 0) {
+        console.log("E");
+      }
+      // I
+      else if (this.props.typeA >= 0) {
+        console.log("I");
+      }
+    } else if (isTypeB) {
+      // S
+      if (this.props.typeB < 0) {
+        console.log("S");
+      }
+      // N
+      else if (this.props.typeB >= 0) {
+        console.log("N");
+      }
+    }
+
+    if (isTypeC) {
+      // T
+      if (this.props.typeC < 0) {
+        console.log("T");
+      }
+      // F
+      else if (this.props.typeC >= 0) {
+        console.log("F");
+      }
+    } else if (isTypeD) {
+      // J
+      if (this.props.typeD < 0) {
+        console.log("J");
+      }
+      // P
+      else if (this.props.typeD >= 0) {
+        console.log("P");
+      }
+    } 
   }
 
   render() {
@@ -380,11 +494,18 @@ class ResultCalculate extends Component {
           </div>
         </div>
 
-        <div className="surveyMainCenter">
-          <img src="/images/card_0.png"></img>
-          <img src="/images/card_1.png"></img>
-          <img src="/images/card_2.png"></img>
-          <img src="/images/card_3.png"></img>
+      <div className="cardContainer">
+        <div className="cardStack">
+            <img id="card1" src="/images/card_0.png"></img>
+            <img id="card2" src="/images/card_1.png"></img>
+            <img id="card3" src="/images/card_2.png"></img>
+            <img id="card4" src="/images/card_3.png"></img>
+          </div>
+          </div>
+
+        <div className="surveyMainCenter" id="surveyCalcCenter">
+          
+          
         </div>
         <p className="calcText">결과를 추출중이야! <br/>조금만 기다려줘!</p>
       </div>
@@ -406,6 +527,127 @@ class Result extends Component {
   render() {
     return(
       <>
+      <div className="main">
+        <div className="surveyHeader">
+          <img className="headerLogo" src="/images/logo.png" alt=""/>
+          <img className="xButton" src="/images/X.png" alt=""/>
+        </div>
+
+        <div className="resultScreen">
+
+          <div className="resultCard">
+              <h1 className="resultTitle">혼밥하는 논리대장 디자이너</h1>
+              <img src="/images/resultGreen.png" alt=""/>
+              <p className="desc">무슨 생각 중이야?라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하는 데에 있어서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거예요! 당신은 스스로를 속이지 않으니까요!</p>
+            </div>
+            <div className="resultDesc">
+              <div className="leftBox">
+                <div className="graph">
+                  <h3 className="descTitle">나의 DPTI 상세 결과</h3>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescValue" id="typeAleftValue">68%</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeAprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">내향</p>
+                      <p className="typeDescValue" id="typeArightValue">32%</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescValue" id="typeBleftValue">68%</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeBprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">내향</p>
+                      <p className="typeDescValue" id="typeBrightValue">32%</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescValue" id="typeCleftValue">68%</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeCprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">내향</p>
+                      <p className="typeDescValue" id="typeCrightValue">32%</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescValue" id="typeDleftValue">68%</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeDprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">내향</p>
+                      <p className="typeDescValue" id="typeDrightValue">32%</p>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div className="todo">
+                  <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
+                  <p className="desc" id="designDesc">
+                  사실 당신은 답을 알고계실거에요. 온전히 혼자있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!
+                  </p>
+                </div>
+              </div>
+              <div className="rightBox">
+                <div className="position">
+                  <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
+                  <div className="positionBox">똘망똘망한 길잡이</div>
+                </div>
+                <div className="design">
+                  <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
+                    <div className="designDesc">
+                      <p className="number">1</p>
+                      연구 개발
+                    </div>
+                    <div className="designDesc">
+                      <p className="number">2</p>
+                      UX*UI
+                    </div>
+                    <div className="designDesc">
+                      <p className="number">3</p>
+                      멀티미디어
+                    </div>
+                </div>
+                <div className="tools">
+                  <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">1</p>
+                      <img src="/images/sketch.png" alt=""/>
+                    </div>
+
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">2</p>
+                      <img src="/images/figma.png" alt=""/>
+                    </div>
+
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">3</p>
+                      <img src="/images/figma.png" alt=""/>
+                    </div>
+                </div>
+                <button className="exitBtn">검사 종료하기</button>
+              </div>
+                
+          </div>
+        </div>
+      </div>
+
+      
+      
       </>
     );
   }
@@ -416,6 +658,8 @@ class App extends Component {
     super(props);
     this.state = {currentPage : 0};
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.surveyResultCalc = this.surveyResultCalc.bind(this);
+    this.surveyCalc = this.surveyCalc.bind(this);
   }
   
   state = {
@@ -428,13 +672,57 @@ class App extends Component {
     });
   }
 
+  surveyCalc() {
+    let typeAvalue = 0;
+    let typeBvalue = 0;
+    let typeCvalue = 0;
+    let typeDvalue = 0;
+
+    for (var i = 1; i <= 24; ++i) {
+      if (i <= 6) {
+        typeAvalue += Number(this.state[i]);
+      } else if (i <= 12) {
+        typeBvalue += Number(this.state[i]);
+      } else if (i <= 18) {
+        typeCvalue += Number(this.state[i]);
+      } else if (i <= 24) {
+        typeDvalue += Number(this.state[i]);
+      }
+    }
+
+    this.setState({
+      typeAvalue : typeAvalue,
+      typeBvalue : typeBvalue,
+      typeCvalue : typeCvalue,
+      typeDvalue : typeDvalue
+    })
+
+    console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
+  }
+
+  // Survey 선택 결과를 받아옴
+  surveyResultCalc(targetName, targetValue) {
+    const parseTargetName = targetName.split('Q')[1];
+    const parseTargetValue = targetValue.split('_')[1];
+
+    this.setState({
+      [parseTargetName] : parseTargetValue,
+    }, () => {
+      console.log("targetName : " + parseTargetName + ", targetValue : " + parseTargetValue);
+      if (parseTargetName == 24) {
+        this.surveyCalc();
+        return;
+      }
+    });
+  }
+
   screenRender() {
     if (this.state.currentPage < 1)
       return <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen>;
     else if (this.state.currentPage == 2)
-      return <Survey onSubmit={this.onSearchSubmit}></Survey>;
+      return <Survey onSubmit={this.onSearchSubmit} surveyCalc={this.surveyResultCalc}></Survey>;
     else if (this.state.currentPage == 3)
-      return <ResultCalculate></ResultCalculate>
+      return <ResultCalculate typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue}></ResultCalculate>
     else if (this.state.currentPage == 4)
       return <Result></Result>
   }
@@ -443,7 +731,8 @@ class App extends Component {
   {
     return (
       <>
-      {this.screenRender()}
+      {/* {this.screenRender()} */}
+      {<Result></Result>}
       {/* <ResultCalculate></ResultCalculate> */}
       {/* <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen> */}
       {/* <Survey></Survey> */}
