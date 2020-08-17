@@ -303,7 +303,7 @@ class Survey extends Component {
 
   nextSurveyCard = () => { 
     // this.state.currentSurvey
-    if (this.state.currentSurvey == 24)
+    if (this.state.currentSurvey == 1)
     {
       console.log("결과를 처리중입니다");
       this.props.onSubmit(3);
@@ -810,13 +810,13 @@ class Result extends Component {
       typeDPercent : ["", ""],
     }
 
-    getFireDB().then(res => {
-      this.setState({
-        people : res.val().people
-      })
-      setFireDB(res.val().people + 1);
-      console.log(res.val().people);
-    });
+    // getFireDB().then(res => {
+    //   this.setState({
+    //     people : res.val().people
+    //   })
+    //   setFireDB(res.val().people + 1);
+    //   console.log(res.val().people);
+    // });
   }
 
   percentange = () => {
@@ -825,10 +825,10 @@ class Result extends Component {
     let typeCPercent = [];
     let typeDPercent = [];
 
-    typeAPercent =  [this.props.typeALR[0] / 12, this.props.typeALR[1] / 12]
-    typeBPercent =  [this.props.typeBLR[0] / 12, this.props.typeBLR[1] / 12]
-    typeCPercent =  [this.props.typeCLR[0] / 12, this.props.typeCLR[1] / 12]
-    typeDPercent =  [this.props.typeDLR[0] / 12, this.props.typeDLR[1] / 12]
+    // typeAPercent =  [this.props.typeALR[0] / 12, this.props.typeALR[1] / 12];
+    // typeBPercent =  [this.props.typeBLR[0] / 12, this.props.typeBLR[1] / 12];
+    // typeCPercent =  [this.props.typeCLR[0] / 12, this.props.typeCLR[1] / 12];
+    // typeDPercent =  [this.props.typeDLR[0] / 12, this.props.typeDLR[1] / 12];
     console.log(typeAPercent, typeBPercent, typeCPercent, typeDPercent);
 
     this.setState({
@@ -842,7 +842,7 @@ class Result extends Component {
   render() {
     return(
       <>
-      <div className="main">
+      {/* <div className="main">
         <div className="surveyHeader">
           <img className="headerLogo" src="/images/logo.png" alt=""/>
           <img className="xButton" src="/images/X.png" alt=""/>
@@ -952,6 +952,132 @@ class Result extends Component {
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">3</p>
                       <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
+                    </div>
+                </div>
+                <button className="exitBtn">검사 종료하기</button>
+              </div>
+                
+          </div>
+        </div>
+      </div> */}
+
+<div className="main">
+        <div className="surveyHeader">
+          <img className="headerLogo" src="/images/logo.png" alt=""/>
+          <img className="xButton" src="/images/X.png" alt=""/>
+        </div>
+
+        <div className="resultScreen">
+
+          <div className="resultCard">
+            <div className="imageCard">
+              <img className="bgPattern" src={"/images/" + "Purple_Circle" + ".png"} alt=""/>
+              <img className="character" src={"/images/" + "purple_f_long_circle" + ".png"} alt=""/>
+              <img className="type" src={"/images/" + "Purple_Type_Circle" + ".png"} alt=""/>
+              <h1 className="resultTitle">어쩌라는 저쩌라고 디자이너</h1>
+            </div>
+              
+              {/* <img src={"/images/"+ "resultGreen" + ".png"} alt=""/> */}
+              
+              <p className="desc">텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다.</p>
+            </div>
+            <div className="resultDesc">
+              <div className="leftBox">
+                <div className="graph">
+                  <h3 className="descTitle">나의 DPTI 상세 결과</h3>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">외향</p>
+                      <p className="typeDescValue" id="typeAleftValue">{this.state.typeAPercent[0] + "%"}</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeAprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">내향</p>
+                      <p className="typeDescValue" id="typeArightValue">{this.state.typeAPercent[1] + "%"}</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">감각</p>
+                      <p className="typeDescValue" id="typeBleftValue">{this.state.typeBPercent[0] + "%"}</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeBprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">직관</p>
+                      <p className="typeDescValue" id="typeBrightValue">{this.state.typeBPercent[1] + "%"}</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">사고</p>
+                      <p className="typeDescValue" id="typeCleftValue">{this.state.typeCPercent[0] + "%"}</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeCprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">감정</p>
+                      <p className="typeDescValue" id="typeCrightValue">{this.state.typeCPercent[1] + "%"}</p>
+                    </div>
+                  </div>
+
+                  <div className="type">
+                    <div className="leftTypeTitle">
+                      <p className="typeDescTitle">실천</p>
+                      <p className="typeDescValue" id="typeDleftValue">{this.state.typeDPercent[0] + "%"}</p>
+                    </div>
+                    <div className="line"><div className="lineProgress" id="typeDprogress"></div></div>
+                    <div className="rightTypeTitle">
+                    <p className="typeDescTitle">인식</p>
+                      <p className="typeDescValue" id="typeDrightValue">{this.state.typeDPercent[1] + "%"}</p>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div className="todo">
+                  <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
+                  <p className="desc" id="designDesc">
+                  {/* {this.props.result.todo} */}
+                  </p>
+                </div>
+              </div>
+              <div className="rightBox">
+                <div className="position">
+                  <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
+                  {/* <div className="positionBox">{this.props.result.position}</div> */}
+                </div>
+                <div className="design">
+                  <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
+                    <div className="designDesc">
+                      <p className="number">1</p>
+                      {/* {this.props.result.design[0]} */}
+                    </div>
+                    <div className="designDesc">
+                      <p className="number">2</p>
+                      {/* {this.props.result.design[1]} */}
+                    </div>
+                    <div className="designDesc">
+                      <p className="number">3</p>
+                      {/* {this.props.result.design[2]} */}
+                    </div>
+                </div>
+                <div className="tools">
+                  <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">1</p>
+                      {/* <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/> */}
+                    </div>
+
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">2</p>
+                      {/* <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/> */}
+                    </div>
+
+                    <div className="toolDesc">
+                      <p className="number" id="toolNumber">3</p>
+                      {/* <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/> */}
                     </div>
                 </div>
                 <button className="exitBtn">검사 종료하기</button>
@@ -1085,8 +1211,8 @@ class App extends Component {
   {
     return (
       <>
-      {this.screenRender()}
-      {/* {<Result></Result>} */}
+      {/* {this.screenRender()} */}
+      {<Result></Result>}
       {/* <ResultCalculate></ResultCalculate> */}
       {/* <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen> */}
       {/* <Survey></Survey> */}

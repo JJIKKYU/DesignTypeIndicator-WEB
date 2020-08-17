@@ -339,7 +339,7 @@ input[type="radio"]:checked + label{
 .surveyHeader {
   position: relative;
   display: block;
-  width: 65%;
+  width: 1248px;
   height: 100px;
   margin: 0 auto;
   padding-top: 50px;
@@ -482,6 +482,36 @@ input[type="radio"]:checked + label{
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
   border-radius: 24px;
   display: inline-block;
+}
+
+.imageCard {
+  width: 382px;
+  height: 348px;
+  background: #646EDC;
+  border-radius: 24px;
+  position: relative;
+}
+
+.imageCard .bgPattern {
+  position: absolute;
+  margin-top: 10px;
+  left: 0;
+}
+
+.imageCard .character {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.imageCard .type {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 90px;
+  height: 38px;
+  padding-left: 30px;
+  padding-bottom: 24px;
 }
 
 .desc {
