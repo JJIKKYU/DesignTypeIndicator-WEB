@@ -561,7 +561,7 @@ input[type="radio"]:checked + label{
 .imageCard .bgPattern {
   position: absolute;
   margin-top: 10px;
-  left: 0;
+  left: 7px;
 }
 
 .imageCard .character {
@@ -665,7 +665,7 @@ input[type="radio"]:checked + label{
 .line {
   width: 220px;
   height: 4px;
-  background: #FFEBE6;
+  background-color: #FFEBE6;
   border-radius: 8px; 
   position: relative;
   margin: 0 auto;
@@ -686,7 +686,7 @@ input[type="radio"]:checked + label{
 .lineProgress {
   width: 10%;
   height: 4px;
-  background: #FF7D5F;
+  background-color: #FF7D5F;
   border-radius: 8px;
 }
 

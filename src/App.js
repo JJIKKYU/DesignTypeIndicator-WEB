@@ -554,6 +554,18 @@ class ResultCalculate extends Component {
         color : "",
         gender : "M",
         character : "",
+        typeAPercent : [
+          "", ""
+        ],
+        typeBPercent : [
+          "", ""
+        ],
+        typeCPercent : [
+          "", ""
+        ],
+        typeDPercent : [
+          "", ""
+        ],
       };
 
       var random = Math.floor(Math.random() * 4);
@@ -858,10 +870,11 @@ class Result extends Component {
     this.percentange();
 
     this.state = {
-      typeAPercent : ["", ""],
-      typeBPercent : ["", ""],
-      typeCPercent : ["", ""],
-      typeDPercent : ["", ""],
+      typeAPercent : [, ],
+      typeAleftPercent : 0,
+      typeBPercent : [, ],
+      typeCPercent : [, ],
+      typeDPercent : [, ],
     }
 
     // getFireDB().then(res => {
@@ -873,149 +886,57 @@ class Result extends Component {
     // });
   }
 
+  componentDidMount() {
+    if (this.props.result.typeAPercent[0] > this.props.result.typeAPercent[1]) {
+      document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
+    } else {
+      document.getElementById("typeAprogressBG").style.backgroundColor = "#FF7D5F";
+      document.getElementById("typeAprogressBG").style.width = "220px";
+      document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
+      document.getElementById("typeAprogress").style.backgroundColor = "#FFEBE6";
+    }
+
+    if (this.props.result.typeBPercent[0] > this.props.result.typeBPercent[1]) {
+      document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
+    } else {
+      document.getElementById("typeBprogressBG").style.backgroundColor = "#FF7D5F";
+      document.getElementById("typeBprogressBG").style.width = "220px";
+      document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
+      document.getElementById("typeBprogress").style.backgroundColor = "#FFEBE6";
+    }
+
+    if (this.props.result.typeCPercent[0] > this.props.result.typeCPercent[1]) {
+      document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
+    } else {
+      document.getElementById("typeCprogressBG").style.backgroundColor = "#FF7D5F";
+      document.getElementById("typeCprogressBG").style.width = "220px";
+      document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
+      document.getElementById("typeCprogress").style.backgroundColor = "#FFEBE6";
+    }
+
+    if (this.props.result.typeDPercent[0] > this.props.result.typeDPercent[1]) {
+      document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
+    } else {
+      document.getElementById("typeDprogressBG").style.backgroundColor = "#FF7D5F";
+      document.getElementById("typeDprogressBG").style.width = "220px";
+      document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
+      document.getElementById("typeDprogress").style.backgroundColor = "#FFEBE6";
+    }
+  }
+
   percentange = () => {
-    let typeAPercent = [];
-    let typeBPercent = [];
-    let typeCPercent = [];
-    let typeDPercent = [];
+    console.log(document.getElementById("typeAprogressBG"));
+    console.log(document.getElementById("typeAprogress"));
 
-    // typeAPercent =  [this.props.typeALR[0] / 12, this.props.typeALR[1] / 12];
-    // typeBPercent =  [this.props.typeBLR[0] / 12, this.props.typeBLR[1] / 12];
-    // typeCPercent =  [this.props.typeCLR[0] / 12, this.props.typeCLR[1] / 12];
-    // typeDPercent =  [this.props.typeDLR[0] / 12, this.props.typeDLR[1] / 12];
-    console.log(typeAPercent, typeBPercent, typeCPercent, typeDPercent);
+    
 
-    this.setState({
-      typeAPercent : typeAPercent,
-      typeBPercent : typeBPercent,
-      typeCPercent : typeCPercent,
-      typeDPercent : typeDPercent,
-    })
+    
   }
   
   render() {
     return(
       <>
-      {/* <div className="main">
-        <div className="surveyHeader">
-          <img className="headerLogo" src="/images/logo.png" alt=""/>
-          <img className="xButton" src="/images/X.png" alt=""/>
-        </div>
-
-        <div className="resultScreen">
-
-          <div className="resultCard">
-              <h1 className="resultTitle">{this.props.result.title}</h1>
-              <img src={"/images/"+ this.props.result.image + ".png"} alt=""/>
-              <p className="desc">{this.props.result.desc}</p>
-            </div>
-            <div className="resultDesc">
-              <div className="leftBox">
-                <div className="graph">
-                  <h3 className="descTitle">나의 DPTI 상세 결과</h3>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">외향</p>
-                      <p className="typeDescValue" id="typeAleftValue">{this.state.typeAPercent[0] + "%"}</p>
-                    </div>
-                    <div className="line"><div className="lineProgress" id="typeAprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">내향</p>
-                      <p className="typeDescValue" id="typeArightValue">{this.state.typeAPercent[1] + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">감각</p>
-                      <p className="typeDescValue" id="typeBleftValue">{this.state.typeBPercent[0] + "%"}</p>
-                    </div>
-                    <div className="line"><div className="lineProgress" id="typeBprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">직관</p>
-                      <p className="typeDescValue" id="typeBrightValue">{this.state.typeBPercent[1] + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">사고</p>
-                      <p className="typeDescValue" id="typeCleftValue">{this.state.typeCPercent[0] + "%"}</p>
-                    </div>
-                    <div className="line"><div className="lineProgress" id="typeCprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">감정</p>
-                      <p className="typeDescValue" id="typeCrightValue">{this.state.typeCPercent[1] + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">실천</p>
-                      <p className="typeDescValue" id="typeDleftValue">{this.state.typeDPercent[0] + "%"}</p>
-                    </div>
-                    <div className="line"><div className="lineProgress" id="typeDprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">인식</p>
-                      <p className="typeDescValue" id="typeDrightValue">{this.state.typeDPercent[1] + "%"}</p>
-                    </div>
-                  </div>
-
-
-                </div>
-                <div className="todo">
-                  <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
-                  <p className="desc" id="designDesc">
-                  {this.props.result.todo}
-                  </p>
-                </div>
-              </div>
-              <div className="rightBox">
-                <div className="position">
-                  <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
-                  <div className="positionBox">{this.props.result.position}</div>
-                </div>
-                <div className="design">
-                  <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
-                    <div className="designDesc">
-                      <p className="number">1</p>
-                      {this.props.result.design[0]}
-                    </div>
-                    <div className="designDesc">
-                      <p className="number">2</p>
-                      {this.props.result.design[1]}
-                    </div>
-                    <div className="designDesc">
-                      <p className="number">3</p>
-                      {this.props.result.design[2]}
-                    </div>
-                </div>
-                <div className="tools">
-                  <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">1</p>
-                      <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
-                    </div>
-
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">2</p>
-                      <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
-                    </div>
-
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">3</p>
-                      <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
-                    </div>
-                </div>
-                <button className="exitBtn">검사 종료하기</button>
-              </div>
-                
-          </div>
-        </div>
-      </div> */}
-
-<div className="main" id="hiddenBGMain">
+      <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <img className="headerLogo" src="/images/logo.png" alt=""/>
           <img className="xButton" src="/images/X.png" alt=""/>
@@ -1034,7 +955,7 @@ class Result extends Component {
               
               {/* <img src={"/images/"+ "resultGreen" + ".png"} alt=""/> */}
               
-              <p className="desc">텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다. 텍스트 영역입니다.</p>
+              <p className="desc">{this.props.result.desc}</p>
             </div>
             <div className="resultDesc">
               <div className="leftBox">
@@ -1044,48 +965,48 @@ class Result extends Component {
                   <div className="type">
                     <div className="leftTypeTitle">
                       <p className="typeDescTitle">외향</p>
-                      <p className="typeDescValue" id="typeAleftValue">{this.state.typeAPercent[0] + "%"}</p>
+                      <p className="typeDescValue" id="typeAleftValue">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
                     </div>
-                    <div className="line"><div className="lineProgress" id="typeAprogress"></div></div>
+                    <div className="line" id="typeAprogressBG"><div className="lineProgress" id="typeAprogress"></div></div>
                     <div className="rightTypeTitle">
                     <p className="typeDescTitle">내향</p>
-                      <p className="typeDescValue" id="typeArightValue">{this.state.typeAPercent[1] + "%"}</p>
+                      <p className="typeDescValue" id="typeArightValue">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
                     </div>
                   </div>
 
                   <div className="type">
                     <div className="leftTypeTitle">
                       <p className="typeDescTitle">감각</p>
-                      <p className="typeDescValue" id="typeBleftValue">{this.state.typeBPercent[0] + "%"}</p>
+                      <p className="typeDescValue" id="typeBleftValue">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
                     </div>
-                    <div className="line"><div className="lineProgress" id="typeBprogress"></div></div>
+                    <div className="line" id="typeBprogressBG"><div className="lineProgress" id="typeBprogress"></div></div>
                     <div className="rightTypeTitle">
                     <p className="typeDescTitle">직관</p>
-                      <p className="typeDescValue" id="typeBrightValue">{this.state.typeBPercent[1] + "%"}</p>
+                      <p className="typeDescValue" id="typeBrightValue">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
                     </div>
                   </div>
 
                   <div className="type">
                     <div className="leftTypeTitle">
                       <p className="typeDescTitle">사고</p>
-                      <p className="typeDescValue" id="typeCleftValue">{this.state.typeCPercent[0] + "%"}</p>
+                      <p className="typeDescValue" id="typeCleftValue">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
                     </div>
-                    <div className="line"><div className="lineProgress" id="typeCprogress"></div></div>
+                    <div className="line" id="typeCprogressBG"><div className="lineProgress" id="typeCprogress"></div></div>
                     <div className="rightTypeTitle">
                     <p className="typeDescTitle">감정</p>
-                      <p className="typeDescValue" id="typeCrightValue">{this.state.typeCPercent[1] + "%"}</p>
+                      <p className="typeDescValue" id="typeCrightValue">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
                     </div>
                   </div>
 
                   <div className="type">
                     <div className="leftTypeTitle">
                       <p className="typeDescTitle">실천</p>
-                      <p className="typeDescValue" id="typeDleftValue">{this.state.typeDPercent[0] + "%"}</p>
+                      <p className="typeDescValue" id="typeDleftValue">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
                     </div>
-                    <div className="line"><div className="lineProgress" id="typeDprogress"></div></div>
+                    <div className="line" id="typeDprogressBG"><div className="lineProgress" id="typeDprogress"></div></div>
                     <div className="rightTypeTitle">
                     <p className="typeDescTitle">인식</p>
-                      <p className="typeDescValue" id="typeDrightValue">{this.state.typeDPercent[1] + "%"}</p>
+                      <p className="typeDescValue" id="typeDrightValue">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
                     </div>
                   </div>
 
@@ -1181,7 +1102,12 @@ class App extends Component {
   onSearchCalcResult(result) {
     console.log("결과를 받았습니다 : " + result);
     result.gender = this.state.gender;
+    result.typeAPercent = this.state.typeAPercent;
+    result.typeBPercent = this.state.typeBPercent;
+    result.typeCPercent = this.state.typeCPercent;
+    result.typeDPercent = this.state.typeDPercent;
     console.log("gender 정보를 전달합니다 -> " + this.state.gender + " : " + result.gender);
+    console.log("gender 정보를 전달합니다 -> " + result.typeAPercent + result.typeBPercent + result.typeCPercent + result.typeDPercent);
     this.setState({
       result : result
     })
@@ -1195,7 +1121,6 @@ class App extends Component {
 
     let typeA_L_Clicked = 0;
     let typeA_R_Clicked = 0;
-
     let typeB_L_Clicked = 0;
     let typeB_R_Clicked = 0;
     let typeC_L_Clicked = 0;
@@ -1228,7 +1153,13 @@ class App extends Component {
     let typeCLR = [typeC_L_Clicked, typeC_R_Clicked];
     let typeDLR = [typeD_L_Clicked, typeD_R_Clicked];
 
+    let typeAPercent =  [(typeALR[0] / 6) * 100, (typeALR[1] / 6) * 100];
+    let typeBPercent =  [(typeBLR[0] / 6) * 100, (typeBLR[1] / 6) * 100];
+    let typeCPercent =  [(typeCLR[0] / 6) * 100, (typeCLR[1] / 6) * 100];
+    let typeDPercent =  [(typeDLR[0] / 6) * 100, (typeDLR[1] / 6) * 100];
+
     console.log("넘기기 전 : " + typeALR + typeBLR + typeCLR + typeDLR);
+    console.log("넘기기 전 :: " + typeAPercent + typeBPercent + typeCPercent + typeDPercent);
 
     this.setState({
       typeAvalue : typeAvalue,
@@ -1239,7 +1170,12 @@ class App extends Component {
       typeALR : typeALR,
       typeBLR : typeBLR,
       typeCLR : typeCLR,
-      typeDLR : typeDLR
+      typeDLR : typeDLR,
+
+      typeAPercent : typeAPercent,
+      typeBPercent : typeBPercent,
+      typeCPercent : typeCPercent,
+      typeDPercent : typeDPercent,
     })
 
     console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
