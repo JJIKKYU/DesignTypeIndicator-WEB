@@ -110,7 +110,7 @@
   border-radius: 16px;
   margin: 80px auto 0px auto;
 
-  visibility: hidden;
+  display: none;
 }
 
 .participantBox span{
@@ -176,6 +176,61 @@
 .infoHighlight {
   color: #FF7D5F;
   font-weight: 900;
+}
+
+input[type="button"]:checked {
+
+}
+
+#mButton {
+  margin-right: 10px;
+  left: 0;
+}
+
+#fButton {
+  margin-left: 10px;
+  right: 0;
+}
+
+.genderSelectBox {
+  width : 480px;
+  height: 56px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.genderSelectBox input {
+  display: none;
+}
+
+.genderSelectBoxHidden {
+  display: none;
+}
+
+.genderButton {
+  position: absolute;
+  width: 230px;
+  height: 56px;
+  border: none;
+  background: #FFFFFF;
+  border: 2px solid #BEBEBE;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 52px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #AAAAAA;
+}
+
+.genderButton:focus {
+  border: #FF7D5F;
+  color: #FF7D5F;
 }
 
 
@@ -487,9 +542,14 @@ input[type="radio"]:checked + label{
 .imageCard {
   width: 382px;
   height: 348px;
-  background: #646EDC;
   border-radius: 24px;
   position: relative;
+}
+
+.imageCard .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .imageCard .bgPattern {

@@ -45,7 +45,8 @@ class MainScreen extends Component {
     super(props);
     this.state = {
       page : 0,
-      people: 0
+      people: 0,
+      gender : "",
     };
     fire();
     getFireDB().then(res => {
@@ -57,6 +58,7 @@ class MainScreen extends Component {
 
 
     this.handleClick = this.handleClick.bind(this);
+    this.eventHandler = this.eventHandler.bind(this);
   }
 
   state = {
@@ -80,10 +82,15 @@ class MainScreen extends Component {
 
   handleClickTest = () => {
     this.props.onSubmit(2);
+    this.props.onGenderSubmit(this.state.gender);
   }
 
-  peopleData = () => {
-    
+  eventHandler = (e) => {
+    this.setState({
+      gender : e.target.value
+    }, () => {
+      console.log(this.state.gender);
+    });
   }
 
   render() {
@@ -101,11 +108,17 @@ class MainScreen extends Component {
             <span className="participantTitle">현재까지 응시자 수</span>
             <span className="participantNum">{this.state.people}명</span>
           </div>
+          <div className={this.state.page === 0 ? "genderSelectBoxHidden" : "genderSelectBox"}>
+            <input type="radio" className="genderButton" name="gender" id="mButton" value="M" onChange={this.eventHandler}/>
+            <label className="genderButton" for="mButton" id="mButton" >남자예요</label>
+            <input type="radio" className="genderButton" name="gender" id="fButton" value="F" onChange={this.eventHandler}/>
+            <label className="genderButton" for="fButton" id="fButton">여자예요</label>
+          </div>
 
           <form onSubmit={this.handleClickTest}><input type="button" className="startBox" onClick={ function(ev) {
             this.handleClick();
             
-          }.bind(this)} value={this.state.page === 0 ? "DPTI START" : "알겠어요!"}/></form>
+          }.bind(this)} value={this.state.page === 0 ? "DPTI START" : "시작해요!"}/></form>
           <p className="mainCopyright">copyright 2020. SJS all right reserved</p>
         </div>
       </div>
@@ -303,7 +316,7 @@ class Survey extends Component {
 
   nextSurveyCard = () => { 
     // this.state.currentSurvey
-    if (this.state.currentSurvey == 1)
+    if (this.state.currentSurvey == 24)
     {
       console.log("결과를 처리중입니다");
       this.props.onSubmit(3);
@@ -532,16 +545,50 @@ class ResultCalculate extends Component {
           "", "", 
         ],
         todo : "",
-        typeA : "",
-        typeB : "",
-        typeC : "",
-        typeD : "",
+        figure : "",
+        color : "",
+        gender : "M",
+        character : "",
       };
+
+      var random = Math.floor(Math.random() * 4);
+      result.character = random;
     
+      // 도형 결정
+      switch (typeAB) {
+        case "E":
+          result.figure = "Circle";
+          break;
+        case "I" :
+          result.figure = "Poly";
+          break;
+        case "S" :
+          result.figure = "Square";
+          break;
+        case "N" :
+          result.figure = "Poly";
+          break;
+      }
+
+      // 컬러 결정
+      switch (typeCD) {
+        case "T":
+          result.color = "Blue";
+          break;
+        case "F" :
+          result.color = "Pink";
+          break;
+        case "J" :
+          result.color = "Purple";
+          break;
+        case "P" :
+          result.color = "Green";
+          break;
+      }
 
     switch (type) {
       case "TI":
-        result.image = "resultGreen"
+        result.image = "resultPurple"
         result.title = "혼자 있고싶은 논리대장 디자이너";
         result.desc = "무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행함에 있어서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!";
         result.position = "모든걸 기록하고 기억하는 팔만대장경!";
@@ -554,7 +601,7 @@ class ResultCalculate extends Component {
         result.todo = "사실 당신은 답을 알고 계실 거에요. 온전히 혼자 있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!";
         break;
       case "TN":
-        result.image = "resultGreen"
+        result.image = "resultPurple"
         result.title = "이상향을 겸비한 이성적인 디자이너";
         result.desc = "모두가 행복했으면 좋겠지만, 사실 그건 불가능한 일이지요? 디자인에서도 모두의 만족을 지향하지만, 모두가 100% 만족하는 디자인은 없다고 생각하기도 해요. 그래서 당신은 옳은 방향에 대해서 오랜 시간 생각하는 편이에요. 누군가 좋아하지 않을 수는 있지만 싫어할 수는 없는 길을 찾으려고요. 모두를 만족하게 하고 싶어 가끔 헤맬 때도 있지만 고심하는 당신의 마음이 있기에 당신의 주변은 조금씩 더 나은 발걸음을 나아가고 있어요.";
         result.position = "답답함을 못참아 여러 사람 몫을 해내고 있어요";
@@ -567,7 +614,7 @@ class ResultCalculate extends Component {
         result.todo = "당신은 자신과 많은 대화를 나누고 깊이 고심하는 사람이죠. 스스로 수없이 고민해보셨죠? 이럴 때는 전혀 다른 사람들과 전혀 다른 주제의 대화가 필요해요. 당신은 어디서나 깨달음을 얻고, 어디에든 적용할 수 있는 창의력이 있는 사람이니까요. 이제는 다른 사람들과 떠들어보세요! 대신 옳고 그름을 따지지 말고, 지금의 내 상황에 적용할 수 있는 단어나, 논리, 방식들을 찾아보는 거에요. 다양한 대화 속에서 찾은 이상향이 당신의 이성으로 빛을 발하게 될 거에요!";
         break;
       case "TS":
-        result.image = "resultGreen"
+        result.image = "resultPurple"
         result.title = "거짓말을 칠수없는 첨단로봇 디자이너";
         result.desc = "'정석'이라는 말이 이렇게 어울리는 사람이 있을까요? 확실하지 않으면 승부를 걸지 않는 당신은 누군가에게는 지독한 현실주의자로 비칠 수도 있겠어요. 하지만 괜찮아요. 당신의 모든 행동에는 하나하나 그 이유가 있는 걸요. 그만큼 책임감도 확실하게 느끼고 있고요. 불가능한 시도는 하지 않기 때문에 정확하고 군더더기 없는 디자인을 완성할 수 있잖아요? 한번 뱉은 말은 끝까지 지키는 성격과 계획적인 시간 관리를 하는 당신, 디자인계의 알파고 할 수 있지 않을까요?";
         result.position = "잘못된 부분을 모른 척 넘어갈 수 없어요";
@@ -580,7 +627,7 @@ class ResultCalculate extends Component {
         result.todo = "당신은 조금 더 주변을 돌아보는 게 필요해요. 당신은 지금 하는 일에 지나치게 목을 매달고 있을 수 있어요. 했던 말을 지키려고 손해를 보고 있을 수도 있다는 얘기죠. 여실히 드러나는 당신의 성격 때문에 사람들에게 이용당하고 있다면 책임감을 내려놓고 일을 재분배하는 것도 좋아요, 만일 당신 혼자만의 문제라도 조금은 부담감을 내려놓고, 주위 사람들에게 도움을 받아보세요. 혹시 알아요? 당신의 논리와 완벽히 맞으면서도 색다른 아이디어를 도출할 수 있을지!";
         break;
       case "TE":
-        result.image = "resultGreen"
+        result.image = "resultPurple"
         result.title = "만물을 주관하는 왁자지껄 디자이너";
         result.desc = "당신은 디자인계의 지휘자라고도 할 수 있겠어요. 중립적인 입장에서 사람들의 합의점을 찾는 일에 능숙하고, 합리적이고 공정한 사람이죠. 다른 사람들의 의견에 반대할 일이 생기면 혹여 상처를 주지 않을까 경계하지만, 특유의 언변과 심리를 꿰뚫어보는 눈치로 사람들을 자연스럽게 설득할 수 있는 능력이 있어요. 주변의 의견을 적극적으로 수용하면서도 스스로 옳다고 생각한 의견은 굳건히 밀고 나가는 자세도 가지고 있죠. 당신 같은 리더가 있다면 믿고 따를 수 있을 거예요!";
         result.position = "정신 차려보니 대장이 되어있어요";
@@ -697,7 +744,7 @@ class ResultCalculate extends Component {
         result.todo = "기존과는 다른 방식으로 작업에 접근할 필요가 있어요. 사례를 찾을 때, 단순히 시각적인 정보가 아닌 작업 과정을 기록한 사례를 보게 된다면 굉장히 신선하게 다가올 거에요, 아이디어를 내고 그래픽을 잡는 사람이 있는가 하면, 그래픽에서 아이디어를 얻는 사람이 있잖아요? 항상 가는 길로만 가는 것이 독이 되는 경우가 있기도 하죠. 조력자의 역할에서 주도자의 역할로, 주도자의 역할에 있었다면 조력자가 되어 색다른 시각으로 작업을 바라보는 것도 좋은 방법이랍니다!";
         break;
       case "PI":
-        result.image = "resultPurple"
+        result.image = "resultGreen"
         result.title = "자아를 탐구하는 전통탈피 디자이너 ";
         result.desc = "삶을 이루는 모든 것에는 의미가 있죠, 혹 무의미한 부분이 있다고 해도 무의미 자체로서 의미가 있다고 생각하는 당신은 조그마한 일에도 수많은 배울 점을 찾아내는 보기 드문 성찰능력을 갖추고 있어요. 그래서 일반적으로 그냥 넘어가기도 하는 사소한 일들에서 커다란 의미를 찾아내어 주위 사람들에게 깨달음을 주기도 해요. 잘 깎은 연필처럼 묵묵히 자신을 발견해서 멋진 그림을 그리는 디자이너가 여기 있었네요!";
         result.position = "사람들이 놓친 디테일을 살려내요";
@@ -710,7 +757,7 @@ class ResultCalculate extends Component {
         result.todo = "당신은 넘치는 호기심을 쏟아부을 곳이 필요해요. 한 가지 주제로 오랜 기간 생각을 집중하다 보면 호기심 많은 당신은 쉽게 지루함을 느끼게 될 거에요. 현재 작업 중인 주제로 색다른 결과물을 생각해 본다거나, 아예 다른 사람들의 주제를 관찰하는 것도 도움이 된답니다. 혹은 주변 사람들에게 의견을 들어보는 것도 좋아요. 자기 자신의 의견은 누구보다 알고 계시지만, 주변 사람들의 의견을 자주 궁금해하지는 않으시잖아요? 색다른 자극이 될 수 있을 거예요!";
         break;
       case "PN":
-        result.image = "resultPurple"
+        result.image = "resultGreen"
         result.title = "인생을 찾아떠난 역마살 디자이너";
         result.desc = "삶이 철저히 계산으로 흘러갈 수 있는 것이라면, 아마 당신은 재미없어 할 것 같아요. 인생이 한가지 목표를 향해 가는 여정이라면 너무 아쉬울 것 같지 않나요? 하지만 당신을 만족하게 해줄 무언가를 향해 기꺼이 여러 갈래로의 여정을 시작하기도 하죠. 자유로운 사고를 바탕으로 무궁무진이 뻗어 나가는 디자인의 영역에서도 분명히 멋진 여행을 하게 되실 거에요!";
         result.position = "보다 색다른 아이디어를 언제나 생각하고 있어요";
@@ -723,7 +770,7 @@ class ResultCalculate extends Component {
         result.todo = "긍정적인 사고방식과 자유로운 심리로 주변 사람들에게 인정받고, 누구나 좋아하는 사람인 당신은 타인과의 정서적 교감을 즐기고, 누구보다 폭넓은 이해심을 바탕으로 많은 사람을 깊게 이해할 수 있을 거예요. 그만큼 주의해야 할 부분이 스스로 감정을 올바로 바라보는 것이랍니다. 내가 하는 일이 막히는 이유가 무의미하게 반복되는 과정인지, 주제에 대한 흥미 부족인지, 등 총체적 난국으로 여겨지는 현재 상황을 냉철하고 단계적으로 바라보면 해결점을 찾을 수 있을 거예요!";
         break;
       case "PS":
-        result.image = "resultPurple"
+        result.image = "resultGreen"
         result.title = "호기심을 무기삼은 맥가이버 디자이너";
         result.desc = "궁금함을 해결하고 난 뒤 속이 시원한 느낌! 맡은 일을 해내고 난 뒤 코가 뚫리는 성취감! 다재다능한 모습을 보여주는 당신은 스스로 어떤 분야에 관심이 가는지를 빠르게 판단합니다. 관심이 있는 분야가 생기면 다양한 시행착오도 하나의 재미있는 과정으로 생각하는데요, 당신에게 호기심만큼 강력한 무기는 없습니다! 본연의 현실적인 사고방식과 호기심을 통한 열정으로 다재다능한 맥가이버 디자이너가 결국 당신의 운명이에요!";
         result.position = "어떤 일이든 평균 이상을 해내는 재야의 숨은 고수!";
@@ -736,7 +783,7 @@ class ResultCalculate extends Component {
         result.todo = "가끔은 진행 중인 작업의 현실적인 가치나 실용적인 가치를 따지지 않고, 순전한 재미 또는 철저한 무관심으로 접근하는 것이 필요해요. 최초의 목적이 분명한 결과를 바라보고 시작한 일이라면 잠시 짐을 내려두고 그저 재미를 가치로 움직이거나, 재미로 시작한 일의 과정에서 지루함이 느껴진다면 그 지루함을 무시하는 거죠. 호기심을 무기로 삼은 당신에겐 오히려 다른 무기를 들어보는 것이 큰 도움이 될 수 있어요!";
         break;
       case "PE":
-        result.image = "resultPurple"
+        result.image = "resultGreen"
         result.title = "뒤에도 눈이달린 레이더망 디자이너";
         result.desc = "마치 레이더가 여러 사물을 한 번에 파악하듯, 당신은 사람과 사람 사이를 빠르게 파악하는 레이더를 가지고 있어요. 물론 인간관계는 어려운 것이지만, 당신에게 그것만큼 원동력이 되는 연료는 없죠. 망설임보다는 행동을 좋아하고. 규칙에 얽매이기보다는 새로운 규칙을 만드는 게 더 좋으시죠? 특유의 날카로운 눈치와 긍정적인 성격으로 대체할 수 없는 능력을 갖춘 당신! 언제 어디에서나 한몫을 해내는 인간 레이더 디자이너예요!";
         result.position = "최강의 팀을 만드는 역할분담 마스터";
@@ -798,8 +845,10 @@ class Result extends Component {
   constructor(props) {
     super(props);
 
-    console.log("constructor ResultPage! " + ", " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD);
-    console.log(" :: " + this.props.typeALR + ", " + this.props.typeBLR + ", " + this.props.typeCLR + ", " + this.props.typeDLR);
+    // console.log("constructor ResultPage! " + ", " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD);
+    // console.log(" :: " + this.props.typeALR + ", " + this.props.typeBLR + ", " + this.props.typeCLR + ", " + this.props.typeDLR);
+
+    console.log("this.props.result : " + this.props.result);
     this.percentange = this.percentange.bind(this);
     this.percentange();
 
@@ -971,9 +1020,10 @@ class Result extends Component {
 
           <div className="resultCard">
             <div className="imageCard">
-              <img className="bgPattern" src={"/images/" + "Purple_Circle" + ".png"} alt=""/>
-              <img className="character" src={"/images/" + "purple_f_long_circle" + ".png"} alt=""/>
-              <img className="type" src={"/images/" + "Purple_Type_Circle" + ".png"} alt=""/>
+              <img className="bg" src={"/images/" + this.props.result.color + "_BG.png"} alt=""/>
+              <img className="bgPattern" src={"/images/" + this.props.result.color + "_" + this.props.result.figure + ".png"} alt=""/>
+              <img className="character" src={"/images/people/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
+              <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
               <h1 className="resultTitle">어쩌라는 저쩌라고 디자이너</h1>
             </div>
               
@@ -1102,6 +1152,7 @@ class App extends Component {
     this.surveyResultCalc = this.surveyResultCalc.bind(this);
     this.surveyCalc = this.surveyCalc.bind(this);
     this.onSearchCalcResult = this.onSearchCalcResult.bind(this);
+    this.onGenderSubmit = this.onGenderSubmit.bind(this);
   }
   
   state = {
@@ -1114,9 +1165,18 @@ class App extends Component {
     });
   }
 
+  onGenderSubmit(props) {
+    console.log("결과를 받았습니다 : " + props);
+    this.setState({
+      gender : props
+    });
+  }
+
   // 계산한 결과 내용을 받는 함수
   onSearchCalcResult(result) {
     console.log("결과를 받았습니다 : " + result);
+    result.gender = this.state.gender;
+    console.log("gender 정보를 전달합니다 -> " + this.state.gender + " : " + result.gender);
     this.setState({
       result : result
     })
@@ -1198,7 +1258,7 @@ class App extends Component {
 
   screenRender() {
     if (this.state.currentPage < 1)
-      return <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen>;
+      return <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} onGenderSubmit={this.onGenderSubmit}></MainScreen>;
     else if (this.state.currentPage == 2)
       return <Survey onSubmit={this.onSearchSubmit} surveyCalc={this.surveyResultCalc}></Survey>;
     else if (this.state.currentPage == 3)
@@ -1211,8 +1271,8 @@ class App extends Component {
   {
     return (
       <>
-      {/* {this.screenRender()} */}
-      {<Result></Result>}
+      {this.screenRender()}
+      {/* {<Result></Result>} */}
       {/* <ResultCalculate></ResultCalculate> */}
       {/* <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} ></MainScreen> */}
       {/* <Survey></Survey> */}
