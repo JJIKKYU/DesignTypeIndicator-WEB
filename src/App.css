@@ -21,6 +21,10 @@
   background-image: url("/images/mainBGArticle.png");
 }
 
+#hiddenBGMain {
+  background-image: none;
+}
+
 .dptiMainCircle {
   position: relative;
   background-color: white;
@@ -185,11 +189,13 @@ input[type="button"]:checked {
 #mButton {
   margin-right: 10px;
   left: 0;
+  transition: ease-in-out .3s;
 }
 
 #fButton {
   margin-left: 10px;
   right: 0;
+  transition: ease-in-out .3s;
 }
 
 .genderSelectBox {
@@ -294,7 +300,6 @@ input[type="button"]:checked {
 input[type="radio"]:checked + label{
   border-color: #FF7D5F;
   color: #FF7D5F;
-  transition: ease-in-out .2  s;
 }
 
 
@@ -314,6 +319,7 @@ input[type="radio"]:checked + label{
   background-color: #FFFFFF;
   margin-top: 16px;
   padding-left: 24px;
+  transition: ease-in-out .3s;
 }
 
     /* .selectBox:hover {
@@ -580,7 +586,7 @@ input[type="radio"]:checked + label{
   font-weight: 500;
   font-size: 14px;
   line-height: 200%;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
   text-align: left;
   color: #282828;
 }
@@ -728,7 +734,7 @@ input[type="radio"]:checked + label{
   font-size: 16px;
   line-height: 16px;
   text-align: center;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.05em;
   color: #FF7D5F;
   line-height: 48px;
 }
@@ -753,7 +759,7 @@ input[type="radio"]:checked + label{
   font-size: 15px;
   line-height: 16px;
   text-align: center;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.04em;
 
   color: #FF7D5F;
   line-height: 50px;

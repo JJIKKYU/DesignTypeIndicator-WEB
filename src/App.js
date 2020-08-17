@@ -68,6 +68,11 @@ class MainScreen extends Component {
 
   handleClick = () => {
     console.log(this.state.page);
+    if (this.state.gender === "" && this.state.page === 1) {
+      alert("성별을 선택해주세요!");
+      return;
+    }
+
     if (this.state.page == 1) {
       this.handleClickTest();
     }
@@ -409,7 +414,7 @@ class Survey extends Component {
 
     return(
       <>
-      <div className="main">
+      <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <img className="headerLogo" src="/images/logo.png" alt=""/>
           <p>{this.state.currentSurvey} / 24</p>
@@ -670,7 +675,7 @@ class ResultCalculate extends Component {
         result.title = "미움받기 쉽지않은 팔방미인 디자이너";
         result.desc = "적재적소라는 말 아시나요? 알맞은 인재를 알맞은 자리에 쓴다는 말인데요, 당신은 스스로가 가진 것들을 적재적소로 활용하는 효율적인 사람입니다. 현실적인 사람임에도 이 때문에 다른 사람들의 기분을 나쁘게 하지는 않는 지혜로운 사람이기도 하죠. 그래서 곧잘 주변의 인정을 받기도 해요. 디자인에서도 명확히 가능성을 가늠하고, 현실적인 해결책을 도출하며 관계된 사람들과 자기 자신의 감정도 상하지 않게 다루는 진정한 팔방미인. 바로 당신입니다.";
         result.position = "모두가 만족할 방향을 끊임없이 찾아가요";
-        result.design[0] = "프로젝트 매니저";
+        result.design[0] = "프로젝트매니저";
         result.design[1] = "브랜딩";
         result.design[2] = "UX UI";
         result.tools[0] = "Tool_Name_Figma";
@@ -788,7 +793,7 @@ class ResultCalculate extends Component {
         result.desc = "마치 레이더가 여러 사물을 한 번에 파악하듯, 당신은 사람과 사람 사이를 빠르게 파악하는 레이더를 가지고 있어요. 물론 인간관계는 어려운 것이지만, 당신에게 그것만큼 원동력이 되는 연료는 없죠. 망설임보다는 행동을 좋아하고. 규칙에 얽매이기보다는 새로운 규칙을 만드는 게 더 좋으시죠? 특유의 날카로운 눈치와 긍정적인 성격으로 대체할 수 없는 능력을 갖춘 당신! 언제 어디에서나 한몫을 해내는 인간 레이더 디자이너예요!";
         result.position = "최강의 팀을 만드는 역할분담 마스터";
         result.design[0] = "아트디렉터";
-        result.design[1] = "프로젝트 매니저";
+        result.design[1] = "프로젝트매니저";
         result.design[2] = "브랜딩";
         result.tools[0] = "Tool_Name_Xd";
         result.tools[1] = "Tool_Name_Slack";
@@ -810,7 +815,7 @@ class ResultCalculate extends Component {
 
     return(
       <>
-      <div className="main">
+      <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <img className="headerLogo" src="/images/logo.png" alt=""/>
           <p>24 / 24</p>
@@ -1010,7 +1015,7 @@ class Result extends Component {
         </div>
       </div> */}
 
-<div className="main">
+<div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <img className="headerLogo" src="/images/logo.png" alt=""/>
           <img className="xButton" src="/images/X.png" alt=""/>
@@ -1024,7 +1029,7 @@ class Result extends Component {
               <img className="bgPattern" src={"/images/" + this.props.result.color + "_" + this.props.result.figure + ".png"} alt=""/>
               <img className="character" src={"/images/people/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
               <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
-              <h1 className="resultTitle">어쩌라는 저쩌라고 디자이너</h1>
+              <h1 className="resultTitle">{this.props.result.title}</h1>
             </div>
               
               {/* <img src={"/images/"+ "resultGreen" + ".png"} alt=""/> */}
@@ -1089,45 +1094,45 @@ class Result extends Component {
                 <div className="todo">
                   <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
                   <p className="desc" id="designDesc">
-                  {/* {this.props.result.todo} */}
+                  {this.props.result.todo}
                   </p>
                 </div>
               </div>
               <div className="rightBox">
                 <div className="position">
                   <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
-                  {/* <div className="positionBox">{this.props.result.position}</div> */}
+                  <div className="positionBox">{this.props.result.position}</div>
                 </div>
                 <div className="design">
                   <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
                     <div className="designDesc">
                       <p className="number">1</p>
-                      {/* {this.props.result.design[0]} */}
+                      {this.props.result.design[0]}
                     </div>
                     <div className="designDesc">
                       <p className="number">2</p>
-                      {/* {this.props.result.design[1]} */}
+                      {this.props.result.design[1]}
                     </div>
                     <div className="designDesc">
                       <p className="number">3</p>
-                      {/* {this.props.result.design[2]} */}
+                      {this.props.result.design[2]}
                     </div>
                 </div>
                 <div className="tools">
                   <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">1</p>
-                      {/* <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/> */}
+                      <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
                     </div>
 
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">2</p>
-                      {/* <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/> */}
+                      <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
                     </div>
 
                     <div className="toolDesc">
                       <p className="number" id="toolNumber">3</p>
-                      {/* <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/> */}
+                      <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
                     </div>
                 </div>
                 <button className="exitBtn">검사 종료하기</button>
