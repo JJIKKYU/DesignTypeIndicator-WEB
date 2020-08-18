@@ -12,9 +12,9 @@ class CircleTitle extends Component {
     return(
       <>
         <p className="subTitle">디자이너 모여라! 다 모여!</p>
-        <img src="/images/logo.png"></img>
+        <a href="/"><img src="/images/dimodamoSVG.svg"></img></a>
         <div className="mainLine"></div>
-        <img src="/images/DPTI.png"></img>
+        <img src="/images/DPTISVG.svg"></img>
         <p className="questionText">너 혹시 디자이너니? <br></br> 그럼 어떤 디자이너니?</p>
       </>
     );
@@ -416,9 +416,9 @@ class Survey extends Component {
       <>
       <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
-          <img className="headerLogo" src="/images/logo.png" alt=""/>
+          <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
           <p>{this.state.currentSurvey} / 24</p>
-          <img className="xButton" src="/images/X.png" alt=""/>
+          <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
           <div className="progressBarBG">
             <div style={progress} className="progressBar"></div>
           </div>
@@ -829,9 +829,9 @@ class ResultCalculate extends Component {
       <>
       <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
-          <img className="headerLogo" src="/images/logo.png" alt=""/>
+          <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
           <p>24 / 24</p>
-          <img className="xButton" src="/images/X.png" alt=""/>
+          <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
           <div className="progressBarBG">
             <div style={progress} className="progressBar"></div>
           </div>
@@ -938,8 +938,8 @@ class Result extends Component {
       <>
       <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
-          <img className="headerLogo" src="/images/logo.png" alt=""/>
-          <img className="xButton" src="/images/X.png" alt=""/>
+          <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
+          <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
         </div>
 
         <div className="resultScreen">
@@ -948,7 +948,7 @@ class Result extends Component {
             <div className="imageCard">
               <img className="bg" src={"/images/" + this.props.result.color + "_BG.png"} alt=""/>
               <img className="bgPattern" src={"/images/" + this.props.result.color + "_" + this.props.result.figure + ".png"} alt=""/>
-              <img className="character" src={"/images/people/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
+              <img className="character" src={"/images/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
               <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
               <h1 className="resultTitle">{this.props.result.title}</h1>
             </div>
@@ -1056,7 +1056,7 @@ class Result extends Component {
                       <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
                     </div>
                 </div>
-                <button className="exitBtn">검사 종료하기</button>
+                <a href="/"><button className="exitBtn">검사 종료하기</button></a>
               </div>
                 
           </div>
