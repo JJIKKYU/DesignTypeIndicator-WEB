@@ -1,10 +1,7 @@
-import React, { Component, useEffect } from 'react';
-import { database } from "@react-firebase/database";
+import React, { Component } from 'react';
 import 'firebase/database'
-import { fire, getFireDB, setFireDB } from './firebase.config'
+import { fire, getFireDB, setFireDB, setFireResultDB, setFireClickedDB } from './firebase.config'
 import './App.css';
-import { render } from '@testing-library/react';
-const databaseURL = "https://dpti-85ab7.firebaseio.com/";
 window.page = 0;
 
 class CircleTitle extends Component {
@@ -53,12 +50,13 @@ class MainScreen extends Component {
       this.setState({
         people : res.val().people
       })
-      console.log(res.val().people);
+      // console.log(res.val().people);
     });
 
 
     this.handleClick = this.handleClick.bind(this);
     this.eventHandler = this.eventHandler.bind(this);
+    this.setButtonPosition = this.setButtonPosition.bind(this);
   }
 
   state = {
@@ -66,14 +64,26 @@ class MainScreen extends Component {
     buttonText : "DPTI START"
   }
 
+  setButtonPosition = () => {
+    const browserInnerHeight = window.innerHeight;
+    if (browserInnerHeight <= 750) {
+      document.getElementById("main").style.minHeight = "810px";
+      document.getElementById("mainCenter").style.minHeight = "810px";
+    }
+  }
+  
+  componentDidMount() {
+    this.setButtonPosition();
+  }
+
   handleClick = () => {
-    console.log(this.state.page);
+    // console.log(this.state.page);
     if (this.state.gender === "" && this.state.page === 1) {
       alert("성별을 선택해주세요!");
       return;
     }
 
-    if (this.state.page == 1) {
+    if (this.state.page === 1) {
       this.handleClickTest();
     }
     else
@@ -94,16 +104,18 @@ class MainScreen extends Component {
     this.setState({
       gender : e.target.value
     }, () => {
-      console.log(this.state.gender);
+      // console.log(this.state.gender);
     });
   }
 
   render() {
     return(
     <>
-      <div className="main">
-        <div className="mainCenter">
+      <div className="main" id="main">
+      <img className="mobileCircleBG" src="/images/mobile_main_circle.png" alt=""/>
+        <div className="mainCenter" id="mainCenter">
           <div className="dptiMainCircle">
+            
             <div id="center">
               {this.state.page === 0 ? <CircleTitle></CircleTitle> : <Infomation></Infomation>}          
             </div>
@@ -251,10 +263,10 @@ class SurveyCard extends Component {
   reverseSelectValue = (index) => {
 
     // reverse 되는 문장 선택
-    if (this.state.number == 3 || this.state.number == 5 || this.state.number == 6 ||
-      this.state.number == 8 || this.state.number == 10 || this.state.number == 12 ||
-      this.state.number == 14 || this.state.number == 16 || this.state.number == 18 ||
-      this.state.number == 20 || this.state.number == 22 || this.state.number == 24
+    if (this.state.number === 3 || this.state.number === 5 || this.state.number === 6 ||
+      this.state.number === 8 || this.state.number === 10 || this.state.number === 12 ||
+      this.state.number === 14 || this.state.number === 16 || this.state.number === 18 ||
+      this.state.number === 20 || this.state.number === 22 || this.state.number === 24
       ) {
       return index - 2;
     }
@@ -293,20 +305,56 @@ class Survey extends Component {
 
   constructor(props) {
     super(props);
-    this.state.currentXpos = -210;
-    this.state.xPosTransitionStep = 422;
+    if (window.screen.width <= 375) {
+      this.state.currentXpos = -190;
+
+      this.state.xPosTransitionStep = 379;
+    }
+    else {
+      this.state.currentXpos = -210;
+      this.state.xPosTransitionStep = 422;
+    }
     this.state.maxSurveycnt = 24;
     this.nextSurveyCard = this.nextSurveyCard.bind(this);
     this.getSurveyResult = this.getSurveyResult.bind(this);
+    this.setButtonPosition = this.setButtonPosition.bind(this);
   }
 
   state = {
-    currentXpos : -210,
+    currentXpos : 0,
     xPosTransitionStep : 422,
     currentSurvey : 1,
     maxSurveycnt : 24,
     progressBar : (100 * (1 / 24)),
     isHidden : false
+  }
+
+  setButtonPosition = () => {
+    const browserInnerHeight = window.innerHeight;
+    if (browserInnerHeight <= 750) {
+      document.getElementById("hiddenBGMain").style.minHeight = "810px";
+    }
+  }
+
+
+  componentDidMount() {
+    if (window.screen.width <= 415)
+    {
+      for (var i = 1; i <= 24; ++i) {
+        const name = "boxQ" + i.toString();
+        let widthSize = window.screen.width - 32 - 64;
+        
+        document.getElementById(name).style.width = widthSize + "px";
+        // this.state.xPosTransitionStep = window.screen.width;
+        this.setState({
+          currentXpos : -4,
+          xPosTransitionStep : window.screen.width + 8,
+        })
+      }
+    }
+
+    this.setButtonPosition();
+    
   }
 
   getSurveyResult = (targetName, targetValue) => {
@@ -321,24 +369,26 @@ class Survey extends Component {
 
   nextSurveyCard = () => { 
     // this.state.currentSurvey
-    if (this.state.currentSurvey == 24)
-    {
-      console.log("결과를 처리중입니다");
-      this.props.onSubmit(3);
-      return;
-    }
+    
 
     // 안 클릭했을 때를 체크
     var selectbuttons = document.getElementsByName("Q"+this.state.currentSurvey);
     var checkCount = 0;
     for (var i = 0; i < selectbuttons.length; ++i) {
-      if (selectbuttons[i].checked == true) {
+      if (selectbuttons[i].checked === true) {
           checkCount += 1;
           break;
       }        
     }
+
+    if (this.state.currentSurvey === 24 && checkCount > 0)
+    {
+      // console.log("결과를 처리중입니다");
+      this.props.onSubmit(3);
+      return;
+    }
   
-    if (checkCount == 0)
+    if (checkCount === 0)
     {
       alert("체크해주세요!");
       // console.log("체크해주세요!");
@@ -351,7 +401,7 @@ class Survey extends Component {
     {
       var prevBox = document.getElementById("boxQ"+Number(this.state.currentSurvey));
       prevBox.style.opacity = 0.2;
-      console.log(prevBox);
+      // console.log(prevBox);
     }
 
     const finalXpos = this.state.currentXpos - this.state.xPosTransitionStep;
@@ -361,7 +411,7 @@ class Survey extends Component {
       progressBar : this.state.progressBar + (100 * (1 / 24))
     });
 
-    console.log("현재 진행 중인 문제 : " + this.state.currentSurvey);
+    // console.log("현재 진행 중인 문제 : " + this.state.currentSurvey);
   }
 
   questionRender = () => {
@@ -396,12 +446,6 @@ class Survey extends Component {
     return question;
   }
 
-  defaultCardOpacity =() => {
-    var boxHidden = document.getElementById("boxQ1");
-    console.log(boxHidden);
-    // boxHidden.style.opacity = 1;
-  }
-
   render() {
 
     let cardMove = {
@@ -419,8 +463,10 @@ class Survey extends Component {
           <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
           <p>{this.state.currentSurvey} / 24</p>
           <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
-          <div className="progressBarBG">
-            <div style={progress} className="progressBar"></div>
+          <div className="prgoressBarContainer">
+            <div className="progressBarBG">
+              <div style={progress} className="progressBar"></div>
+            </div>
           </div>
         </div>
         {/* <div className="blurBox"> */}
@@ -430,8 +476,10 @@ class Survey extends Component {
           {/* {question} */}
           {this.questionRender()}
         </div>
-        <div className="buttonDiv">
-          <input type="button" className="nextBox" value="다음으로" onClick={this.nextSurveyCard}></input>
+        <div className="buttonContainer">
+          <div className="buttonDiv">
+            <input type="button" className="nextBox" value="다음으로" onClick={this.nextSurveyCard}></input>
+          </div>
         </div>
         
       </div>
@@ -445,7 +493,7 @@ class ResultCalculate extends Component {
     super(props);
     this.checkType = this.checkType.bind(this);
     this.calcResult = this.calcResult.bind(this);
-    console.log("constructor : " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD)
+    // console.log("constructor : " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD)
     this.checkType();
   }
 
@@ -480,23 +528,23 @@ class ResultCalculate extends Component {
     if (isTypeA) {
       // E
       if (this.props.typeA < 0) {
-        console.log("E");
+        // console.log("E");
         typeAB = "E";
       }
       // I
       else if (this.props.typeA >= 0) {
-        console.log("I");
+        // console.log("I");
         typeAB = "I";
       }
     } else if (isTypeB) {
       // S
       if (this.props.typeB < 0) {
-        console.log("S");
+        // console.log("S");
         typeAB = "S";
       }
       // N
       else if (this.props.typeB >= 0) {
-        console.log("N");
+        // console.log("N");
         typeAB = "N";
       }
     }
@@ -506,23 +554,23 @@ class ResultCalculate extends Component {
     if (isTypeC) {
       // T
       if (this.props.typeC < 0) {
-        console.log("T");
+        // console.log("T");
         typeCD = "T";
       }
       // F
       else if (this.props.typeC >= 0) {
-        console.log("F");
+        // console.log("F");
         typeCD = "F";
       }
     } else if (isTypeD) {
       // J
       if (this.props.typeD < 0) {
-        console.log("J");
+        // console.log("J");
         typeCD = "J";
       }
       // P
       else if (this.props.typeD >= 0) {
-        console.log("P");
+        // console.log("P");
         typeCD = "P";
       }
     } 
@@ -534,7 +582,7 @@ class ResultCalculate extends Component {
 
   calcResult = (typeAB, typeCD) => {
     const type = typeCD + typeAB;
-    console.log(type);
+    // console.log(type);
     // const type = ;
     
     let result = 
@@ -607,7 +655,7 @@ class ResultCalculate extends Component {
       case "TI":
         result.image = "resultPurple"
         result.title = "혼자 있고싶은 논리대장 디자이너";
-        result.desc = "무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행함에 있어서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!";
+        result.desc = "무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하면서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!";
         result.position = "모든걸 기록하고 기억하는 팔만대장경!";
         result.design[0] = "UX";
         result.design[1] = "인포메이션";
@@ -615,7 +663,7 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Sketch";
         result.tools[1] = "Tool_Name_Illustrator";
         result.tools[2] = "Tool_Name_Indesign";
-        result.todo = "사실 당신은 답을 알고 계실 거에요. 온전히 혼자 있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!";
+        result.todo = "사실 당신은 답을 알고 계실 거예요. 온전히 혼자 있는 시간이 필요하죠. 어떠한 방해 없이 혼자서 고민하고 쉬는 시간을 가져봤는데도 문제를 해결하거나 에너지를 충전하지 못하셨다면 한적한 거리를 산책하거나, 밀린 집안일이나 관심이 생겼던 취미처럼 작업과 전혀 상관없는 일을 해보는 것도 좋아요. 당신과 깊은 친밀감을 공유하는 사람과 대화를 나누는 것도 좋은 방법이랍니다!";
         break;
       case "TN":
         result.image = "resultPurple"
@@ -628,12 +676,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Sketchup";
         result.tools[1] = "Tool_Name_Figma";
         result.tools[2] = "Tool_Name_Fontlab";
-        result.todo = "당신은 자신과 많은 대화를 나누고 깊이 고심하는 사람이죠. 스스로 수없이 고민해보셨죠? 이럴 때는 전혀 다른 사람들과 전혀 다른 주제의 대화가 필요해요. 당신은 어디서나 깨달음을 얻고, 어디에든 적용할 수 있는 창의력이 있는 사람이니까요. 이제는 다른 사람들과 떠들어보세요! 대신 옳고 그름을 따지지 말고, 지금의 내 상황에 적용할 수 있는 단어나, 논리, 방식들을 찾아보는 거에요. 다양한 대화 속에서 찾은 이상향이 당신의 이성으로 빛을 발하게 될 거에요!";
+        result.todo = "당신은 자신과 많은 대화를 나누고 깊이 고심하는 사람이죠. 스스로 수없이 고민해보셨죠? 이럴 때는 전혀 다른 사람들과 전혀 다른 주제의 대화가 필요해요. 당신은 어디서나 깨달음을 얻고, 적용할 수 있는 창의력이 있는 사람이니까요. 이제는 다른 사람들과 떠들어보세요! 옳고 그름을 따지지 말고, 지금의 내 상황에 적용할 수 있는 단어나, 논리, 방식들을 찾아보는 거예요. 다양한 대화 속에서 찾은 이상향이 당신의 이성으로 빛을 발하게 될 거예요!";
         break;
       case "TS":
         result.image = "resultPurple"
         result.title = "거짓말을 칠수없는 첨단로봇 디자이너";
-        result.desc = "'정석'이라는 말이 이렇게 어울리는 사람이 있을까요? 확실하지 않으면 승부를 걸지 않는 당신은 누군가에게는 지독한 현실주의자로 비칠 수도 있겠어요. 하지만 괜찮아요. 당신의 모든 행동에는 하나하나 그 이유가 있는 걸요. 그만큼 책임감도 확실하게 느끼고 있고요. 불가능한 시도는 하지 않기 때문에 정확하고 군더더기 없는 디자인을 완성할 수 있잖아요? 한번 뱉은 말은 끝까지 지키는 성격과 계획적인 시간 관리를 하는 당신, 디자인계의 알파고 할 수 있지 않을까요?";
+        result.desc = "'정석'이라는 말이 이렇게 어울리는 사람이 있을까요? 확실하지 않으면 승부를 걸지 않는 당신은 누군가에게는 지독한 현실주의자로 비칠 수도 있겠어요. 하지만 괜찮아요. 당신의 모든 행동에는 하나하나 그 이유가 있는걸요. 그만큼 책임감도 확실하고요. 불가능한 시도는 하지 않기 때문에 정확하고 군더더기 없는 디자인을 완성할 수 있잖아요? 한번 뱉은 말은 끝까지 지키는 성격과 철저히 계획적인 당신, 디자인계의 알파고 할 수 있지 않을까요?";
         result.position = "잘못된 부분을 모른 척 넘어갈 수 없어요";
         result.design[0] = "편집디자인";
         result.design[1] = "브랜딩";
@@ -641,12 +689,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Indesign";
         result.tools[1] = "Tool_Name_Illustrator";
         result.tools[2] = "Tool_Name_Fontlab";
-        result.todo = "당신은 조금 더 주변을 돌아보는 게 필요해요. 당신은 지금 하는 일에 지나치게 목을 매달고 있을 수 있어요. 했던 말을 지키려고 손해를 보고 있을 수도 있다는 얘기죠. 여실히 드러나는 당신의 성격 때문에 사람들에게 이용당하고 있다면 책임감을 내려놓고 일을 재분배하는 것도 좋아요, 만일 당신 혼자만의 문제라도 조금은 부담감을 내려놓고, 주위 사람들에게 도움을 받아보세요. 혹시 알아요? 당신의 논리와 완벽히 맞으면서도 색다른 아이디어를 도출할 수 있을지!";
+        result.todo = "당신은 조금 더 주변을 돌아보는 게 필요해요. 지금 하는 일에 지나치게 목을 매달고 있지는 않나요? 했던 말을 지키려고 손해를 보고 있을 수도 있다는 얘기죠. 여실히 드러나는 당신의 성격 때문에 사람들에게 이용당하고 있다면 책임감을 내려놓고 일을 재분배하는 것도 좋아요, 만일 혼자만의 문제라면, 부담감을 내려놓고, 주위 사람들에게 도움을 받아보세요. 혹시 알아요? 당신의 논리와 완벽히 맞으면서도 색다른 아이디어를 도출할 수 있을지!";
         break;
       case "TE":
         result.image = "resultPurple"
         result.title = "만물을 주관하는 왁자지껄 디자이너";
-        result.desc = "당신은 디자인계의 지휘자라고도 할 수 있겠어요. 중립적인 입장에서 사람들의 합의점을 찾는 일에 능숙하고, 합리적이고 공정한 사람이죠. 다른 사람들의 의견에 반대할 일이 생기면 혹여 상처를 주지 않을까 경계하지만, 특유의 언변과 심리를 꿰뚫어보는 눈치로 사람들을 자연스럽게 설득할 수 있는 능력이 있어요. 주변의 의견을 적극적으로 수용하면서도 스스로 옳다고 생각한 의견은 굳건히 밀고 나가는 자세도 가지고 있죠. 당신 같은 리더가 있다면 믿고 따를 수 있을 거예요!";
+        result.desc = "당신은 디자인계의 지휘자라고도 할 수 있겠어요. 중립적인 입장에서 사람들의 합의점을 찾는 일에 능숙하고, 합리적이고 공정한 사람이죠. 다른 사람들의 의견에 반대할 일이 생기면 혹여 상처를 주지 않을까 경계하지만, 특유의 언변과 심리를 꿰뚫어 보는 눈치로 사람들을 자연스럽게 설득할 수 있어요. 주변의 의견을 적극적으로 수용하면서도 스스로 옳다고 생각한 의견은 굳건히 밀고 나가는 당신! 당신 같은 리더가 있다면 믿고 따를 수 있을 거예요!";
         result.position = "정신 차려보니 대장이 되어있어요";
         result.design[0] = "브랜딩";
         result.design[1] = "전시/무대";
@@ -654,12 +702,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Photoshop";
         result.tools[1] = "Tool_Name_Premier";
         result.tools[2] = "Tool_Name_Notion";
-        result.todo = "사람들에 대한 기대를 조금 내려놓을 필요가 있어요. 그것이 설령 자신이더라도 말이죠. 사람은 완벽할 수 없다는 것을 인정하고 나면 해야 할 것과 할 수 없는 것들을 명확히 판단할 수 있을 거예요. 부족한 부분을 인정하는 것이 다음 단계로의 길잡이가 되어줄 거에요. 그 전에 이미 지쳐버리셨다고요? 그렇다면 나와 같은 성향의 친구에게 현재 상황을 솔직하게 말하고, 조언과 도움을 구해보세요. 당신 같은 사람처럼 합의점을 찾고 조율하는 데에 달인인 사람은 없으니까요!";
+        result.todo = "사람에 대한 기대를 조금 내려놓을 필요가 있어요. 그것이 설령 자신이더라도 말이죠. 사람은 완벽할 수 없다는 것을 인정하면 해야 할 것과 할 수 없는 것들을 명확히 판단할 수 있을 거예요. 부족한 점을 인정하는 것이 다음 단계로의 길잡이가 되어줄 거에요. 이미 지쳐버리셨다고요? 그렇다면 나와 같은 성향의 친구에게 현재 상황을 솔직하게 말하고, 조언을 구해보세요. 당신 같은 사람처럼 합의점을 찾고 조율하는 데에 달인인 사람은 없으니까요!";
         break;
       case "FI":
         result.image = "resultPink"
         result.title = "내사람을 사랑하는 평화주의 디자이너";
-        result.desc = "당신은 생각을 자주 곱씹고 스스로 마음을 쓰다듬을 줄 아는 깊이 있는 사람이에요. 때로는 이성적이고 논리적인 해결책보다 감정과 마음을 지킬 줄 아는 선택이 더 중요하죠. 부자가 되고 싶다는 생각보다는 내 마음에 꼭 드는 삶을 살고 싶다는 생각을 할 때가 많아요. 모든 사람이 그럭저럭 좋아하는 디자인보다는 내 마음에 꼭 들고, 소수가 되더라도 사람들을 깊이 감동하게 하는 디자이너가 되고 싶으실 거에요. 섬세하고 세밀한 당신이라면, 저는 충분히 가능하다고 생각해요.";
+        result.desc = "당신은 생각을 자주 곱씹고 마음을 쓰다듬을 줄 아는 깊이 있는 사람이에요. 때로는 이성적이고 논리적인 해결책보다 감정과 마음을 지킬 줄 아는 게 더 중요하죠. 부자가 되고 싶다는 생각보다 내 마음에 꼭 드는 삶을 살기를 원할 때가 많아요. 모두가 그럭저럭 좋아하는 디자이너보다 내 마음에 꼭 들고, 소수가 되더라도 사람들을 깊이 감동하게 하는 디자이너가 되고 싶으시죠? 섬세하고 세밀한 당신이라면, 저는 충분히 가능하다고 생각해요.";
         result.position = "충분한 일인분을 해내는 성실한 팀원이에요";
         result.design[0] = "금속공예";
         result.design[1] = "일러스트";
@@ -667,7 +715,7 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Rhino";
         result.tools[1] = "Tool_Name_Illustrator";
         result.tools[2] = "Tool_Name_Maya";
-        result.todo = "두 가지 방법이 있어요. 하나는 당신과 깊은 교감을 나누고 있는 친구들을 만나는 거에요. 서로 너무나 잘 알고 있는 친구들과 이야기하며 지금의 마음을 정리해보세요. 당장 만날 수 있는 친구가 없다면 글로 적어보는 것도 괜찮아요. 당신은 자신과 가장 친한 친구이기도 하니까요. 하나는 정말 이성적이고, 로봇 같은 사람들의 평가를 받는 거에요. 당신과는 맞지 않는 사람들이지만, 그만큼 당신이 부족한 부분을 냉정하게 알려줄 수 있을 테니까요.";
+        result.todo = "두 가지 방법이 있어요. 하나는 당신과 깊은 교감을 나누고 있는 친구들을 만나는 거예요. 서로 너무나 잘 알고 있는 친구들과 이야기하며 지금의 마음을 정리해보세요. 당장 만날 수 있는 친구가 없다면 글로 적어보는 것도 괜찮아요. 당신은 자신과 가장 친한 친구이기도 하니까요. 하나는 정말 이성적이고, 로봇 같은 사람들의 평가를 받는 거예요. 당신과는 맞지 않는 사람들이지만, 그만큼 당신이 부족한 부분을 냉정하게 알려줄 수 있을 테니까요.";
         break;
       case "FN":
         result.image = "resultPink"
@@ -680,7 +728,7 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Protopie";
         result.tools[1] = "Tool_Name_Jandi";
         result.tools[2] = "Tool_Name_After effects";
-        result.todo = "항상 다양한 이야기를 듣고 생각하지만, 그래서인지 점점 더 당신 마음에 쏙 드는 무언가를 찾기가 어려워져요. 사람들에게서 에너지를 얻는다고 생각하지만 때로는 사람들에게 에너지를 뺏기고 있는 것은 아닌가 하는 생각도 하죠. 당신에게는 익숙한 만나 보다는, 전혀 다른 분야의 작품을 보는 게 도움이 돼요. 현재 이야기를 쓰고 있다면 추상적인 예술작품을, 손으로 만드는 무언가를 하고 있다면 순수하게 디지털로 제작된 작품을 감상하는 행동이 당신에게 새로운 영감을 줄 거에요.";
+        result.todo = "항상 다양한 이야기를 듣고 생각하지만, 그래서인지 점점 더 당신 마음에 쏙 드는 무언가를 찾기가 어려워져요. 사람들에게서 에너지를 얻는다고 생각하지만, 때로는 에너지를 뺏기고 있는 것은 아닌가 하는 생각도 하죠. 당신에게는 익숙한 만남보다는, 전혀 다른 분야의 작품을 보는 게 도움이 돼요. 이야기를 쓰고 있다면 추상적인 예술작품을, 손으로 만드는 무언가를 하고 있다면 디지털로 제작된 작품을 감상하는 행동이 새로운 영감을 줄 거에요!";
         break;
       case "FS":
         result.image = "resultPink"
@@ -693,12 +741,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Figma";
         result.tools[1] = "Tool_Name_Illustrator";
         result.tools[2] = "Tool_Name_Notion";
-        result.todo = "여유로운 마음을 가져보세요. 당신은 당장 보이는 결과나, 명확할 가능성이 있는 도전이 아니라면 흥미가 떨어지고 관심도 덜해질 거에요. 혹시 원하는 방향으로 결과물이 나오지 않거나, 원하는 만큼의 효율이 생기지 않을까 봐 작업이 더뎌지는 건 아닌가요? 한 번쯤 그래, 내가 선심 쓴다! 하는 마음가짐으로 일을 진행해보시는 건 어떨까요? 부담도 덜하고, 실패해도 큰일 나는 게 아니라는 생각을 하면 놓치고 있던 부분들도 훨씬 잘 보이게 되어 점차 작업에 속도가 붙을 거에요!";
+        result.todo = "여유로운 마음을 가져보세요. 당신은 당장 보이는 결과나, 명확한 가능성이 있는 도전이 아니라면 흥미가 떨어질 거에요. 혹시 원하는 방향으로 결과물이 나오지 않거나, 원하는 만큼의 효율이 생기지 않을까 봐 작업이 더뎌지는 건 아닌가요? 한 번쯤 그래, 내가 선심 쓴다! 하는 마음가짐으로 일을 진행해보시는 건 어떨까요? 실패해도 상관없어! 라는 생각을 하면 놓치고 있던 부분들도 훨씬 잘 보이게 되어 점차 작업에 속도가 붙을 거예요!";
         break;
       case "FE":
         result.image = "resultPink"
-        result.title = "한번사는 우리인생 자체발광 디자이너";
-        result.desc = "다 같이 흔들어! 라는 말이 나오고 사람들이 춤을 춘다면 열심히 흔드실 거죠? 역시, 사람들과 함께하는 건 즐겁잖아요. 당신은 주변 사람들의 사랑을 받을 때 능력이 배가되는 멋쟁이 디자이너에게요. 작업뿐만 아니라 본인의 외모에도 관심이 많죠. 톡톡 튀는 아이디어와 특유의 에너지로 주변을 밝게 만드는 그야말로 자체발광! 하지만 반대의 모습도 있는 법. 상성이 안 맞는 사람들에게 미움을 받을 때도 있어요. 하지만 그 사람들도 결국 당신을 좋아하게 될 거라 믿어 의심치 않아요!";
+        result.title = "한번사는 우리인생 광 디자이너";
+        result.desc = "다 같이 흔들어! 라는 말이 나오고 사람들이 춤을 춘다면 열심히 흔드실 거죠? 역시, 사람들과 함께하는 건 즐겁잖아요. 당신은 주변 사람들의 사랑을 받을 때 능력이 배가되는 멋쟁이 디자이너예요. 톡톡 튀는 아이디어와 특유의 에너지로 주변을 밝게 만드는 그야말로 자체 발광! 하지만 반대의 모습도 있는 법. 상성이 안 맞는 사람들에게 미움을 받을 때도 있어요. 하지만 그 사람들도 결국 당신을 좋아하게 될 거라 믿어 의심치 않아요!";
         result.position = "일과 휴식의 황금비율을 아는 페이스메이커!";
         result.design[0] = "아트디렉터";
         result.design[1] = "모션그래픽";
@@ -706,12 +754,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Photoshop";
         result.tools[1] = "Tool_Name_Cinema_4d";
         result.tools[2] = "Tool_Name_Slack";
-        result.todo = "한 번 놀고 합시다! 너무 자신을 가두고 있지는 않나요? 당신은 신나고 재미있을 때 능력이 배가되는 사람이잖아요. 스트레스를 받는 상태라면, 그 스트레스가 사라질 때까지 계속 힘이 들 거에요. 하지만 분명 무작정 놀 수는 없는 상황이 있겠죠…? 그럴 때는 정신을 조금 놓아보는 것도 좋아요. 사람들과 시답잖은 농담을 주고받으며 작업을 하거나 혼자서 연기를 해보는 등 진지함을 살짝 내려놓고 약간의 재미만 더해도 당신의 빛나는 재능이라는 것이 폭발할 거에요!";
+        result.todo = "한 번 놀고 합시다! 너무 자신을 가두고 있지는 않나요? 당신은 신나고 재미있을 때 능력이 배가되는 사람이잖아요. 스트레스를 받는 상태라면, 스트레스가 사라질 때까지 계속 힘이 들 거에요. 하지만 분명 무작정 놀 수는 없는 상황이 있겠죠? 그럴 때는 정신을 조금 놓아보는 것도 좋아요. 사람들과 농담을 주고받으며 작업을 하거나 배우처럼 연기를 펼치는 등 진지함을 내려놓고 약간의 재미만 더해도 당신의 빛나는 재능이라는 것이 폭발할 거예요!";
         break;
       case "JI":
         result.image = "resultBlue"
         result.title = "과녁을 뚫고가는 직선주행 디자이너";
-        result.desc = "목표를 설정하는 깊은 생각, 뚝심 있는 절제력! 한번 정한 목표가 있다면 지치지 않고 자신을 통제하는 당신. 단계별로 상황을 상상하고 하나씩 이뤄나가는 성취감이 무엇보다도 당신에게 행복한 보상이에요. 하지만 한가지 신기한 점은, 상황에 따라 사색에 잠긴 이상주의자가 되기도 한다는 점이죠. 물론 공과 사를 철저히 구분해서, 원칙에 따라 행동하는 사람이에요. 당신과 함께라면 디자인을 하는 과정에 헛된 걸음이란 없을 거예요. 앞으로 쭉 가주세요. 디자인 기사님!";
+        result.desc = "목표를 설정하는 깊은 생각, 뚝심 있는 절제력! 한번 정한 목표가 있다면 지치지 않고 자신을 통제하는 당신. 단계별로 나뉜 상황을 하나씩 이뤄나가는 성취감이 무엇보다도 행복한 보상이시죠? 하지만 신기한 점은 상황에 따라 사색에 잠긴 이상주의자가 되기도 한다는 점이죠. 물론 공과 사를 철저히 구분해서, 원칙에 따라 행동하는 사람이에요. 당신과 함께라면 디자인을 하는 과정에 헛된 걸음이란 없을 거예요. 앞으로 쭉 가주세요. 디자인 기사님!";
         result.position = "조용히 지름길을 찾아내어 사람들을 인도해요";
         result.design[0] = "편집";
         result.design[1] = "모션그래픽";
@@ -719,12 +767,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Indesign";
         result.tools[1] = "Tool_Name_Cinema_4d";
         result.tools[2] = "Tool_Name_Sketchup";
-        result.todo = "쉬는 시간이 필요하시군요. 하지만 도통 쉴 줄 모르기도 하고요. 화끈하게 놀거나 거창한 활동을 즐기시는 편도 아니에요. 쉴 때도 언제나 해야 할 일들이 떠오르기도 하고, 아무것도 안 하고 시간을 허비하고 싶지는 않죠. 하지만 그러셔야 합니다! 스스로는 괜찮다고 생각할 수 있지만, 과열된 전자기기의 전원을 끄듯 가볍게 명상을 하거나 단순한 집안일, 또는 요가와 같은 내면에 집중할 수 있는 활동을 해보세요, 아무것도 안 하는 시간이 곧 모든 것을 할 수 있는 나를 만들어 줄 거에요!";
+        result.todo = "쉬는 시간이 필요하시군요. 하지만 도통 쉴 줄 모르기도 하고요. 화끈하게 놀거나 거창한 활동을 즐기시는 편도 아니에요. 쉴 때도 언제나 해야 할 일들이 떠오르기도 하고, 아무것도 안 하고 시간을 허비하고 싶지는 않죠. 하지만 그러셔야 합니다! 스스로는 괜찮다고 생각할 수 있지만, 과열된 전자기기의 전원을 끄듯 가만~히 쉬는 게 필요해요, 정말 숨만 쉬면서요. 아무것도 안 하는 시간이 곧 모든 것을 할 수 있는 나를 만들어 줄 거에요!";
         break;
       case "JN":
         result.image = "resultBlue"
         result.title = "근거있는 꿈을꾸는 드림웍스 디자이너";
-        result.desc = "이상적인 꿈을 꾸면서, 이를 실제로 이룰 수 있는 능력이 뒷받침된다면 얼마나 좋을까요? 바로 당신입니다. 사람들이 보기에 막연할 수도 있는 당신이 생각하는 미래는, 근면·성실한 당신에게서 점차 그 모양을 갖추어가고 있습니다. 목표를 위해 자기 자신을 지속해서 절제하고, 계획적인 삶을 꾸려나가면서도 이상적인 미래를 잊지 않는 원동력으로 타인에게 본보기가 되는 당신은 누군가에겐 허황한 꿈에 당신이라는 근거를 더 해 현실로 만드는 꿈 꾸는 디자이너입니다.";
+        result.desc = "이상적인 꿈을 꾸면서 실제로 이룰 수 있는 능력이 뒷받침된다면 얼마나 좋을까요? 바로 당신입니다. 사람들이 보기에 막연할 수도 있는 당신이 생각하는 미래는, 당신에게서 점차 그 모양을 갖추어가고 있습니다. 목표를 위해 자기 자신을 지속해서 절제하고, 계획적인 삶을 꾸려나가면서도 이상적인 미래를 잊지 않는 원동력으로 타인에게 본보기가 되는 당신은 누군가에겐 허황한 꿈에 당신이라는 근거를 더해 현실로 만드는 꿈 꾸는 디자이너입니다.";
         result.position = "언제나 웃음을 잃지 않으려 부던히 노력해요";
         result.design[0] = "모션그래픽";
         result.design[1] = "광고";
@@ -732,7 +780,7 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_After effects";
         result.tools[1] = "Tool_Name_Jandi";
         result.tools[2] = "Tool_Name_Bracket";
-        result.todo = "당신은 스스로가 가진 강력한 목표와, 이를 이룰 수 있는 꾸준함이 있습니다. 하지만 주변의 만류 혹은 방해에 지치기도 하고, 스스로에 대한 확신이 낮아질 때쯤 막막함을 느끼곤 하죠. 이럴 때는 목표를 왜 설정했는지에 대한 생각이 도움됩니다. 생각해봅시다. 목표를 설정한 계기가 무엇이었고 이를 위해 어떤 과정을 거쳤는지. 스스로 꾸고 있던 꿈을 잊고 있지는 않았나요? 내가 어떤 사람인지를 다시 한 번 생각해보면서 다시 한 걸음 나아갈 수 있는 자신감을 가져보세요!";
+        result.todo = "당신은 스스로가 가진 강력한 목표와, 이를 이룰 수 있는 꾸준함이 있습니다. 하지만 주변의 만류 혹은 방해에 지치기도 하고, 스스로에 대한 확신이 낮아질 때쯤 막막함을 느끼곤 하죠. 이럴 때는 목표를 왜 설정했는지에 대한 생각이 도움 됩니다. 목표를 설정한 계기와 이를 위해 어떤 과정을 거쳤는지. 스스로 꾸고 있던 꿈을 잊고 있지는 않았나요? 내가 어떤 사람인지를 다시 생각해보면서 다시 한 걸음 나아갈 수 있는 자신감을 가져보세요!";
         break;
       case "JS":
         result.image = "resultBlue"
@@ -750,7 +798,7 @@ class ResultCalculate extends Component {
       case "JE":
         result.image = "resultBlue"
         result.title = "뛰어나갈 준비가된 교통정리 디자이너";
-        result.desc = "디자인계의 제갈공명이라고나 할까요? 당신은 언제나 한다면 하는 준비된 사람으로, 현실감각이 뛰어나죠, 그렇다고 해서 이기적인 행동을 하는 사람은 아닙니다. 오히려 다수의 사람과 공통된 목표를 향해서 갈 때 가장 두드러지는 사람으로, 자신을 통제하는 실천능력과 뛰어난 언변으로 주위 사람들을 다독이는 교통정리의 달인이라고 해야겠어요. 언제나 앞장서서 나서는 사람은 아니지만, 언제든지 리더의 자리에서 충분한 능력을 발휘할 준비가 되어있답니다!";
+        result.desc = "디자인계의 제갈공명이라고나 할까요? 당신은 언제나 한다면 하는 준비된 사람으로 현실감각이 뛰어나죠. 그렇다고 해서 이기적인 행동을 하는 사람은 아닙니다. 오히려 다수의 사람과 공통된 목표를 향해서 갈 때 가장 두드러지는 사람으로, 자신을 통제하는 실천능력과 뛰어난 언변으로 주위 사람들을 다독이는 교통정리의 달인이라고 해야겠어요. 언제나 앞장서서 나서는 사람은 아니지만, 언제든지 리더의 자리에서 충분한 능력을 발휘할 준비가 되어있답니다!";
         result.position = "암묵적인 팀의 중심, 팀 프로젝트의 코어근육!";
         result.design[0] = "브랜딩";
         result.design[1] = "UX UI";
@@ -758,12 +806,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Slack";
         result.tools[1] = "Tool_Name_Zeplin";
         result.tools[2] = "Tool_Name_Xd";
-        result.todo = "기존과는 다른 방식으로 작업에 접근할 필요가 있어요. 사례를 찾을 때, 단순히 시각적인 정보가 아닌 작업 과정을 기록한 사례를 보게 된다면 굉장히 신선하게 다가올 거에요, 아이디어를 내고 그래픽을 잡는 사람이 있는가 하면, 그래픽에서 아이디어를 얻는 사람이 있잖아요? 항상 가는 길로만 가는 것이 독이 되는 경우가 있기도 하죠. 조력자의 역할에서 주도자의 역할로, 주도자의 역할에 있었다면 조력자가 되어 색다른 시각으로 작업을 바라보는 것도 좋은 방법이랍니다!";
+        result.todo = "기존과는 다른 방식으로 접근할 필요가 있어요. 사례를 찾을 때 단순히 시각적인 정보가 아닌 작업 과정을 기록한 사례를 보게 된다면 굉장히 신선하게 다가올 거에요, 아이디어를 내고 그래픽을 잡는 사람이 있는가 하면, 그래픽에서 아이디어를 얻는 사람이 있잖아요? 항상 가는 길로만 가는 것이 독이 될 수도 있어요. 조력자에서 주도자의 역할로, 혹은 주도자에서 조력자의 역할이 되어 색다른 시각으로 작업을 바라보는 것도 좋은 방법이랍니다!";
         break;
       case "PI":
         result.image = "resultGreen"
         result.title = "자아를 탐구하는 전통탈피 디자이너 ";
-        result.desc = "삶을 이루는 모든 것에는 의미가 있죠, 혹 무의미한 부분이 있다고 해도 무의미 자체로서 의미가 있다고 생각하는 당신은 조그마한 일에도 수많은 배울 점을 찾아내는 보기 드문 성찰능력을 갖추고 있어요. 그래서 일반적으로 그냥 넘어가기도 하는 사소한 일들에서 커다란 의미를 찾아내어 주위 사람들에게 깨달음을 주기도 해요. 잘 깎은 연필처럼 묵묵히 자신을 발견해서 멋진 그림을 그리는 디자이너가 여기 있었네요!";
+        result.desc = "삶을 이루는 모든 것에는 의미가 있죠, 혹 무의미한 부분이 있다고 해도 무의미 자체로서 의미가 있다고 생각하는 당신은 조그마한 일에도 수많은 배울 점을 찾아내는 보기 드문 성찰 능력을 갖추고 있어요. 그래서 일반적으로 그냥 넘어가기도 하는 사소한 일들에서 커다란 의미를 찾아내어 주위 사람들에게 깨달음을 주기도 해요. 잘 깎은 연필처럼 묵묵히 자신을 발견해서 멋진 그림을 그리는 디자이너가 여기 있었네요!";
         result.position = "사람들이 놓친 디테일을 살려내요";
         result.design[0] = "전시/무대";
         result.design[1] = "편집";
@@ -771,12 +819,12 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Illustrator";
         result.tools[1] = "Tool_Name_Indesign";
         result.tools[2] = "Tool_Name_Notion";
-        result.todo = "당신은 넘치는 호기심을 쏟아부을 곳이 필요해요. 한 가지 주제로 오랜 기간 생각을 집중하다 보면 호기심 많은 당신은 쉽게 지루함을 느끼게 될 거에요. 현재 작업 중인 주제로 색다른 결과물을 생각해 본다거나, 아예 다른 사람들의 주제를 관찰하는 것도 도움이 된답니다. 혹은 주변 사람들에게 의견을 들어보는 것도 좋아요. 자기 자신의 의견은 누구보다 알고 계시지만, 주변 사람들의 의견을 자주 궁금해하지는 않으시잖아요? 색다른 자극이 될 수 있을 거예요!";
+        result.todo = "삶을 이루는 모든 것에는 의미가 있죠, 혹 무의미한 부분이 있다고 해도 무의미 자체로서 의미가 있다고 생각하는 당신은 조그마한 일에도 수많은 배울 점을 찾아내는 보기 드문 성찰 능력을 갖추고 있어요. 그래서 일반적으로 그냥 넘어가기도 하는 사소한 일들에서 커다란 의미를 찾아내어 주위 사람들에게 깨달음을 주기도 해요. 잘 깎은 연필처럼 묵묵히 자신을 발견해서 멋진 그림을 그리는 디자이너가 여기 있었네요!";
         break;
       case "PN":
         result.image = "resultGreen"
         result.title = "인생을 찾아떠난 역마살 디자이너";
-        result.desc = "삶이 철저히 계산으로 흘러갈 수 있는 것이라면, 아마 당신은 재미없어 할 것 같아요. 인생이 한가지 목표를 향해 가는 여정이라면 너무 아쉬울 것 같지 않나요? 하지만 당신을 만족하게 해줄 무언가를 향해 기꺼이 여러 갈래로의 여정을 시작하기도 하죠. 자유로운 사고를 바탕으로 무궁무진이 뻗어 나가는 디자인의 영역에서도 분명히 멋진 여행을 하게 되실 거에요!";
+        result.desc = "삶이 철저히 계산으로 흘러갈 수 있는 것이라면, 아마 당신은 재미없어 할 것 같아요. 인생이 한가지 목표를 향해 가는 여정이라면 너무 아쉬울 것 같지 않나요? 하지만 당신을 만족하게 해줄 무언가를 향해 기꺼이 여러 갈래로의 여정을 시작하기도 하죠. 자유로운 사고를 바탕으로 무궁무진이 뻗어 나가는 디자인의 영역에서도 분명히 멋진 여행을 하게 되실 거예요!";
         result.position = "보다 색다른 아이디어를 언제나 생각하고 있어요";
         result.design[0] = "광고";
         result.design[1] = "미디어아트";
@@ -784,7 +832,7 @@ class ResultCalculate extends Component {
         result.tools[0] = "Tool_Name_Photoshop";
         result.tools[1] = "Tool_Name_Processing";
         result.tools[2] = "Tool_Name_Bracket";
-        result.todo = "긍정적인 사고방식과 자유로운 심리로 주변 사람들에게 인정받고, 누구나 좋아하는 사람인 당신은 타인과의 정서적 교감을 즐기고, 누구보다 폭넓은 이해심을 바탕으로 많은 사람을 깊게 이해할 수 있을 거예요. 그만큼 주의해야 할 부분이 스스로 감정을 올바로 바라보는 것이랍니다. 내가 하는 일이 막히는 이유가 무의미하게 반복되는 과정인지, 주제에 대한 흥미 부족인지, 등 총체적 난국으로 여겨지는 현재 상황을 냉철하고 단계적으로 바라보면 해결점을 찾을 수 있을 거예요!";
+        result.todo = "긍정적인 사고방식과 자유로운 심리로 주변 사람들에게 인정받고, 누구나 좋아하는 사람인 당신은 타인과의 정서적 교감을 즐기고, 누구보다 폭넓은 이해심을 바탕으로 많은 사람을 깊게 이해할 수 있을 거예요. 그만큼 주의해야 할 부분이 스스로 감정을 올바르게 바라보는 것이랍니다. 하는 일이 막히는 이유가 무의미하게 반복되는 과정인지, 주제에 대한 흥미 부족인지 등 현재 상황을 냉철하고 단계적으로 바라보면 해결점을 찾을 수 있을 거예요!";
         break;
       case "PS":
         result.image = "resultGreen"
@@ -796,7 +844,7 @@ class ResultCalculate extends Component {
         result.design[2] = "인테리어";
         result.tools[0] = "Tool_Name_Maya";
         result.tools[1] = "Tool_Name_Rhino";
-        result.tools[2] = "Tool_Name_Rhino";
+        result.tools[2] = "Tool_Name_Sketchup";
         result.todo = "가끔은 진행 중인 작업의 현실적인 가치나 실용적인 가치를 따지지 않고, 순전한 재미 또는 철저한 무관심으로 접근하는 것이 필요해요. 최초의 목적이 분명한 결과를 바라보고 시작한 일이라면 잠시 짐을 내려두고 그저 재미를 가치로 움직이거나, 재미로 시작한 일의 과정에서 지루함이 느껴진다면 그 지루함을 무시하는 거죠. 호기심을 무기로 삼은 당신에겐 오히려 다른 무기를 들어보는 것이 큰 도움이 될 수 있어요!";
         break;
       case "PE":
@@ -832,8 +880,10 @@ class ResultCalculate extends Component {
           <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
           <p>24 / 24</p>
           <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
-          <div className="progressBarBG">
-            <div style={progress} className="progressBar"></div>
+          <div className="prgoressBarContainer">
+            <div className="progressBarBG">
+              <div style={progress} className="progressBar"></div>
+            </div>
           </div>
         </div>
 
@@ -865,9 +915,9 @@ class Result extends Component {
     // console.log("constructor ResultPage! " + ", " + this.props.typeA + ", " + this.props.typeB + ", " + this.props.typeC + ", " + this.props.typeD);
     // console.log(" :: " + this.props.typeALR + ", " + this.props.typeBLR + ", " + this.props.typeCLR + ", " + this.props.typeDLR);
 
-    console.log("this.props.result : " + this.props.result);
-    this.percentange = this.percentange.bind(this);
-    this.percentange();
+    // console.log("this.props.result : " + this.props.result);
+    // this.percentange = this.percentange.bind(this);
+    // this.percentange();
 
     this.state = {
       typeAPercent : [, ],
@@ -876,57 +926,107 @@ class Result extends Component {
       typeCPercent : [, ],
       typeDPercent : [, ],
     }
-
-    // getFireDB().then(res => {
-    //   this.setState({
-    //     people : res.val().people
-    //   })
-    //   setFireDB(res.val().people + 1);
-    //   console.log(res.val().people);
-    // });
   }
 
   componentDidMount() {
-    if (this.props.result.typeAPercent[0] > this.props.result.typeAPercent[1]) {
-      document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
-    } else {
-      document.getElementById("typeAprogressBG").style.backgroundColor = "#FF7D5F";
-      document.getElementById("typeAprogressBG").style.width = "220px";
-      document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
-      document.getElementById("typeAprogress").style.backgroundColor = "#FFEBE6";
+    let lineWidth = 220 + "px";
+
+    if (window.screen.width <= 480) {
+
+      console.log(document.getElementById("typeAprogress_Mobile"));
+
+
+      lineWidth = 200 + "px";
+      if (this.props.result.typeAPercent[0] > this.props.result.typeAPercent[1]) {
+        document.getElementById("typeAprogress_Mobile").style.width = this.props.result.typeAPercent[0] + "%";
+      } else {
+        document.getElementById("typeAprogressBG_Mobile").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeAprogressBG_Mobile").style.width = lineWidth;
+        document.getElementById("typeAprogress_Mobile").style.width = this.props.result.typeAPercent[0] + "%";
+        document.getElementById("typeAprogress_Mobile").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeBPercent[0] > this.props.result.typeBPercent[1]) {
+        document.getElementById("typeBprogress_Mobile").style.width = this.props.result.typeBPercent[0] + "%";
+      } else {
+        document.getElementById("typeBprogressBG_Mobile").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeBprogressBG_Mobile").style.width = lineWidth;
+        document.getElementById("typeBprogress_Mobile").style.width = this.props.result.typeBPercent[0] + "%";
+        document.getElementById("typeBprogress_Mobile").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeCPercent[0] > this.props.result.typeCPercent[1]) {
+        document.getElementById("typeCprogress_Mobile").style.width = this.props.result.typeCPercent[0] + "%";
+      } else {
+        document.getElementById("typeCprogressBG_Mobile").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeCprogressBG_Mobile").style.width = lineWidth;
+        document.getElementById("typeCprogress_Mobile").style.width = this.props.result.typeCPercent[0] + "%";
+        document.getElementById("typeCprogress_Mobile").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeDPercent[0] > this.props.result.typeDPercent[1]) {
+        document.getElementById("typeDprogress_Mobile").style.width = this.props.result.typeDPercent[0] + "%";
+      } else {
+        document.getElementById("typeDprogressBG_Mobile").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeDprogressBG_Mobile").style.width = lineWidth;
+        document.getElementById("typeDprogress_Mobile").style.width = this.props.result.typeDPercent[0] + "%";
+        document.getElementById("typeDprogress_Mobile").style.backgroundColor = "#FFEBE6";
+      }
+    }
+    else
+    {
+      if (this.props.result.typeAPercent[0] > this.props.result.typeAPercent[1]) {
+        document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
+      } else {
+        document.getElementById("typeAprogressBG").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeAprogressBG").style.width = lineWidth;
+        document.getElementById("typeAprogress").style.width = this.props.result.typeAPercent[0] + "%";
+        document.getElementById("typeAprogress").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeBPercent[0] > this.props.result.typeBPercent[1]) {
+        document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
+      } else {
+        document.getElementById("typeBprogressBG").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeBprogressBG").style.width = lineWidth;
+        document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
+        document.getElementById("typeBprogress").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeCPercent[0] > this.props.result.typeCPercent[1]) {
+        document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
+      } else {
+        document.getElementById("typeCprogressBG").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeCprogressBG").style.width = lineWidth;
+        document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
+        document.getElementById("typeCprogress").style.backgroundColor = "#FFEBE6";
+      }
+  
+      if (this.props.result.typeDPercent[0] > this.props.result.typeDPercent[1]) {
+        document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
+      } else {
+        document.getElementById("typeDprogressBG").style.backgroundColor = "#FF7D5F";
+        document.getElementById("typeDprogressBG").style.width = lineWidth;
+        document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
+        document.getElementById("typeDprogress").style.backgroundColor = "#FFEBE6";
+      }
     }
 
-    if (this.props.result.typeBPercent[0] > this.props.result.typeBPercent[1]) {
-      document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
-    } else {
-      document.getElementById("typeBprogressBG").style.backgroundColor = "#FF7D5F";
-      document.getElementById("typeBprogressBG").style.width = "220px";
-      document.getElementById("typeBprogress").style.width = this.props.result.typeBPercent[0] + "%";
-      document.getElementById("typeBprogress").style.backgroundColor = "#FFEBE6";
-    }
+    let result = this.props.result;
 
-    if (this.props.result.typeCPercent[0] > this.props.result.typeCPercent[1]) {
-      document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
-    } else {
-      document.getElementById("typeCprogressBG").style.backgroundColor = "#FF7D5F";
-      document.getElementById("typeCprogressBG").style.width = "220px";
-      document.getElementById("typeCprogress").style.width = this.props.result.typeCPercent[0] + "%";
-      document.getElementById("typeCprogress").style.backgroundColor = "#FFEBE6";
-    }
-
-    if (this.props.result.typeDPercent[0] > this.props.result.typeDPercent[1]) {
-      document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
-    } else {
-      document.getElementById("typeDprogressBG").style.backgroundColor = "#FF7D5F";
-      document.getElementById("typeDprogressBG").style.width = "220px";
-      document.getElementById("typeDprogress").style.width = this.props.result.typeDPercent[0] + "%";
-      document.getElementById("typeDprogress").style.backgroundColor = "#FFEBE6";
-    }
+    getFireDB().then(res => {
+      this.setState({
+        people : res.val().people
+      })
+      setFireResultDB(result, this.state.people);
+      setFireDB(res.val().people + 1);
+      // console.log(res.val().people);
+    });
   }
 
   percentange = () => {
-    console.log(document.getElementById("typeAprogressBG"));
-    console.log(document.getElementById("typeAprogress"));
+    // console.log(document.getElementById("typeAprogressBG"));
+    // console.log(document.getElementById("typeAprogress"));
 
     
 
@@ -936,7 +1036,7 @@ class Result extends Component {
   render() {
     return(
       <>
-      <div className="main" id="hiddenBGMain">
+      {/* <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
           <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
@@ -952,8 +1052,6 @@ class Result extends Component {
               <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
               <h1 className="resultTitle">{this.props.result.title}</h1>
             </div>
-              
-              {/* <img src={"/images/"+ "resultGreen" + ".png"} alt=""/> */}
               
               <p className="desc">{this.props.result.desc}</p>
             </div>
@@ -1061,6 +1159,245 @@ class Result extends Component {
                 
           </div>
         </div>
+      </div> */}
+
+    <div className="main" id="hiddenBGMain">
+        <div className="surveyHeader">
+          <span className="mobileHeader">사용자님의 결과</span>  
+          <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
+          <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
+        </div>
+
+        <div className="resultScreenContainer">
+          <div className="resultScreen">
+
+            <div className="resultCard">
+              <div className="imageCard">
+                <img className="bg" src={"/images/" + this.props.result.color + "_BG.png"} alt=""/>
+                <img className="bgPattern" src={"/images/" + this.props.result.color + "_" + this.props.result.figure + ".png"} alt=""/>
+                <img className="character" src={"/images/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
+                <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
+                <h1 className="resultTitle">{this.props.result.title}</h1>
+              </div>
+                
+                <p className="desc">{this.props.result.desc}</p>
+              </div>
+
+
+              {/* 모바일용 그래프 */}
+              <div className="graph" id="mobileGraph">
+                    <h3 className="descTitle">나의 DPTI 상세 결과</h3>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">외향</p>
+                        <p className="typeDescValue" id="typeAleftValue">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeAprogressBG_Mobile"><div className="lineProgress" id="typeAprogress_Mobile"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">내향</p>
+                        <p className="typeDescValue" id="typeArightValue">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">감각</p>
+                        <p className="typeDescValue" id="typeBleftValue">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeBprogressBG_Mobile"><div className="lineProgress" id="typeBprogress_Mobile"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">직관</p>
+                        <p className="typeDescValue" id="typeBrightValue">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">사고</p>
+                        <p className="typeDescValue" id="typeCleftValue">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeCprogressBG_Mobile"><div className="lineProgress" id="typeCprogress_Mobile"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">감정</p>
+                        <p className="typeDescValue" id="typeCrightValue">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">실천</p>
+                        <p className="typeDescValue" id="typeDleftValue">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeDprogressBG_Mobile"><div className="lineProgress" id="typeDprogress_Mobile"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">인식</p>
+                        <p className="typeDescValue" id="typeDrightValue">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+                    </div>
+                    {/* Mobile Graph */}
+
+                    <div className="position" id="mobilePosition">
+                      <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
+                      <div className="positionBox">{this.props.result.position}</div>
+                    </div>
+
+                    {/* Mobile Design */}
+                    <div className="design" id="mobileDesign">
+                    <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
+                      <div className="designDesc" id="firstDesignDesc">
+                        <p className="number">1</p>
+                        {this.props.result.design[0]}
+                      </div>
+                      <div className="designDesc" id="middleDesignDesc">
+                        <p className="number">2</p>
+                        {this.props.result.design[1]}
+                      </div>
+                      <div className="designDesc" id="lastDesignDesc">
+                        <p className="number">3</p>
+                        {this.props.result.design[2]}
+                      </div>
+                  </div>
+
+                  {/* MobileTools */}
+                  <div className="tools" id="mobileTools">
+                    <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
+                      <div className="toolDesc" id="firstToolDesc">
+                        <p className="number" id="toolNumber">1</p>
+                        <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
+                      </div>
+
+                      <div className="toolDesc" id="middleToolDesc">
+                        <p className="number" id="toolNumber">2</p>
+                        <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
+                      </div>
+
+                      <div className="toolDesc" id="lastToolDesc">
+                        <p className="number" id="toolNumber">3</p>
+                        <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
+                      </div>
+                  </div>
+
+                  {/* Mobile Todo */}
+                  <div className="todo" id="mobileTodo">
+                    <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
+                    <p className="desc" id="designDesc">
+                    {this.props.result.todo}
+                    </p>
+                  </div>
+
+                  <div className="mobileButtonDiv">
+                    <a href="/"><input type="button" className="moileResetBtn" value="다시하기"/></a>
+                    <input type="button" className="mobildShareBtn" value="공유하기"/>
+                  </div>
+
+
+              <div className="resultDesc">
+                <div className="leftBox">
+                  <div className="graph">
+                    <h3 className="descTitle">나의 DPTI 상세 결과</h3>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">외향</p>
+                        <p className="typeDescValue" id="typeAleftValue">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeAprogressBG"><div className="lineProgress" id="typeAprogress"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">내향</p>
+                        <p className="typeDescValue" id="typeArightValue">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">감각</p>
+                        <p className="typeDescValue" id="typeBleftValue">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeBprogressBG"><div className="lineProgress" id="typeBprogress"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">직관</p>
+                        <p className="typeDescValue" id="typeBrightValue">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">사고</p>
+                        <p className="typeDescValue" id="typeCleftValue">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeCprogressBG"><div className="lineProgress" id="typeCprogress"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">감정</p>
+                        <p className="typeDescValue" id="typeCrightValue">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+                    <div className="type">
+                      <div className="leftTypeTitle">
+                        <p className="typeDescTitle">실천</p>
+                        <p className="typeDescValue" id="typeDleftValue">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
+                      </div>
+                      <div className="line" id="typeDprogressBG"><div className="lineProgress" id="typeDprogress"></div></div>
+                      <div className="rightTypeTitle">
+                      <p className="typeDescTitle">인식</p>
+                        <p className="typeDescValue" id="typeDrightValue">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div className="todo">
+                    <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
+                    <p className="desc" id="designDesc">
+                    {this.props.result.todo}
+                    </p>
+                  </div>
+                </div>
+                <div className="rightBox">
+                  <div className="position">
+                    <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
+                    <div className="positionBox">{this.props.result.position}</div>
+                  </div>
+                  <div className="design">
+                    <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
+                      <div className="designDesc">
+                        <p className="number">1</p>
+                        {this.props.result.design[0]}
+                      </div>
+                      <div className="designDesc">
+                        <p className="number">2</p>
+                        {this.props.result.design[1]}
+                      </div>
+                      <div className="designDesc" id="lastDesignDesc">
+                        <p className="number">3</p>
+                        {this.props.result.design[2]}
+                      </div>
+                  </div>
+                  <div className="tools">
+                    <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
+                      <div className="toolDesc">
+                        <p className="number" id="toolNumber">1</p>
+                        <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
+                      </div>
+
+                      <div className="toolDesc">
+                        <p className="number" id="toolNumber">2</p>
+                        <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
+                      </div>
+
+                      <div className="toolDesc">
+                        <p className="number" id="toolNumber">3</p>
+                        <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
+                      </div>
+                  </div>
+                  <a href="/"><button className="exitBtn">검사 종료하기</button></a>
+                </div>
+              </div>
+                
+          </div>
+        </div>
       </div>
 
       
@@ -1092,7 +1429,7 @@ class App extends Component {
   }
 
   onGenderSubmit(props) {
-    console.log("결과를 받았습니다 : " + props);
+    // console.log("결과를 받았습니다 : " + props);
     this.setState({
       gender : props
     });
@@ -1100,14 +1437,14 @@ class App extends Component {
 
   // 계산한 결과 내용을 받는 함수
   onSearchCalcResult(result) {
-    console.log("결과를 받았습니다 : " + result);
+    // console.log("결과를 받았습니다 : " + result);
     result.gender = this.state.gender;
     result.typeAPercent = this.state.typeAPercent;
     result.typeBPercent = this.state.typeBPercent;
     result.typeCPercent = this.state.typeCPercent;
     result.typeDPercent = this.state.typeDPercent;
-    console.log("gender 정보를 전달합니다 -> " + this.state.gender + " : " + result.gender);
-    console.log("gender 정보를 전달합니다 -> " + result.typeAPercent + result.typeBPercent + result.typeCPercent + result.typeDPercent);
+    // console.log("gender 정보를 전달합니다 -> " + this.state.gender + " : " + result.gender);
+    // console.log("gender 정보를 전달합니다 -> " + result.typeAPercent + result.typeBPercent + result.typeCPercent + result.typeDPercent);
     this.setState({
       result : result
     })
@@ -1158,8 +1495,14 @@ class App extends Component {
     let typeCPercent =  [(typeCLR[0] / 6) * 100, (typeCLR[1] / 6) * 100];
     let typeDPercent =  [(typeDLR[0] / 6) * 100, (typeDLR[1] / 6) * 100];
 
-    console.log("넘기기 전 : " + typeALR + typeBLR + typeCLR + typeDLR);
-    console.log("넘기기 전 :: " + typeAPercent + typeBPercent + typeCPercent + typeDPercent);
+    // console.log("넘기기 전 : " + typeALR + typeBLR + typeCLR + typeDLR);
+    // console.log("넘기기 전 :: " + typeAPercent + typeBPercent + typeCPercent + typeDPercent);
+
+    ///////////////////fire
+    getFireDB().then(res => {
+      setFireClickedDB(typeALR, typeBLR, typeCLR, typeDLR, res.val().people);  
+    });
+    
 
     this.setState({
       typeAvalue : typeAvalue,
@@ -1178,7 +1521,9 @@ class App extends Component {
       typeDPercent : typeDPercent,
     })
 
-    console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
+    
+
+    // console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
   }
 
   // Survey 선택 결과를 받아옴
@@ -1189,8 +1534,8 @@ class App extends Component {
     this.setState({
       [parseTargetName] : parseTargetValue,
     }, () => {
-      console.log("targetName : " + parseTargetName + ", targetValue : " + parseTargetValue);
-      if (parseTargetName == 24) {
+      // console.log("targetName : " + parseTargetName + ", targetValue : " + parseTargetValue);
+      if (parseTargetName === 24) {
         this.surveyCalc();
         return;
       }
@@ -1200,11 +1545,11 @@ class App extends Component {
   screenRender() {
     if (this.state.currentPage < 1)
       return <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} onGenderSubmit={this.onGenderSubmit}></MainScreen>;
-    else if (this.state.currentPage == 2)
+    else if (this.state.currentPage === 2)
       return <Survey onSubmit={this.onSearchSubmit} surveyCalc={this.surveyResultCalc}></Survey>;
-    else if (this.state.currentPage == 3)
+    else if (this.state.currentPage === 3)
       return <ResultCalculate typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue} onSearchCalcResult={this.onSearchCalcResult} onSearchSubmit={this.onSearchSubmit}></ResultCalculate>
-    else if (this.state.currentPage == 4)
+    else if (this.state.currentPage === 4)
       return <Result result={this.state.result} typeALR={this.state.typeALR} typeBLR={this.state.typeBLR} typeCLR={this.state.typeCLR} typeDLR={this.state.typeDLR}></Result>
   }
 

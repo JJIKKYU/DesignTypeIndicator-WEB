@@ -28,3 +28,18 @@ export const setFireDB = (props) => {
     people : props
   });
 }
+
+export const setFireResultDB = (resultProps, userId) => {
+  return database.ref('/result/' + userId).update({
+    result : resultProps
+  });
+}
+
+export const setFireClickedDB = (ALR, BLR, CLR, DLR, userId) => {
+  return database.ref('/result/' + userId).update({
+    ALR : ALR,
+    BLR : BLR,
+    CLR : CLR,
+    DLR : DLR
+  });
+}
