@@ -78,12 +78,12 @@ class MainScreen extends Component {
 
   handleClick = () => {
     // console.log(this.state.page);
-    if (this.state.gender === "" && this.state.page === 1) {
+    if (this.state.gender == "" && this.state.page == 1) {
       alert("성별을 선택해주세요!");
       return;
     }
 
-    if (this.state.page === 1) {
+    if (this.state.page == 1) {
       this.handleClickTest();
     }
     else
@@ -381,14 +381,14 @@ class Survey extends Component {
       }        
     }
 
-    if (this.state.currentSurvey === 24 && checkCount > 0)
+    if (this.state.currentSurvey == 24 && checkCount > 0)
     {
       // console.log("결과를 처리중입니다");
       this.props.onSubmit(3);
       return;
     }
   
-    if (checkCount === 0)
+    if (checkCount == 0)
     {
       alert("체크해주세요!");
       // console.log("체크해주세요!");
@@ -582,7 +582,7 @@ class ResultCalculate extends Component {
 
   calcResult = (typeAB, typeCD) => {
     const type = typeCD + typeAB;
-    // console.log(type);
+    console.log(type);
     // const type = ;
     
     let result = 
@@ -916,8 +916,6 @@ class Result extends Component {
     // console.log(" :: " + this.props.typeALR + ", " + this.props.typeBLR + ", " + this.props.typeCLR + ", " + this.props.typeDLR);
 
     // console.log("this.props.result : " + this.props.result);
-    // this.percentange = this.percentange.bind(this);
-    // this.percentange();
 
     this.state = {
       typeAPercent : [, ],
@@ -933,7 +931,7 @@ class Result extends Component {
 
     if (window.screen.width <= 480) {
 
-      console.log(document.getElementById("typeAprogress_Mobile"));
+      // console.log(document.getElementById("typeAprogress_Mobile"));
 
 
       lineWidth = 200 + "px";
@@ -1023,144 +1021,10 @@ class Result extends Component {
       // console.log(res.val().people);
     });
   }
-
-  percentange = () => {
-    // console.log(document.getElementById("typeAprogressBG"));
-    // console.log(document.getElementById("typeAprogress"));
-
-    
-
-    
-  }
   
   render() {
     return(
       <>
-      {/* <div className="main" id="hiddenBGMain">
-        <div className="surveyHeader">
-          <a href="/"><img className="headerLogo" src="/images/dimodamoSVG.svg" alt=""/></a>
-          <a href="/"><img className="xButton" src="/images/X.png" alt=""/></a>
-        </div>
-
-        <div className="resultScreen">
-
-          <div className="resultCard">
-            <div className="imageCard">
-              <img className="bg" src={"/images/" + this.props.result.color + "_BG.png"} alt=""/>
-              <img className="bgPattern" src={"/images/" + this.props.result.color + "_" + this.props.result.figure + ".png"} alt=""/>
-              <img className="character" src={"/images/" + this.props.result.color + "_" + this.props.result.gender + "_" + this.props.result.figure + "_" + this.props.result.character + ".png"} alt=""/>
-              <img className="type" src={"/images/" + this.props.result.color + "_Type_" + this.props.result.figure + ".png"} alt=""/>
-              <h1 className="resultTitle">{this.props.result.title}</h1>
-            </div>
-              
-              <p className="desc">{this.props.result.desc}</p>
-            </div>
-            <div className="resultDesc">
-              <div className="leftBox">
-                <div className="graph">
-                  <h3 className="descTitle">나의 DPTI 상세 결과</h3>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">외향</p>
-                      <p className="typeDescValue" id="typeAleftValue">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
-                    </div>
-                    <div className="line" id="typeAprogressBG"><div className="lineProgress" id="typeAprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">내향</p>
-                      <p className="typeDescValue" id="typeArightValue">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">감각</p>
-                      <p className="typeDescValue" id="typeBleftValue">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
-                    </div>
-                    <div className="line" id="typeBprogressBG"><div className="lineProgress" id="typeBprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">직관</p>
-                      <p className="typeDescValue" id="typeBrightValue">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">사고</p>
-                      <p className="typeDescValue" id="typeCleftValue">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
-                    </div>
-                    <div className="line" id="typeCprogressBG"><div className="lineProgress" id="typeCprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">감정</p>
-                      <p className="typeDescValue" id="typeCrightValue">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
-                    </div>
-                  </div>
-
-                  <div className="type">
-                    <div className="leftTypeTitle">
-                      <p className="typeDescTitle">실천</p>
-                      <p className="typeDescValue" id="typeDleftValue">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
-                    </div>
-                    <div className="line" id="typeDprogressBG"><div className="lineProgress" id="typeDprogress"></div></div>
-                    <div className="rightTypeTitle">
-                    <p className="typeDescTitle">인식</p>
-                      <p className="typeDescValue" id="typeDrightValue">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
-                    </div>
-                  </div>
-
-
-                </div>
-                <div className="todo">
-                  <h3 className="descTitle">디자인 작업이 막힐 때는?</h3>
-                  <p className="desc" id="designDesc">
-                  {this.props.result.todo}
-                  </p>
-                </div>
-              </div>
-              <div className="rightBox">
-                <div className="position">
-                  <h3 className="descTitle">나와 어울리는 조별과제 포지션</h3>
-                  <div className="positionBox">{this.props.result.position}</div>
-                </div>
-                <div className="design">
-                  <h3 className="descTitle">나와 어울리는 디자인 분야</h3>
-                    <div className="designDesc">
-                      <p className="number">1</p>
-                      {this.props.result.design[0]}
-                    </div>
-                    <div className="designDesc">
-                      <p className="number">2</p>
-                      {this.props.result.design[1]}
-                    </div>
-                    <div className="designDesc">
-                      <p className="number">3</p>
-                      {this.props.result.design[2]}
-                    </div>
-                </div>
-                <div className="tools">
-                  <h3 className="descTitle">나와 어울리는 디자인 툴</h3>
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">1</p>
-                      <img src={"/images/" + this.props.result.tools[0] + ".png"} alt=""/>
-                    </div>
-
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">2</p>
-                      <img src={"/images/" + this.props.result.tools[1] + ".png"} alt=""/>
-                    </div>
-
-                    <div className="toolDesc">
-                      <p className="number" id="toolNumber">3</p>
-                      <img src={"/images/" + this.props.result.tools[2] + ".png"} alt=""/>
-                    </div>
-                </div>
-                <a href="/"><button className="exitBtn">검사 종료하기</button></a>
-              </div>
-                
-          </div>
-        </div>
-      </div> */}
-
     <div className="main" id="hiddenBGMain">
         <div className="surveyHeader">
           <span className="mobileHeader">사용자님의 결과</span>  
@@ -1191,48 +1055,48 @@ class Result extends Component {
                     <div className="type">
                       <div className="leftTypeTitle">
                         <p className="typeDescTitle">외향</p>
-                        <p className="typeDescValue" id="typeAleftValue">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
+                        <p className="typeDescValue" id="typeAleftValue_Mobile">{Math.ceil(this.props.result.typeAPercent[0]) + "%"}</p>
                       </div>
                       <div className="line" id="typeAprogressBG_Mobile"><div className="lineProgress" id="typeAprogress_Mobile"></div></div>
                       <div className="rightTypeTitle">
                       <p className="typeDescTitle">내향</p>
-                        <p className="typeDescValue" id="typeArightValue">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
+                        <p className="typeDescValue" id="typeArightValue_Mobile">{Math.ceil(this.props.result.typeAPercent[1]) + "%"}</p>
                       </div>
                     </div>
 
                     <div className="type">
                       <div className="leftTypeTitle">
                         <p className="typeDescTitle">감각</p>
-                        <p className="typeDescValue" id="typeBleftValue">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
+                        <p className="typeDescValue" id="typeBleftValue_Mobile">{Math.ceil(this.props.result.typeBPercent[0]) + "%"}</p>
                       </div>
                       <div className="line" id="typeBprogressBG_Mobile"><div className="lineProgress" id="typeBprogress_Mobile"></div></div>
                       <div className="rightTypeTitle">
                       <p className="typeDescTitle">직관</p>
-                        <p className="typeDescValue" id="typeBrightValue">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
+                        <p className="typeDescValue" id="typeBrightValue_Mobile">{Math.ceil(this.props.result.typeBPercent[1]) + "%"}</p>
                       </div>
                     </div>
 
                     <div className="type">
                       <div className="leftTypeTitle">
                         <p className="typeDescTitle">사고</p>
-                        <p className="typeDescValue" id="typeCleftValue">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
+                        <p className="typeDescValue" id="typeCleftValue_Mobile">{Math.ceil(this.props.result.typeCPercent[0]) + "%"}</p>
                       </div>
                       <div className="line" id="typeCprogressBG_Mobile"><div className="lineProgress" id="typeCprogress_Mobile"></div></div>
                       <div className="rightTypeTitle">
                       <p className="typeDescTitle">감정</p>
-                        <p className="typeDescValue" id="typeCrightValue">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
+                        <p className="typeDescValue" id="typeCrightValue_Mobile">{Math.ceil(this.props.result.typeCPercent[1]) + "%"}</p>
                       </div>
                     </div>
 
                     <div className="type">
                       <div className="leftTypeTitle">
                         <p className="typeDescTitle">실천</p>
-                        <p className="typeDescValue" id="typeDleftValue">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
+                        <p className="typeDescValue" id="typeDleftValue_Mobile">{Math.ceil(this.props.result.typeDPercent[0]) + "%"}</p>
                       </div>
                       <div className="line" id="typeDprogressBG_Mobile"><div className="lineProgress" id="typeDprogress_Mobile"></div></div>
                       <div className="rightTypeTitle">
                       <p className="typeDescTitle">인식</p>
-                        <p className="typeDescValue" id="typeDrightValue">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
+                        <p className="typeDescValue" id="typeDrightValue_Mobile">{Math.ceil(this.props.result.typeDPercent[1]) + "%"}</p>
                       </div>
                     </div>
                     </div>
@@ -1438,6 +1302,7 @@ class App extends Component {
   // 계산한 결과 내용을 받는 함수
   onSearchCalcResult(result) {
     // console.log("결과를 받았습니다 : " + result);
+    // console.log("결과를 받았습니다 : " + result.title);
     result.gender = this.state.gender;
     result.typeAPercent = this.state.typeAPercent;
     result.typeBPercent = this.state.typeBPercent;
@@ -1499,9 +1364,6 @@ class App extends Component {
     // console.log("넘기기 전 :: " + typeAPercent + typeBPercent + typeCPercent + typeDPercent);
 
     ///////////////////fire
-    getFireDB().then(res => {
-      setFireClickedDB(typeALR, typeBLR, typeCLR, typeDLR, res.val().people);  
-    });
     
 
     this.setState({
@@ -1519,11 +1381,15 @@ class App extends Component {
       typeBPercent : typeBPercent,
       typeCPercent : typeCPercent,
       typeDPercent : typeDPercent,
-    })
+    }, () => {
+      getFireDB().then(res => {
+        setFireClickedDB(typeALR, typeBLR, typeCLR, typeDLR, res.val().people);  
+      });
+    });
 
     
 
-    // console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
+    console.log("A : " + typeAvalue + ", B : " + typeBvalue + ", C : " + typeCvalue + ", D : " + typeDvalue);
   }
 
   // Survey 선택 결과를 받아옴
@@ -1535,7 +1401,7 @@ class App extends Component {
       [parseTargetName] : parseTargetValue,
     }, () => {
       // console.log("targetName : " + parseTargetName + ", targetValue : " + parseTargetValue);
-      if (parseTargetName === 24) {
+      if (parseTargetName == 24) {
         this.surveyCalc();
         return;
       }
@@ -1545,11 +1411,11 @@ class App extends Component {
   screenRender() {
     if (this.state.currentPage < 1)
       return <MainScreen page={this.state.currentPage} onSubmit={this.onSearchSubmit} onGenderSubmit={this.onGenderSubmit}></MainScreen>;
-    else if (this.state.currentPage === 2)
+    else if (this.state.currentPage == 2)
       return <Survey onSubmit={this.onSearchSubmit} surveyCalc={this.surveyResultCalc}></Survey>;
-    else if (this.state.currentPage === 3)
+    else if (this.state.currentPage == 3)
       return <ResultCalculate typeA={this.state.typeAvalue} typeB={this.state.typeBvalue} typeC={this.state.typeCvalue} typeD={this.state.typeDvalue} onSearchCalcResult={this.onSearchCalcResult} onSearchSubmit={this.onSearchSubmit}></ResultCalculate>
-    else if (this.state.currentPage === 4)
+    else if (this.state.currentPage == 4)
       return <Result result={this.state.result} typeALR={this.state.typeALR} typeBLR={this.state.typeBLR} typeCLR={this.state.typeCLR} typeDLR={this.state.typeDLR}></Result>
   }
 
