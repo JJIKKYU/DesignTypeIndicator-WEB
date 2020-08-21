@@ -825,7 +825,7 @@ class ResultCalculate extends Component {
         result.image = "resultGreen"
         result.title = "인생을 찾아떠난 역마살 디자이너";
         result.desc = "삶이 철저히 계산으로 흘러갈 수 있는 것이라면, 아마 당신은 재미없어 할 것 같아요. 인생이 한가지 목표를 향해 가는 여정이라면 너무 아쉬울 것 같지 않나요? 하지만 당신을 만족하게 해줄 무언가를 향해 기꺼이 여러 갈래로의 여정을 시작하기도 하죠. 자유로운 사고를 바탕으로 무궁무진이 뻗어 나가는 디자인의 영역에서도 분명히 멋진 여행을 하게 되실 거예요!";
-        result.position = "보다 색다른 아이디어를 언제나 생각하고 있어요";
+        result.position = "색다른 아이디어를 언제나 생각하고 있어요";
         result.design[0] = "광고";
         result.design[1] = "미디어아트";
         result.design[2] = "브랜딩";
