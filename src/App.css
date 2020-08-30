@@ -88,6 +88,7 @@
   padding: 32px;
   box-sizing: border-box;
   position: relative;
+  margin: 0 auto;
 }
 
 #backgroundCard1 {
@@ -118,6 +119,8 @@
   position: absolute;
   left: 0;
   top: 0;
+
+  box-shadow: none;
 
   display: none;
 }
@@ -162,6 +165,7 @@
 #questionDesc {
   font-weight: bold;
   font-size: 18px;
+  height: 54px;
   line-height: 27px;
   color: #141414;
 
@@ -169,13 +173,15 @@
 }
 
 .answerBox {
-  background: none;
-  border: 2px solid #BEBEBE;
-  box-sizing: border-box;
-  border-radius: 16px;
-  width: 100%;
-  height: 56px;
-  margin-bottom: 16px;
+  
+}
+
+input[type="radio"]:checked + label{
+  /* border-color: #FF7D5F;
+  color: #FF7D5F; */
+
+  color: #78CD69;
+  border-color: #78CD69;
 }
 
 .answerBoxRadio {
@@ -183,6 +189,15 @@
 }
 
 .answerBoxText {
+  background: none;
+  border: 2px solid #BEBEBE;
+  box-sizing: border-box;
+  border-radius: 16px;
+  width: 100%;
+  height: 56px;
+  margin-bottom: 16px;
+
+  display: block;
   font-weight: bold;
   font-size: 16px;
   line-height: 50px;
@@ -196,4 +211,34 @@
 
 .answerBox :last-child {
   margin-bottom: 0px;
+}
+
+/* 
+  submitSurvey
+*/
+
+.submitSurvey {
+  position: relative;
+  width: 100%;
+  height: 56px;
+  margin-top: 73px;
+
+  display: none;
+}
+
+.submitSurvey input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  background: #FF7D5F;
+  border-radius: 16px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  
+  text-align: center;
+  color: #FFFFFF;
 }

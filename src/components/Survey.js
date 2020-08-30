@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // Header.js
 import Header from './Header'
-import question from '../json/question.json'
+import axios from "axios";
 
 class ProgressBar extends Component {
     render() {
@@ -19,31 +19,35 @@ class ProgressBar extends Component {
 class SurveySelectBox extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            buttonId : this.props.questionNum + this.props.buttonNum
+        }
     }
 
     eventHandler = (e) => {
         const targetName = e.target.name;
         const targetValue = e.target.value;
 
-        this.setState({
-            [targetName]: targetValue,
-        }, () => {
-            console.log(this.state[targetName]);
-            // this.props.getStateSurvey(targetName, targetValue)
-        });
+        console.log(targetName + ", " + targetValue);
+
+        // this.setState({
+        //     [targetName]: targetValue,
+        // }, () => {
+        //     console.log(this.state[targetName]);
+        //     // this.props.getStateSurvey(targetName, targetValue)
+        // });
     }
 
 
     render() {
         return(
             <>
-            <div className="answerBox">
-                <input className="answerBoxRadio" type="radio" name="name_0" id="id_0"
-                value="value_01"
-                onChange={this.eventHandler}
-                />
-                <label htmlFor="id_0" className="answerBoxText">{this.props.value}</label>
-            </div>
+            <input className="answerBoxRadio" type="radio" name={this.props.questionNum} id={this.state.buttonId}
+            value={this.props.buttonNum}
+            onChange={this.eventHandler}
+            />
+            <label htmlFor={this.state.buttonId} className="answerBoxText">{this.props.value}</label>
             </>
         );
     }
@@ -52,18 +56,50 @@ class SurveySelectBox extends Component {
 class SurveyCard extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            number : 1,
+            loading : false,
+            answerList : [],
+            questionList : []
+        }
     }
 
-    render() {
-        const answerList = [
-            "맞아요 매우 그래요",
-            "맞는것 같아요",
-            "잘 모르겠어요",
-            "아닌것 같아요",
-            "아니요 저는 안그래요"
-          ]
+    componentDidMount() {
+        this.loadItem();  // loadItem 호출
+    }
 
-        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText}></SurveySelectBox>));
+    loadItem = async () => {
+        axios
+        .get("./json/Survey.json")
+        .then (( {data }) => {
+            this.setState({
+                loading : true,
+                questionList : data.Question,
+                answerList : data.Answer
+            });
+        })
+        .catch(e => { 
+            // API 호출이 실패할 경우
+            console.error(e);
+            this.setState ({
+                loading : false
+            });
+        });
+    };
+
+    render() {
+        const { questionList } = this.state;
+        const { answerList } = this.state;
+        var question = questionList[0];
+
+
+        // var result = changed[1].value.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
+        // console.log(result);
+
+        // console.log(questionList[0]);
+
+        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.state.number} buttonNum={index}></SurveySelectBox>));
         return(
             <>
             <div className="card">
@@ -78,12 +114,21 @@ class SurveyCard extends Component {
                 <img id="feedbackImg" src="./images/feedback/feedbackGreen.png" alt=""/>
             </div>
 
-                <h1 id="questionNum">Q1</h1>
+                <h1 id="questionNum">Q{this.state.number}</h1>
                 <p id="questionDesc">
-                모두가 ‘예’라고 말할 때, <br/>
-                ‘아니오’라고 말할 수 있어.
+                    {
+                        String(question).split('\n').map( line => {
+                            return (<span>{line}<br/></span>)
+                          })
+                    }
                 </p>
+
+                {/* answerButton 5 */}
                 {answers}
+            </div>
+
+            <div className="submitSurvey">
+                <input type="button" value="제출하기"/>
             </div>
             </>
         );
