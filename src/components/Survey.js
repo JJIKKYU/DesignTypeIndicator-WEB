@@ -58,7 +58,7 @@ class SurveyCard extends Component {
         super(props);
 
         this.state = {
-            number : 1,
+            number : 0,
             loading : false,
             answerList : [],
             questionList : []
@@ -91,13 +91,7 @@ class SurveyCard extends Component {
     render() {
         const { questionList } = this.state;
         const { answerList } = this.state;
-        var question = questionList[0];
-
-
-        // var result = changed[1].value.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-        // console.log(result);
-
-        // console.log(questionList[0]);
+        var question = questionList[this.state.number];
 
         const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.state.number} buttonNum={index}></SurveySelectBox>));
         return(
@@ -114,7 +108,7 @@ class SurveyCard extends Component {
                 <img id="feedbackImg" src="./images/feedback/feedbackGreen.png" alt=""/>
             </div>
 
-                <h1 id="questionNum">Q{this.state.number}</h1>
+                <h1 id="questionNum">Q{this.state.number + 1}</h1>
                 <p id="questionDesc">
                     {
                         String(question).split('\n').map( line => {

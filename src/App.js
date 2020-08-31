@@ -4,13 +4,14 @@ import './App.css';
 
 // Survey.js
 import Survey from './components/Survey'
-// Header.js
-import Header from './components/Header'
+// Result.js
+import Result from './components/Result'
 
 function App() {
   return (
     <div className="main">
-      <Survey></Survey>
+      {/* <Survey></Survey> */}
+      <Result></Result>
     </div>
   );
 }
