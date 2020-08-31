@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './Main.css';
 import './Gender.css';
+import './Calculator.css';
 
 // Survey.js
 import Survey from './components/Survey'
@@ -19,13 +20,14 @@ class App extends Component {
     super(props);
 
     this.state = {
-      page : 3,
+      page : 4,
       gedner : "",
       survey : [
         {
           select : [],
         }
-      ]
+      ],
+      result : "",
     }
   }
 
@@ -59,6 +61,13 @@ class App extends Component {
     })
   }
 
+  finalResult = (props) => {
+    console.log("최종 결과를 받았습니다 : " + props);
+    this.setState ({
+      result : props
+    })
+  }
+
   screenRender = () => {
     switch (this.state.page) {
       case 0:
@@ -68,9 +77,9 @@ class App extends Component {
       case 2:
         return <Survey nextPage={this.nextPage} surveyProgress={this.surveyProgress}></Survey>
       case 3:
-        return <Calc></Calc>
+        return <Calc nextPage={this.nextPage} surveyResult={this.state.survey} finalResult={this.finalResult}></Calc>
       case 4:
-        return <Result></Result>
+        return <Result nextPage={this.nextPage} finalResult={this.state.finalResult}></Result>
       default:
         break;
     }

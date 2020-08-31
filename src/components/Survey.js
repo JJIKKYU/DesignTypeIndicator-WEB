@@ -20,55 +20,50 @@ class ProgressBar extends Component {
 class SurveySelectBox extends Component {
     constructor(props) {
         super(props);
+        this.reverseValue = this.reverseValue.bind(this);
 
         this.state = {
+            reverse : 1,
             buttonId : String(this.props.questionNum) + String(this.props.buttonNum),
+        }
+    }
+
+    reverseValue = () => {
+        if (this.props.questionNum === 3) {
+            this.setState ({
+                reverse : -1
+            })
+        } else {
+            this.setState ({
+                reverse : 1
+            })
         }
     }
 
     eventHandler = (e) => {
         const targetName = e.target.name;
         const targetValue = e.target.value;
+        var questionNum = this.props.questionNum + 1;
+        var reverse = 1;
 
-        console.log(targetName + ", " + targetValue);
+        if (questionNum === 3 || questionNum === 5 || questionNum === 6 || questionNum === 8 ||
+            questionNum === 10 || questionNum === 12 || questionNum === 15 || questionNum === 17 ||
+            questionNum === 19 || questionNum === 20) {
+            reverse = -1;
+        } else {
+            reverse = 1;
+        }
+
+        console.log(targetName + ", " + targetValue * reverse);
         this.props.moveCard();
-
-        // this.props.surveyProgress(survey);
-
-        this.props.surveyProgress([targetName], targetValue);
-
-        // this.setState({
-        //     survey : [
-        //         {
-        //             select : {
-        //                 [targetName] : targetValue,
-        //                 ...this.state.survey[0].select,
-        //             }
-        //         }
-        //     ]
-        // }, () => {
-        //     console.log(this.state.survey[0]);
-        // });
-
-        // this.setState({
-        //     // [targetName]: targetValue,
-        //     survey : [
-        //         {
-        //             [targetName] : targetValue,
-        //         }
-        //     ]
-        // }, () => {
-            
-        //     // this.props.getStateSurvey(targetName, targetValue)
-        // });
+        this.props.surveyProgress([targetName], targetValue * reverse);
     }
-
 
     render() {
         return(
             <>
             <input className="answerBoxRadio" type="radio" name={this.props.questionNum} id={this.state.buttonId}
-            value={this.props.buttonNum}
+            value={this.props.buttonNum - 2}
             onChange={this.eventHandler}
             />
             <label htmlFor={this.state.buttonId} className="answerBoxText">{this.props.value}</label>
