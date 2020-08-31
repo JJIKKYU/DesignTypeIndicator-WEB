@@ -1,0 +1,134 @@
+.intro {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    color: #141414;   
+    line-height: 34px;
+}
+
+#genderTitleContainer {
+    width: 250px;
+}
+
+#genderTitleBubble {
+    padding-top: 40px;
+}
+
+.orange {
+    color: #FF7D5F;
+}
+
+.genderSelectContainer {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    position: relative;
+    margin-top: 151px;
+    display: inline-block;
+}
+
+.genderSelectBox {
+    width: 181px;
+}
+
+.genderButton {
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 2px solid #BEBEBE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+}
+
+#man {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: left;
+}
+
+#woman {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+}
+
+.startButton {
+    cursor: pointer;
+    width: 382px;
+    height: 56px;
+    background: #FF9173;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    border: none;
+
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 16px;
+}
+
+.genderButtonRadio {
+    display: none;
+  }
+
+#mButton:checked ~ label {
+    color: #FF644B;
+    border-color: #FF644B;
+}
+
+#mButton:checked ~ img {
+    filter: grayscale(0);
+}
+
+#fButton:checked ~ label {
+    color: #FF644B;
+    border-color: #FF644B;
+}
+
+#fButton:checked ~ img {
+    filter: grayscale(0);
+}
+
+.rightContainer {
+    float: right;
+    width: 181px;
+    display: inline-block;
+}
+
+.leftContainer {
+    width: 181px;
+    display: inline-block;
+}
+
+.genderButton {
+    display: inline-block;
+    width: 100%;
+    height: 56px;
+    text-align: center;
+    line-height: 50px;
+
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #AAAAAA;
+}
+
+.genderSelectContainer img {
+    margin-bottom: -6px;
+    filter: grayscale(1);
+    transition: ease-in-out 0.2s;
+}
+
+.rightContainer img {
+    float: right;
+}
+
+.rightContainer .genderButton {
+    margin-top: 4px;
+}
