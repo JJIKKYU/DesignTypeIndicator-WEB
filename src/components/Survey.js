@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 // Header.js
 import Header from './Header'
 import axios from "axios";
@@ -21,7 +22,7 @@ class SurveySelectBox extends Component {
         super(props);
 
         this.state = {
-            buttonId : String(this.props.questionNum) + String(this.props.buttonNum)
+            buttonId : String(this.props.questionNum) + String(this.props.buttonNum),
         }
     }
 
@@ -32,10 +33,32 @@ class SurveySelectBox extends Component {
         console.log(targetName + ", " + targetValue);
         this.props.moveCard();
 
+        // this.props.surveyProgress(survey);
+
+        this.props.surveyProgress([targetName], targetValue);
+
         // this.setState({
-        //     [targetName]: targetValue,
+        //     survey : [
+        //         {
+        //             select : {
+        //                 [targetName] : targetValue,
+        //                 ...this.state.survey[0].select,
+        //             }
+        //         }
+        //     ]
         // }, () => {
-        //     // console.log(this.state[targetName]);
+        //     console.log(this.state.survey[0]);
+        // });
+
+        // this.setState({
+        //     // [targetName]: targetValue,
+        //     survey : [
+        //         {
+        //             [targetName] : targetValue,
+        //         }
+        //     ]
+        // }, () => {
+            
         //     // this.props.getStateSurvey(targetName, targetValue)
         // });
     }
@@ -62,7 +85,6 @@ class SurveyCard extends Component {
             number : 0,
             loading : false,
             answerList : [],
-            questionList : []
         }
     }
 
@@ -88,14 +110,10 @@ class SurveyCard extends Component {
         });
     };
 
-    
-
-    
-
     render() {
         const { answerList } = this.state;
 
-        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.props.number} buttonNum={index} moveCard={this.props.moveCard}></SurveySelectBox>));
+        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.props.number} buttonNum={index} moveCard={this.props.moveCard} surveyProgress={this.props.surveyProgress}></SurveySelectBox>));
 
         return(
             <>
@@ -174,16 +192,20 @@ class Survey extends Component {
 
     // Moving Card left
     moveCard = () => {
-        const questionContainer = document.getElementById("questionContainer");      
+        const questionContainer = document.getElementById("questionContainer");
 
         this.setState({
             currentXpos : this.state.currentXpos - this.state.xPosTransitionStep - 28,
             number : this.state.number + 1,
         }, () => {
+            if (this.state.number === 21) {
+                // Result Calc Page로 이동
+                this.props.nextPage(3);
+                return;
+            }
             questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
             this.progressBar();  
             this.changeTheme();
-            console.log(this.state.currentXpos);
         });
         
     }
@@ -203,15 +225,14 @@ class Survey extends Component {
         const progressBar = document.getElementById("progress");
         const answerBoxRadio = document.getElementsByClassName("answerBoxRadio");
 
-
         if (this.state.number === 6) {
             progressBar.style.background = "#5A87FA";
-            for (var i = 25; i < answerBoxRadio.length; ++i) {
+            for (var i = 25; i < 50; ++i) {
                 answerBoxRadio[i].classList.add('purple');
             }
         } else if (this.state.number === 11) {
             progressBar.style.background = "#28D2DC";
-            for (var i = 50; i < answerBoxRadio.length; ++i) {
+            for (var i = 50; i < 75; ++i) {
                 answerBoxRadio[i].classList.remove('purple');
                 answerBoxRadio[i].classList.add('blue');
             }
@@ -225,7 +246,7 @@ class Survey extends Component {
     }
     
     render() {
-        const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard}></SurveyCard>));
+        const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard} surveyProgress={this.props.surveyProgress}></SurveyCard>));
 
 
         return (

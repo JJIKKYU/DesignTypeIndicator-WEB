@@ -21,13 +21,7 @@ class Gender extends Component {
             clicked : true
         })
 
-        var survey = [
-            {
-              gender : targetValue,
-              select : [],
-            }
-          ];
-        this.props.surveyProgress(survey);
+        this.props.genderSelect(targetValue);
     }
 
     nextPage = () => {
