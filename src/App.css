@@ -6,7 +6,10 @@
   font-weight: normal;
   font-style: normal;
 }
-          
+
+#root {
+  height: 100vh;
+}
 
 .main {
   margin-left: 16px;
@@ -76,15 +79,33 @@
 }
 
 #progress {
-  width: 20%;
+  width: 0%;
   height: 4px;
   background: #82E155;
   border-radius: 22px;
+  transition: ease-in-out .5s;
 }
 
 /* 
   SurveyCard
 */
+
+.questionContainer {
+  width: 10000px;
+  height: 700px;
+  overflow: auto;
+  text-align: left;
+  margin-left: 50%;
+  transform: translate(-205px);
+  animation: fadeIn 1s;
+  transition: ease-in-out .5s;
+  display: inline-block;
+}
+
+.questions {
+  width: 100%;
+  overflow: hidden;
+}
 
 .card {
   width: 382px;
@@ -96,12 +117,14 @@
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
+  display: inline-block;
+  margin: 14px;
 }
 
 #backgroundCard1 {
   position: absolute;
-  left : 8px;
-  top: 16px;
+  left : -4px;
+  top: 0px;
   z-index: -1;
   width: 366px;
 
@@ -112,8 +135,8 @@
 
 #backgroundCard2 {
   position: absolute;
-  left : 16px;
-  top: 32px;
+  left : 4px;
+  top: 12px;
   z-index: -2;
   width: 350px;
 
@@ -183,16 +206,30 @@
   /* display: none; */
 }
 
-input[type="radio"]:checked + label{
-  /* border-color: #FF7D5F;
-  color: #FF7D5F; */
-
+.answerBoxRadio:checked + label{
   color: #78CD69;
   border-color: #78CD69;
+  transition: ease-in-out .1s;
+}
+
+.answerBoxRadio.purple:checked + label{
+  color: #5A87FA;
+  border-color: #5A87FA;
+}
+
+.answerBoxRadio.blue:checked + label{
+  color: #28D2DC;
+  border-color: #28D2DC;
+}
+
+.answerBoxRadio.pink:checked + label{
+  color: #FA7896;
+  border-color: #FA7896;
 }
 
 .answerBoxRadio {
   display: none;
+  transition: ease-in-out 1s;
 }
 
 .answerBoxText {

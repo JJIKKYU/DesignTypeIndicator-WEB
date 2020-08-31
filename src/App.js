@@ -17,7 +17,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      page : 0
+      page : 0,
+      survey : [
+        {
+          gender : "",
+          select : [],
+        }
+      ]
     }
   }
 
@@ -28,12 +34,19 @@ class App extends Component {
     })
   }
 
+  surveyProgress = (props) => {
+    console.log(props[0].gender + "를 받았습니다 (App.js)");
+    this.setState ({
+      survey : props
+    })
+  }
+
   screenRender = () => {
     switch (this.state.page) {
       case 0:
         return <Main nextPage={this.nextPage}></Main>
       case 1:
-        return <Gender nextPage={this.nextPage}></Gender>
+        return <Gender nextPage={this.nextPage} surveyProgress={this.surveyProgress}></Gender>
       case 2:
         return <Survey></Survey>
       case 3:
@@ -44,13 +57,11 @@ class App extends Component {
   render() {
     return(
         <>
-        <div className="main">
-          {this.screenRender()}
+        {this.screenRender()}
         {/* <Main></Main> */}
         {/* <Survey></Survey> */}
         {/* <Result></Result> */}
         {/* <Gender></Gender> */}
-      </div>
       </>
     );
   }

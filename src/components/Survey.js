@@ -21,7 +21,7 @@ class SurveySelectBox extends Component {
         super(props);
 
         this.state = {
-            buttonId : this.props.questionNum + this.props.buttonNum
+            buttonId : String(this.props.questionNum) + String(this.props.buttonNum)
         }
     }
 
@@ -30,11 +30,12 @@ class SurveySelectBox extends Component {
         const targetValue = e.target.value;
 
         console.log(targetName + ", " + targetValue);
+        this.props.moveCard();
 
         // this.setState({
         //     [targetName]: targetValue,
         // }, () => {
-        //     console.log(this.state[targetName]);
+        //     // console.log(this.state[targetName]);
         //     // this.props.getStateSurvey(targetName, targetValue)
         // });
     }
@@ -67,7 +68,7 @@ class SurveyCard extends Component {
 
     componentDidMount() {
         this.loadItem();  // loadItem 호출
-    }
+    }       
 
     loadItem = async () => {
         axios
@@ -75,7 +76,6 @@ class SurveyCard extends Component {
         .then (( {data }) => {
             this.setState({
                 loading : true,
-                questionList : data.Question,
                 answerList : data.Answer
             });
         })
@@ -88,15 +88,18 @@ class SurveyCard extends Component {
         });
     };
 
-    render() {
-        const { questionList } = this.state;
-        const { answerList } = this.state;
-        var question = questionList[this.state.number];
+    
 
-        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.state.number} buttonNum={index}></SurveySelectBox>));
+    
+
+    render() {
+        const { answerList } = this.state;
+
+        const answers = answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.props.number} buttonNum={index} moveCard={this.props.moveCard}></SurveySelectBox>));
+
         return(
             <>
-            <div className="card">
+            <div className="card" id="card">
             {/* Decoration card Div */}
             <div className="card" id="backgroundCard1"></div>
             <div className="card" id="backgroundCard2"></div>
@@ -108,16 +111,14 @@ class SurveyCard extends Component {
                 <img id="feedbackImg" src="./images/feedback/feedbackGreen.png" alt=""/>
             </div>
 
-                <h1 id="questionNum">Q{this.state.number + 1}</h1>
+                <h1 id="questionNum">Q{this.props.number + 1}</h1>
                 <p id="questionDesc">
                     {
-                        String(question).split('\n').map( line => {
-                            return (<span>{line}<br/></span>)
+                        String(this.props.questionText).split('\n').map((line,index) => {
+                            return (<span key={index}>{line}<br/></span>)
                           })
                     }
                 </p>
-
-                {/* answerButton 5 */}
                 {answers}
             </div>
 
@@ -129,13 +130,115 @@ class SurveyCard extends Component {
     }
 }
 
+SurveyCard.defaultProps = {
+    questionText : "파일명은 언제나 규칙적으로,\n정해진 형식으로 지어",
+    number : 99
+}
+
 class Survey extends Component {
+    constructor(props) {
+        super(props);
+
+        this.moveCard = this.moveCard.bind(this);
+
+        this.state = {
+            questionList : [],
+            number : 1,
+            xPosTransitionStep : 382,
+            currentXpos : -205
+        }
+    }
+
+    componentDidMount() {
+        this.loadItem();  // loadItem 호출
+        this.progressBar();
+    }
+
+    loadItem = async () => {
+        axios
+        .get("./json/Survey.json")
+        .then (( {data }) => {
+            this.setState({
+                loading : true,
+                questionList : data.Question,
+            });
+        })
+        .catch(e => { 
+            // API 호출이 실패할 경우
+            console.error(e);
+            this.setState ({
+                loading : false
+            });
+        });
+    };
+
+    // Moving Card left
+    moveCard = () => {
+        const questionContainer = document.getElementById("questionContainer");      
+
+        this.setState({
+            currentXpos : this.state.currentXpos - this.state.xPosTransitionStep - 28,
+            number : this.state.number + 1,
+        }, () => {
+            questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
+            this.progressBar();  
+            this.changeTheme();
+            console.log(this.state.currentXpos);
+        });
+        
+    }
+
+    // ProgressBar Percentage Change
+    progressBar = () => {
+        const progressBar = document.getElementById("progress");
+        const indicator = document.getElementById("indicatorText");
+        const questionCount = 20;
+        const widthValue = (this.state.number / questionCount) * 100;
+
+        indicator.innerHTML = this.state.number + "/" + questionCount;
+        progressBar.style.width = widthValue + "%";
+    }
+
+    changeTheme = () => {
+        const progressBar = document.getElementById("progress");
+        const answerBoxRadio = document.getElementsByClassName("answerBoxRadio");
+
+
+        if (this.state.number === 6) {
+            progressBar.style.background = "#5A87FA";
+            for (var i = 25; i < answerBoxRadio.length; ++i) {
+                answerBoxRadio[i].classList.add('purple');
+            }
+        } else if (this.state.number === 11) {
+            progressBar.style.background = "#28D2DC";
+            for (var i = 50; i < answerBoxRadio.length; ++i) {
+                answerBoxRadio[i].classList.remove('purple');
+                answerBoxRadio[i].classList.add('blue');
+            }
+        } else if (this.state.number === 16) {
+            for (var i = 75; i < answerBoxRadio.length; ++i) {
+                answerBoxRadio[i].classList.remove('blue');
+                answerBoxRadio[i].classList.add('pink');
+            }
+            progressBar.style.background = "#FF5F87";
+        }
+    }
+    
     render() {
+        const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard}></SurveyCard>));
+
+
         return (
             <>
+            <div className="main">
             <Header></Header>
             <ProgressBar></ProgressBar>
-            <SurveyCard></SurveyCard>
+            </div>
+            <div className="questions">
+                <div className="questionContainer" id="questionContainer">
+                    {questions}
+                </div>
+            </div>
             </>
         );
     }
