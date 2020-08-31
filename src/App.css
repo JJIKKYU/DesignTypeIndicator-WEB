@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+          
 
 .main {
   margin-left: 16px;
@@ -7,7 +14,7 @@
 }
 
 * {
-  font-family: Noto Sans CJK KR;
+  font-family: 'Noto Sans CJK KR', Arial, sans-serif;
   letter-spacing: -0.01em;
 }
 
@@ -173,7 +180,7 @@
 }
 
 .answerBox {
-  
+  /* display: none; */
 }
 
 input[type="radio"]:checked + label{
@@ -248,13 +255,282 @@ input[type="radio"]:checked + label{
 .resultCard {
   width: 382px;
   height: 664px;
+  position: relative;
   background: #FFFFFF;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
   border-radius: 24px;
-  padding: 40px 0px 24px 32px;
   box-sizing: border-box;
+  margin-top: 11px;
 }
 
 .resultCard #resultTitle {
   margin-top: 0px;
+  position: absolute;
+  font-family: 'yg-jalnan';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+#resultTop {
+  width: 100%;
+  height: 348px;
+  padding: 40px 0px 24px 32px;
+  box-sizing: border-box;
+  background: #1EB4BE;
+  border-radius: 24px 24px 0px 0px;
+  position: relative;
+}
+
+#resultBottom {
+  box-sizing: border-box;
+  padding: 40px 32px 0px 32px;
+}
+
+#resultDesc {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 200%;
+  color: #282828;
+}
+
+#resultType {
+  position: absolute;
+  bottom: 24px;
+  z-index: 1;
+}
+
+#resultChar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+#resultPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.cardTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #141414;
+}
+
+.positionCard {
+  margin-top: 16px;
+  width: 382px;
+  height: 190px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 24px;
+
+  box-sizing: border-box;
+  padding: 36px 32px 36px 32px;
+}
+
+.positionContainer {
+  width: 318px;
+  height: 56px;
+  margin-top: 28px;
+  text-align: center;
+  border: 2px solid #FF7D5F;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+#positionText {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 50px;
+  color: #FF7D5F;
+}
+
+.designCard {
+  width: 318px;
+  margin-top: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 24px;
+  padding: 36px 32px 36px 32px;
+}
+
+.designTypeContainer {
+  position: relative;
+  display: flex;
+}
+
+.designType {
+  width: 100px;
+  height: 56px;
+  border: 2px solid #FF7D5F;
+  box-sizing: border-box;
+  border-radius: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.designType .designTypeText {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 50px;
+  text-align: center;
+  color: #FF7D5F;
+}
+
+.designType .number {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  background: #FF7D5F;
+  padding: 3px 7px 3px 7px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  position: absolute;
+  left: 0;
+  top: -8px;
+}
+
+.designTypeDesc {
+  width: 186px;
+  height: 50px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  line-height: 180%;
+  color: #282828;
+}
+
+.designTypeContainer {
+  margin-top: 36px;
+}
+
+.designTypeContainer:last-of-type {
+  margin-top: 30px;
+}
+
+.toolCard {
+  margin-top: 16px;
+  width: 382px;
+  height: 350px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  padding: 36px 32px 36px 32px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  position: relative;
+}
+
+.toolContainer {
+  margin-top: 28px;
+  position: relative;
+}
+
+.toolNameContainer {
+  width: 218px;
+  height: 56px;
+  border: 2px solid #FF7D5F;
+  box-sizing: border-box;
+  border-radius: 30px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+#toolName {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 50px;
+  text-align: center;
+  color: #FF7D5F;
+}
+
+.toolImgContainer {
+  height: 50px;
+  display: inline-block;
+}
+
+.toolDescContainer {
+  margin-top: 32px;
+}
+
+#toolDesc {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 180%;
+  color: #282828;
+}
+
+.todoCard {
+  margin-top: 16px;
+  width: 382px;
+  height: 308px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 24px;
+  padding: 36px 32px 36px 32px;
+  box-sizing: border-box;
+}
+
+.todoDescContainer {
+  margin-top: 28px; 
+}
+
+#todoDesc {
+  font-size: 14px;
+  line-height: 180%;
+  color: #282828;
+}
+
+.buttonContainer {
+  width: 382px;
+  margin-top: 16px;
+  position: relative;
+  padding-bottom: 34px;
+}
+
+.goHome {
+  border: none;
+  width: 130px;
+  height: 56px;
+  background: #FF9173;
+  border-radius: 16px;
+
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.share {
+  border: none;
+  width: 240px;
+  height: 56px;
+  background: #FF7D5F;
+  border-radius: 16px;
+
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #FFFFFF;
+
+  position: absolute;
+  right: 0;
 }

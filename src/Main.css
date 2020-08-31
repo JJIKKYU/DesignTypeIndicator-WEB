@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+#root {
+    background: #F5F5F5;
+    box-sizing: border-box;
+}
+
+.mainPatternBGContainer {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.mainBGPattner {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.titleContainer {
+    margin: 0 auto;  
+    text-align: center;
+    width: 144px;
+}
+
+.subTitle {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    color: #FF7D5F;
+}
+
+.logo {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.logoDPTI {
+    margin-top: 8px;
+    margin-bottom: -18px;
+}
+
+.line {
+    width: 126px;
+    margin: 0 auto;
+    border: 2px solid #FF7D5F;
+}
+
+.dptiSubTitle {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9.5px;
+    line-height: 14px;
+    text-align: center;
+    color: #FF7D5F;
+}
+
+.dptiSubTitle {
+    margin-top: 2px;
+}
+
+.mainTopMargin {
+    height: 88px;
+}
+
+.titleBubble {
+    margin: 0 auto;
+    position: relative;
+    width: 326px;
+    height: 326px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    padding-top: 50px;
+}
+
+.titleBubblePolygon {
+    width: 64px;
+    height: 56px;
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: 4px;
+    transform: rotate(90deg);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    bottom: -21px;
+    right: 108px;
+    z-index: 1;
+}
+
+.peopleBubbleContainer {
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.leftBubble, .rightBubble {
+    margin: 0 auto;
+    border-radius: 8px;
+    width: 248px;
+    height: 36px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    position: relative;
+}
+
+.leftBubble {
+    margin-top: 50px;
+    margin-left: 47px;
+}
+
+#leftBubblePolygon {
+    width: 36px;
+    height: 32px;
+    left: 20px;
+    bottom: -10px;
+}
+
+.rightBubble {
+    margin-top: 18px;
+    margin-right: 47px;
+}
+
+#rightBubblePolygon {
+    width: 36px;
+    height: 32px;
+    right: 20px;
+    bottom: -10px;
+    transform: rotateZ(270deg);
+}
+
+#bubbleText {
+    font-family: yg-jalnan;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 38px;
+    text-align: center;
+    color: #FF9173;
+    z-index: 1;
+}
+.bubbleTextContainer {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.peopleContainer {
+    width: 100%;
+    height: 180px;
+    position: relative;
+}
+
+.leftPeople {
+    position: absolute;
+    left: -18px;
+}
+
+.rightPeople {
+    position: absolute;
+    right: -18px;
+}
+
+.testSubTitle {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #BEBEBE;
+    margin-bottom: 6px;
+}
+
+.DPTITestStartButton {
+    cursor: pointer;
+    width: 204px;   
+    height: 56px;
+    background: #FF7D5F;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+
+    font-family: yg-jalnan;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+
+    border: none;
+    margin-bottom: 50px;
+}
+
+/* SecondMainContainer */
+
+.secondMainContainer {
+    position: absolute;
+    width: 100%;
+    height: 995px;
+    z-index: 1;
+    margin-left: -16px;
+    margin-right: -16px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.secondMainTitle {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #AAAAAA;
+}
+
+.participantContainer {
+    width: 382px;
+    height: 56px;
+    background: #FFFFFF;
+    border: 2px solid #FF7D5F;
+    box-sizing: border-box;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.secondMainText {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    color: #FF7D5F;
+}
+
+.dptiType {
+    margin-top: 40px;
+}
+
+.dptiResults {
+    margin-top: 40px;
+}
+
+/* resultCard */
+
+#mainResultCard {
+    display: inline-block;
+    width: 280px;
+    height: 486px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+}
+
+#mainResultTop {
+    width: 100%;
+    height: 255px;
+    padding: 40px 0px 24px 32px;
+    box-sizing: border-box;
+    background: #1EB4BE;
+    border-radius: 24px 24px 0px 0px;
+    position: relative;
+}
+
+#mainResultChar {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+#mainResultType {
+    width: 66px;
+    position: absolute;
+    bottom: 24px;
+    z-index: 1;
+}
+
+#mainResultTitle {
+    position: absolute;
+    font-family: yg-jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 17px;
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+#mainResultDesc {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 200%;
+    color: #282828;
+}
+
+#mainResultBottom {
+    box-sizing: border-box;
+    padding: 23px 23px 0px 23px;
+}
+
+#mainResultPattern {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.resultsContainer {
+    /* width: 1000px; */
+    position: absolute;
+    width: 100%;
+    left: 0;
+    display: flex;
+    overflow-x: scroll;
+    height: 550px;
+    /* display: inline-block; */
+    /* transform: translate(150px); */
+    /* position: relative; */
+    /* white-space : nowrap;  */
+    /* overflow-x: auto; */
+    overflow: auto;
+}
+
+#mainCardDate {
+    margin-top: 45px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #D2D2D2;
+}
+
+.moreDptiTypeContainer {
+    position: absolute;
+    bottom: 38px;
+    /* margin-top: 54px; */
+    /* margin-bottom: 38px; */
+}
+
+.moreDptiTypeButton {
+    background: #FF9173;
+    border-radius: 16px;
+    border: none;   
+    width: 382px;
+    height: 56px;
+
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+}
