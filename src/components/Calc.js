@@ -101,9 +101,7 @@ class Calc extends Component {
 
         setTimeout(function() {
             document.getElementById("resultBtn").click();
-            // window.location.assign("/result/" + this.state.finalType);
-            // browserHistory.push("/result/" + this.state.finalType);
-            }.bind(this), 3000);
+            }, 3000);
     }
 
     render() {

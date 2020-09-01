@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     preBtn = () => {
         this.props.moveCard(-1);
@@ -11,7 +8,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <a onClick={this.preBtn}>
+                <div onClick={this.preBtn}>
                     <div className="prev">
                         <img src="./images/prev.png" alt="PrevIcon"/>
                         <span className="prevText">이전</span>
@@ -22,7 +19,7 @@ class Header extends Component {
                     <div className="close">
                         <img src="./images/close.png" alt="close"/>
                     </div>
-                </a>
+                </div>
             </div>
         );
     }

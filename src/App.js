@@ -19,7 +19,6 @@ import Calc from './components/Calc'
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log("APP Constructor");
 
     this.state = {
       gedner : "",
