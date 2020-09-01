@@ -56,7 +56,7 @@ class SurveySelectBox extends Component {
         }
 
         console.log(targetName + ", " + targetValue * reverse);
-        this.props.moveCard();
+        this.props.moveCard(1);
         this.props.surveyProgress([targetName], targetValue * reverse);
     }
 
@@ -183,14 +183,18 @@ class Survey extends Component {
     };
 
     // Moving Card left
-    moveCard = () => {
+    moveCard(reverse) {
         if (this.state.number === 21) return;
+        if (this.state.currentXpos === -205 && reverse === -1) return;
         const questionContainer = document.getElementById("questionContainer");
+        console.log(reverse)
+            
 
         this.setState({
-            currentXpos : this.state.currentXpos - this.state.xPosTransitionStep - 28,
+            currentXpos : this.state.currentXpos + ((- this.state.xPosTransitionStep - 28) * reverse),
             number : this.state.number + 1,
         }, () => {
+            console.log(this.state.currentXpos);
             if (this.state.number === 21) {
                 document.getElementById("sumbitSurvey").style.visibility = "visible";
                 document.getElementById("sumbitSurvey").style.opacity = "1";
@@ -201,7 +205,6 @@ class Survey extends Component {
                 this.changeTheme();
             }
         });
-        
     }
 
     // ProgressBar Percentage Change
@@ -246,7 +249,7 @@ class Survey extends Component {
         return (
             <>
             <div className="main">
-            <Header></Header>
+            <Header moveCard={this.moveCard}></Header>
             <ProgressBar></ProgressBar>
             </div>
             <div className="questions">

@@ -42,8 +42,8 @@ class Main extends Component {
                     </div>
 
                     <div className="testStartContainer">
-                        <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
                         <Link to="/surveyInformation">
+                        <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
                             <input type="button" value="TEST START" className="DPTITestStartButton"/>
                         </Link>
                     </div>

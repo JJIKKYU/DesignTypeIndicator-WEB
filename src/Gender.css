@@ -83,8 +83,15 @@
 }
 
 .genderButtonRadio {
-    display: none;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    z-index: 1;
   }
+
+textarea:focus, input:focus{
+    outline: none;
+}
 
 #mButton:checked ~ label {
     color: #FF644B;
@@ -93,6 +100,11 @@
 
 #mButton:checked ~ img {
     filter: grayscale(0);
+}
+
+
+#fButton {
+    right: 0;
 }
 
 #fButton:checked ~ label {

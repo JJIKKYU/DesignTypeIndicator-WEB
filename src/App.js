@@ -66,11 +66,6 @@ class App extends Component {
     return(
         <>
         <Router>
-          {/* {this.screenRender()} */}
-          {/* <Main></Main> */}
-          {/* <Survey></Survey> */}
-          {/* <Result></Result> */}
-          {/* <Gender></Gender> */}
           <Route exact persist path="/" component={Main} />
           <Route path="/surveyInformation" 
           render={() => <Gender genderSelect={this.genderSelect}></Gender>} />

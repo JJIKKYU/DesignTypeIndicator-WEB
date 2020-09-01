@@ -64,14 +64,14 @@ class Gender extends Component {
                 <div className="genderSelectContainer">
                     <div className="leftContainer">
                         <input type="radio" className="genderButtonRadio" name="gender" id="mButton" value="M" onChange={this.eventHandler}/>
-                        <img src="./images/gender/man.svg" alt=""/><br/>
+                        <img id="mButtonImg" htmlFor="mButton" src="./images/gender/man.svg" alt=""/><br/>
                         <label className="genderButton" htmlFor="mButton" id="mButton">남자예요</label>
                         
                     </div>
 
                     <div className="rightContainer">
                         <input type="radio" className="genderButtonRadio" name="gender" id="fButton" value="F" onChange={this.eventHandler}/>
-                        <img src="./images/gender/woman.svg" alt=""/><br/>
+                        <img id="FButtonImg" src="./images/gender/woman.svg" alt=""/><br/>
                         <label className="genderButton" htmlFor="fButton" id="fButton">여자예요</label>
                     </div>
                 </div>

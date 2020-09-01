@@ -23,6 +23,10 @@
   -webkit-appearance: none;
 }
 
+a {
+  text-decoration : none;
+}
+
 /* 
   Header
 */
@@ -73,7 +77,7 @@
 
 .progressBG {
   margin-top: 35px;
-  margin-bottom: 25px;
+  margin-bottom: 11px;
   width: 100%;
   height: 4px;
   background: #EBEBEB;
@@ -94,7 +98,7 @@
 
 .questionContainer {
   width: 10000px;
-  height: 650px;
+  height: 648px;
   overflow: auto;
   text-align: left;
   margin-left: 50%;
@@ -120,7 +124,7 @@
   position: relative;
   margin: 0 auto;
   display: inline-block;
-  margin: 14px;
+  margin: 14px 14px 0px 14px;
 }
 
 #backgroundCard1 {
@@ -267,7 +271,8 @@
   position: relative;
   width: 100%;
   height: 56px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
   opacity: 0;
 
   transition: ease-in-out .5s;
