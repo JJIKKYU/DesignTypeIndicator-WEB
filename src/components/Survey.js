@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter as Router } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 // Header.js
 import Header from './Header'
@@ -192,8 +192,8 @@ class Survey extends Component {
             number : this.state.number + 1,
         }, () => {
             if (this.state.number === 21) {
-                // Result Calc Page로 이동
-                document.getElementById("sumbitSurvey").style.display = "block";
+                document.getElementById("sumbitSurvey").style.visibility = "visible";
+                document.getElementById("sumbitSurvey").style.opacity = "1";
                 return;
             } else {
                 questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"

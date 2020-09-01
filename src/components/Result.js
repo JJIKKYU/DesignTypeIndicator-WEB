@@ -6,6 +6,8 @@ class Result extends Component {
     constructor(props) {
         super(props);
         // this.checkJson = this.checkJson.bind(this);
+
+        console.log(this.props.gender);
         
         this.state = {
             loadIndex : false,
@@ -183,7 +185,7 @@ class Result extends Component {
 }
 
 Result.defaultProps = {
-    finalResult : "TN",
+    finalResult : "TN"
 }
 
 export default Result;

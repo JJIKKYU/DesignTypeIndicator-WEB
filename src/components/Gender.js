@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
 
 class Gender extends Component {
     constructor(props) {
         super(props);
         this.nextPage = this.nextPage.bind(this);
         this.state = {
-            clicked : false
+            clicked : false,
+            genderButtonClicked : false
         }
     }
 
@@ -22,13 +24,18 @@ class Gender extends Component {
         this.props.genderSelect(targetValue);
     }
 
+    alert = () => {
+        if (this.state.clicked === false)
+            alert("성별을 선택해주세요!");
+    }
+
     nextPage = () => {
         if (this.state.clicked === false)
         {
-            alert("성별을 선택해주세요!");
-            return;
+            return (<input type="button" className="startButton" value="시작해요!" onClick={this.alert}/>);
+        } else {
+            return (<Link to="/survey"><input type="button" className="startButton" value="시작해요!" onClick={this.alert}/></Link>);
         }
-        window.location.assign("/survey");
     }
 
     render() {
@@ -69,8 +76,10 @@ class Gender extends Component {
                     </div>
                 </div>
                 
+                
                 <div className="startContainer">
-                    <input type="button" className="startButton" value="시작해요!" onClick={this.nextPage}/>
+                    {/* <input type="button" className="startButton" value="시작해요!" onClick={this.nextPage}/> */}
+                    {this.nextPage()}
                 </div>
             </div>
             

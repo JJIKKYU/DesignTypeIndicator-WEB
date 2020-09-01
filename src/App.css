@@ -12,7 +12,7 @@
 }
 
 .main {
-  background: #F5F5F5;
+  /* background: #F5F5F5; */
   margin-left: 16px;
   margin-right: 16px;
 }
@@ -268,8 +268,11 @@
   width: 100%;
   height: 56px;
   margin-top: 20px;
+  opacity: 0;
 
-  display: none;
+  transition: ease-in-out .5s;
+
+  visibility: hidden;
 }
 
 .submitSurvey input {
@@ -293,7 +296,7 @@
 
 .resultCard {
   width: 382px;
-  height: 664px;
+  height: 100%;
   position: relative;
   background: #FFFFFF;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
@@ -328,7 +331,7 @@
 
 #resultBottom {
   box-sizing: border-box;
-  padding: 40px 32px 0px 32px;
+  padding: 40px 32px 32px 32px;
 }
 
 #resultDesc {
@@ -525,7 +528,7 @@
 .todoCard {
   margin-top: 16px;
   width: 382px;
-  height: 308px;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
   border-radius: 24px;

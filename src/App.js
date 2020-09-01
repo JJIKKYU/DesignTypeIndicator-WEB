@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from "react-router-dom"
 import './App.css';
 import './Main.css';
@@ -82,7 +82,7 @@ class App extends Component {
           <Route
             path="/result/:type" 
             render={(match) =>
-            <Result match={match}></Result>} />
+            <Result match={match} gender={this.state.gender}></Result>} />
         </Router>
       </>
     );

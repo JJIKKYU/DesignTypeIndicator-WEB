@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
+
 
 class Calc extends Component {
     constructor(props) {
@@ -98,7 +100,9 @@ class Calc extends Component {
         this.checkType();
 
         setTimeout(function() {
-            window.location.assign("/result/" + this.state.finalType);
+            document.getElementById("resultBtn").click();
+            // window.location.assign("/result/" + this.state.finalType);
+            // browserHistory.push("/result/" + this.state.finalType);
             }.bind(this), 3000);
     }
 
@@ -133,6 +137,7 @@ class Calc extends Component {
             
             </div>
             <p className="calcText">결과를 추출중에요! <br/>조금만 기다려주세요!</p>
+            <Link id="resultBtn" to={"/result/" + this.state.finalType}></Link>
             </>
         );
     }
