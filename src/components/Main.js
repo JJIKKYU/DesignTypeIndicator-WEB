@@ -36,17 +36,20 @@ class Main extends Component {
                             <span id="bubbleText">미래의 나와 어울리는 디자인 분야는?</span>
                         </div>
                     </div>
-                    <div className="peopleContainer">
-                        <img src="./images/main/leftPeople.svg" alt="" className="leftPeople"/>
-                        <img src="./images/main/rightPeople.svg" alt="" className="rightPeople"/>
-                    </div>
+                </div>       
+            </div>        
 
-                    <div className="testStartContainer">
-                        <Link to="/surveyInformation">
-                        <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
-                            <input type="button" value="TEST START" className="DPTITestStartButton"/>
-                        </Link>
-                    </div>
+            <div className="peopleContainer">
+                <img src="./images/main/leftPeople.png" alt="" className="leftPeople"/>
+                <img src="./images/main/rightPeople.png" alt="" className="rightPeople"/>
+            </div>
+
+            <div className="main">
+                <div className="testStartContainer">
+                    <Link to="/surveyInformation">
+                    <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
+                        <input type="button" value="TEST START" className="DPTITestStartButton"/>
+                    </Link>
                 </div>
 
                 <div className="secondMainContainer">
@@ -109,7 +112,7 @@ class Main extends Component {
                     </div>
 
                     <div className="moreDptiTypeContainer">
-                        <input type="button" value="모든 DPTI 유형 보기" className="moreDptiTypeButton"/>
+                        <Link to="/archive"><input type="button" value="모든 DPTI 유형 보기" className="moreDptiTypeButton"/></Link>
                     </div>
                 </div>
             </div>

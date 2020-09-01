@@ -4,6 +4,7 @@ import './App.css';
 import './Main.css';
 import './Gender.css';
 import './Calculator.css';
+import './Archive.css';
 
 // Survey.js
 import Survey from './components/Survey'
@@ -15,6 +16,10 @@ import Main from './components/Main'
 import Gender from './components/Gender'
 // Calc.js
 import Calc from './components/Calc'
+// Archive.js
+import Archive from './components/Archive'
+// Archive.js
+import ScrollToTop from './components/ScrollToTop'
 
 class App extends Component {
   constructor(props) {
@@ -65,18 +70,22 @@ class App extends Component {
     return(
         <>
         <Router>
-          <Route exact persist path="/" component={Main} />
-          <Route path="/surveyInformation" 
-          render={() => <Gender genderSelect={this.genderSelect}></Gender>} />
-          <Route path="/survey" 
-          render={() => <Survey surveyProgress={this.surveyProgress}></Survey>} />
-          <Route path="/calc" 
-          render={() =>
-          <Calc surveyResult={this.state.survey} finalResult={this.finalResult}></Calc>} />
-          <Route
-            path="/result/:type" 
-            render={(match) =>
-            <Result match={match} gender={this.state.gender}></Result>} />
+          <ScrollToTop>
+            <Route exact persist path="/" component={Main} />
+            <Route path="/surveyInformation" 
+            render={() => <Gender genderSelect={this.genderSelect}></Gender>} />
+            <Route path="/survey" 
+            render={() => <Survey surveyProgress={this.surveyProgress}></Survey>} />
+            <Route path="/calc" 
+            render={() =>
+            <Calc surveyResult={this.state.survey} finalResult={this.finalResult} gender={this.state.gender}></Calc>} />
+            <Route
+              path="/result/:type/:gender" 
+              render={(match) =>
+              <Result match={match} gender={this.state.gender}></Result>} />
+            <Route path="/archive" 
+              render={() => <Archive></Archive>} />
+          </ScrollToTop>
         </Router>
       </>
     );

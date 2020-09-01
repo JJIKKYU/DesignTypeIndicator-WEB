@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.archiveTitleContainer {
+    height: 24px;
+}
+
+.archiveTitle {
+    position: absolute;
+    left: 0;
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #AAAAAA;
+}
+
+.headerTitle {
+    margin-top: 20px;   
+}
+
+.archiveDesc {
+    font-family: Noto Sans CJK KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 170%;
+    color: #AAAAAA;
+}
+
+.archiveCardTitleContainer {
+    margin-left: 16px;
+    margin-top: 85px;
+    margin-bottom: 28px;
+}
+
+.archiveCardTitle {
+    font-family: yg-jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 25px;
+    letter-spacing: 0.04em;
+
+    /* 255 / 125 / 95 */
+
+    color: #FF7D5F;
+}
+
+.archiveCardsContainer {
+    height: 580px;
+}
+
+#mainResultPattern {
+    width: 100%;
+}
+
+#mainResultTitle span {
+    font-family: yg-jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.bottomCardContainer {
+    width: 100%;
+    margin-top: 45px;
+    position: relative;
+}
+
+.leftBottomCard {
+    width: 30%;
+    height: 28px;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    float: left;
+}
+
+#leftBottomCardText {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    color: #1EB4BE;
+}
+
+.rightBottomCard {
+    float: right;
+    width: 65%;
+    height: 28px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 7px;
+    text-align: center;
+}
+
+#rightBottomCardText {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    /* 30 / 180 / 190 */
+
+    color: #1EB4BE;
+}

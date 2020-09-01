@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
 import axios from "axios";
 
 
@@ -15,6 +16,9 @@ class Result extends Component {
             resultList : [],
             title : "",
             desc : "",
+            color : "",
+            colorHex : "",
+            shape : "",
             position : "",
             design : ["",""],
             designDesc : ["", ""],
@@ -23,6 +27,7 @@ class Result extends Component {
             toolDesc : "",
             todo : "",
             resultType : (this.props.match.match.params.type).toUpperCase(),
+            gender : (this.props.match.match.params.gender).toUpperCase()
         }
     }
 
@@ -43,6 +48,9 @@ class Result extends Component {
             jsonIndex : index,
             title : this.state.resultList[index].title,
             desc : this.state.resultList[index].desc,
+            color : this.state.resultList[index].color,
+            colorHex : this.state.resultList[index].colorHex,
+            shape : this.state.resultList[index].shape,
             position : this.state.resultList[index].position,
             design : this.state.resultList[index].design,
             designDesc : this.state.resultList[index].designDesc,
@@ -53,6 +61,7 @@ class Result extends Component {
             loadIndex : true,
         }, () => {
             console.log(this.state.resultList[this.state.jsonIndex].title);
+            document.getElementById("resultTop").style.background = this.state.colorHex;
         });
     }
 
@@ -66,7 +75,7 @@ class Result extends Component {
 
     loadItem = async () => {
         axios
-        .get("../json/Result.json")
+        .get("../../json/Result.json")
         .then (( {data }) => {
             this.setState({
                 loading : true,
@@ -94,16 +103,16 @@ class Result extends Component {
                         <span id="indicatorText">사용자님의 결과</span>
                     </div>
                     <div className="close">
-                        <img src="../images/close.png" alt="close"/>
+                        <img src="../../images/close.png" alt="close"/>
                     </div>
                 </div>
 
 
                 <div className="resultCard">
                     <div id="resultTop">
-                        <img src="../images/Blue_M_Tri_1.png" alt="" id="resultChar"/>
-                        <img src="../images/Blue_Type_Circle.png" alt="" id="resultType"/>
-                        <img src="../images/Blue_Tri.png" alt="" id="resultPattern"/>
+                        <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + "_" + this.state.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="resultChar"/>
+                        <img src={"../../images/result/Type_" + this.state.color + "_" + this.state.shape + ".svg"} alt="" id="resultType"/>
+                        <img src={"../../images/result/BC_BGP_" + this.state.color  + "_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
                         <h1 id="resultTitle">
                             {
                                 
@@ -152,7 +161,7 @@ class Result extends Component {
                     <h1 className="cardTitle">나와 닮은 디자인 툴</h1>
                     <div className="toolContainer">
                         <div className="toolImgContainer">
-                            <img src={"../images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
+                            <img src={"../../images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
                         </div>
                         <div className="toolNameContainer">
                             <span id="toolName">{this.state.toolName}</span>
@@ -175,7 +184,7 @@ class Result extends Component {
                 </div>
 
                 <div className="buttonContainer">
-                    <a href="/"><input className="goHome" type="button" value="홈으로"/></a>
+                    <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
                     <input className="share" type="button" value="공유하기"/>
                 </div>
             </div>
@@ -185,7 +194,8 @@ class Result extends Component {
 }
 
 Result.defaultProps = {
-    finalResult : "TN"
+    finalResult : "TN",
+    gender : "F"
 }
 
 export default Result;

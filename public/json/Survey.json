@@ -35,25 +35,25 @@
         "green" : {
             "text" : "좋아! 아주 멋져~",
             "img" : "./images/feedback/feedbackGreen.svg",
-            "bg" : "./images/feedback/feedbackGreenBg.svg",
+            "bg" : "./images/feedback/feedbackGreenBG.svg",
             "color" : "#82D773"
         },
         "purple" : {
             "text" : "매우 잘하고 있어!",
             "img" : "./images/feedback/feedbackPurple.svg",
-            "bg" : "./images/feedback/feedbackPurpleBg.svg",
+            "bg" : "./images/feedback/feedbackPurpleBG.svg",
             "color" : "#5A87FA"
         },
         "blue" : {
             "text" : "좋아 최고야~",
             "img" : "./images/feedback/feedbackBlue.svg",
-            "bg" : "./images/feedback/feedbackBlueBg.svg",
+            "bg" : "./images/feedback/feedbackBlueBG.svg",
             "color" : "#28BEC8"
         },
         "pink" : {
-            "text" : "그렇단 말이지~",
+            "text" : "결과보러 갈까!",
             "img" : "./images/feedback/feedbackPink.svg",
-            "bg" : "./images/feedback/feedbackPinkBg.svg",
+            "bg" : "./images/feedback/feedbackPinkBG.svg",
             "color" : "#FA7896"
         }
     }

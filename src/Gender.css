@@ -83,6 +83,7 @@
 }
 
 .genderButtonRadio {
+    opacity: 0;
     width: 150px;
     height: 150px;
     position: absolute;

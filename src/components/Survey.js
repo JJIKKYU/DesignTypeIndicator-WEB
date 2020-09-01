@@ -171,6 +171,14 @@ class Survey extends Component {
         feedbackText[index].style.color = feedbackList[color].color;
     }
 
+    prevBtnHiddenOrVisible() {
+        if (this.state.number === 1) {
+            document.getElementById("prev").style.visibility = "hidden";
+        } else {
+            document.getElementById("prev").style.visibility = "visible";
+        }
+    }
+
     // Moving Card left
     moveCard(reverse) {
         if (this.state.number === 21) return;
@@ -182,6 +190,7 @@ class Survey extends Component {
             currentXpos : this.state.currentXpos + ((- this.state.xPosTransitionStep - 28) * reverse),
             number : this.state.number + 1 * reverse,
         }, () => {
+            this.prevBtnHiddenOrVisible();
             const { number } = this.state;
             const index = number - 2;
             switch(number) {
@@ -269,7 +278,7 @@ class Survey extends Component {
         return (
             <>
             <div className="main">
-            <Header moveCard={this.moveCard}></Header>
+            <Header moveCard={this.moveCard} number={this.state.number}></Header>
             <ProgressBar></ProgressBar>
             </div>
             <div className="questions">
@@ -279,7 +288,7 @@ class Survey extends Component {
             </div>
             <div className="main">
             <div className="submitSurvey" id="sumbitSurvey">
-                <Link to="/calc"><input type="button" value="제출하기"/></Link>
+                <Link to="/calc"><input type="button" value="결과보기"/></Link>
             </div>
             </div>
             </>

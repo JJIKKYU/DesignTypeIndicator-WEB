@@ -135,10 +135,14 @@ class Calc extends Component {
             
             </div>
             <p className="calcText">결과를 추출중에요! <br/>조금만 기다려주세요!</p>
-            <Link id="resultBtn" to={"/result/" + this.state.finalType}></Link>
+            <Link id="resultBtn" to={"/result/" + this.state.finalType + "/" + this.props.gender}></Link>
             </>
         );
     }
+}
+
+Calc.defaultProps = {
+    gender : "F"
 }
 
 export default Calc;

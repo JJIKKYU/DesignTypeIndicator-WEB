@@ -164,12 +164,16 @@
 
 .leftPeople {
     position: absolute;
-    left: -18px;
+    left: 0px;
 }
 
 .rightPeople {
     position: absolute;
-    right: -18px;
+    right: 0px;
+}
+
+.testStartContainer {
+    text-align: center;
 }
 
 .testSubTitle {
@@ -312,7 +316,9 @@
 
 #mainResultBottom {
     box-sizing: border-box;
-    padding: 23px 23px 0px 23px;
+    height: 200px;
+    line-height: 19px;
+    padding: 20px 23px 0px 23px;
 }
 
 #mainResultPattern {
@@ -330,7 +336,7 @@
     left: 0;
     display: flex;
     overflow-x: scroll;
-    height: 550px;
+    height: 600px;
     /* display: inline-block; */
     /* transform: translate(150px); */
     /* position: relative; */
