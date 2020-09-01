@@ -58,10 +58,6 @@
     height: 580px;
 }
 
-#mainResultPattern {
-    width: 100%;
-}
-
 #mainResultTitle span {
     font-family: yg-jalnan;
     font-style: normal;
@@ -91,7 +87,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
-    line-height: 19px;
+    line-height: 28px;
     text-align: center;
     color: #1EB4BE;
 }
@@ -110,7 +106,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
-    line-height: 19px;
+    line-height: 28px;
     text-align: center;
     letter-spacing: -0.01em;
 

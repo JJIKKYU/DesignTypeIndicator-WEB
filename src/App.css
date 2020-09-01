@@ -23,6 +23,10 @@
   -webkit-appearance: none;
 }
 
+label, span {
+  font-family: 'Noto Sans CJK KR', Arial, sans-serif;
+}
+
 a {
   text-decoration : none;
 }
@@ -412,7 +416,7 @@ a {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 53px;
   color: #FF7D5F;
 }
 
@@ -443,7 +447,7 @@ a {
 .designType .designTypeText {
   font-weight: bold;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 53px;
   text-align: center;
   color: #FF7D5F;
 }
@@ -515,7 +519,7 @@ a {
 #toolName {
   font-weight: bold;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 53px;
   text-align: center;
   color: #FF7D5F;
 }

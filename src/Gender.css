@@ -42,6 +42,7 @@
 }
 
 .genderButton {
+    font-family: sans-serif;
     cursor: pointer;
     background: #FFFFFF;
     border: 2px solid #BEBEBE;
@@ -83,6 +84,7 @@
 }
 
 .genderButtonRadio {
+
     opacity: 0;
     width: 150px;
     height: 150px;

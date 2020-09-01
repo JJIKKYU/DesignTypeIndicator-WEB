@@ -66,7 +66,7 @@ class Main extends Component {
                         </div>
                     </div>
                     <div className="dptiResults">
-                        <h1 className="secondMainTitle">가장 많은 DPTI 유형</h1>
+                        <h1 className="secondMainTitle">최근 공유된 DPTI 결과</h1>
                         <div className="resultsContainer">
 
                             <div className="resultCard" id="mainResultCard">

@@ -3,23 +3,24 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 
 class ArchiveCard extends Component {
-    componentDidMount() {
-        const mainResultTop = document.getElementsByClassName("mainResultTop");
-        const leftBottomCardText = document.getElementsByClassName("leftBottomCardText");
-        const rightBottomCardText = document.getElementsByClassName("rightBottomCardText");
-        mainResultTop[this.props.index].style.background = this.props.result.colorHex;
-        leftBottomCardText[this.props.index].style.color = this.props.result.colorHex;
-        rightBottomCardText[this.props.index].style.color = this.props.result.colorHex;
+    constructor(props) {
+        super(props);
     }
 
     render(){
         const { result } = this.props;
+        const style = {
+            background : result.colorHex
+        }
+        const textStyle = {
+            color : result.colorHex
+        }
         return(
             <>
             
             <Link to={"/result/" + result.type + "/" + this.props.gender}>
-                <div className="resultCard" id="mainResultCard">
-                    <div id="mainResultTop" className="mainResultTop">
+                <div className="resultCard" id="mainResultCard" >
+                    <div id="mainResultTop" className="mainResultTop" style={style}>
                         <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + "_" + result.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="mainResultChar"/>
                         <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
@@ -38,10 +39,10 @@ class ArchiveCard extends Component {
 
                     <div className="bottomCardContainer">
                         <div className="leftBottomCard">
-                                <span id="leftBottomCardText" className="leftBottomCardText">{result.hashtag[0]}</span>
+                                <span id="leftBottomCardText" className="leftBottomCardText" style={textStyle}>{result.hashtag[0]}</span>
                         </div>
                         <div className="rightBottomCard">
-                                <span id="rightBottomCardText" className="rightBottomCardText">{result.hashtag[1]}</span>
+                                <span id="rightBottomCardText" className="rightBottomCardText" style={textStyle}>{result.hashtag[1]}</span>
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@ class ArchiveCardSection extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.loadItem();
     }       
 
@@ -112,9 +113,6 @@ class ArchiveCardSection extends Component {
 }
 
 class Archive extends Component {
-    preBtn = () => {
-        this.props.moveCard(-1);
-    }
     render() {
         return (
             <>
