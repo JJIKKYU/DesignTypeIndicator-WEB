@@ -4,7 +4,9 @@ class Calc extends Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props.surveyResult);
+        console.log(JSON.stringify(this.props.surveyResult) + "을 받았습니다. Calc.js");
+        // console.log(this.props)
+
         this.state = {
             finalType : ""
         }

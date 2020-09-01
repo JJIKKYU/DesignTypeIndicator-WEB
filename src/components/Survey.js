@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, BrowserRouter as Router } from "react-router-dom"
 
 // Header.js
 import Header from './Header'
@@ -134,10 +135,6 @@ class SurveyCard extends Component {
                 </p>
                 {answers}
             </div>
-
-            <div className="submitSurvey">
-                <input type="button" value="제출하기"/>
-            </div>
             </>
         );
     }
@@ -187,6 +184,7 @@ class Survey extends Component {
 
     // Moving Card left
     moveCard = () => {
+        if (this.state.number === 21) return;
         const questionContainer = document.getElementById("questionContainer");
 
         this.setState({
@@ -195,12 +193,13 @@ class Survey extends Component {
         }, () => {
             if (this.state.number === 21) {
                 // Result Calc Page로 이동
-                window.location.assign("/calc");
+                document.getElementById("sumbitSurvey").style.display = "block";
                 return;
+            } else {
+                questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
+                this.progressBar();  
+                this.changeTheme();
             }
-            questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
-            this.progressBar();  
-            this.changeTheme();
         });
         
     }
@@ -254,6 +253,11 @@ class Survey extends Component {
                 <div className="questionContainer" id="questionContainer">
                     {questions}
                 </div>
+            </div>
+            <div className="main">
+            <div className="submitSurvey" id="sumbitSurvey">
+                <Link to="/calc"><input type="button" value="제출하기"/></Link>
+            </div>
             </div>
             </>
         );

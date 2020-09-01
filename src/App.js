@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Route, BrowserRouter as Router } from "react-router-dom"
 import './App.css';
 import './Main.css';
@@ -19,25 +19,19 @@ import Calc from './components/Calc'
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log("APP Constructor");
 
     this.state = {
-      page : 0,
       gedner : "",
       survey : [
         {
-          select : [],
+          select : {
+          },
         }
       ],
     }
   }
-
-  // nextPage
-  nextPage = (props) => {
-    this.setState ({
-      page : props
-    })
-  }
-
+  
   surveyProgress = (targetName, targetValue) => {
     this.setState ({
       survey : [
@@ -50,7 +44,7 @@ class App extends Component {
         }
       ]
     }, () => {
-      console.log(this.state.survey);
+      // console.log(JSON.stringify(this.state.survey) + "App.js");
     });
   }
 
@@ -77,17 +71,18 @@ class App extends Component {
           {/* <Survey></Survey> */}
           {/* <Result></Result> */}
           {/* <Gender></Gender> */}
-          <Route exact path="/" component={Main} />
+          <Route exact persist path="/" component={Main} />
           <Route path="/surveyInformation" 
           render={() => <Gender genderSelect={this.genderSelect}></Gender>} />
           <Route path="/survey" 
           render={() => <Survey surveyProgress={this.surveyProgress}></Survey>} />
           <Route path="/calc" 
-          render={() => <Calc surveyResult={this.state.survey} finalResult={this.finalResult}></Calc>} />
+          render={() =>
+          <Calc surveyResult={this.state.survey} finalResult={this.finalResult}></Calc>} />
           <Route
             path="/result/:type" 
             render={(match) =>
-            <Result finalResult={this.state.result} match={match}></Result>} />
+            <Result match={match}></Result>} />
         </Router>
       </>
     );

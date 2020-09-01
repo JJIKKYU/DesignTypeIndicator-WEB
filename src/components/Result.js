@@ -6,8 +6,6 @@ class Result extends Component {
     constructor(props) {
         super(props);
         // this.checkJson = this.checkJson.bind(this);
-        console.log(this.props.finalResult);
-        
         
         this.state = {
             loadIndex : false,
