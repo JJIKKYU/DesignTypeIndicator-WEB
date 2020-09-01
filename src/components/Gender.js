@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class Gender extends Component {
     constructor(props) {
         super(props);
@@ -30,8 +28,7 @@ class Gender extends Component {
             alert("성별을 선택해주세요!");
             return;
         }
-            
-        this.props.nextPage(2);
+        window.location.assign("/survey");
     }
 
     render() {

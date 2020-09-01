@@ -12,6 +12,7 @@
 }
 
 .main {
+  background: #F5F5F5;
   margin-left: 16px;
   margin-right: 16px;
 }
@@ -19,6 +20,7 @@
 * {
   font-family: 'Noto Sans CJK KR', Arial, sans-serif;
   letter-spacing: -0.01em;
+  -webkit-appearance: none;
 }
 
 /* 
@@ -502,6 +504,10 @@
 .toolImgContainer {
   height: 50px;
   display: inline-block;
+}
+
+.toolImgContainer img {
+  width: 60px;
 }
 
 .toolDescContainer {

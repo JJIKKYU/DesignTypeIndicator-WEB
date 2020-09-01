@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
+import { Link, BrowserRouter as Router } from "react-router-dom"
 
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.nextPage = this.nextPage.bind(this);
-    }
-
-    nextPage = () => {
-        this.props.nextPage(1);
-    }
-
     render() {
         return (
             <>
@@ -51,7 +43,9 @@ class Main extends Component {
 
                     <div className="testStartContainer">
                         <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
-                        <input type="button" value="TEST START" className="DPTITestStartButton" onClick={this.nextPage} />
+                        <Link to="/surveyInformation">
+                            <input type="button" value="TEST START" className="DPTITestStartButton"/>
+                        </Link>
                     </div>
                 </div>
 

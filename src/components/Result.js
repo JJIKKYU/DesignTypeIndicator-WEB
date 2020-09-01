@@ -5,7 +5,9 @@ import axios from "axios";
 class Result extends Component {
     constructor(props) {
         super(props);
-        this.checkJson = this.checkJson.bind(this);
+        // this.checkJson = this.checkJson.bind(this);
+        console.log(this.props.finalResult);
+        
         
         this.state = {
             loadIndex : false,
@@ -20,6 +22,7 @@ class Result extends Component {
             toolName : "",
             toolDesc : "",
             todo : "",
+            resultType : (this.props.match.match.params.type).toUpperCase(),
         }
     }
 
@@ -28,7 +31,7 @@ class Result extends Component {
         const { resultList } = this.state;
         var index = 0;
         for (var i = 0; i < resultList.length; ++i) {
-            if (resultList[i].type === this.props.finalResult) {
+            if (resultList[i].type === this.state.resultType) {
                 console.log(resultList[i]);
                 index = i;
                 break;
@@ -63,7 +66,7 @@ class Result extends Component {
 
     loadItem = async () => {
         axios
-        .get("./json/Result.json")
+        .get("../json/Result.json")
         .then (( {data }) => {
             this.setState({
                 loading : true,
@@ -80,9 +83,7 @@ class Result extends Component {
     };
 
     render() {
-        {console.log(this.state.resultList);}
         return (
-            
             <>
             <div className="main">
                 <div className="header">
@@ -93,16 +94,16 @@ class Result extends Component {
                         <span id="indicatorText">사용자님의 결과</span>
                     </div>
                     <div className="close">
-                        <img src="./images/close.png" alt="close"/>
+                        <img src="../images/close.png" alt="close"/>
                     </div>
                 </div>
 
 
                 <div className="resultCard">
                     <div id="resultTop">
-                        <img src="./images/Blue_M_Tri_1.png" alt="" id="resultChar"/>
-                        <img src="./images/Blue_Type_Circle.png" alt="" id="resultType"/>
-                        <img src="./images/Blue_Tri.png" alt="" id="resultPattern"/>
+                        <img src="../images/Blue_M_Tri_1.png" alt="" id="resultChar"/>
+                        <img src="../images/Blue_Type_Circle.png" alt="" id="resultType"/>
+                        <img src="../images/Blue_Tri.png" alt="" id="resultPattern"/>
                         <h1 id="resultTitle">
                             {
                                 
@@ -151,7 +152,7 @@ class Result extends Component {
                     <h1 className="cardTitle">나와 닮은 디자인 툴</h1>
                     <div className="toolContainer">
                         <div className="toolImgContainer">
-                            <img src={"./images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
+                            <img src={"../images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
                         </div>
                         <div className="toolNameContainer">
                             <span id="toolName">{this.state.toolName}</span>
@@ -174,7 +175,7 @@ class Result extends Component {
                 </div>
 
                 <div className="buttonContainer">
-                    <input className="goHome" type="button" value="홈으로"/>
+                    <a href="/"><input className="goHome" type="button" value="홈으로"/></a>
                     <input className="share" type="button" value="공유하기"/>
                 </div>
             </div>
@@ -184,7 +185,7 @@ class Result extends Component {
 }
 
 Result.defaultProps = {
-    finalResult : "PE",
+    finalResult : "TN",
 }
 
 export default Result;

@@ -5,6 +5,9 @@ class Calc extends Component {
         super(props);
 
         console.log(this.props.surveyResult);
+        this.state = {
+            finalType : ""
+        }
     }
     
     componentDidMount() {
@@ -80,6 +83,12 @@ class Calc extends Component {
         var finalResult = colorType + figureType;
         this.props.finalResult(finalResult);
         console.log("최종적인 결과값 : " + finalResult);
+
+        this.setState ({
+            finalType : finalResult
+        }, () => {
+            console.log("최종 state 저장 : " + this.state.finalType);
+        });
     }
 
 
@@ -87,7 +96,7 @@ class Calc extends Component {
         this.checkType();
 
         setTimeout(function() {
-            this.props.nextPage(4);
+            window.location.assign("/result/" + this.state.finalType);
             }.bind(this), 3000);
     }
 

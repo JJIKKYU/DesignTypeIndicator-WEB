@@ -20,6 +20,7 @@
 }
 
 .mainBGPattner {
+    width: 400px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -315,7 +316,7 @@
 }
 
 #mainResultPattern {
-    width: 100%;
+    width: 99%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -336,6 +337,12 @@
     /* white-space : nowrap;  */
     /* overflow-x: auto; */
     overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.resultsContainer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 #mainCardDate {

@@ -195,7 +195,7 @@ class Survey extends Component {
         }, () => {
             if (this.state.number === 21) {
                 // Result Calc Page로 이동
-                this.props.nextPage(3);
+                window.location.assign("/calc");
                 return;
             }
             questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
@@ -227,12 +227,12 @@ class Survey extends Component {
             }
         } else if (this.state.number === 11) {
             progressBar.style.background = "#28D2DC";
-            for (var i = 50; i < 75; ++i) {
+            for (i = 50; i < 75; ++i) {
                 answerBoxRadio[i].classList.remove('purple');
                 answerBoxRadio[i].classList.add('blue');
             }
         } else if (this.state.number === 16) {
-            for (var i = 75; i < answerBoxRadio.length; ++i) {
+            for (i = 75; i < answerBoxRadio.length; ++i) {
                 answerBoxRadio[i].classList.remove('blue');
                 answerBoxRadio[i].classList.add('pink');
             }
