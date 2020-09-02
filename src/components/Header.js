@@ -7,10 +7,13 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <div onClick={this.preBtn}>
-                    <div className="prev" id="prev">
+                <div>
+                    <div className="prev" id="prev" onClick={this.preBtn}>
                         <img src="./images/prev.png" alt="PrevIcon"/>
                         <span className="prevText">이전</span>
+                    </div>
+                    <div className="dimodamoTitle" id="dimodamoTitle">
+                        <img src="./images/branding/title.svg" alt="titleIcon"/>
                     </div>
                     <div className="indicator">
                         <span id="indicatorText">1/20</span>

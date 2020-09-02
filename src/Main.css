@@ -169,6 +169,11 @@
     left: 0px;
 }
 
+#leftPeopleDesktop,
+#rightPeopleDesktop {
+    display: none;
+}
+
 .rightPeople {
     position: absolute;
     right: 0px;
@@ -387,6 +392,10 @@
     color: #FFFFFF;
 }
 
+#mainBGPattneDesktop {
+    display: none;
+}
+
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -419,3 +428,85 @@
         width: 100%;
     }
   }
+
+  /* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+    */
+
+@media (min-width: 1281px) {
+
+    .DPTITestStartButton {
+        width: 408px;
+    }
+
+    .secondMainContainer {
+        text-align: left;
+        width: 1046px;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 38px 75px 38px 75px;
+    }
+
+    .participant {
+        display: inline-block;
+    }
+
+    .dptiType {
+        display: inline-block;
+        margin-left: 59px;
+    }
+
+    .moreDptiTypeContainer {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dptiResults {
+        height: 670px;
+    }
+
+    .resultsContainer {
+        position: relative;
+
+        /* width: 100vw;
+        position: relative;
+        left: calc(-50vw + 50%); */
+    }
+
+    .peopleContainer {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .peopleBubbleContainer {
+        width: 770px;
+        margin: 0 auto;
+    }
+
+    .rightBubble {
+        margin-top: 0px;
+    }
+
+    .leftPeople, .rightPeople {
+        display: none;
+    }
+
+    #leftPeopleDesktop,
+    #rightPeopleDesktop {
+        display: block;
+        width: 170px;
+    }
+
+    .mainBGPattner {
+        display: none;
+    }
+
+    #mainBGPattneDesktop {
+        width: 1280px;
+        display: block;
+        position: absolute;
+        z-index: -2;
+    }
+}

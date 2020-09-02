@@ -83,10 +83,14 @@ class SurveyCard extends Component {
 
     render() {
         const answers = this.props.answerList.map((answerText, index) => (<SurveySelectBox key={index} value={answerText} questionNum={this.props.number} buttonNum={index} moveCard={this.props.moveCard} surveyProgress={this.props.surveyProgress}></SurveySelectBox>));
+        
 
         return(
             <>
-            <div className="card" id="card">
+            <div className="card mainCard" id="card">
+            <div className="leftCardGrad"></div>
+            <div className="rightCardGrad"></div>
+
             {/* Decoration card Div */}
             <div className="card" id="backgroundCard1"></div>
             <div className="card" id="backgroundCard2"></div>
@@ -135,6 +139,12 @@ class Survey extends Component {
     componentDidMount() {
         this.loadItem();  // loadItem 호출
         this.progressBar();
+        
+    }
+
+    componentDidUpdate() {
+        if (this.state.number == 1)
+            this.cardGradiation();
     }
 
     loadItem = async () => {
@@ -169,6 +179,51 @@ class Survey extends Component {
         feedbackText[index].style.color = feedbackList[color].color;
     }
 
+    cardGradiation() {
+        const { number } = this.state;
+        const index = number - 1;
+        const prev = index - 1;
+        const next = index + 1;
+        const disableOpacity = 0.2;
+        const enableOpacity = 1;
+
+        const cards = document.getElementsByClassName("mainCard");
+        const leftCards = document.getElementsByClassName("leftCardGrad");
+        const rightCards = document.getElementsByClassName("rightCardGrad");
+        // 초기 두 번째 카드 딤처리
+
+        if (number == 1) {
+            rightCards[number].style.display = "block";
+            rightCards[number].style.opacity = 1;
+
+            cards[next].style.opacity = disableOpacity;
+            rightCards[next].style.visibility = "visible";
+            rightCards[next].style.opacity = 1;
+        } else if (number > 1) {
+            // 설문조사 카드 활성화
+            cards[index].style.opacity = 1;
+            rightCards[index].style.visibility = "hidden";
+
+            // 설문 이전 카드 비활성화
+            cards[prev].style.opacity = disableOpacity;
+            leftCards[prev].style.opacity = enableOpacity;
+            leftCards[prev].style.visibility = "visible";
+
+            if (number > 2)
+            // 설문 2번 전 단계 비활성화
+                cards[prev - 1].style.opacity = 0;
+
+            if (number <= 19) {
+                // 설문 다음 카드 준활성화
+                cards[next].style.opacity = disableOpacity;
+                rightCards[next].style.opacity = enableOpacity;
+                rightCards[next].style.visibility = "visible";
+            }
+            
+        }
+
+    }
+
     prevBtnHiddenOrVisible() {
         if (this.state.number === 1) {
             document.getElementById("prev").style.visibility = "hidden";
@@ -182,7 +237,6 @@ class Survey extends Component {
         if (this.state.number === 21) return;
         if (this.state.currentXpos === -205 && reverse === -1) return;
         const questionContainer = document.getElementById("questionContainer");
-            
 
         this.setState({
             currentXpos : this.state.currentXpos + ((- this.state.xPosTransitionStep - 28) * reverse),
@@ -220,16 +274,19 @@ class Survey extends Component {
                 }
                 
                 setTimeout(function() {
+                    console.log("setTimeout");
                     questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
                     this.progressBar();  
                     this.changeTheme();
                     feedbackCards[index].style.visibility = "hidden";
                     feedbackCards[index].style.opacity = "0";
-                }.bind(this), 750);
+                    this.cardGradiation();
+                }.bind(this), 700);
             } else {
                 questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
                 this.progressBar();  
                 this.changeTheme();
+                this.cardGradiation();
             }
         });
     }

@@ -606,6 +606,23 @@ a {
   right: 0;
 }
 
+.dimodamoTitle {
+  display: none;
+}
+
+.mainCard {
+  opacity: 0;
+  transition: ease-in-out .2s;
+}
+
+.mainCard:nth-of-type(1) {
+  opacity: 1;
+}
+
+.mainCard:nth-of-type(2) {
+  opacity: 0.5;
+}
+
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -669,5 +686,158 @@ a {
   
   .share {
     width: 60%;
+  }
+  
+  .dimodamoTitle {
+    display: none;
+  }
+}
+
+  /* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+  */
+
+@media (min-width: 1281px) {
+
+  .submitSurvey input {
+    width: 382px;
+  }
+
+  .leftCardContainer {
+    float: left;
+    margin-top: 48px;
+    text-align: left;
+  }
+
+  .rightCardContainer {
+    text-align: left;
+    position: relative;
+    float: right;
+    width: 815px;
+    height: 664px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+    border-radius: 24px;
+    box-sizing: border-box;
+    padding: 22px;
+    margin-top: 48px;
+  }
+  .resultCard {
+    margin: 0;
+    height: 664px;
+  }
+
+  .positionCard, .designCard, .toolCard, .todoCard {
+    position: absolute;
+    display: inline-block;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .todoCard {
+    height: 350px;
+  }
+
+  .toolCard {
+    left: 20px;
+    top: 0;
+  }
+
+  .todoCard {
+    left: 20px;
+    bottom: 0;
+  }
+
+  .designCard {
+    right: 20px;
+    top: 0;
+  }
+
+  .positionCard {
+    right: 20px;
+    bottom: 160px;
+  }
+
+  .buttonContainer {
+    position: absolute;
+    width: 50%;
+    padding: 36px 32px 36px 32px;
+    box-sizing: border-box;
+    right: 0;
+    bottom: 10px;
+  }
+
+  .goHome {
+    display: none;
+  }
+
+  .share {
+    position: relative;
+    width: 100%;
+  }
+
+  .resultCardsContainer {
+    width: 1240px;
+    margin: 0 auto;
+  }
+
+  .dimodamoTitle {
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    display: block;
+  }
+
+  .headerContainer {
+    text-align: center;
+  }
+
+  .header {
+    width: 1240px;
+  }
+
+  .prev {
+    display: none !important;
+  }
+
+  .progressBG {
+    width: 1240px;
+    margin: 35px auto;
+  }
+
+  .main {
+    text-align: center;
+  }
+
+  #backgroundCard1, #backgroundCard2 {
+    display: none;
+  }
+
+  .leftCardGrad {
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(270deg, rgba(245, 245, 245, 0) 4.19%, #F5F5F5 100%);
+    border-radius: 24px;
+    transition: ease-in-out 2s;
+  }
+
+  .rightCardGrad {
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(90deg, rgba(245, 245, 245, 0) 0%, #F5F5F5 100%);
+    border-radius: 24px;
+    /* transition: ease-in-out .5s; */
   }
 }

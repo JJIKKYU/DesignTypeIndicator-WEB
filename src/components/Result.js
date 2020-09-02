@@ -114,97 +114,109 @@ class Result extends Component {
         return (
             <>
             <div className="main">
-                <div className="header">
-                    <div className="prev">
-                        <span className="prevText"></span>
-                    </div>
-                    <div className="indicator">
-                        <span id="indicatorText">사용자님의 결과</span>
-                    </div>
-                    <div className="close">
-                        <img src="../../images/close.png" alt="close"/>
-                    </div>
-                </div>
-
-
-                <div className="resultCard">
-                    <div id="resultTop">
-                        <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + "_" + this.state.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="resultChar"/>
-                        <img src={"../../images/result/Type_" + this.state.color + "_" + this.state.shape + ".svg"} alt="" id="resultType"/>
-                        <img src={"../../images/result/BC_BGP_" + this.state.color  + "_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
-                        <h1 id="resultTitle">
-                            {
-                                
-                            String(this.state.title).split('\n').map((line,index) => {
-                                return (<span key={index}>{line}<br/></span>)
-                            })
-                            }
-                        </h1>
-                    </div>
-                    <div id="resultBottom">
-                        <span id="resultDesc">{this.state.desc}</span>
-                    </div>
-                </div>
-
-                <div className="positionCard">
-                    <h1 className="cardTitle">나의 조별과제 포지션 타입</h1>
-                    <div className="positionContainer">
-                        <span id="positionText">{this.state.position}</span>
-                    </div>
-                </div>
-
-                <div className="designCard">
-                    <h1 className="cardTitle">나와 어울리는 디자인 분야</h1>
-                    <div className="designTypeContainer">
-                        <div className="designType">
-                            <span className="number">1</span>
-                            <span className="designTypeText" id="designTypeTitle1">{this.state.design[0]}</span>
+                <div className="headerContainer">
+                    <div className="header">
+                        <div className="prev">
+                            <span className="prevText"></span>
                         </div>
-                        <div className="designTypeDesc">
-                            <span id="desitnTypeDesc1">{this.state.designDesc[0]}</span>
+                        <Link to="/">
+                            <div className="dimodamoTitle" id="dimodamoTitle">
+                                <img src="../../images/branding/title.svg" alt="titleIcon"/>
+                            </div>
+                        </Link>
+                        <div className="indicator">
+                            <span id="indicatorText">사용자님의 결과</span>
                         </div>
-                    </div>
-
-                    <div className="designTypeContainer">
-                        <div className="designType">
-                            <span className="number">2</span>
-                            <span className="designTypeText" id="designTypeTitle1">{this.state.design[1]}</span>
-                        </div>
-                        <div className="designTypeDesc">
-                            <span id="desitnTypeDesc1">{this.state.designDesc[1]}</span>
+                        <div className="close">
+                            <img src="../../images/close.png" alt="close"/>
                         </div>
                     </div>
                 </div>
 
-                <div className="toolCard">
-                    <h1 className="cardTitle">나와 닮은 디자인 툴</h1>
-                    <div className="toolContainer">
-                        <div className="toolImgContainer">
-                            <img src={"../../images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
+                <div className="resultCardsContainer">
+                    <div className="leftCardContainer">
+                        <div className="resultCard">
+                            <div id="resultTop">
+                                <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + "_" + this.state.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="resultChar"/>
+                                <img src={"../../images/result/Type_" + this.state.color + "_" + this.state.shape + ".svg"} alt="" id="resultType"/>
+                                <img src={"../../images/result/BC_BGP_" + this.state.color  + "_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
+                                <h1 id="resultTitle">
+                                    {
+                                        
+                                    String(this.state.title).split('\n').map((line,index) => {
+                                        return (<span key={index}>{line}<br/></span>)
+                                    })
+                                    }
+                                </h1>
+                            </div>
+                            <div id="resultBottom">
+                                <span id="resultDesc">{this.state.desc}</span>
+                            </div>
                         </div>
-                        <div className="toolNameContainer">
-                            <span id="toolName">{this.state.toolName}</span>
+                    </div>
+                    
+                    <div className="rightCardContainer">
+                        <div className="positionCard">
+                            <h1 className="cardTitle">나의 조별과제 포지션 타입</h1>
+                            <div className="positionContainer">
+                                <span id="positionText">{this.state.position}</span>
+                            </div>
+                        </div>
+
+                        <div className="designCard">
+                            <h1 className="cardTitle">나와 어울리는 디자인 분야</h1>
+                            <div className="designTypeContainer">
+                                <div className="designType">
+                                    <span className="number">1</span>
+                                    <span className="designTypeText" id="designTypeTitle1">{this.state.design[0]}</span>
+                                </div>
+                                <div className="designTypeDesc">
+                                    <span id="desitnTypeDesc1">{this.state.designDesc[0]}</span>
+                                </div>
+                            </div>
+
+                            <div className="designTypeContainer">
+                                <div className="designType">
+                                    <span className="number">2</span>
+                                    <span className="designTypeText" id="designTypeTitle1">{this.state.design[1]}</span>
+                                </div>
+                                <div className="designTypeDesc">
+                                    <span id="desitnTypeDesc1">{this.state.designDesc[1]}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="toolCard">
+                            <h1 className="cardTitle">나와 닮은 디자인 툴</h1>
+                            <div className="toolContainer">
+                                <div className="toolImgContainer">
+                                    <img src={"../../images/tool/" + this.state.toolImg + ".png"} alt="" id="toolImg"/>
+                                </div>
+                                <div className="toolNameContainer">
+                                    <span id="toolName">{this.state.toolName}</span>
+                                </div>
+                            </div>
+                            <div className="toolDescContainer">
+                                <span id="toolDesc">
+                                {this.state.toolDesc}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="todoCard">
+                            <h1 className="cardTitle">디자인 작업이 막힐 때는?</h1>
+                            <div className="todoDescContainer">
+                                <span id="todoDesc">
+                                {this.state.todo}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="buttonContainer">
+                            <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
+                            <input className="share" id="kakao-link-btn" type="button" value="카카오톡 공유하기"/>
                         </div>
                     </div>
-                    <div className="toolDescContainer">
-                        <span id="toolDesc">
-                        {this.state.toolDesc}
-                        </span>
-                    </div>
-                </div>
-
-                <div className="todoCard">
-                    <h1 className="cardTitle">디자인 작업이 막힐 때는?</h1>
-                    <div className="todoDescContainer">
-                        <span id="todoDesc">
-                        {this.state.todo}
-                        </span>
-                    </div>
-                </div>
-
-                <div className="buttonContainer">
-                    <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
-                    <input className="share" id="kakao-link-btn" type="button" value="카카오톡 공유하기"/>
                 </div>
 
                 

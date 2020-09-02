@@ -129,10 +129,12 @@ class Archive extends Component {
                     </p>
                 </div>
             </div>
-            <ArchiveCardSection title="상상표출형" gender="M" count="4"></ArchiveCardSection>
-            <ArchiveCardSection title="자기성찰형" gender="F" count="8"></ArchiveCardSection>
-            <ArchiveCardSection title="현실직시형" gender="M" count="12"></ArchiveCardSection>
-            <ArchiveCardSection title="감정풍부형" gender="F" count="16"></ArchiveCardSection>
+            <div className="secionContainer">
+                <ArchiveCardSection title="상상표출형" gender="M" count="4"></ArchiveCardSection>
+                <ArchiveCardSection title="자기성찰형" gender="F" count="8"></ArchiveCardSection>
+                <ArchiveCardSection title="현실직시형" gender="M" count="12"></ArchiveCardSection>
+                <ArchiveCardSection title="감정풍부형" gender="F" count="16"></ArchiveCardSection>
+            </div>
 
             
 

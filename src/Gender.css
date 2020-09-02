@@ -176,3 +176,27 @@ textarea:focus, input:focus{
         width: 100%;
     }
   }
+    /*  
+    ##Device = Desktops
+    ##Screen = 1281px to higher resolution desktops
+    */
+
+@media (min-width: 1281px) {
+    .genderSelectContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .rightContainer {
+        float: none;
+        margin-left: 20px;
+    }
+
+    .startContainer {
+        text-align: center;
+    }
+
+    .submitSurvey {
+        text-align: center;
+    }
+}

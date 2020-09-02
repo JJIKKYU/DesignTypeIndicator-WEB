@@ -114,3 +114,26 @@
 
     color: #1EB4BE;
 }
+
+  /* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+  */
+
+@media (min-width: 1281px) {
+    .archiveDesc {
+        text-align: left;
+        width: 1240px;
+        margin: 0 auto;
+    }
+
+    .secionContainer {
+        position: relative;
+        width: 1240px;   
+        margin: 0 auto;
+    }
+
+    .archiveCardsContainer {
+        margin-left: -16px;
+    }
+}

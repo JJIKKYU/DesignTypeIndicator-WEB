@@ -11,6 +11,7 @@ class Main extends Component {
                 <div className="mainTopMargin"></div>
                 <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
+                    <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                 </div>
                 <div className="titleBubble">
                     <div className="titleBubblePolygon"></div>
@@ -41,7 +42,9 @@ class Main extends Component {
 
             <div className="peopleContainer">
                 <img src="./images/main/leftPeople.png" alt="" className="leftPeople"/>
+                <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop"/>
                 <img src="./images/main/rightPeople.png" alt="" className="rightPeople"/>
+                <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop"/>
             </div>
 
             <div className="main">
