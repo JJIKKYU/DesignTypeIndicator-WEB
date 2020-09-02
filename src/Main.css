@@ -53,8 +53,9 @@
 
 .line {
     width: 126px;
+    height: 2px;
     margin: 0 auto;
-    border: 2px solid #FF7D5F;
+    background: #FF7D5F;
 }
 
 .dptiSubTitle {
@@ -77,8 +78,8 @@
 .titleBubble {
     margin: 0 auto;
     position: relative;
-    width: 326px;
-    height: 326px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
     background: #FFFFFF;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
@@ -385,3 +386,36 @@
     text-align: center;
     color: #FFFFFF;
 }
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .participantContainer {
+        width: 100%;
+    }
+    
+    .secondMainContainer {
+        width: 100%;
+    }
+    
+    .moreDptiTypeContainer {
+        position: relative;
+        width: 100%;
+    }
+
+    .moreDptiTypeContainer input {
+        position: relative;
+        width: 100%;
+    }
+
+    .dptiResults {
+        height: 630px;
+    }
+
+    .mainBGPattner {
+        width: 100%;
+    }
+  }

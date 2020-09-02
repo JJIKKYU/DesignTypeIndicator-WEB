@@ -6,7 +6,7 @@ class Calc extends Component {
     constructor(props) {
         super(props);
 
-        console.log(JSON.stringify(this.props.surveyResult) + "을 받았습니다. Calc.js");
+        // console.log(JSON.stringify(this.props.surveyResult) + "을 받았습니다. Calc.js");
         // console.log(this.props)
 
         this.state = {
@@ -51,8 +51,8 @@ class Calc extends Component {
             isTypeTF = true;
         }
         
-        console.log(typeEI + ", " + typeSN + ", " + typeTF + ", " + typeJP);
-        console.log("isTypeEI : " + isTypeEI + ", isTypeSN : " + isTypeSN + ", isTypeJP : " + isTypeJP + ", isTypeTF : " + isTypeTF);
+        // console.log(typeEI + ", " + typeSN + ", " + typeTF + ", " + typeJP);
+        // console.log("isTypeEI : " + isTypeEI + ", isTypeSN : " + isTypeSN + ", isTypeJP : " + isTypeJP + ", isTypeTF : " + isTypeTF);
 
         var figureType = "";
         var colorType = "";
@@ -86,12 +86,12 @@ class Calc extends Component {
         
         var finalResult = colorType + figureType;
         this.props.finalResult(finalResult);
-        console.log("최종적인 결과값 : " + finalResult);
+        // console.log("최종적인 결과값 : " + finalResult);
 
         this.setState ({
             finalType : finalResult
         }, () => {
-            console.log("최종 state 저장 : " + this.state.finalType);
+            // console.log("최종 state 저장 : " + this.state.finalType);
         });
     }
 

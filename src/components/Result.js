@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import axios from "axios";
 
-
 class Result extends Component {
     constructor(props) {
         super(props);
-        // this.checkJson = this.checkJson.bind(this);
-
-        console.log(this.props.gender);
         
         this.state = {
             loadIndex : false,
@@ -37,11 +33,9 @@ class Result extends Component {
         var index = 0;
         for (var i = 0; i < resultList.length; ++i) {
             if (resultList[i].type === this.state.resultType) {
-                console.log(resultList[i]);
                 index = i;
                 break;
             }
-            console.log(i);
         }
 
         this.setState({
@@ -60,14 +54,39 @@ class Result extends Component {
             todo : this.state.resultList[index].todo,
             loadIndex : true,
         }, () => {
-            console.log(this.state.resultList[this.state.jsonIndex].title);
             document.getElementById("resultTop").style.background = this.state.colorHex;
+            document.title = this.state.title;
+
+            window.Kakao.Link.createDefaultButton({
+            container: '#kakao-link-btn',
+            objectType: 'feed',
+            content: {
+                title: document.title,
+                description: "나만의 디자인 성향을 찾아보세요!",
+                imageUrl: "http://dimodamo.com/images/thumb/Thumb.png",
+                link: {
+                webUrl: document.location.href,
+                mobileWebUrl: document.location.href
+                }
+            },
+            buttons: [
+                {
+                title: '디자인 성향 확인하기',
+                link: {
+                    mobileWebUrl: document.location.href,
+                    webUrl: document.location.href
+                }
+                }  
+            ]
+            });
         });
     }
 
     componentDidMount() {
         this.loadItem();
     }       
+
+    
 
     componentDidUpdate() {
         this.checkJson();
@@ -185,8 +204,10 @@ class Result extends Component {
 
                 <div className="buttonContainer">
                     <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
-                    <input className="share" type="button" value="공유하기"/>
+                    <input className="share" id="kakao-link-btn" type="button" value="카카오톡 공유하기"/>
                 </div>
+
+                
             </div>
             </>
         );

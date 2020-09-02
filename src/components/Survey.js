@@ -54,8 +54,6 @@ class SurveySelectBox extends Component {
         } else {
             reverse = 1;
         }
-
-        console.log(targetName + ", " + targetValue * reverse);
         this.props.moveCard(1);
         this.props.surveyProgress([targetName], targetValue * reverse);
     }

@@ -3,11 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 
 class ArchiveCard extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render(){
+    render() {
         const { result } = this.props;
         const style = {
             background : result.colorHex
@@ -64,7 +60,7 @@ class ArchiveCardSection extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.loadItem();
     }       
 
