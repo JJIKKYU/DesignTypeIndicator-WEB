@@ -143,7 +143,7 @@ class Survey extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.number == 1)
+        if (this.state.number === 1)
             this.cardGradiation();
     }
 
@@ -192,7 +192,7 @@ class Survey extends Component {
         const rightCards = document.getElementsByClassName("rightCardGrad");
         // 초기 두 번째 카드 딤처리
 
-        if (number == 1) {
+        if (number === 1) {
             rightCards[number].style.display = "block";
             rightCards[number].style.opacity = 1;
 
