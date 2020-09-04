@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import axios from "axios";
+import StickyHeader from './StickyHeader.js'
 
 class Result extends Component {
     constructor(props) {
@@ -113,6 +114,7 @@ class Result extends Component {
     render() {
         return (
             <>
+            <StickyHeader></StickyHeader>
             <div className="main">
                 <div className="headerContainer">
                     <div className="header">

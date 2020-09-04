@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import StickyHeader from './StickyHeader.js'
 
 class Gender extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ class Gender extends Component {
     render() {
         return (
             <>
+            <StickyHeader></StickyHeader>
             <div className="main">
                 <div className="mainTopMargin"></div>
                 <div className="mainPatternBGContainer">

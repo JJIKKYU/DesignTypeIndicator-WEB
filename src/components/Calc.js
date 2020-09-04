@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import StickyHeader from './StickyHeader.js'
 
 
 class Calc extends Component {
@@ -107,6 +108,7 @@ class Calc extends Component {
     render() {
         return (
             <>
+            <StickyHeader></StickyHeader>
             <div className="main">
                 <div className="header">
                     <div className="prev">

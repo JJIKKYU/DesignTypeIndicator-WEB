@@ -1,10 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 @font-face {
   font-family: 'yg-jalnan';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+:root {
+    --systemColor : #FF9173;
+    --systemColorBorder : -0.2px 0 var(--systemColor), 0 0.2px var(--systemColor), 0.2px 0 var(--systemColor), 0 -0.2px var(--systemColor);
+}
+
+.dimodamoHeader {
+    background-color: var(--systemColor);
+    height: 44px;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top : 0;
+    z-index: 9999;
+}
+
+.dimodamoHeader img {
+    margin-top: 15px;
 }
 
 
@@ -38,7 +58,7 @@
     font-size: 11px;
     line-height: 16px;
     text-align: center;
-    color: #FF7D5F;
+    color: var(--systemColor);
 }
 
 .logo {
@@ -55,7 +75,7 @@
     width: 126px;
     height: 2px;
     margin: 0 auto;
-    background: #FF7D5F;
+    background: var(--systemColor);
 }
 
 .dptiSubTitle {
@@ -64,7 +84,7 @@
     font-size: 9.5px;
     line-height: 14px;
     text-align: center;
-    color: #FF7D5F;
+    color: var(--systemColor);
 }
 
 .dptiSubTitle {
@@ -197,7 +217,7 @@
     cursor: pointer;
     width: 204px;   
     height: 56px;
-    background: #FF7D5F;
+    background: var(--systemColor);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
     border-radius: 16px;
 
@@ -240,7 +260,6 @@
     width: 382px;
     height: 56px;
     background: #FFFFFF;
-    border: 2px solid #FF7D5F;
     box-sizing: border-box;
     border-radius: 16px;
     text-align: center;
@@ -248,12 +267,23 @@
 }
 
 .secondMainText {
+    font-family: 'NanumSquareRound',sans-serif;
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    color: var(--systemColor);
     line-height: 50px;
     text-align: center;
-    color: #FF7D5F;
+    text-shadow: var(--systemColorBorder);
+    -moz-text-shadow: var(--systemColorBorder);
+    -webkit-text-shadow: var(--systemColorBorder);
+    
+}
+
+#dptiTypeText {
+    font-size: 24px;
 }
 
 .dptiType {
@@ -379,7 +409,7 @@
 
 .moreDptiTypeButton {
     cursor: pointer;
-    background: #FF9173;
+    background: var(--systemColor);
     border-radius: 16px;
     border: none;   
     width: 382px;

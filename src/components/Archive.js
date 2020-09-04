@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom"
+import StickyHeader from './StickyHeader.js'
 
 class ArchiveCard extends Component {
     render() {
@@ -112,6 +113,7 @@ class Archive extends Component {
     render() {
         return (
             <>
+            <StickyHeader></StickyHeader>
             <div className="main">
                 <div className="header">
                     <div className="archiveTitleContainer">

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import StickyHeader from './StickyHeader.js'
 
 
 class Main extends Component {
     render() {
         return (
             <>
+            <StickyHeader></StickyHeader>
+
             <div className="main">
-      
                 <div className="mainTopMargin"></div>
                 <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>

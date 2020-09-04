@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import StickyHeader from './StickyHeader.js'
 
 // Header.js
 import Header from './Header'
@@ -332,6 +333,7 @@ class Survey extends Component {
 
         return (
             <>
+            <StickyHeader></StickyHeader>
             <div className="main">
             <Header moveCard={this.moveCard} number={this.state.number}></Header>
             <ProgressBar></ProgressBar>
