@@ -9,7 +9,7 @@ class Header extends Component {
             <div className="header">
                 <div>
                     <div className="prev" id="prev" onClick={this.preBtn}>
-                        <img src="./images/prev.png" alt="PrevIcon"/>
+                        <img src="./images/prev.svg" alt="PrevIcon"/>
                         <span className="prevText">이전</span>
                     </div>
                     <div className="dimodamoTitle" id="dimodamoTitle">
@@ -19,7 +19,7 @@ class Header extends Component {
                         <span id="indicatorText">1/20</span>
                     </div>
                     <div className="close">
-                        <img src="./images/close.png" alt="close"/>
+                        <img src="./images/close.svg" alt="close"/>
                     </div>
                 </div>
             </div>

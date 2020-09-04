@@ -47,7 +47,7 @@ class Gender extends Component {
                 <div className="genderHeader"></div>
                 <div className="genderTitleContainer">
                     <img className="genderTextBG" src="./images/gender/genderTextBG.svg" alt=""/>
-                    <div className="titleContainer" id="genderTitleContainer">
+                    <div id="genderTitleContainer">
                         <p className="intro">
                         디자인 성향 검사 이하 DPTI <br></br>
                         <span className="orange">(Design Pattern Type Indicator)</span>는 <br></br>

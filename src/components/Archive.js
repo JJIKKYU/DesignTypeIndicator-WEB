@@ -9,9 +9,6 @@ class ArchiveCard extends Component {
         const style = {
             background : result.colorHex
         }
-        const textStyle = {
-            color : result.colorHex
-        }
         
         return(
             <>
@@ -110,7 +107,7 @@ class Archive extends Component {
                             <span>모든 DPTI 유형</span>
                         </div>
                         <div className="close">
-                            <img src="./images/close.png" alt="close"/>
+                            <img src="./images/close.svg" alt="close"/>
                         </div>
                     </div>
                 </div>

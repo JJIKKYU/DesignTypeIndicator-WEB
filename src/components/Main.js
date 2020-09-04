@@ -5,6 +5,8 @@ import StickyHeader from './StickyHeader.js'
 
 class Main extends Component {
     render() {
+        document.title = "디자이너 성향검사 - 디자이너 모여 다 모여!"
+        
         return (
             <>
             <StickyHeader></StickyHeader>

@@ -77,6 +77,13 @@ a {
   right: 0;
 }
 
+.header .indicator span {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 2px;
+}
+
 /* 
   ProgressBar
 */
@@ -407,6 +414,10 @@ a {
   text-shadow: var(--textColorBorder);
   -moz-text-shadow: var(--textColorBorder);
   -webkit-text-shadow: var(--textColorBorder);
+}
+
+.todoCardTitle {
+  margin-bottom: 44px;
 }
 
 .positionCard {

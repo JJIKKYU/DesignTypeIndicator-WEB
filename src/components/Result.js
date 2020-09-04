@@ -114,7 +114,7 @@ class Result extends Component {
     render() {
         return (
             <>
-            <StickyHeader></StickyHeader>
+            <StickyHeader isResultPage={true}></StickyHeader>
             <div className="main">
                 <div className="headerContainer">
                     <div className="header">
@@ -164,7 +164,14 @@ class Result extends Component {
                                 <img src="../../images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
                             </div>
                             <div className="dptiTypeContainer">
-                                <span className="secondMainText" id="dptiTypeText">{this.state.position}</span>
+                                <span className="secondMainText" id="dptiTypeText">
+                                {
+                                        
+                                String(this.state.position).split('\n').map((line,index) => {
+                                    return (<span key={index}>{line}<br/></span>)
+                                })
+                                }
+                                </span>
                             </div>
                         </div>
 
@@ -222,7 +229,7 @@ class Result extends Component {
                         </div>
 
                         <div className="todoCard">
-                            <h1 className="cardTitle">디자인 작업이 막힐 때는?</h1>
+                            <h1 className="cardTitle todoCardTitle">디자인 작업이 막힐 때는?</h1>
                             <div className="todoDescContainer">
                                 <span id="todoDesc">
                                 {this.state.todo}
