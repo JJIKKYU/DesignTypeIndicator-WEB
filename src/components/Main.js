@@ -2,8 +2,27 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 
+import { fire, getFireDB, setFireDB, setFireResultDB, setFireClickedDB, getFireDBPeople } from '../firebase.config'
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+        fire();
+        this.state = {
+            people : ""
+        }
+    }
+
+    componentDidMount() {
+        getFireDBPeople().then(res => {
+            this.setState ({
+                people : res.val().people
+            }, () => {
+                console.log(this.state.people);
+            });
+        });
+    }
+
     render() {
         document.title = "디자이너 성향검사 - 디자이너 모여 다 모여!"
         
@@ -64,7 +83,7 @@ class Main extends Component {
                     <div className="participant">
                         <h1 className="secondMainTitle">현재까지 응시자 수</h1>
                         <div className="participantContainer">
-                            <span className="secondMainText" id="participantText">159,753 명</span>
+                            <span className="secondMainText" id="participantText">{this.state.people} 명</span>
                         </div>
                     </div>
                     <div className="dptiType">

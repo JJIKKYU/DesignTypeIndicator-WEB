@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
-
+import { fire, setFireDBPeople, getFireDBPeople } from '../firebase.config'
 
 class Calc extends Component {
     constructor(props) {
         super(props);
-
+        fire();
         // console.log(JSON.stringify(this.props.surveyResult) + "을 받았습니다. Calc.js");
         // console.log(this.props)
 
@@ -17,6 +17,7 @@ class Calc extends Component {
     
     componentDidMount() {
         this.calculating();    
+
     }
 
     checkType = () => {
@@ -101,7 +102,10 @@ class Calc extends Component {
         this.checkType();
 
         setTimeout(function() {
-            document.getElementById("resultBtn").click();
+            if (document.getElementById("resultBtn")) {
+                document.getElementById("resultBtn").click();
+                // 응시 횟수 추가 및 타입 저장
+            }
             }, 3000);
     }
 

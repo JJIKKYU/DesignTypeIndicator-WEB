@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from "react-router-dom"
+
 import './App.css';
 import './Main.css';
 import './Gender.css';
@@ -24,9 +25,9 @@ import ScrollToTop from './components/ScrollToTop'
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       gedner : "",
+      database : "",
       survey : [
         {
           select : {
@@ -71,7 +72,8 @@ class App extends Component {
         <>
         <Router>
           <ScrollToTop>
-            <Route exact persist path="/" component={Main} />
+            <Route exact persist path="/"
+            render= {() => <Main></Main>}/>
             <Route path="/surveyInformation" 
             render={() => <Gender genderSelect={this.genderSelect}></Gender>} />
             <Route path="/survey" 
