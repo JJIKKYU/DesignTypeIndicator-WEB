@@ -89,8 +89,9 @@ class SurveyCard extends Component {
         return(
             <>
             <div className="card mainCard" id="card">
-            <div className="leftCardGrad"></div>
-            <div className="rightCardGrad"></div>
+                <div className="mainCardCircle"></div>
+                <div className="leftCardGrad"></div>
+                <div className="rightCardGrad"></div>
 
             {/* Decoration card Div */}
             <div className="card" id="backgroundCard1"></div>

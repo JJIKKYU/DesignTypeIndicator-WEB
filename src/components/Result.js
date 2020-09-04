@@ -160,8 +160,11 @@ class Result extends Component {
                     <div className="rightCardContainer">
                         <div className="positionCard">
                             <h1 className="cardTitle">나의 조별과제 포지션 타입</h1>
-                            <div className="positionContainer">
-                                <span id="positionText">{this.state.position}</span>
+                            <div className="mainIconContainer">
+                                <img src="../../images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
+                            </div>
+                            <div className="dptiTypeContainer">
+                                <span className="secondMainText" id="dptiTypeText">{this.state.position}</span>
                             </div>
                         </div>
 
@@ -169,21 +172,34 @@ class Result extends Component {
                             <h1 className="cardTitle">나와 어울리는 디자인 분야</h1>
                             <div className="designTypeContainer">
                                 <div className="designType">
-                                    <span className="number">1</span>
-                                    <span className="designTypeText" id="designTypeTitle1">{this.state.design[0]}</span>
+                                    <p className="number">1</p>
+                                    <p className="designTypeText" id="designTypeTitle1">{this.state.design[0]}</p>
                                 </div>
                                 <div className="designTypeDesc">
-                                    <span id="desitnTypeDesc1">{this.state.designDesc[0]}</span>
+                                    <span id="desitnTypeDesc1">
+
+                                    {    
+                                    String(this.state.designDesc[0]).split('\n').map((line,index) => {
+                                        return (<span key={index}>{line}<br/></span>)
+                                    })
+                                    }
+                                    </span>
                                 </div>
                             </div>
 
                             <div className="designTypeContainer">
                                 <div className="designType">
-                                    <span className="number">2</span>
-                                    <span className="designTypeText" id="designTypeTitle1">{this.state.design[1]}</span>
+                                    <p className="number">2</p>
+                                    <p className="designTypeText" id="designTypeTitle1">{this.state.design[1]}</p>
                                 </div>
                                 <div className="designTypeDesc">
-                                    <span id="desitnTypeDesc1">{this.state.designDesc[1]}</span>
+                                    <span id="desitnTypeDesc1">
+                                    {    
+                                    String(this.state.designDesc[1]).split('\n').map((line,index) => {
+                                        return (<span key={index}>{line}<br/></span>)
+                                    })
+                                    }
+                                    </span>
                                 </div>
                             </div>
                         </div>

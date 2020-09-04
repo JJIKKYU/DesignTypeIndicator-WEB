@@ -10,13 +10,14 @@ class Main extends Component {
             <StickyHeader></StickyHeader>
 
             <div className="main">
-                <div className="mainTopMargin"></div>
+                <div className="mainTopMargin"></   div>
                 <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
                     <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                 </div>
                 <div className="titleBubble">
-                    <div className="titleBubblePolygon"></div>
+                    <img className="bubbleImg" src="./images/main/mainBubble.svg" alt=""/>
+                    {/* <div className="titleBubblePolygon"></div> */}
                     <div className="titleContainer">
                         <span className="subTitle">디자이너 모여라! 다 모여라!</span>
                         <img src="./images/main/dimodamo.svg" alt="DIMODAMO" className="logo"/>
@@ -67,6 +68,9 @@ class Main extends Component {
                     <div className="dptiType">
                         <h1 className="secondMainTitle">가장 많은 DPTI 유형</h1>
                         <div className="participantContainer">
+                            <div className="mainIconContainer">
+                                <img src="./images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
+                            </div>
                             <span className="secondMainText" id="dptiTypeText">혼밥하는 논리대장 디자이너</span>
                         </div>
                     </div>

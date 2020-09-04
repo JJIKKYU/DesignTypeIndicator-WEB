@@ -12,6 +12,7 @@ class ArchiveCard extends Component {
         const textStyle = {
             color : result.colorHex
         }
+        
         return(
             <>
             

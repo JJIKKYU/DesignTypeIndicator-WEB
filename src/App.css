@@ -51,7 +51,7 @@ a {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #FF7D5F;
+  color: var(--systemColor);
   visibility: hidden;
 }
 
@@ -68,7 +68,7 @@ a {
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: #FF7D5F;
+  color: var(--systemColor);
 }
 
 .header .close {
@@ -141,7 +141,7 @@ a {
   width: 366px;
 
   background: #F5F5F5;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
   border-radius: 24px;
 }
 
@@ -152,7 +152,7 @@ a {
   z-index: -2;
   width: 350px;
 
-  background: #EBEBEB;
+  background: #F5F5F5;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
   border-radius: 24px;
 }
@@ -278,6 +278,16 @@ a {
   margin-bottom: 0px;
 }
 
+.mainCardCircle {
+  background: #FFFFFF;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.16);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+}
+
 /* 
   submitSurvey
 */
@@ -301,7 +311,7 @@ a {
   height: 100%;
 
   border: none;
-  background: #FF7D5F;
+  background: var(--systemColor);
   border-radius: 16px;
 
   font-style: normal;
@@ -320,8 +330,6 @@ a {
   height: 100%;
   position: relative;
   background: #FFFFFF;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-  border-radius: 24px;
   box-sizing: border-box;
   margin-top: 11px;
 }
@@ -346,21 +354,18 @@ a {
   padding: 40px 0px 24px 32px;
   box-sizing: border-box;
   background: white;
-  border-radius: 24px 24px 0px 0px;
+  border-radius: 24px;
   position: relative;
+  margin-bottom: 32px;
 }
 
-#resultBottom {
-  box-sizing: border-box;
-  padding: 40px 32px 32px 32px;
-}
 
 #resultDesc {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 200%;
-  color: #282828;
+  color: #505050;
 }
 
 #resultType {
@@ -378,29 +383,41 @@ a {
 
 #resultPattern {
   position: absolute;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
   bottom: 0;
   left: 0;
   z-index: 0;
 }
 
 .cardTitle {
+  text-align: left;
   font-style: normal;
-  font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: #141414;
+  margin-bottom: 64px;
+  margin-top: 88px;
+  color: var(--textColor);
+;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 20px;
+  color: #3C3C3C;
+  text-shadow: var(--textColorBorder);
+  -moz-text-shadow: var(--textColorBorder);
+  -webkit-text-shadow: var(--textColorBorder);
 }
 
 .positionCard {
+  text-align: center;
   margin-top: 16px;
   width: 382px;
-  height: 190px;
+  height: 100%;
   background: #FFFFFF;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
   border-radius: 24px;
 
   box-sizing: border-box;
-  padding: 36px 32px 36px 32px;
 }
 
 .positionContainer {
@@ -408,9 +425,15 @@ a {
   height: 56px;
   margin-top: 28px;
   text-align: center;
-  border: 2px solid #FF7D5F;
   box-sizing: border-box;
   border-radius: 30px;
+}
+
+.dptiTypeContainer {
+  margin: 0 auto;
+  margin-top: 14px;
+  width: 300px;
+  word-break: keep-all;
 }
 
 #positionText {
@@ -418,74 +441,79 @@ a {
   font-weight: bold;
   font-size: 16px;
   line-height: 53px;
-  color: #FF7D5F;
+  color: var(--systemColor);
 }
 
 .designCard {
   width: 318px;
   margin-top: 16px;
   background: #FFFFFF;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-  border-radius: 24px;
-  padding: 36px 32px 36px 32px;
 }
 
 .designTypeContainer {
   position: relative;
-  display: flex;
 }
 
 .designType {
-  width: 100px;
-  height: 56px;
-  border: 2px solid #FF7D5F;
   box-sizing: border-box;
-  border-radius: 30px;
   text-align: center;
   position: relative;
+  display: inline-block;
 }
 
 .designType .designTypeText {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 53px;
+  float: right;
+  margin-top: 14px;
+  display: inline-block;
+  font-family: 'NanumSquareRound',sans-serif;
+  font-style: normal;
+  font-weight: 800;
   text-align: center;
-  color: #FF7D5F;
+
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: -0.01em;
+  color: var(--systemColor);
+  text-shadow: var(--systemColorBorder);
+  -moz-text-shadow: var(--systemColorBorder);
+  -webkit-text-shadow: var(--systemColorBorder);
+  margin-left: 16px;
 }
 
 .designType .number {
-  font-family: Nunito;
+  float: left;
+  display: inline-block;
+  font-family: 'NanumSquareRound',sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 800;
+  text-shadow: var(--whiteColorBorder02);
+  -moz-text-shadow: var(--whiteColorBorder02);
+  -webkit-text-shadow: var(--whiteColorBorder02);
+
   font-size: 12px;
-  line-height: 16px;
-  letter-spacing: -0.01em;
-  background: #FF7D5F;
-  padding: 3px 7px 3px 7px;
+  background: var(--systemColor);
+  padding: 8px 11px 8px 11px;
   border-radius: 50%;
   color: #FFFFFF;
-  position: absolute;
-  left: 0;
-  top: -8px;
 }
 
 .designTypeDesc {
-  width: 186px;
+  width: 100%;
   height: 50px;
-  display: inline-block;
-  position: absolute;
+  display: block;
   right: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 180%;
-  color: #282828;
+  color: var(--textColor);
 }
 
 .designTypeContainer {
-  margin-top: 36px;
+  text-align: center;
+  margin-top: 48px;
 }
 
 .designTypeContainer:last-of-type {
-  margin-top: 30px;
+  margin-top: 48px;
 }
 
 .toolCard {
@@ -493,36 +521,39 @@ a {
   width: 382px;
   height: 350px;
   background: #FFFFFF;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-  padding: 36px 32px 36px 32px;
   box-sizing: border-box;
-  border-radius: 24px;
   position: relative;
 }
 
 .toolContainer {
   margin-top: 28px;
   position: relative;
+  text-align: center;
 }
 
 .toolNameContainer {
-  width: 218px;
+  width: 100%;
   height: 56px;
-  border: 2px solid #FF7D5F;
   box-sizing: border-box;
-  border-radius: 30px;
   text-align: center;
-  display: inline-block;
-  position: absolute;
-  right: 0;
+  display: block;
+  margin-top: 16px;
 }
 
 #toolName {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 53px;
   text-align: center;
-  color: #FF7D5F;
+  color: var(--systemColor);
+
+  font-family: 'NanumSquareRound',sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  color: #FF9173;
+  text-shadow: var(--systemColorBorder);
+  -moz-text-shadow: var(--systemColorBorder);
+  -webkit-text-shadow: var(--systemColorBorder);
 }
 
 .toolImgContainer {
@@ -551,9 +582,6 @@ a {
   width: 382px;
   height: 100%;
   background: #FFFFFF;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-  border-radius: 24px;
-  padding: 36px 32px 36px 32px;
   box-sizing: border-box;
 }
 
@@ -569,7 +597,7 @@ a {
 
 .buttonContainer {
   width: 382px;
-  margin-top: 16px;
+  margin-top: 40px;
   position: relative;
   padding-bottom: 34px;
 }
@@ -579,7 +607,7 @@ a {
   border: none;
   width: 130px;
   height: 56px;
-  background: #FF9173;
+  background: var(--systemColor);
   border-radius: 16px;
 
   font-weight: bold;
@@ -594,7 +622,7 @@ a {
   border: none;
   width: 240px;
   height: 56px;
-  background: #FF7D5F;
+  background: var(--systemColor);
   border-radius: 16px;
 
   font-weight: bold;
@@ -665,8 +693,8 @@ a {
   }
 
   #resultPattern {
-    width: 97%;
-    height: 97%;
+    /* width: 97%;
+    height: 97%; */
   }
 
   #resultTop {
@@ -674,12 +702,12 @@ a {
   }
 
   #resultBottom {
-    padding: 30px 26px 30px 26px;
+    /* padding: 30px 26px 30px 26px; */
   }
 
   .positionCard {
     width: 100%;
-    padding: 30px 26px 30px 26px;
+    /* padding: 30px 26px 30px 26px; */
   }
 
   .positionContainer {
@@ -689,22 +717,21 @@ a {
   .designCard {
     width: 100%;
     box-sizing: border-box;
-    padding: 30px 26px 30px 26px;
   }
 
   .toolCard {
     width: 100%;
     height: 100%;
-    padding: 30px 26px 30px 26px;
+    /* padding: 30px 26px 30px 26px; */
   }
 
   .toolNameContainer {
-    width: 70%;
+    /* width: 70%; */
   }
 
   .todoCard {
     width: 100%;
-    padding: 30px 26px 30px 26px;
+    /* padding: 30px 26px 30px 26px; */
   }
 
   .buttonContainer {
