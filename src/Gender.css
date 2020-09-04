@@ -85,7 +85,6 @@
 }
 
 .genderButtonRadio {
-
     opacity: 0;
     width: 150px;
     height: 150px;
@@ -104,6 +103,7 @@ textarea:focus, input:focus{
 
 #mButton:checked ~ img {
     filter: grayscale(0);
+    opacity: 1;
 }
 
 
@@ -118,16 +118,17 @@ textarea:focus, input:focus{
 
 #fButton:checked ~ img {
     filter: grayscale(0);
+    opacity: 1;
 }
 
 .rightContainer {
     float: right;
-    width: 181px;
+    width: 48%;
     display: inline-block;
 }
 
 .leftContainer {
-    width: 181px;
+    width: 48%;
     display: inline-block;
 }
 
@@ -148,6 +149,7 @@ textarea:focus, input:focus{
 .genderSelectContainer img {
     margin-bottom: -6px;
     filter: grayscale(1);
+    opacity: 0.8;
     transition: ease-in-out 0.2s;
 }
 
@@ -166,11 +168,11 @@ textarea:focus, input:focus{
 
 @media (min-width: 320px) and (max-width: 480px) {
     .leftContainer {
-        width: 47%;
+        width: 48%;
     }
 
     .rightContainer {
-        width: 47%;
+        width: 48%;
     }
 
     .startButton {

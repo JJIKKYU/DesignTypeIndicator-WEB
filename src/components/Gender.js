@@ -45,9 +45,6 @@ class Gender extends Component {
             <StickyHeader></StickyHeader>
             <div className="main">
                 <div className="mainTopMargin"></div>
-                <div className="mainPatternBGContainer">
-                    <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
-                </div>
                 <div className="titleBubble" id="genderTitleBubble">
                     <div className="titleBubblePolygon"></div>
                     <div className="titleContainer" id="genderTitleContainer">

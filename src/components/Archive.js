@@ -16,8 +16,8 @@ class ArchiveCard extends Component {
             <>
             
             <Link to={"/result/" + result.type + "/" + this.props.gender}>
-                <div className="resultCard" id="mainResultCard" >
-                    <div id="mainResultTop" className="mainResultTop" style={style}>
+                <div className="resultCard" id="archiveResultCard" >
+                    <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
                         <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + "_" + result.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="mainResultChar"/>
                         <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
@@ -29,18 +29,6 @@ class ArchiveCard extends Component {
                             })
                             }   
                         </h1>
-                    </div>
-                    <div id="mainResultBottom">
-                        <span id="mainResultDesc">{result.desc}</span>
-                    </div>
-
-                    <div className="bottomCardContainer">
-                        <div className="leftBottomCard">
-                                <span id="leftBottomCardText" className="leftBottomCardText" style={textStyle}>{result.hashtag[0]}</span>
-                        </div>
-                        <div className="rightBottomCard">
-                                <span id="rightBottomCardText" className="rightBottomCardText" style={textStyle}>{result.hashtag[1]}</span>
-                        </div>
                     </div>
                 </div>
             </Link>

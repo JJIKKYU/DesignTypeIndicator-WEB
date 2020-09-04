@@ -74,41 +74,12 @@ class Main extends Component {
                         <h1 className="secondMainTitle">최근 공유된 DPTI 결과</h1>
                         <div className="resultsContainer">
 
-                            <div className="resultCard" id="mainResultCard">
-                                <div id="mainResultTop">
+                            <div className="resultCard" id="archiveResultCard" >
+                                <div id="mainResultTop" className="mainResultTop archiveResultTop">
                                     <img src="./images/Blue_M_Tri_1.png" alt="" id="mainResultChar"/>
                                     <img src="./images/Blue_Type_Circle.png" alt="" id="mainResultType"/>
                                     <img src="./images/Blue_Tri.png" alt="" id="mainResultPattern"/>
                                     <h1 id="mainResultTitle">혼밥하는<br></br>논리대장<br></br>디자이너</h1>
-                                </div>
-                                <div id="mainResultBottom">
-                                    <p id="mainResultDesc">무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하면서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!</p>
-                                </div>
-                                <p id="mainCardDate">2020.08.30 12:01:59</p>
-                            </div>
-
-                            <div className="resultCard" id="mainResultCard">
-                                <div id="mainResultTop">
-                                    <img src="./images/Blue_M_Tri_1.png" alt="" id="mainResultChar"/>
-                                    <img src="./images/Blue_Type_Circle.png" alt="" id="mainResultType"/>
-                                    <img src="./images/Blue_Tri.png" alt="" id="mainResultPattern"/>
-                                    <h1 id="mainResultTitle">혼밥하는<br></br>논리대장<br></br>디자이너</h1>
-                                </div>
-                                <div id="mainResultBottom">
-                                    <p id="mainResultDesc">무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하면서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!</p>
-                                </div>
-                                <p id="mainCardDate">2020.08.30 12:01:59</p>
-                            </div>
-
-                            <div className="resultCard" id="mainResultCard">
-                                <div id="mainResultTop">
-                                    <img src="./images/Blue_M_Tri_1.png" alt="" id="mainResultChar"/>
-                                    <img src="./images/Blue_Type_Circle.png" alt="" id="mainResultType"/>
-                                    <img src="./images/Blue_Tri.png" alt="" id="mainResultPattern"/>
-                                    <h1 id="mainResultTitle">혼밥하는<br></br>논리대장<br></br>디자이너</h1>
-                                </div>
-                                <div id="mainResultBottom">
-                                    <p id="mainResultDesc">무슨 생각 중이야? 라는 말 많이 들어보셨죠? 당신은 객관적인 판단과 당위성을 중요시하는 이 시대의 논리 대장 디자이너! 전통과 규율에 얽매이는 딱딱함이 아니라, 이론과 논리를 중요시하고 작업을 진행하면서 최대한 감정을 배제하는 이성의 결정체로, 주변 사람들에게 간혹 차갑다는 말을 들을 때도 있어요. 하지만 이성과 논리를 장착한 당신의 디자인은 모두에게 든든함을 안겨줄 거에요! 당신은 좀처럼 자신을 속이지 않으니까요!</p>
                                 </div>
                                 <p id="mainCardDate">2020.08.30 12:01:59</p>
                             </div>

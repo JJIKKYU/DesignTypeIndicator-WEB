@@ -11,14 +11,17 @@
 :root {
     --systemColor : #FF9173;
     --systemColorBorder : -0.2px 0 var(--systemColor), 0 0.2px var(--systemColor), 0.2px 0 var(--systemColor), 0 -0.2px var(--systemColor);
+
+    --whiteColor : #FFFFFF;
+    --whiteColorBorder035 : -0.35px 0 var(--whiteColor), 0 0.35px var(--whiteColor), 0.35px 0 var(--whiteColor), 0 -0.35px var(--whiteColor);
 }
 
 .dimodamoHeader {
     background-color: var(--systemColor);
     height: 44px;
     text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
+    /* position: -webkit-sticky;
+    position: sticky; */
     top : 0;
     z-index: 9999;
 }
@@ -237,7 +240,7 @@
 .secondMainContainer {
     position: absolute;
     width: 100%;
-    height: 995px;
+    /* height: 995px; */
     z-index: 1;
     margin-left: -16px;
     margin-right: -16px;
@@ -296,15 +299,6 @@
 
 /* resultCard */
 
-#mainResultCard {
-    display: inline-block;
-    width: 280px;
-    height: 486px;
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-bottom: 24px;
-    flex-shrink: 0;
-}
 
 #mainResultTop {
     width: 100%;
@@ -326,9 +320,9 @@
 }
 
 #mainResultType {
-    width: 66px;
+    width: 84px;
     position: absolute;
-    bottom: 24px;
+    bottom: 23px;
     z-index: 1;
 }
 
@@ -373,7 +367,7 @@
     left: 0;
     display: flex;
     overflow-x: scroll;
-    height: 600px;
+    height: 380px;
     /* display: inline-block; */
     /* transform: translate(150px); */
     /* position: relative; */
@@ -389,7 +383,7 @@
 }
 
 #mainCardDate {
-    margin-top: 45px;
+    margin-top: 15px;
     width: 100%;
     text-align: center;
     font-weight: 500;
@@ -451,7 +445,7 @@
     }
 
     .dptiResults {
-        height: 630px;
+        height: 490px;
     }
 
     .mainBGPattner {
