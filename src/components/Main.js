@@ -1,30 +1,116 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
+import axios from "axios";
+import { fire, getFireResultTypeGender, getFireDBPeople } from '../firebase.config'
 
-import { fire, getFireDB, setFireDB, setFireResultDB, setFireClickedDB, getFireDBPeople } from '../firebase.config'
+
+class CurrentCards extends Component {
+    render() {
+        const { result } = this.props;
+        const style = {
+            background : result.colorHex
+        }
+        
+        return(
+            <>
+            <Link to={"/result/" + result.type + "/" + this.props.gender}>
+                <div className="resultCard" id="archiveResultCard" >
+                    <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
+                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + "_" + result.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="mainResultChar"/>
+                        <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
+                        <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
+                        <h1 id="mainResultTitle">
+                            {
+                                            
+                            String(result.title).split('\n').map((line,index) => {
+                                return (<span key={index}>{line}<br/></span>)
+                            })
+                            }   
+                        </h1>
+                    </div>
+                    <p id="mainCardDate">{this.props.timeStamp}</p>
+                </div>
+            </Link>
+            </>
+        );
+    }
+}
 
 class Main extends Component {
     constructor(props) {
         super(props);
         fire();
         this.state = {
-            people : ""
+            people : "",
+            cardData : [
+            ],
+            resultList : [],
+            finalCardResultList : [],
         }
     }
 
     componentDidMount() {
+        this.loadItem();
+
         getFireDBPeople().then(res => {
             this.setState ({
                 people : res.val().people
             }, () => {
-                console.log(this.state.people);
+                // console.log(this.state.people);
             });
         });
+
+        getFireResultTypeGender().then(res => {
+
+            var mCardData = []
+            for (var i = this.state.people; i > this.state.people - 5; --i) {
+                mCardData.push(res.val()[i]);
+                this.setState ({
+                    cardData : mCardData
+                });
+            }
+
+            var mfinalCardResultList = []
+            for (i = 0; i < this.state.resultList.length; ++i) {
+                for (var j = 0; j < this.state.cardData.length; ++j) {
+                    if (this.state.resultList[i].type === this.state.cardData[j].type) {
+                        mfinalCardResultList.push(this.state.resultList[i]);
+                    }
+                }
+            }
+            
+            this.setState ({
+                finalCardResultList : mfinalCardResultList.reverse()
+            })
+
+            
+        })
     }
+
+    loadItem = async () => {
+        axios
+        .get("../json/Result.json")
+        .then (( {data }) => {
+            this.setState({
+                loading : true,
+                resultList : data.Result
+            }, () => {
+                // console.log(this.state.resultList);
+            });
+        })
+        .catch(e => { 
+            // API 호출이 실패할 경우
+            console.error(e);
+            this.setState ({
+                loading : false
+            });
+        });
+    };
 
     render() {
         document.title = "디자이너 성향검사 - 디자이너 모여 다 모여!"
+        const result = this.state.finalCardResultList.map((result, index) => (<CurrentCards key={index} index={index} result={result} gender={this.state.cardData[index].gender} timeStamp={this.state.cardData[index].timeStamp}></CurrentCards>));
         
         return (
             <>
@@ -99,16 +185,7 @@ class Main extends Component {
                         <h1 className="secondMainTitle">최근 공유된 DPTI 결과</h1>
                         <div className="resultsContainer">
 
-                            <div className="resultCard" id="archiveResultCard" >
-                                <div id="mainResultTop" className="mainResultTop archiveResultTop">
-                                    <img src="./images/Blue_M_Tri_1.png" alt="" id="mainResultChar"/>
-                                    <img src="./images/Blue_Type_Circle.png" alt="" id="mainResultType"/>
-                                    <img src="./images/Blue_Tri.png" alt="" id="mainResultPattern"/>
-                                    <h1 id="mainResultTitle">혼밥하는<br></br>논리대장<br></br>디자이너</h1>
-                                </div>
-                                <p id="mainCardDate">2020.08.30 12:01:59</p>
-                            </div>
-
+                        {result}
                         </div>
                     </div>
 

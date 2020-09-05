@@ -1,23 +1,48 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
-import { fire, setFireDBPeople, getFireDBPeople } from '../firebase.config'
+import { fire, setFireDBPeople, getFireDBPeople, setFireResultDB } from '../firebase.config'
 
 class Calc extends Component {
     constructor(props) {
         super(props);
-        fire();
         // console.log(JSON.stringify(this.props.surveyResult) + "을 받았습니다. Calc.js");
         // console.log(this.props)
+        console.log("constructor");
+
 
         this.state = {
-            finalType : ""
+            finalType : "",
+            isResult : "",
+            people : 0,
         }
+    }
+
+    
+    
+
+    componentWillUnmount() {
+        this.setState ({
+            isResult : "NULL"
+        })
+
+        console.log("unmount");
     }
     
     componentDidMount() {
-        this.calculating();    
+        // window.history.forward();
 
+        fire();
+        var people;
+        getFireDBPeople().then(res => {
+            people = res.val().people;
+            this.setState ({
+                people : res.val().people
+            }, () => {
+                this.calculating();
+                setFireDBPeople(people);
+            });
+        });
     }
 
     checkType = () => {
@@ -91,9 +116,15 @@ class Calc extends Component {
         // console.log("최종적인 결과값 : " + finalResult);
 
         this.setState ({
-            finalType : finalResult
+            finalType : finalResult,
+            isResult : true
         }, () => {
-            // console.log("최종 state 저장 : " + this.state.finalType);
+            var sysDate = new Date(Date.now());
+            var timeStamp = sysDate.toLocaleDateString() + " " + sysDate.toLocaleTimeString();
+            setFireResultDB(finalResult, this.props.gender, timeStamp, this.state.people);
+            console.log("peopleCount = " + this.state.people)
+            console.log("최종 state 저장 : " + this.state.finalType);
+            
         });
     }
 

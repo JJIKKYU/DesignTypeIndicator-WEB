@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import axios from "axios";
 import StickyHeader from './StickyHeader.js'
 
+
 class Result extends Component {
     constructor(props) {
         super(props);

@@ -18,7 +18,7 @@ import Gender from './components/Gender'
 // Calc.js
 import Calc from './components/Calc'
 // Archive.js
-import Archive from './components/Archive'
+import { Archive } from './components/Archive'
 // Archive.js
 import ScrollToTop from './components/ScrollToTop'
 

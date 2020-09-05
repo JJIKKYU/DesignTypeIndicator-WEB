@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
+import { fire, setFireDBPeople, getFireDBPeople } from '../firebase.config'
 
 // Header.js
 import Header from './Header'
@@ -134,7 +135,8 @@ class Survey extends Component {
             questionList : [],
             number : 1,
             xPosTransitionStep : 382,
-            currentXpos : -205
+            currentXpos : -205,
+            people : 0,
         }
     }
 
@@ -142,6 +144,15 @@ class Survey extends Component {
         this.loadItem();  // loadItem 호출
         this.progressBar();
         
+        fire();
+        getFireDBPeople().then(res => {
+            this.setState ({
+                people : res.val().people
+            }, () => {
+                console.log("people 정보입니다 : " + this.state.people);
+                setFireDBPeople(this.state.people);
+            });
+        });
     }
 
     componentDidUpdate() {
@@ -327,6 +338,12 @@ class Survey extends Component {
             progressBar.style.background = "#FF5F87";
         }
     }
+
+    increaseFirePeopleDB = () => {
+        var people = this.state.people + 1;
+        setFireDBPeople(people);
+        console.log("people 정보입니다 : " + people);
+    }
     
     render() {
         const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard} surveyProgress={this.props.surveyProgress} answerList={this.state.answerList}></SurveyCard>));
@@ -346,7 +363,7 @@ class Survey extends Component {
             </div>
             <div className="main">
             <div className="submitSurvey" id="sumbitSurvey">
-                <Link to="/calc"><input type="button" value="결과보기"/></Link>
+                <Link to="/calc"><input type="button" value="결과보기" onClick={this.increaseFirePeopleDB}/></Link>
             </div>
             </div>
             </>

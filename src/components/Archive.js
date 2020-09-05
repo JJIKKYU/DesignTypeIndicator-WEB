@@ -4,10 +4,20 @@ import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 
 class ArchiveCard extends Component {
+    constructor(props) {
+        super(props);
+
+        console.log(this.props.result);
+    }
+
+
     render() {
         const { result } = this.props;
         const style = {
             background : result.colorHex
+        }
+        const textStyle = {
+            color : result.colorHex
         }
         
         return(
@@ -107,7 +117,7 @@ class Archive extends Component {
                             <span>모든 DPTI 유형</span>
                         </div>
                         <div className="close">
-                            <img src="./images/close.svg" alt="close"/>
+                            <img src="./images/close.png" alt="close"/>
                         </div>
                     </div>
                 </div>
@@ -133,4 +143,4 @@ class Archive extends Component {
     }
 }
 
-export default Archive;
+export { Archive, ArchiveCard };
