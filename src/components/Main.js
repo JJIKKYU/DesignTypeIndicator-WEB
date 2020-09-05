@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 import axios from "axios";
-import { fire, getFireResultTypeGender, getFireDBPeople } from '../firebase.config'
+import { fire, getFireResultTypeGender, getFireDBPeople, getFireResultType } from '../firebase.config'
+import { database } from 'firebase/app';
 
 
 class CurrentCards extends Component {
@@ -47,12 +48,17 @@ class Main extends Component {
             ],
             resultList : [],
             finalCardResultList : [],
+            mostPouplarResultListIndex : 0,
         }
     }
 
     componentDidMount() {
         this.loadItem();
+        this.getFireBaseData();
+    }
 
+    // 파이어베이스에서 가져오는 데이터 관리
+    getFireBaseData = () => {
         getFireDBPeople().then(res => {
             this.setState ({
                 people : res.val().people
@@ -82,10 +88,38 @@ class Main extends Component {
             
             this.setState ({
                 finalCardResultList : mfinalCardResultList.reverse()
-            })
-
-            
+            })  
         })
+        
+        getFireResultType().then(res => {
+            // 파이어베이스와 동일한 순서로 되어있음
+            const type = [
+                "FE", "FI", "FN", "FS", "JE", "JI", "JN", "JS", "PE", "PI", "PN", "PS", "TE", "TI", "TN", "TS"
+            ]
+            
+            var mostPopularType = Object.keys(res.val());
+            var mostPopularTypePeople = 0;
+            var mostPopularTypeIndex = 0;
+            for (var i = 0; i < type.length; ++i) {
+                if (res.val()[type[i]] > mostPopularTypePeople) {
+                    mostPopularTypePeople = res.val()[type[i]];
+                    mostPopularTypeIndex = i;
+                }
+            }
+
+            var mostPouplarResultListIndex = 0;
+            mostPopularType = mostPopularType[mostPopularTypeIndex];
+            for (var i = 0; i < this.state.resultList.length; ++i) {
+                if (this.state.resultList[i].type === mostPopularType) {
+                    mostPouplarResultListIndex = i;
+                    break;
+                } 
+            }
+
+            this.setState ({
+                mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title
+            })
+        });
     }
 
     loadItem = async () => {
@@ -178,7 +212,7 @@ class Main extends Component {
                             <div className="mainIconContainer">
                                 <img src="./images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
                             </div>
-                            <span className="secondMainText" id="dptiTypeText">혼밥하는 논리대장 디자이너</span>
+                            <span className="secondMainText" id="dptiTypeText">{this.state.mostPouplarTypeTitle}</span>
                         </div>
                     </div>
                     <div className="dptiResults">
