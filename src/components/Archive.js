@@ -16,9 +16,7 @@ class ArchiveCard extends Component {
         const style = {
             background : result.colorHex
         }
-        const textStyle = {
-            color : result.colorHex
-        }
+
         
         return(
             <>
@@ -143,4 +141,4 @@ class Archive extends Component {
     }
 }
 
-export { Archive, ArchiveCard };
+export default Archive;

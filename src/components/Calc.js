@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
-import { fire, setFireDBPeople, getFireDBPeople, setFireResultDB } from '../firebase.config'
+import { fire, setFireDBPeople, getFireDBPeople, setFireResultDB, setFireResultType, getFireResultType } from '../firebase.config'
 
 class Calc extends Component {
     constructor(props) {
@@ -15,6 +15,7 @@ class Calc extends Component {
             finalType : "",
             isResult : "",
             people : 0,
+            typePeople : "",
         }
     }
 
@@ -110,7 +111,7 @@ class Calc extends Component {
                 colorType = "P";
             }
         }
-        
+
         var finalResult = colorType + figureType;
         this.props.finalResult(finalResult);
         // console.log("최종적인 결과값 : " + finalResult);
@@ -122,9 +123,15 @@ class Calc extends Component {
             var sysDate = new Date(Date.now());
             var timeStamp = sysDate.toLocaleDateString() + " " + sysDate.toLocaleTimeString();
             setFireResultDB(finalResult, this.props.gender, timeStamp, this.state.people);
-            console.log("peopleCount = " + this.state.people)
-            console.log("최종 state 저장 : " + this.state.finalType);
+
+            getFireResultType().then(res => {
+                setFireResultType(this.state.finalType, res.val()[finalResult] + 1);
+            });
+
             
+
+            console.log("peopleCount = " + this.state.people)
+            console.log("최종 state 저장 : " + this.state.finalType); 
         });
     }
 

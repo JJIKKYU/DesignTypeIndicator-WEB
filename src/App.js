@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from "react-router-dom"
-
 import './App.css';
 import './Main.css';
 import './Gender.css';
@@ -18,16 +17,16 @@ import Gender from './components/Gender'
 // Calc.js
 import Calc from './components/Calc'
 // Archive.js
-import { Archive } from './components/Archive'
+import Archive from './components/Archive'
 // Archive.js
 import ScrollToTop from './components/ScrollToTop'
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       gedner : "",
-      database : "",
       survey : [
         {
           select : {
@@ -72,8 +71,7 @@ class App extends Component {
         <>
         <Router>
           <ScrollToTop>
-            <Route exact persist path="/"
-            render= {() => <Main></Main>}/>
+            <Route exact persist path="/" component={Main} />
             <Route path="/surveyInformation" 
             render={() => <Gender genderSelect={this.genderSelect}></Gender>} />
             <Route path="/survey" 
