@@ -141,8 +141,9 @@ class Result extends Component {
                         <div className="resultCard">
                             <div id="resultTop">
                                 <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + "_" + this.state.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="resultChar"/>
+                                <img src={"../../images/result/BC_BG_G_" + this.state.color + ".svg"} id="resultGradient" alt=""/>
                                 <img src={"../../images/result/Type_" + this.state.color + "_" + this.state.shape + ".svg"} alt="" id="resultType"/>
-                                <img src={"../../images/result/BC_BGP_" + this.state.color  + "_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
+                                <img src={"../../images/result/BC_BG_P_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
                                 <h1 id="resultTitle">
                                     {
                                         

@@ -20,7 +20,7 @@
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
-    color: #AAAAAA;
+    color: var(--GRAY170);
 }
 
 .headerTitle {
@@ -33,7 +33,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 170%;
-    color: #AAAAAA;
+    color: var(--GRAY170);
 }
 
 .archiveCardTitleContainer {
@@ -49,10 +49,10 @@
     font-size: 24px;
     line-height: 27px;
     letter-spacing: 0.02em;
-    color: var(--systemColor);
-    text-shadow: var(--systemColorBorder);
-    -moz-text-shadow: var(--systemColorBorder);
-    -webkit-text-shadow: var(--systemColorBorder);
+    color: var(--ORANGE);
+    text-shadow: var(--ORANGE_BORDER02);
+    -moz-text-shadow: var(--ORANGE_BORDER02);
+    -webkit-text-shadow: var(--ORANGE_BORDER02);
 }
 
 .archiveCardsContainer {
@@ -63,12 +63,12 @@
     font-family: 'NanumSquareRound',sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 27px;
-    color: #FFFFFF;
-    text-shadow: var(--whiteColorBorder035);
-    -moz-text-shadow: var(--whiteColorBorder035);
-    -webkit-text-shadow: var(--whiteColorBorder035);
+    color: var(--WHITE255);
+    text-shadow: var(--WHITE255_BORDER04);
+    -moz-text-shadow: var(--WHITE255_BORDER04);
+    -webkit-text-shadow: var(--WHITE255_BORDER04);
 }
 
 .bottomCardContainer {

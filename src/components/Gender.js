@@ -20,7 +20,9 @@ class Gender extends Component {
 
         this.setState ({
             clicked : true
-        })
+        }, () => {
+            document.getElementById("startButton").style.background = "var(--ORANGE_ACTIVE)"
+        });
 
         this.props.genderSelect(targetValue);
     }
@@ -33,9 +35,9 @@ class Gender extends Component {
     nextPage = () => {
         if (this.state.clicked === false)
         {
-            return (<input type="button" className="startButton" value="시작해요!" onClick={this.alert}/>);
+            return (<input type="button" id="startButton" className="startButton" value="시작해요!" onClick={this.alert}/>);
         } else {
-            return (<Link to="/survey"><input type="button" className="startButton" value="시작해요!" onClick={this.alert}/></Link>);
+            return (<Link to="/survey"><input type="button" id="startButton" className="startButton" value="시작해요!" onClick={this.alert}/></Link>);
         }
     }
 

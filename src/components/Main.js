@@ -3,8 +3,6 @@ import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 import axios from "axios";
 import { fire, getFireResultTypeGender, getFireDBPeople, getFireResultType } from '../firebase.config'
-import { database } from 'firebase/app';
-
 
 class CurrentCards extends Component {
     render() {
@@ -67,6 +65,7 @@ class Main extends Component {
             });
         });
 
+        // 최근 진행한 카드리스트 파이어베이스에서 서치
         getFireResultTypeGender().then(res => {
 
             var mCardData = []
@@ -91,6 +90,7 @@ class Main extends Component {
             })  
         })
         
+        // 가장 많은 DPTI 유형 파이어베이스에서 서치
         getFireResultType().then(res => {
             // 파이어베이스와 동일한 순서로 되어있음
             const type = [
@@ -109,7 +109,7 @@ class Main extends Component {
 
             var mostPouplarResultListIndex = 0;
             mostPopularType = mostPopularType[mostPopularTypeIndex];
-            for (var i = 0; i < this.state.resultList.length; ++i) {
+            for (i = 0; i < this.state.resultList.length; ++i) {
                 if (this.state.resultList[i].type === mostPopularType) {
                     mostPouplarResultListIndex = i;
                     break;
@@ -152,11 +152,11 @@ class Main extends Component {
 
             <div className="main">
                 <div className="mainTopMargin"></   div>
-                <div className="mainPatternBGContainer">
+                <div className="mainPatternBGContainer"  data-parallax='{"y":12, "from-scroll": 0, "distance":80, "smoothness":0}'>
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
                     <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                 </div>
-                <div className="titleBubble">
+                <div className="titleBubble" >
                     <img className="bubbleImg" src="./images/main/mainBubble.svg" alt=""/>
                     {/* <div className="titleBubblePolygon"></div> */}
                     <div className="titleContainer">
@@ -185,14 +185,14 @@ class Main extends Component {
             </div>        
 
             <div className="peopleContainer">
-                <img src="./images/main/leftPeople.png" alt="" className="leftPeople"/>
+                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"y":9, "from-scroll": 0, "distance":85, "smoothness":5}'/>
                 <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop"/>
-                <img src="./images/main/rightPeople.png" alt="" className="rightPeople"/>
+                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"y":9, "from-scroll": 0, "distance":85, "smoothness":5}'/>
                 <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop"/>
             </div>
 
             <div className="main">
-                <div className="testStartContainer">
+                <div className="testStartContainer" >
                     <Link to="/surveyInformation">
                     <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
                         <input type="button" value="TEST START" className="DPTITestStartButton"/>
@@ -212,7 +212,7 @@ class Main extends Component {
                             <div className="mainIconContainer">
                                 <img src="./images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
                             </div>
-                            <span className="secondMainText" id="dptiTypeText">{this.state.mostPouplarTypeTitle}</span>
+                            <p className="secondMainText" id="dptiTypeText">{this.state.mostPouplarTypeTitle}</p>
                         </div>
                     </div>
                     <div className="dptiResults">

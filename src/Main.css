@@ -13,15 +13,56 @@
     --systemColorBorder : -0.2px 0 var(--systemColor), 0 0.2px var(--systemColor), 0.2px 0 var(--systemColor), 0 -0.2px var(--systemColor);
 
     --whiteColor : #FFFFFF;
+    --whiteColorBorder04 : -0.4px 0 var(--whiteColor), 0 0.4px var(--whiteColor), 0.4px 0 var(--whiteColor), 0 -0.4px var(--whiteColor);
     --whiteColorBorder035 : -0.35px 0 var(--whiteColor), 0 0.35px var(--whiteColor), 0.35px 0 var(--whiteColor), 0 -0.35px var(--whiteColor);
     --whiteColorBorder02 : -0.2px 0 var(--whiteColor), 0 0.2px var(--whiteColor), 0.2px 0 var(--whiteColor), 0 -0.2px var(--whiteColor);
 
     --textColor : #3C3C3C;
     --textColorBorder01 : -0.1px 0 var(--textColor), 0 0.1px var(--textColor), 0.1px 0 var(--textColor), 0 -0.1px var(--textColor);
+
+    --ORANGE : #FF820F;
+    --ORANGE_BORDER02 : -0.2px 0 var(--ORANGE), 0 0.2px var(--ORANGE), 0.2px 0 var(--ORANGE), 0 -0.2px var(--ORANGE);
+
+    --ORANGE_ACTIVE : #FF6900;
+    --ORANGE_UNACTIVE : #FFD2AA;
+
+    --YELLOW : #FFD25F;
+    --YELLOW_LIGHT : #FFF0C8;
+    --YELLOW_DARK : #FFB428;
+
+    --PINK : #FF6991;
+    --PINK_LIGHT : #FFDCE6;
+    --PINK_DARK : #F04682;
+
+    --BLUE : #32D7E1;
+    --BLUE_LIGHT : #BEFAFF;
+    --BLUT_DARK : #32BECD;
+    
+    --PURPLE : #5F8CFF;
+    --PURPLE_LIGHT : #D2DCFF;
+    --PURPLE_DARK : #3C6EE6;
+
+    --TEXT_SMALL : #505050;
+    --TEXT_BIG : #3C3C3C;
+    --TEXT_BIG_BORDER01 : -0.1px 0 var(--TEXT_BIG), 0 0.1px var(--TEXT_BIG), 0.1px 0 var(--TEXT_BIG), 0 -0.1px var(--TEXT_BIG);
+
+
+    --WHITE255 : #FFFFFF;
+    --WHITE255_BORDER04 : -0.4px 0 var(--WHITE255), 0 0.4px var(--WHITE255), 0.4px 0 var(--WHITE255), 0 -0.4px var(--WHITE255);
+    --WHITE255_BORDER02 : -0.2px 0 var(--WHITE255), 0 0.2px var(--WHITE255), 0.2px 0 var(--WHITE255), 0 -0.2px var(--WHITE255);
+
+
+    --WHITE245 : #F5F5F5;
+    --WHITE235 : #EBEBEB;
+
+    --GRAY210 : #D2D2D2;
+    --GRAY190 : #BEBEBE; 
+    --GRAY170 : #AAAAAA;
+    
 }
 
 .dimodamoHeader {
-    background-color: var(--systemColor);
+    background-color: var(--ORANGE);
     height: 44px;
     text-align: center;
     position: -webkit-sticky;
@@ -66,7 +107,7 @@
     font-size: 11px;
     line-height: 16px;
     text-align: center;
-    color: var(--systemColor);
+    color: var(--ORANGE);
 }
 
 .logo {
@@ -83,7 +124,7 @@
     width: 126px;
     height: 2px;
     margin: 0 auto;
-    background: var(--systemColor);
+    background: var(--ORANGE);
 }
 
 .dptiSubTitle {
@@ -92,7 +133,7 @@
     font-size: 9.5px;
     line-height: 14px;
     text-align: center;
-    color: var(--systemColor);
+    color: var(--ORANGE);
 }
 
 .dptiSubTitle {
@@ -181,13 +222,14 @@
 }
 
 #bubbleText {
-    font-family: yg-jalnan;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 38px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 35px;
     text-align: center;
-    color: #FF9173;
-    z-index: 1;
+
+    /* ORANGE */
+    color: var(--ORANGE);
 }
 .bubbleTextContainer {
     z-index: 1;
@@ -204,6 +246,7 @@
 
 .leftPeople {
     position: absolute;
+    z-index : -1;
     left: 0px;
 }
 
@@ -213,6 +256,7 @@
 }
 
 .rightPeople {
+    z-index : -1;
     position: absolute;
     right: 0px;
 }
@@ -235,7 +279,7 @@
     cursor: pointer;
     width: 204px;   
     height: 56px;
-    background: var(--systemColor);
+    background: var(--ORANGE_ACTIVE);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
     border-radius: 16px;
 
@@ -255,7 +299,7 @@
 .secondMainContainer {
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
     margin-left: -16px;
     margin-right: -16px;
     background: #FFFFFF;
@@ -289,12 +333,12 @@
     font-size: 26px;
     line-height: 30px;
     text-align: center;
-    color: var(--systemColor);
+    color: var(--ORANGE);
     line-height: 50px;
     text-align: center;
-    text-shadow: var(--systemColorBorder);
-    -moz-text-shadow: var(--systemColorBorder);
-    -webkit-text-shadow: var(--systemColorBorder);
+    text-shadow: var(--ORANGE_BORDER02);
+    -moz-text-shadow: var(--ORANGE_BORDER02);
+    -webkit-text-shadow: var(--ORANGE_BORDER02);
 }
 
 .secondMainText span {
@@ -304,15 +348,19 @@
     font-size: 26px;
     line-height: 30px;
     text-align: center;
-    color: var(--systemColor);
+    color: var(--ORANGE);
     line-height: 40px;
     text-align: center;
-    text-shadow: var(--systemColorBorder);
-    -moz-text-shadow: var(--systemColorBorder);
-    -webkit-text-shadow: var(--systemColorBorder);
+    text-shadow: var(--ORANGE_BORDER02);
+    -moz-text-shadow: var(--ORANGE_BORDER02);
+    -webkit-text-shadow: var(--ORANGE_BORDER02);
 }
 
 #dptiTypeText {
+    display: inline-block;
+    word-break: keep-all;
+    margin: 0;
+    width: 250px;
     font-size: 24px;
     line-height: 40px;
 }
@@ -433,7 +481,7 @@
 
 .moreDptiTypeButton {
     cursor: pointer;
-    background: var(--systemColor);
+    background: var(--ORANGE_ACTIVE);
     border-radius: 16px;
     border: none;   
     width: 100%;
@@ -448,6 +496,10 @@
 
 #mainBGPattneDesktop {
     display: none;
+}
+
+.mainIconContainer {
+    margin-bottom: 24px;
 }
 
 /* 

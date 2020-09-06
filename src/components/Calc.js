@@ -19,9 +19,6 @@ class Calc extends Component {
         }
     }
 
-    
-    
-
     componentWillUnmount() {
         this.setState ({
             isResult : "NULL"

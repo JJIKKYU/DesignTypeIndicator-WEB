@@ -28,8 +28,7 @@ class ArchiveCard extends Component {
                         <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
                         <h1 id="mainResultTitle">
-                            {
-                                            
+                            { 
                             String(result.title).split('\n').map((line,index) => {
                                 return (<span key={index}>{line}<br/></span>)
                             })
@@ -126,10 +125,10 @@ class Archive extends Component {
                 </div>
             </div>
             <div className="secionContainer">
-                <ArchiveCardSection title="상상표출형" gender="M" count="4"></ArchiveCardSection>
-                <ArchiveCardSection title="자기성찰형" gender="F" count="8"></ArchiveCardSection>
-                <ArchiveCardSection title="현실직시형" gender="M" count="12"></ArchiveCardSection>
-                <ArchiveCardSection title="감정풍부형" gender="F" count="16"></ArchiveCardSection>
+                <ArchiveCardSection key={1} title="상상표출형" gender="M" count="4"></ArchiveCardSection>
+                <ArchiveCardSection key={2} title="자기성찰형" gender="F" count="8"></ArchiveCardSection>
+                <ArchiveCardSection key={3} title="현실직시형" gender="M" count="12"></ArchiveCardSection>
+                <ArchiveCardSection key={4} title="감정풍부형" gender="F" count="16"></ArchiveCardSection>
             </div>
 
             

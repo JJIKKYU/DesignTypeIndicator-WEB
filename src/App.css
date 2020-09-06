@@ -51,7 +51,7 @@ a {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: var(--systemColor);
+  color: var(--ORANGE);
   visibility: hidden;
 }
 
@@ -68,7 +68,7 @@ a {
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: var(--systemColor);
+  color: var(--ORANGE);
 }
 
 .header .close {
@@ -100,7 +100,7 @@ a {
 #progress {
   width: 0%;
   height: 4px;
-  background: #82E155;
+  background: var(--YELLOW);
   border-radius: 22px;
   transition: ease-in-out .5s;
 }
@@ -213,7 +213,7 @@ a {
   font-size: 36px;
   line-height: 49px;
   letter-spacing: 0.04em;
-  color: #282828;
+  color: var(--TEXT_BIG);
 
   margin-top: 0px;
   margin-bottom: 24px;
@@ -224,7 +224,7 @@ a {
   font-size: 18px;
   height: 54px;
   line-height: 27px;
-  color: #141414;
+  color: var(--TEXT_SMALL);
 
   margin-bottom: 50px;
 }
@@ -234,24 +234,24 @@ a {
 }
 
 .answerBoxRadio:checked + label{
-  color: #78CD69;
-  border-color: #78CD69;
+  color: var(--YELLOW);
+  border-color: var(--YELLOW);
   transition: ease-in-out .1s;
 }
 
 .answerBoxRadio.purple:checked + label{
-  color: #5A87FA;
-  border-color: #5A87FA;
+  color: var(--PURPLE);
+  border-color: var(--PURPLE);
 }
 
 .answerBoxRadio.blue:checked + label{
-  color: #28D2DC;
-  border-color: #28D2DC;
+  color: var(--BLUE);
+  border-color: var(--BLUE);
 }
 
 .answerBoxRadio.pink:checked + label{
-  color: #FA7896;
-  border-color: #FA7896;
+  color: var(--PINK);
+  border-color: var(--PINK);
 }
 
 .answerBoxRadio {
@@ -262,7 +262,7 @@ a {
 .answerBoxText {
   cursor: pointer;
   background: none;
-  border: 2px solid #BEBEBE;
+  border: 2px solid var(--GRAY190);
   box-sizing: border-box;
   border-radius: 16px;
   width: 100%;
@@ -273,7 +273,7 @@ a {
   font-weight: bold;
   font-size: 16px;
   line-height: 50px;
-  color: #AAAAAA;
+  color: var(--GRAY170);
 
   text-align: left;
   padding-left: 24px;
@@ -342,17 +342,26 @@ a {
 }
 
 .resultCard #resultTitle {
+  z-index: 2;
   margin-top: 0px;
   position: absolute;
-  font-size: 24px;
-  line-height: 30px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 25px;
+  letter-spacing: 0.04em;
+
   color: #FFFFFF;
+  /* WHITE - 255 */
+  text-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .resultCard #resultTitle span {
-  font-family: 'yg-jalnan';
+  font-family: 'NanumSquareRound',sans-serif;
   font-style: normal;
-  font-weight: bold;
+  text-shadow: var(--whiteColorBorder04);
+  -moz-text-shadow: var(--whiteColorBorder04);
+  -webkit-text-shadow: var(--whiteColorBorder04);
 }
 
 #resultTop {
@@ -372,7 +381,7 @@ a {
   font-weight: normal;
   font-size: 14px;
   line-height: 200%;
-  color: #505050;
+  color: var(--TEXT_SMALL);
 }
 
 #resultType {
@@ -385,7 +394,7 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 }
 
 #resultPattern {
@@ -398,22 +407,33 @@ a {
   z-index: 0;
 }
 
+#resultGradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+
 .cardTitle {
+  font-family: 'NanumSquareRound',sans-serif;
   text-align: left;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 64px;
-  margin-top: 88px;
-  color: var(--textColor);
-;
   font-weight: 800;
   font-size: 18px;
   line-height: 20px;
-  color: #3C3C3C;
-  text-shadow: var(--textColorBorder);
-  -moz-text-shadow: var(--textColorBorder);
-  -webkit-text-shadow: var(--textColorBorder);
+  margin-bottom: 64px;
+  margin-top: 88px;
+  color: var(--textColor);
+  
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--TEXT_BIG);
+  text-shadow: var(--TEXT_BIG_BORDER01);
+  -moz-text-shadow: var(--TEXT_BIG_BORDER01);
+  -webkit-text-shadow: var(--TEXT_BIG_BORDER01);
 }
 
 .todoCardTitle {
@@ -484,10 +504,10 @@ a {
   font-size: 24px;
   line-height: 27px;
   letter-spacing: -0.01em;
-  color: var(--systemColor);
-  text-shadow: var(--systemColorBorder);
-  -moz-text-shadow: var(--systemColorBorder);
-  -webkit-text-shadow: var(--systemColorBorder);
+  color: var(--ORANGE);
+  text-shadow: var(--ORANGE_BORDER02);
+  -moz-text-shadow: var(--ORANGE_BORDER02);
+  -webkit-text-shadow: var(--ORANGE_BORDER02);
   margin-left: 16px;
 }
 
@@ -497,15 +517,15 @@ a {
   font-family: 'NanumSquareRound',sans-serif;
   font-style: normal;
   font-weight: 800;
-  text-shadow: var(--whiteColorBorder02);
-  -moz-text-shadow: var(--whiteColorBorder02);
-  -webkit-text-shadow: var(--whiteColorBorder02);
+  text-shadow: var(--WHITE255_BORDER02);
+  -moz-text-shadow: var(--WHITE255_BORDER02);
+  -webkit-text-shadow: var(--WHITE255_BORDER02);
 
   font-size: 12px;
-  background: var(--systemColor);
+  background: var(--ORANGE);
   padding: 8px 11px 8px 11px;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: var(--WHITE255);
 }
 
 .designTypeDesc {
@@ -515,7 +535,7 @@ a {
   right: 0;
   font-size: 16px;
   line-height: 180%;
-  color: var(--textColor);
+  color: var(--TEXT_SMALL);
 }
 
 .designTypeContainer {
@@ -561,10 +581,10 @@ a {
   font-size: 28px;
   line-height: 32px;
   letter-spacing: -0.01em;
-  color: #FF9173;
-  text-shadow: var(--systemColorBorder);
-  -moz-text-shadow: var(--systemColorBorder);
-  -webkit-text-shadow: var(--systemColorBorder);
+  color: var(--ORANGE);
+  text-shadow: var(--ORANGE_BORDER02);
+  -moz-text-shadow: var(--ORANGE_BORDER02);
+  -webkit-text-shadow: var(--ORANGE_BORDER02);
 }
 
 .toolImgContainer {
@@ -585,7 +605,7 @@ a {
   font-weight: normal;
   font-size: 14px;
   line-height: 180%;
-  color: #282828;
+  color: var(--TEXT_SMALL);
 }
 
 .todoCard {
@@ -603,7 +623,7 @@ a {
 #todoDesc {
   font-size: 14px;
   line-height: 180%;
-  color: #282828;
+  color: var(--TEXT_SMALL);
 }
 
 .buttonContainer {
@@ -618,7 +638,7 @@ a {
   border: none;
   width: 130px;
   height: 56px;
-  background: var(--systemColor);
+  background: var(--ORANGE);
   border-radius: 16px;
 
   font-weight: bold;
@@ -633,7 +653,7 @@ a {
   border: none;
   width: 240px;
   height: 56px;
-  background: var(--systemColor);
+  background: var(--ORANGE_ACTIVE);
   border-radius: 16px;
 
   font-weight: bold;
