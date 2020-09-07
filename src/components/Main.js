@@ -13,17 +13,23 @@ class Main extends Component {
         this.state = {
             people : "0",
             cardData : [
+                {
+                    // gender : "F",
+                }
             ],
             resultList : [],
-            finalCardResultList : [],
+            finalCardResultList : [
+
+            ],
             mostPouplarResultListIndex : 0,
-            mostPouplarTypeTitle : "미움받기 쉽지않은 팔방미인 디자이너"
+            mostPouplarTypeTitle : "미움받기 쉽지않은 팔방미인 디자이너",
         }
     }
 
     componentDidMount() {
         this.loadItem();
         this.getFireBaseData();
+        console.log(this.state.finalCardResultList);
     }
 
     // 파이어베이스에서 가져오는 데이터 관리

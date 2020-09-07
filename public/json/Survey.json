@@ -32,29 +32,29 @@
         "땡땡땡! 쉬는시간이 되면 무조건 쉬고,\n일할 시간이 되면 꼭 일을 해"
     ],
     "Feedback" : {
-        "green" : {
+        "yellow" : {
             "text" : "좋아! 아주 멋져~",
-            "img" : "./images/feedback/feedbackGreen.svg",
-            "bg" : "./images/feedback/feedbackGreenBG.svg",
-            "color" : "#82D773"
+            "img" : "./images/feedback/feedbackYellow.svg",
+            "bg" : "./images/feedback/feedbackYellowBG.svg",
+            "color" : "var(--YELLOW)"
         },
         "purple" : {
             "text" : "매우 잘하고 있어!",
             "img" : "./images/feedback/feedbackPurple.svg",
             "bg" : "./images/feedback/feedbackPurpleBG.svg",
-            "color" : "#5A87FA"
+            "color" : "var(--PURPLE)"
         },
         "blue" : {
             "text" : "좋아 최고야~",
             "img" : "./images/feedback/feedbackBlue.svg",
             "bg" : "./images/feedback/feedbackBlueBG.svg",
-            "color" : "#28BEC8"
+            "color" : "var(--BLUE)"
         },
         "pink" : {
             "text" : "결과보러 갈까!",
             "img" : "./images/feedback/feedbackPink.svg",
             "bg" : "./images/feedback/feedbackPinkBG.svg",
-            "color" : "#FA7896"
+            "color" : "var(--PINK)"
         }
     }
 }

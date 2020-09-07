@@ -8,7 +8,6 @@ import Footer from './Footer.js'
 class ArchiveCard extends Component {
     constructor(props) {
         super(props);
-
         this.mainResultCard();
     }
 
@@ -72,7 +71,14 @@ class ArchiveCard extends Component {
 }
 
 ArchiveCard.defaultProps = {
-    isMain : false
+    isMain : false,
+    result : {
+        "type" : "TI",
+        "color" : "Blue",
+        "colorHex" : "#32BECD",
+        "shape" : "Star",
+        "title" : "혼자\n있고싶은\n논리대장\n디자이너",
+    }
 }
 
 class ArchiveCardSection extends Component {

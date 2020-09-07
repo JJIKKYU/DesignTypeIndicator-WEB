@@ -65,7 +65,7 @@ class SurveySelectBox extends Component {
             <>
             <input className="answerBoxRadio" type="radio" name={this.props.questionNum} id={this.state.buttonId}
             value={this.props.buttonNum - 2}
-            onChange={this.eventHandler}
+            onClick={this.eventHandler}
             />
             <label htmlFor={this.state.buttonId} className="answerBoxText">{this.props.value}</label>
             </>
@@ -100,9 +100,9 @@ class SurveyCard extends Component {
 
             {/* Feedback Card Div */}
             <div className="card" id="feedbackCard" className="feedbackCard">
-                <img id="feedbackBG" className="feedbackBG" src="./images/feedback/feedbackGreenBg.svg" alt=""/>
+                <img id="feedbackBG" className="feedbackBG" src="./images/feedback/feedbackYellowBg.svg" alt=""/>
                 <h1 className="feedbackText" id="feedbackText">텍스트 영역입니다</h1>
-                <img id="feedbackImg" className="feedbackImg" src="./images/feedback/feedbackGreen.svg" alt=""/>
+                <img id="feedbackImg" className="feedbackImg" src="./images/feedback/feedbackYellow.svg" alt=""/>
             </div>
 
                 <h1 id="questionNum">Q{this.props.number + 1}</h1>
@@ -193,6 +193,7 @@ class Survey extends Component {
     }
 
     cardGradiation() {
+        console.log(this.state.number);
         const { number } = this.state;
         const index = number - 1;
         const prev = index - 1;
@@ -206,6 +207,11 @@ class Survey extends Component {
         // 초기 두 번째 카드 딤처리
 
         if (number === 1) {
+            cards[index].style.opacity = enableOpacity;
+            
+            leftCards[index].style.visibility = "hidden";
+            leftCards[index].style.opacity = 0;
+
             rightCards[number].style.display = "block";
             rightCards[number].style.opacity = 1;
 
@@ -215,6 +221,7 @@ class Survey extends Component {
         } else if (number > 1) {
             // 설문조사 카드 활성화
             cards[index].style.opacity = 1;
+            leftCards[index].style.visibility ="hidden";
             rightCards[index].style.visibility = "hidden";
 
             // 설문 이전 카드 비활성화
@@ -238,10 +245,21 @@ class Survey extends Component {
     }
 
     prevBtnHiddenOrVisible() {
-        if (this.state.number === 1) {
-            document.getElementById("prev").style.visibility = "hidden";
+        const { number } = this.state;
+        const leftArrow = document.getElementById("leftArrow");
+        const rightArrow = document.getElementById("rightArrow");
+        const prev = document.getElementById("prev");
+
+        if (number === 1) {
+            prev.style.visibility = "hidden";
+            leftArrow.style.visibility = "hidden";
+        } else if (number < 19) {
+            prev.style.visibility = "visible";
+            leftArrow.style.visibility = "visible";
+            rightArrow.style.visibility = "visible";
+
         } else {
-            document.getElementById("prev").style.visibility = "visible";
+            rightArrow.style.visibility = "hidden";
         }
     }
 
@@ -260,7 +278,7 @@ class Survey extends Component {
             const index = number - 2;
             switch(number) {
                 case 6:
-                    this.feedbackChange(index, "green");
+                    this.feedbackChange(index, "yellow");
                     break;
                 case 11:
                     this.feedbackChange(index, "purple");
@@ -287,7 +305,6 @@ class Survey extends Component {
                 }
                 
                 setTimeout(function() {
-                    console.log("setTimeout");
                     questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
                     this.progressBar();  
                     this.changeTheme();
@@ -344,6 +361,30 @@ class Survey extends Component {
         setFireDBPeople(people);
         console.log("people 정보입니다 : " + people);
     }
+
+    leftArrowClickEvent = () => {
+        this.moveCard(-1);
+    }
+
+    rightArrowClickEvent = () => {
+        const { number } = this.state;
+
+        const checkCardList = document.getElementsByName(number - 1);
+        var notCheckedCount = 0;
+        for (var i = 0; i < checkCardList.length; ++i) {
+            if (checkCardList[i].checked === false) {
+                notCheckedCount += 1;
+            }
+        }
+
+        if (notCheckedCount === 5) {
+            alert("체크하고 넘어가주세요!");
+            return;
+        }
+
+        // 모두 선택했을 경우에만 넘어갈 수 있음
+        this.moveCard(1);
+    }
     
     render() {
         const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard} surveyProgress={this.props.surveyProgress} answerList={this.state.answerList}></SurveyCard>));
@@ -357,6 +398,10 @@ class Survey extends Component {
             <ProgressBar></ProgressBar>
             </div>
             <div className="questions">
+                <div className="arrowContainer">
+                    <img src="./images/survey/leftArrow.svg" alt="" id="leftArrow" onClick={this.leftArrowClickEvent}/>
+                    <img src="./images/survey/rightArrow.svg" alt="" id="rightArrow" onClick={this.rightArrowClickEvent}/>
+                </div>
                 <div className="questionContainer" id="questionContainer">
                     {questions}
                 </div>

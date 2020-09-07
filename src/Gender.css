@@ -123,12 +123,14 @@ textarea:focus, input:focus{
 
 .rightContainer {
     float: right;
-    width: 48%;
+    width: 49%;
+    margin-left: 0;
     display: inline-block;
 }
 
 .leftContainer {
-    width: 48%;
+    float: left;
+    width: 49%;
     display: inline-block;
 }
 
@@ -178,6 +180,14 @@ textarea:focus, input:focus{
     height: 11px;
 }
 
+.genderTextBGDesktop {
+    display: none;
+}
+
+.introDesktop {
+    display: none;
+}
+
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -209,8 +219,7 @@ textarea:focus, input:focus{
     }
 
     .rightContainer {
-        float: none;
-        margin-left: 20px;
+        float: right;
     }
 
     .startContainer {
@@ -219,5 +228,44 @@ textarea:focus, input:focus{
 
     .submitSurvey {
         text-align: center;
+    }
+
+    .genderTextBG {
+        display: none;
+    }
+
+    .genderTextBGDesktop {
+        z-index: -1;
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .intro {
+        display: none;
+    }
+
+    .introDesktop {
+        display: block;
+        padding-top: 95px;
+        line-height: 55px;
+    }
+
+    #genderTitleContainer {
+        width: 100%;
+    }
+
+    .bottomGenderContainer {
+        width: 840px;
+        margin: 0 auto;
+    }
+
+    .genderSelectContainer {
+        width: 840px;
+    }
+
+    .leftContainer {
+        text-align: left;
     }
 }

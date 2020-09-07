@@ -116,6 +116,28 @@ a {
   SurveyCard
 */
 
+.arrowContainer {
+  width: 900px; 
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 410px;
+  z-index: 5;
+}
+
+.arrowContainer #leftArrow {
+  cursor: pointer;
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+}
+
+.arrowContainer #rightArrow {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
 .questionContainer {
   width: 10000px;
   height: 648px;
@@ -688,7 +710,7 @@ a {
 
 .mainCard {
   opacity: 0;
-  transition: ease-in-out .4s;
+  transition: ease-in-out .15s;
 }
 
 .mainCard:nth-of-type(1) {
@@ -713,7 +735,7 @@ a {
   top: 0;
   background: linear-gradient(270deg, rgba(245, 245, 245, 0) 4.19%, #F5F5F5 100%);
   border-radius: 24px;
-  transition: ease-in-out 2s;
+  /* transition: ease-in-out .3s; */
 }
 
 .rightCardGrad {
@@ -726,7 +748,11 @@ a {
   top: 0;
   background: linear-gradient(90deg, rgba(245, 245, 245, 0) 0%, #F5F5F5 100%);
   border-radius: 24px;
-  /* transition: ease-in-out .5s; */
+  /* transition: ease-in-out .3s; */
+}
+
+.arrowContainer {
+  display: none;
 }
 
 /* 
@@ -796,6 +822,11 @@ a {
   .dimodamoTitle {
     display: none;
   }
+
+  .leftCardGrad, .rightCardGrad {
+    transition: ease-in-out 1s;
+  }
+
 
 }
 
@@ -919,5 +950,13 @@ a {
 
   #backgroundCard1, #backgroundCard2 {
     display: none;
+  }
+
+  .arrowContainer {
+    display: block;
+  }
+
+  .leftCardGrad, .rightCardGrad {
+    transition: opacity ease-in-out 1s;
   }
 }
