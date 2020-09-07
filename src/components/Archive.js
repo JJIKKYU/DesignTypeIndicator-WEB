@@ -24,9 +24,10 @@ class ArchiveCard extends Component {
             <Link to={"/result/" + result.type + "/" + this.props.gender}>
                 <div className="resultCard" id="archiveResultCard" >
                     <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
-                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + "_" + result.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="mainResultChar"/>
-                        <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
-                        <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
+                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
+                        <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
+                        <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
+ß                       <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <h1 id="mainResultTitle">
                             { 
                             String(result.title).split('\n').map((line,index) => {
@@ -125,10 +126,10 @@ class Archive extends Component {
                 </div>
             </div>
             <div className="secionContainer">
-                <ArchiveCardSection key={1} title="상상표출형" gender="M" count="4"></ArchiveCardSection>
-                <ArchiveCardSection key={2} title="자기성찰형" gender="F" count="8"></ArchiveCardSection>
-                <ArchiveCardSection key={3} title="현실직시형" gender="M" count="12"></ArchiveCardSection>
-                <ArchiveCardSection key={4} title="감정풍부형" gender="F" count="16"></ArchiveCardSection>
+                <ArchiveCardSection key={1} title="현실직시형" gender="M" count="4"></ArchiveCardSection>
+                <ArchiveCardSection key={2} title="감정풍부형" gender="F" count="8"></ArchiveCardSection>
+                <ArchiveCardSection key={3} title="자기성찰형" gender="M" count="12"></ArchiveCardSection>
+                <ArchiveCardSection key={4} title="상상표출형" gender="F" count="16"></ArchiveCardSection>
             </div>
 
             

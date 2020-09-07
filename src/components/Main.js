@@ -16,9 +16,11 @@ class CurrentCards extends Component {
             <Link to={"/result/" + result.type + "/" + this.props.gender}>
                 <div className="resultCard" id="archiveResultCard" >
                     <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
-                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + "_" + result.shape + "_" + Math.floor(Math.random() * 3 + 1) + ".svg"} alt="" id="mainResultChar"/>
-                        <img src={"../images/result/Type_" + result.color + "_" + result.shape + ".svg"} alt="" id="mainResultType"/>
-                        <img src={"../images/result/BC_BGP_" + result.color  + "_" + result.shape + ".svg"} alt="" id="mainResultPattern"/>
+                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
+
+                        <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
+                        <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
+                        <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <h1 id="mainResultTitle">
                             {
                                             
