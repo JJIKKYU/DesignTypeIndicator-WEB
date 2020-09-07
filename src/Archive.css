@@ -34,6 +34,7 @@
     font-size: 13px;
     line-height: 170%;
     color: var(--GRAY170);
+    word-break: keep-all;
 }
 
 .archiveCardTitleContainer {
