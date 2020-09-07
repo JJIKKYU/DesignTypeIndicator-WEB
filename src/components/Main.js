@@ -3,52 +3,21 @@ import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 import axios from "axios";
 import { fire, getFireResultTypeGender, getFireDBPeople, getFireResultType } from '../firebase.config'
-
-class CurrentCards extends Component {
-    render() {
-        const { result } = this.props;
-        const style = {
-            background : result.colorHex
-        }
-        
-        return(
-            <>
-            <Link to={"/result/" + result.type + "/" + this.props.gender}>
-                <div className="resultCard" id="archiveResultCard" >
-                    <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
-                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
-
-                        <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
-                        <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
-                        <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
-                        <h1 id="mainResultTitle">
-                            {
-                                            
-                            String(result.title).split('\n').map((line,index) => {
-                                return (<span key={index}>{line}<br/></span>)
-                            })
-                            }   
-                        </h1>
-                    </div>
-                    <p id="mainCardDate">{this.props.timeStamp}</p>
-                </div>
-            </Link>
-            </>
-        );
-    }
-}
+import { ArchiveCard } from './Archive.js'
+import Footer from './Footer.js'
 
 class Main extends Component {
     constructor(props) {
         super(props);
         fire();
         this.state = {
-            people : "",
+            people : "0",
             cardData : [
             ],
             resultList : [],
             finalCardResultList : [],
             mostPouplarResultListIndex : 0,
+            mostPouplarTypeTitle : "미움받기 쉽지않은 팔방미인 디자이너"
         }
     }
 
@@ -146,7 +115,7 @@ class Main extends Component {
 
     render() {
         document.title = "디자이너 성향검사 - 디자이너 모여 다 모여!"
-        const result = this.state.finalCardResultList.map((result, index) => (<CurrentCards key={index} index={index} result={result} gender={this.state.cardData[index].gender} timeStamp={this.state.cardData[index].timeStamp}></CurrentCards>));
+        const result = this.state.finalCardResultList.map((result, index) => (<ArchiveCard key={index} index={index} result={result} gender={this.state.cardData[index].gender} timeStamp={this.state.cardData[index].timeStamp} isMain={true}></ArchiveCard>));
         
         return (
             <>
@@ -154,7 +123,7 @@ class Main extends Component {
 
             <div className="main">
                 <div className="mainTopMargin"></   div>
-                <div className="mainPatternBGContainer"  data-parallax='{"y":12, "from-scroll": 0, "distance":80, "smoothness":0}'>
+                <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
                     <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                 </div>
@@ -171,13 +140,13 @@ class Main extends Component {
                 </div>
 
                 <div className="peopleBubbleContainer">
-                    <div className="leftBubble">
+                    <div className="leftBubble" data-parallax='{"x":-6, "from-scroll": 0, "distance":85, "smoothness":10}'>
                         <div className="titleBubblePolygon" id="leftBubblePolygon"></div>
                         <div className="bubbleTextContainer">
                             <span id="bubbleText">나도 몰랐던 나의 조별과제 포지션은?</span>
                         </div>
                     </div>
-                    <div className="rightBubble">
+                    <div className="rightBubble" data-parallax='{"x":6, "from-scroll": 0, "distance":85, "smoothness":10}'>
                     <div className="titleBubblePolygon" id="rightBubblePolygon"></div>
                         <div className="bubbleTextContainer">
                             <span id="bubbleText">미래의 나와 어울리는 디자인 분야는?</span>
@@ -187,13 +156,13 @@ class Main extends Component {
             </div>        
 
             <div className="peopleContainer">
-                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"y":9, "from-scroll": 0, "distance":85, "smoothness":5}'/>
-                <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop"/>
-                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"y":9, "from-scroll": 0, "distance":85, "smoothness":5}'/>
-                <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop"/>
+                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"x":-25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop" data-parallax='{"x":-25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"x":25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop" data-parallax='{"x":25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
             </div>
 
-            <div className="main">
+            <div className="mainBottom">
                 <div className="testStartContainer" >
                     <Link to="/surveyInformation">
                     <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
@@ -218,7 +187,7 @@ class Main extends Component {
                         </div>
                     </div>
                     <div className="dptiResults">
-                        <h1 className="secondMainTitle">최근 공유된 DPTI 결과</h1>
+                        <h1 className="secondMainTitle" id="dptiTypeMainTitle">최근 공유된 DPTI 결과</h1>
                         <div className="resultsContainer">
 
                         {result}
@@ -230,6 +199,7 @@ class Main extends Component {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
             </>
         );
     }

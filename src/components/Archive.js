@@ -2,14 +2,39 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
+import Footer from './Footer.js'
+
 
 class ArchiveCard extends Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props.result);
+        this.mainResultCard();
     }
 
+    componentDidMount() {
+        console.log(this.props.result);
+        this.archiveResultCardAddTag();
+    }
+    
+    // 메인일때만 Date 표시
+    mainResultCard = () => {
+        if (this.props.isMain === true) {
+            return (
+            <p id="mainCardDate">{this.props.timeStamp}</p>
+            );
+        } else {
+        }
+    } 
+
+    archiveResultCardAddTag = () => {
+        if (this.props.isResult === true) return;
+
+        const resultCards = document.getElementsByClassName("resultCard");
+        for (var i = 0; i < resultCards.length; ++i) {
+            resultCards[i].classList.add("archiveResultCard");
+        }
+    }
 
     render() {
         const { result } = this.props;
@@ -27,7 +52,7 @@ class ArchiveCard extends Component {
                         <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
                         <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
                         <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
-ß                       <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
+                        <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                         <h1 id="mainResultTitle">
                             { 
                             String(result.title).split('\n').map((line,index) => {
@@ -36,6 +61,7 @@ class ArchiveCard extends Component {
                             }   
                         </h1>
                     </div>
+                    {this.mainResultCard()}
                 </div>
             </Link>
 
@@ -43,6 +69,10 @@ class ArchiveCard extends Component {
             </>
         );
     }
+}
+
+ArchiveCard.defaultProps = {
+    isMain : false
 }
 
 class ArchiveCardSection extends Component {
@@ -90,7 +120,9 @@ class ArchiveCardSection extends Component {
             <>
             <div className="archiveCardsContainer">
                 <div className="archiveCardTitleContainer">
-                    <span className="archiveCardTitle">{this.props.title}</span>
+                    <p className="archiveCardTitle">{this.props.title}</p>
+                    <p className="archiveCardDesc">디자인 성향 검사 이하 DPTI (Design Pattern Type Indicator)는 디자인 성향을 파악할 수 있는 테스트입니다.
+도형, 색상, 캐릭터의 조합으로 결과를 나타내며 총 16가지 유형이 4개의 카테고리로 분류되어있습니다.</p>
                 </div>
                 <div className="resultsContainer">
                     {
@@ -109,13 +141,13 @@ class Archive extends Component {
             <>
             <StickyHeader></StickyHeader>
             <div className="main">
-                <div className="header">
+                <div className="header archiveHeader">
                     <div className="archiveTitleContainer">
                         <div className="archiveTitle">
                             <span>모든 DPTI 유형</span>
                         </div>
                         <div className="close">
-                            <img src="./images/close.png" alt="close"/>
+                            {/* <img src="./images/close.png" alt="close"/> */}
                         </div>
                     </div>
                 </div>
@@ -132,13 +164,10 @@ class Archive extends Component {
                 <ArchiveCardSection key={4} title="상상표출형" gender="F" count="16"></ArchiveCardSection>
             </div>
 
-            
-
-            
-            
+            <Footer></Footer>
             </>
         );
     }
 }
 
-export default Archive;
+export { Archive, ArchiveCard };

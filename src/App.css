@@ -18,6 +18,12 @@
   margin-right: 16px;
 }
 
+.mainBottom {
+  margin-right: 16px;
+  margin-left: 16px;
+  overflow: auto;
+}
+
 * {
   font-family: 'Noto Sans CJK KR', Arial, sans-serif;
   letter-spacing: -0.01em;
@@ -340,6 +346,7 @@ a {
   background: #FFFFFF;
   box-sizing: border-box;
   margin-top: 11px;
+  text-align: center;
 }
 
 .resultCard #resultTitle {
@@ -366,7 +373,7 @@ a {
 }
 
 #resultTop {
-  width: 100%;
+  width: 382px;
   height: 348px;
   padding: 40px 0px 24px 32px;
   box-sizing: border-box;
@@ -374,8 +381,13 @@ a {
   border-radius: 24px;
   position: relative;
   margin-bottom: 32px;
+  display: inline-block;
+  text-align: left;
 }
 
+#resultBottom {
+  text-align: left;
+}
 
 #resultDesc {
   font-style: normal;
@@ -727,13 +739,13 @@ a {
     width: 100%;
   }
 
+  #resultTop {
+    width: 100%;
+  }
+
   #resultPattern {
     /* width: 97%;
     height: 97%; */
-  }
-
-  #resultTop {
-    padding: 30px 26px 30px 26px;
   }
 
   #resultBottom {

@@ -82,8 +82,8 @@
 }
 
 .mainPatternBGContainer {
-    width: 100%;
-    position: relative;
+    width: 95%;
+    position: absolute;
     margin: 0 auto;
 }
 
@@ -93,6 +93,7 @@
     left: 50%;
     transform: translate(-50%);
     opacity: 0.4;
+    z-index: -1;
 }
 
 .titleContainer {
@@ -304,10 +305,10 @@
     margin-right: -16px;
     background: #FFFFFF;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-    border-radius: 16px;
+    border-radius: 24px 24px 0px 0px;
 
     padding: 16px;
-    box-sizing: border-box;
+    box-sizing: border-box;    
 }
 
 .secondMainTitle {
@@ -379,6 +380,7 @@
 
 #mainResultTop {
     width: 100%;
+    text-align: left;
     height: 255px;
     padding: 30px 0px 23px 23px;
     box-sizing: border-box;
@@ -537,7 +539,7 @@
     .mainBGPattner {
         width: 100%;
     }
-  }
+}
 
   /* 
   ##Device = Desktops
@@ -553,28 +555,69 @@
     .secondMainContainer {
         text-align: left;
         width: 1046px;
-        left: 50%;
-        transform: translate(-50%);
-        padding: 38px 75px 38px 75px;
+        padding: 80px 0px 38px 0px;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+    }
+
+    .secondMainTitle {
+        display: inline-block;
+        margin-top: 20px;
+    }
+    
+    .participantContainer {
+        display: inline-block;
+        float: right;
+        width: auto;
+        margin-top: 6px;
     }
 
     .participant {
+        border-top: 2px solid var(--ORANGE);
+        display: block;
+        overflow: auto;
+        width: 640px;
         display: inline-block;
+        text-align: left;
+    }
+
+    .dptiResults {
+        height: auto;
     }
 
     .dptiType {
+        border-top: 2px solid var(--ORANGE);
+        display: block;
+        width: 640px;
         display: inline-block;
-        margin-left: 59px;
+        text-align: left;
+        overflow: auto;
+        margin-top: 80px;
+    }
+
+    #dptiTypeText {
+        text-align: right;
+    }
+
+    .mainIconContainer {
+        display: none;
     }
 
     .moreDptiTypeContainer {
         position: relative;
         width: 100%;
+        bottom: auto;
         text-align: center;
+        margin-top: 20px;
     }
 
-    .dptiResults {
-        height: 670px;
+    #dptiTypeMainTitle {
+        padding-top: 20px;
+        border-top: 2px solid var(--ORANGE);  
+        width: 640px;
+        text-align: left;
+        margin-bottom: 60px;
     }
 
     .resultsContainer {
@@ -587,16 +630,37 @@
 
     .peopleContainer {
         width: 800px;
+        z-index: 2;
+        height: 257px;
         margin: 0 auto;
     }
 
     .peopleBubbleContainer {
-        width: 770px;
+        width: 320px;
         margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        margin-top: 50px;
+        transform: translate(-50%);
+    }
+
+    .mainPatternBGContainer {
+        position: absolute;
+    }
+
+    .leftBubble {
+        margin: 0;
+        float: left;
+        display: inline-block;
+        top: 50px;
     }
 
     .rightBubble {
-        margin-top: 0px;
+        margin: 0;
+        float: right;
+        display: inline-block;
+        margin-top: 20px;
+        top: -60px;
     }
 
     .leftPeople, .rightPeople {
@@ -607,6 +671,7 @@
     #rightPeopleDesktop {
         display: block;
         width: 170px;
+        height: 396px;
     }
 
     .mainBGPattner {
@@ -618,5 +683,12 @@
         display: block;
         position: absolute;
         z-index: -2;
+    }
+    .moreDptiTypeButton {
+        width: 360px;
+    }
+
+    .mainBottom {
+        text-align: center;
     }
 }

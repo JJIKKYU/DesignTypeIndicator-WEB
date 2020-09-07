@@ -5,6 +5,7 @@ import './Main.css';
 import './Gender.css';
 import './Calculator.css';
 import './Archive.css';
+import './Footer.css';
 
 // Survey.js
 import Survey from './components/Survey'
@@ -17,7 +18,7 @@ import Gender from './components/Gender'
 // Calc.js
 import Calc from './components/Calc'
 // Archive.js
-import Archive from './components/Archive'
+import { Archive } from './components/Archive'
 // Archive.js
 import ScrollToTop from './components/ScrollToTop'
 
