@@ -4,26 +4,26 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script src="./import/jquery-2.1.3.min.js"></script>
-    <script src="./import/jquery.parallax-scroll.js"></script>
+    <script src="http://dimodamo.com/import/jquery-2.1.3.min.js"></script>
+    <script src="http://dimodamo.com/import/jquery.parallax-scroll.js"></script>
     <script>
     Kakao.init('8f3a72c4fc9d2318eadb8d9f47c06ce1');
   </script>
   <script>
-    var scrollPercent;
+    // var scrollPercent;
 
-    $(window).on('scroll', function(){
-        var s = $(window).scrollTop(),
-            d = $(document).height(),
-            c = $(window).height();
+    // $(window).on('scroll', function(){
+    //     var s = $(window).scrollTop(),
+    //         d = $(document).height(),
+    //         c = $(window).height();
       
-        scrollPercent = (s / (d - c)) * 100;
+    //     scrollPercent = (s / (d - c)) * 100;
         
-        console.clear();
-        console.log(scrollPercent);
-        console.log((d-c)/100*scrollPercent);
+    //     console.clear();
+    //     console.log(scrollPercent);
+    //     console.log((d-c)/100*scrollPercent);
         
-      })
+    //   })
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -69,6 +69,12 @@
     position: sticky;
     top : 0;
     z-index: 9999;
+
+}
+
+.dimodamoSurveyHader {
+    position: relative !important;
+    position: -webkit-relative !important;
 }
 
 .dimodamoHeader img {

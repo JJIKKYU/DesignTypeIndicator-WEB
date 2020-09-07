@@ -133,7 +133,7 @@ class Main extends Component {
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
                     <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                 </div>
-                <div className="titleBubble" >
+                <div className="titleBubble" data-parallax='{"y":-12, "from-scroll": 0, "distance":30, "smoothness":0}'>
                     <img className="bubbleImg" src="./images/main/mainBubble.svg" alt=""/>
                     {/* <div className="titleBubblePolygon"></div> */}
                     <div className="titleContainer">
@@ -162,9 +162,9 @@ class Main extends Component {
             </div>        
 
             <div className="peopleContainer">
-                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"x":-25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"y":6, "from-scroll": 0, "distance":85, "smoothness":3}'/>
                 <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop" data-parallax='{"x":-25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
-                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"x":25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"y":6, "from-scroll": 0, "distance":85, "smoothness":3}'/>
                 <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop" data-parallax='{"x":25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
             </div>
 

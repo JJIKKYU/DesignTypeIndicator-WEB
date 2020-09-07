@@ -247,7 +247,6 @@ class Survey extends Component {
     prevBtnHiddenOrVisible() {
         const { number } = this.state;
         const leftArrow = document.getElementById("leftArrow");
-        const rightArrow = document.getElementById("rightArrow");
         const prev = document.getElementById("prev");
 
         if (number === 1) {
@@ -256,10 +255,6 @@ class Survey extends Component {
         } else if (number < 19) {
             prev.style.visibility = "visible";
             leftArrow.style.visibility = "visible";
-            rightArrow.style.visibility = "visible";
-
-        } else {
-            rightArrow.style.visibility = "hidden";
         }
     }
 
@@ -365,26 +360,6 @@ class Survey extends Component {
     leftArrowClickEvent = () => {
         this.moveCard(-1);
     }
-
-    rightArrowClickEvent = () => {
-        const { number } = this.state;
-
-        const checkCardList = document.getElementsByName(number - 1);
-        var notCheckedCount = 0;
-        for (var i = 0; i < checkCardList.length; ++i) {
-            if (checkCardList[i].checked === false) {
-                notCheckedCount += 1;
-            }
-        }
-
-        if (notCheckedCount === 5) {
-            alert("체크하고 넘어가주세요!");
-            return;
-        }
-
-        // 모두 선택했을 경우에만 넘어갈 수 있음
-        this.moveCard(1);
-    }
     
     render() {
         const questions = this.state.questionList.map((questionText, index) => (<SurveyCard key={index} number={index} questionText={questionText} moveCard={this.moveCard} surveyProgress={this.props.surveyProgress} answerList={this.state.answerList}></SurveyCard>));
@@ -392,7 +367,7 @@ class Survey extends Component {
 
         return (
             <>
-            <StickyHeader></StickyHeader>
+            <StickyHeader isSurveyPage={true}></StickyHeader>
             <div className="main">
             <Header moveCard={this.moveCard} number={this.state.number}></Header>
             <ProgressBar></ProgressBar>
@@ -400,7 +375,6 @@ class Survey extends Component {
             <div className="questions">
                 <div className="arrowContainer">
                     <img src="./images/survey/leftArrow.svg" alt="" id="leftArrow" onClick={this.leftArrowClickEvent}/>
-                    <img src="./images/survey/rightArrow.svg" alt="" id="rightArrow" onClick={this.rightArrowClickEvent}/>
                 </div>
                 <div className="questionContainer" id="questionContainer">
                     {questions}

@@ -12,7 +12,6 @@ class ArchiveCard extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.result);
         this.archiveResultCardAddTag();
     }
     

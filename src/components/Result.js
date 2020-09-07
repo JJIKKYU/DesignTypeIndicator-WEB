@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import axios from "axios";
 import StickyHeader from './StickyHeader.js'
+import Footer from './Footer'
 
 
 class Result extends Component {
@@ -88,8 +89,6 @@ class Result extends Component {
         this.loadItem();
     }       
 
-    
-
     componentDidUpdate() {
         this.checkJson();
     }
@@ -112,6 +111,20 @@ class Result extends Component {
         });
     };
 
+    lineBreak = (text) => {
+        const isDesktop = window.innerWidth >= 1280 ? true : false;
+
+        if (isDesktop === false) {
+            return (
+                String(text).split('\n').map((line,index) => {
+                    return (<span key={index}>{line}<br/></span>)
+                })
+            );
+        } else {
+            return (<span>{text}</span>);
+        }
+    } 
+
     render() {
         return (
             <>
@@ -122,13 +135,9 @@ class Result extends Component {
                         <div className="prev">
                             <span className="prevText"></span>
                         </div>
-                        <Link to="/">
-                            <div className="dimodamoTitle" id="dimodamoTitle">
-                                <img src="../../images/branding/title.svg" alt="titleIcon"/>
-                            </div>
-                        </Link>
+   
                         <div className="indicator">
-                            <span id="indicatorText">사용자님의 결과</span>
+                            <span id="indicatorText"></span>
                         </div>
                         <div className="close">
                             <img src="../../images/close.png" alt="close"/>
@@ -146,34 +155,61 @@ class Result extends Component {
                                 <img src={"../../images/result/BC_BG_P_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
                                 <h1 id="resultTitle">
                                     {
-                                        
                                     String(this.state.title).split('\n').map((line,index) => {
                                         return (<span key={index}>{line}<br/></span>)
                                     })
                                     }
                                 </h1>
                             </div>
-                            <div id="resultBottom">
-                                <span id="resultDesc">{this.state.desc}</span>
-                            </div>
                         </div>
                     </div>
-                    
                     <div className="rightCardContainer">
+                        <div className="dptiTypeContainerDesktop">
+                           <h1 className="cardTitle">나의 DPTI 결과</h1>
+                            
+                            <div className="typeColorNameContainere">
+                                {/* Type */}
+                                <div className="typeColorName">
+                                    <h1 className="typeColorNameTitle">TYPE</h1>
+                                    <img src="../../images/result/Type_Yellow_Desktop.svg" alt="" className="typeImg"/>
+                                </div>
+
+                                {/* Color */}
+                                <div className="typeColorName">
+                                    <h1 className="typeColorNameTitle">COLOR</h1>
+                                    <img src="../../images/result/Type_Yellow_Desktop.svg" alt="" className="typeImg"/>
+                                </div>
+
+                                {/* Name */}
+                                <div className="typeColorName" id="nameContainer">
+                                    <h1 className="typeColorNameTitle">COLOR</h1>
+                                    <p className="typeNameTitle">{this.state.title}</p>
+                                </div>
+                           </div>
+
+                        </div>
+                        <div id="resultBottom">
+                            <span id="resultDesc">{this.state.desc}</span>
+                        </div>
+                    
+                
                         <div className="positionCard">
                             <h1 className="cardTitle">나의 조별과제 포지션 타입</h1>
-                            <div className="mainIconContainer">
-                                <img src="../../images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
-                            </div>
-                            <div className="dptiTypeContainer">
-                                <span className="secondMainText" id="dptiTypeText">
-                                {
+
+                            <div className="positionIconTitleContainer">
+                                <div className="mainIconContainer resultIconContainer">
+                                    <img src="../../images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
+                                </div>
+                                <div className="dptiTypeContainer">
+                                    <span className="secondMainText resultMainText" id="dptiTypeText">
+                                    {
                                         
-                                String(this.state.position).split('\n').map((line,index) => {
-                                    return (<span key={index}>{line}<br/></span>)
-                                })
-                                }
-                                </span>
+                                        this.lineBreak(this.state.position)
+
+                                    }
+                                    
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -188,9 +224,7 @@ class Result extends Component {
                                     <span id="desitnTypeDesc1">
 
                                     {    
-                                    String(this.state.designDesc[0]).split('\n').map((line,index) => {
-                                        return (<span key={index}>{line}<br/></span>)
-                                    })
+                                        this.lineBreak(this.state.designDesc[0])
                                     }
                                     </span>
                                 </div>
@@ -204,9 +238,7 @@ class Result extends Component {
                                 <div className="designTypeDesc">
                                     <span id="desitnTypeDesc1">
                                     {    
-                                    String(this.state.designDesc[1]).split('\n').map((line,index) => {
-                                        return (<span key={index}>{line}<br/></span>)
-                                    })
+                                        this.lineBreak(this.state.designDesc[1])
                                     }
                                     </span>
                                 </div>
@@ -238,16 +270,16 @@ class Result extends Component {
                                 </span>
                             </div>
                         </div>
-
-                        <div className="buttonContainer">
-                            <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
-                            <input className="share" id="kakao-link-btn" type="button" value="카카오톡 공유하기"/>
-                        </div>
                     </div>
-                </div>
 
+                </div>
+                <div className="buttonContainer">
+                    <Link to="/"><input className="goHome" type="button" value="홈으로"/></Link>
+                    <input className="share" id="kakao-link-btn" type="button" value="카카오톡 공유하기"/>
+                </div>
                 
             </div>
+            <Footer></Footer>
             </>
         );
     }
