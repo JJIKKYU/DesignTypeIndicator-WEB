@@ -193,13 +193,13 @@ a {
   top: 0;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: none;
-  transition: ease-in-out .2s;
+  transition: ease-in-out .35s;
   opacity: 0;
+  pointer-events: none;
 }
 
 .feedbackCard {
-  visibility: hidden;
-  /* visibility: visible; */
+
 }
 
 #feedbackCard .feedbackText {
@@ -326,10 +326,8 @@ a {
   /* margin-top: 20px; */
   margin-bottom: 20px;
   opacity: 0;
-
+  pointer-events: none;
   transition: ease-in-out .5s;
-
-  visibility: hidden;
 }
 
 .submitSurvey input {
@@ -707,7 +705,7 @@ a {
 
 .mainCard {
   opacity: 0;
-  transition: ease-in-out .5s;
+  transition: ease-in-out .35s;
 }
 
 .mainCard:nth-of-type(1) {
@@ -732,7 +730,7 @@ a {
   top: 0;
   background: linear-gradient(270deg, rgba(245, 245, 245, 0) 4.19%, #F5F5F5 100%);
   border-radius: 24px;
-  transition: ease-in-out .5s;
+  transition: ease-in-out .35s;
 }
 
 .rightCardGrad {
@@ -744,7 +742,7 @@ a {
   top: 0;
   background: linear-gradient(90deg, rgba(245, 245, 245, 0) 0%, #F5F5F5 100%);
   border-radius: 24px;
-  transition: ease-in-out .5s;
+  transition: ease-in-out .35s;
   pointer-events: none;
 }
 

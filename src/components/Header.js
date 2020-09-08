@@ -19,7 +19,7 @@ class Header extends Component {
                         <span id="indicatorText">1/20</span>
                     </div>
                     <div className="close">
-                        <img src="./images/close.svg" alt="close"/>
+                        {/* <img src="./images/close.svg" alt="close"/> */}
                     </div>
                 </div>
             </div>

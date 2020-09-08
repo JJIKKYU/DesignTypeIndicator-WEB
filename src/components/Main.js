@@ -36,7 +36,7 @@ class Main extends Component {
     setScrollPosition = () => {
         const mainresults = document.getElementById("mainResultsContainer");
         const mainresultsMaxWidth = mainresults.scrollWidth;
-        const interval = 25;
+        const interval = 65;
         const desktopWidthSize = 1280;
 
         if (window.innerWidth < desktopWidthSize) {

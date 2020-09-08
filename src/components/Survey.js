@@ -208,6 +208,7 @@ class Survey extends Component {
 
         if (number === 1) {
             cards[index].style.opacity = enableOpacity;
+            cards[index].style.pointerEvents = "visible";
             
             leftCards[index].style.opacity = 0;
             rightCards[index].style.opacity = 0;
@@ -218,6 +219,7 @@ class Survey extends Component {
             cards[next].style.opacity = disableOpacity;
             cards[next].style.pointerEvents = "none";
             rightCards[next].style.opacity = 1;
+            leftCards[next].style.opacity = 0;
         } else if (number > 1) {
             // 설문조사 카드 활성화
             cards[index].style.opacity = 1;
@@ -239,7 +241,13 @@ class Survey extends Component {
                 cards[next].style.opacity = disableOpacity;
                 cards[next].style.pointerEvents = "none";
                 rightCards[next].style.opacity = enableOpacity;
-            }
+                leftCards[next].style.opacity = 0;
+
+                if (number <= 18) {
+                    cards[next+1].style.opacity = 0;
+                    cards[next+1].style.pointerEvents = "none";
+                }
+            } 
             
         }
 
@@ -291,12 +299,12 @@ class Survey extends Component {
             // 각각 문제 번호마다 피드백 줄 수 있도록
             if (number === 6 || number === 11 || number === 16 || number === 21) {
                 const feedbackCards = document.getElementsByClassName("feedbackCard");
-                feedbackCards[index].style.visibility = "visible";
                 feedbackCards[index].style.opacity = "1";
+                feedbackCards[index].style.pointerEvents = "visible";
                 // 마지막 카드일 경우에 제출하기 버튼 활성화
                 if (number === 21) {
-                    document.getElementById("sumbitSurvey").style.visibility = "visible";
-                    document.getElementById("sumbitSurvey").style.opacity = "1";
+                    document.getElementById("sumbitSurvey").style.opacity = 1;
+                    document.getElementById("sumbitSurvey").style.pointerEvents = "visible";
                     return;
                 }
                 
@@ -304,10 +312,10 @@ class Survey extends Component {
                     questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
                     this.progressBar();  
                     this.changeTheme();
-                    feedbackCards[index].style.visibility = "hidden";
                     feedbackCards[index].style.opacity = "0";
+                    feedbackCards[index].style.pointerEvents = "none";
                     this.cardGradiation();
-                }.bind(this), 700);
+                }.bind(this), 800);
             } else {
                 questionContainer.style.transform = "translate(" + this.state.currentXpos + "px)"
                 this.progressBar();  

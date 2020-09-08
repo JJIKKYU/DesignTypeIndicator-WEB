@@ -140,7 +140,7 @@ class Result extends Component {
                             <span id="indicatorText"></span>
                         </div>
                         <div className="close">
-                            <img src="../../images/close.png" alt="close"/>
+                            {/* <img src="../../images/close.png" alt="close"/> */}
                         </div>
                     </div>
                 </div>
@@ -171,13 +171,13 @@ class Result extends Component {
                                 {/* Type */}
                                 <div className="typeColorName">
                                     <h1 className="typeColorNameTitle">TYPE</h1>
-                                    <img src="../../images/result/Type_Yellow_Desktop.svg" alt="" className="typeImg"/>
+                                    <img src={"../../images/result/Result_Desktop_" + this.state.shape + "_" + this.state.color + "_Type.png"} alt="" className="typeImg"/>
                                 </div>
 
                                 {/* Color */}
                                 <div className="typeColorName">
                                     <h1 className="typeColorNameTitle">COLOR</h1>
-                                    <img src="../../images/result/Type_Yellow_Desktop.svg" alt="" className="typeImg"/>
+                                    <img src={"../../images/result/Result_Desktop_" + this.state.shape + "_" + this.state.color + "_Color.svg"} alt="" className="typeImg"/>
                                 </div>
 
                                 {/* Name */}
