@@ -36,7 +36,7 @@ class Main extends Component {
     setScrollPosition = () => {
         const mainresults = document.getElementById("mainResultsContainer");
         const mainresultsMaxWidth = mainresults.scrollWidth;
-        const interval = 65;
+        const interval = 70;
         const desktopWidthSize = 1280;
 
         if (window.innerWidth < desktopWidthSize) {
@@ -67,10 +67,10 @@ class Main extends Component {
                 mCardData.push(res.val()[i]);
             }
 
-            for (i = 0; i < this.state.resultList.length; ++i) {
-                for (var j = 0; j < mCardData.length; ++j) {
-                    if (this.state.resultList[i].type === mCardData[j].type) {
-                        mfinalCardResultList.push(this.state.resultList[i]);
+            for (i = 0; i < mCardData.length; ++i) {
+                for (var j = 0; j < this.state.resultList.length; ++j) {
+                    if (mCardData[i].type === this.state.resultList[j].type) {
+                        mfinalCardResultList.push(this.state.resultList[j]);
                     }
                 }
             }
@@ -104,7 +104,7 @@ class Main extends Component {
 
             this.setState ({
                 cardData : mCardData,
-                finalCardResultList : mfinalCardResultList.reverse(),
+                finalCardResultList : mfinalCardResultList,
                 people : mPeople,
                 mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title,
                 firebaseLoading : true,
@@ -140,9 +140,11 @@ class Main extends Component {
                 <div className="mainTopMargin"></   div>
                 <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
-                    <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
+                    <div data-parallax='{"y":-20, "from-scroll": 0, "distance":100, "smoothness":5}'>
+                        <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
+                    </div>
                 </div>
-                <div className="titleBubble" data-parallax='{"y":-12, "from-scroll": 0, "distance":30, "smoothness":0}'>
+                <div className="titleBubble" data-parallax='{"y":-20, "from-scroll": 0, "distance":30, "smoothness":5}'>
                     <img className="bubbleImg" src="./images/main/mainBubble.svg" alt=""/>
                     {/* <div className="titleBubblePolygon"></div> */}
                     <div className="titleContainer">
@@ -179,7 +181,7 @@ class Main extends Component {
 
             <div className="mainBottom">
                 <div className="testStartContainer" >
-                    <Link to="/surveyInformation">
+                    <Link to="/surveyInformation" className="testStartInnerContainer">
                     <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
                         <input type="button" value="TEST START" className="DPTITestStartButton"/>
                     </Link>
