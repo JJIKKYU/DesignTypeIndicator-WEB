@@ -246,7 +246,7 @@ a {
   line-height: 27px;
   color: var(--TEXT_SMALL);
 
-  margin-bottom: 50px;
+  margin-bottom: 57px;
 }
 
 .answerBox {
@@ -287,7 +287,7 @@ a {
   border-radius: 16px;
   width: 100%;
   height: 56px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 
   display: block;
   font-weight: bold;
@@ -396,6 +396,7 @@ a {
   margin-bottom: 32px;
   display: inline-block;
   text-align: left;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.12));
 }
 
 #resultBottom {
@@ -722,8 +723,8 @@ a {
 }
 
 .leftCardGrad {
-  visibility: hidden;
-  opacity: 0;
+  pointer-events: none;
+  opacity: 1;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -731,12 +732,11 @@ a {
   top: 0;
   background: linear-gradient(270deg, rgba(245, 245, 245, 0) 4.19%, #F5F5F5 100%);
   border-radius: 24px;
-  /* transition: ease-in-out .3s; */
+  transition: ease-in-out .5s;
 }
 
 .rightCardGrad {
-  visibility: hidden;
-  opacity: 0;
+  opacity: 1;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -744,7 +744,8 @@ a {
   top: 0;
   background: linear-gradient(90deg, rgba(245, 245, 245, 0) 0%, #F5F5F5 100%);
   border-radius: 24px;
-  /* transition: ease-in-out .3s; */
+  transition: ease-in-out .5s;
+  pointer-events: none;
 }
 
 .arrowContainer {
@@ -820,7 +821,7 @@ a {
   }
 
   .leftCardGrad, .rightCardGrad {
-    transition: opacity ease-in-out 1s;
+    transition: opacity ease-in-out .5s;
   }
 
 
@@ -873,9 +874,9 @@ a {
     text-align: left;
   }
 
-  .typeColorNameContainere {
+  .typeColorNameContainer {
     width: 100%;
-    height: 100px;
+    height: 110px;
     position: relative;
     overflow: auto;
   }
@@ -890,17 +891,17 @@ a {
 
   .typeColorName {
     top: 0;
-    left: 0;
+    left: -7px;
   }
 
   .typeColorName:nth-child(2) {
     top: 0;
-    left: 93px;
+    left: 69px;
   }
 
   .typeColorName:last-child {
     top: 0;
-    left: 186px;
+    left: 156px;
   }
 
   .typeColorNameTitle {
@@ -971,7 +972,7 @@ a {
     display: inline-block;
     height: auto;
     width: auto;
-    top: 10px;
+    top: 13px;
   }
 
   .designType {

@@ -209,25 +209,26 @@ class Survey extends Component {
         if (number === 1) {
             cards[index].style.opacity = enableOpacity;
             
-            leftCards[index].style.visibility = "hidden";
             leftCards[index].style.opacity = 0;
+            rightCards[index].style.opacity = 0;
 
             rightCards[number].style.display = "block";
             rightCards[number].style.opacity = 1;
 
             cards[next].style.opacity = disableOpacity;
-            rightCards[next].style.visibility = "visible";
+            cards[next].style.pointerEvents = "none";
             rightCards[next].style.opacity = 1;
         } else if (number > 1) {
             // 설문조사 카드 활성화
             cards[index].style.opacity = 1;
-            leftCards[index].style.visibility ="hidden";
-            rightCards[index].style.visibility = "hidden";
+            cards[index].style.pointerEvents = "visible";
+            leftCards[index].style.opacity = 0;
+            rightCards[index].style.opacity = 0;
 
             // 설문 이전 카드 비활성화
+            cards[prev].style.pointerEvents = "none";
             cards[prev].style.opacity = disableOpacity;
             leftCards[prev].style.opacity = enableOpacity;
-            leftCards[prev].style.visibility = "visible";
 
             if (number > 2)
             // 설문 2번 전 단계 비활성화
@@ -236,8 +237,8 @@ class Survey extends Component {
             if (number <= 19) {
                 // 설문 다음 카드 준활성화
                 cards[next].style.opacity = disableOpacity;
+                cards[next].style.pointerEvents = "none";
                 rightCards[next].style.opacity = enableOpacity;
-                rightCards[next].style.visibility = "visible";
             }
             
         }

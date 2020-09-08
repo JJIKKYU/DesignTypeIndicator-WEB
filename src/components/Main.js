@@ -6,6 +6,7 @@ import { fire, getFireResultTypeGender, getFireDBPeople, getFireResultType } fro
 import { ArchiveCard } from './Archive.js'
 import Footer from './Footer.js'
 
+
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +30,24 @@ class Main extends Component {
     componentDidMount() {
         this.loadItem();
         this.getFireBaseData();
+        this.setScrollPosition();
+    }
+
+    setScrollPosition = () => {
+        const mainresults = document.getElementById("mainResultsContainer");
+        const mainresultsMaxWidth = mainresults.scrollWidth;
+        const interval = 25;
+        const desktopWidthSize = 1280;
+
+        if (window.innerWidth < desktopWidthSize) {
+            mainresults.scrollTo(0, 0);
+        } else {
+            setInterval(() => {
+                if (mainresults.scrollLeft !== mainresultsMaxWidth) {
+                    mainresults.scrollTo(mainresults.scrollLeft + 1, 0);
+                }
+            }, interval);
+        }
     }
 
     // 파이어베이스에서 가져오는 데이터 관리
@@ -106,7 +125,6 @@ class Main extends Component {
         .catch(e => { 
             // API 호출이 실패할 경우
             console.error(e);
-
         });
     };
 
@@ -185,7 +203,7 @@ class Main extends Component {
                     </div>
                     <div className="dptiResults">
                         <h1 className="secondMainTitle" id="dptiTypeMainTitle">최근 공유된 DPTI 결과</h1>
-                        <div className="resultsContainer mainResultsContainer">
+                        <div className="resultsContainer mainResultsContainer" id="mainResultsContainer">
 
                         {result}
                         </div>

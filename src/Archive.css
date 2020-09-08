@@ -59,9 +59,9 @@
     font-size: 22px;
     line-height: 27px;
     color: var(--WHITE255);
-    text-shadow: var(--WHITE255_BORDER04);
-    -moz-text-shadow: var(--WHITE255_BORDER04);
-    -webkit-text-shadow: var(--WHITE255_BORDER04);
+    text-shadow: var(--WHITE255_BORDER02);
+    -moz-text-shadow: var(--WHITE255_BORDER02);
+    -webkit-text-shadow: var(--WHITE255_BORDER02);
 }
 
 .bottomCardContainer {

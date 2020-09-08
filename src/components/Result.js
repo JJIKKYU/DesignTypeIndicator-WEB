@@ -167,7 +167,7 @@ class Result extends Component {
                         <div className="dptiTypeContainerDesktop">
                            <h1 className="cardTitle">나의 DPTI 결과</h1>
                             
-                            <div className="typeColorNameContainere">
+                            <div className="typeColorNameContainer">
                                 {/* Type */}
                                 <div className="typeColorName">
                                     <h1 className="typeColorNameTitle">TYPE</h1>

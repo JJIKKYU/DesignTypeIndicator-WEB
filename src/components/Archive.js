@@ -45,7 +45,6 @@ class ArchiveCard extends Component {
     }
 
     loadingArchiveCard = () => {
-        console.log(this.props.firebaseLoading + "loadddding");
         const { result } = this.props;
 
         if (this.props.firebaseLoading === true) {
