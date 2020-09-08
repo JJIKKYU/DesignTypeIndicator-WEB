@@ -118,6 +118,7 @@ textarea:focus, input:focus{
     width: 49%;
     margin-left: 0;
     display: inline-block;
+    text-align: center;
 }
 
 .leftContainer {
@@ -204,7 +205,7 @@ textarea:focus, input:focus{
     ##Screen = 1281px to higher resolution desktops
     */
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
     .genderSelectContainer {
         width: 100%;
         text-align: center;
@@ -259,5 +260,29 @@ textarea:focus, input:focus{
 
     .leftContainer {
         text-align: left;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        text-align: center;
     }
+
+    #fButton {
+        right: auto;
+    }
+
+    .rightContainer img {
+        float: none;
+    }
+
+    .rightContainer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .rightContainer .genderButton {
+        margin-top: 0;
+    }
+
+
 }

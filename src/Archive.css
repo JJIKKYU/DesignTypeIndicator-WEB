@@ -140,7 +140,7 @@
   ##Screen = 1281px to higher resolution desktops
   */
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
     .archiveDesc {
         text-align: left;
         width: 1240px;

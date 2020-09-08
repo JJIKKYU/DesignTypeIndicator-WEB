@@ -9,10 +9,20 @@ class ArchiveCard extends Component {
     constructor(props) {
         super(props);
         this.mainResultCard();
+
+        this.state = {
+            firebaseLoading : this.props.firebaseLoading,
+            result : 
+                {
+                    "colorHex" : "#FFFFFF",
+                }
+            
+        }
     }
 
     componentDidMount() {
         this.archiveResultCardAddTag();
+        this.setDisableLoadingCard();
     }
     
     // 메인일때만 Date 표시
@@ -34,6 +44,38 @@ class ArchiveCard extends Component {
         }
     }
 
+    loadingArchiveCard = () => {
+        console.log(this.props.firebaseLoading + "loadddding");
+        const { result } = this.props;
+
+        if (this.props.firebaseLoading === true) {
+            this.setDisableLoadingCard();
+            return(
+                <>                
+                <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
+                <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
+                <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
+                <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
+                <h1 id="mainResultTitle">
+                    { 
+                    String(result.title).split('\n').map((line,index) => {
+                        return (<span key={index}>{line}<br/></span>)
+                    })
+                    }   
+                </h1>
+                </>
+            );
+        }
+    }
+
+    setDisableLoadingCard = () => {
+        if (this.props.firebaseLoading === false) return;
+        const loadingContainer = document.getElementsByClassName("loadingMainResultTop");
+        for (var i = 0; i < loadingContainer.length; ++i) {
+            loadingContainer[i].style.opacity = 0;
+        }
+    }
+
     render() {
         const { result } = this.props;
         const style = {
@@ -46,18 +88,14 @@ class ArchiveCard extends Component {
             
             <Link to={"/result/" + result.type + "/" + this.props.gender}>
                 <div className="resultCard" id="archiveResultCard" >
+                    <div id="loadingMainResultTop" className="loadingMainResultTop">
+                        <div className="loadRect"></div>
+                        <img src={"../images/result/BC_Char_Loading.svg"} alt="" id="loadingResultChar"/>
+                        <img src={"../images/result/BC_Type_Loading.svg"} alt="" id="loadingResultType"/>
+                        <img src={"../images/result/BC_Loading_Title.svg"} alt="" id="mainResultRoadingTitle"/>
+                    </div>
                     <div id="mainResultTop" className="mainResultTop archiveResultTop" style={style}>
-                        <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
-                        <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
-                        <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
-                        <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
-                        <h1 id="mainResultTitle">
-                            { 
-                            String(result.title).split('\n').map((line,index) => {
-                                return (<span key={index}>{line}<br/></span>)
-                            })
-                            }   
-                        </h1>
+                        {this.loadingArchiveCard()}
                     </div>
                     {this.mainResultCard()}
                 </div>
@@ -71,13 +109,8 @@ class ArchiveCard extends Component {
 
 ArchiveCard.defaultProps = {
     isMain : false,
-    result : {
-        "type" : "TI",
-        "color" : "Blue",
-        "colorHex" : "#32BECD",
-        "shape" : "Star",
-        "title" : "혼자\n있고싶은\n논리대장\n디자이너",
-    }
+    gender : "M",
+    firebaseLoading : true
 }
 
 class ArchiveCardSection extends Component {
@@ -99,16 +132,12 @@ class ArchiveCardSection extends Component {
         .get("../json/Result.json")
         .then (( {data }) => {
             this.setState({
-                loading : true,
                 resultList : data.Result
             });
         })
         .catch(e => { 
             // API 호출이 실패할 경우
             console.error(e);
-            this.setState ({
-                loading : false
-            });
         });
     };
 

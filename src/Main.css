@@ -395,7 +395,7 @@
     border-radius: 24px;
 }
 
-#mainResultChar {
+#mainResultChar, #loadingResultChar {
     position: absolute;
     width: 100%;
     right: 0;
@@ -405,13 +405,58 @@
     filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.04));
 }
 
-#mainResultType {
+#mainResultRoadingTitle {
+    height: 105px;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+}
+
+#mainResultType, #loadingResultType {
     width: 41px;
     position: absolute;
     bottom: 16px;
     z-index: 2;
     left: 32px;
 }
+
+#loadingResultType {
+    left: 24px;
+    width: 35px;
+}
+
+#loadingMainResultTop {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    text-align: left;
+    height: 100%;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 24px;
+    top: 0;
+    opacity: 1;
+    transition: ease-in-out .5s;
+}
+
+.loadRect {
+    width: 60px;
+    height: 100%;
+    position: absolute;
+    background: var(--WHITE245);
+    animation: loading 1.5s;
+}
+
+@keyframes loading {
+    from {
+      left: 0;
+      opacity: 1;
+    }
+    to {
+      left: 85%;
+      opacity: 0;
+    }
+  }
 
 #mainResultTitle {
     position: absolute;
@@ -551,7 +596,7 @@
   ##Screen = 1281px to higher resolution desktops
     */
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
 
     .DPTITestStartButton {
         width: 408px;
@@ -628,7 +673,7 @@
 
     .resultsContainer {
         position: relative;
-        height: auto;
+        height: 285px;
 
         /* width: 100vw;
         position: relative;
@@ -697,5 +742,10 @@
 
     .mainBottom {
         text-align: center;
+    }
+
+    .mainResultsContainer {
+        height: 325px;
+        padding-top: 8px;
     }
 }

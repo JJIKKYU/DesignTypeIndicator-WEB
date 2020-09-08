@@ -10,16 +10,16 @@ class Main extends Component {
     constructor(props) {
         super(props);
         fire();
+
         this.state = {
+            firebaseLoading : false,
             people : "0",
             cardData : [
-                {
-                    // gender : "F",
-                }
+               { gender : "M" }, { gender : "M" }, { gender : "M" }, { gender : "M" }, { gender : "M" },
             ],
             resultList : [],
             finalCardResultList : [
-
+                { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }
             ],
             mostPouplarResultListIndex : 0,
             mostPouplarTypeTitle : "미움받기 쉽지않은 팔방미인 디자이너",
@@ -29,42 +29,32 @@ class Main extends Component {
     componentDidMount() {
         this.loadItem();
         this.getFireBaseData();
-        console.log(this.state.finalCardResultList);
     }
 
     // 파이어베이스에서 가져오는 데이터 관리
-    getFireBaseData = () => {
+    getFireBaseData = async () => {
+
+        var mPeople = 0;
         getFireDBPeople().then(res => {
-            this.setState ({
-                people : res.val().people
-            }, () => {
-                // console.log(this.state.people);
-            });
+            mPeople = res.val().people;
         });
+
+        var mfinalCardResultList = []
+        var mCardData = []
 
         // 최근 진행한 카드리스트 파이어베이스에서 서치
         getFireResultTypeGender().then(res => {
-
-            var mCardData = []
-            for (var i = this.state.people; i > this.state.people - 5; --i) {
+            for (var i = mPeople; i > mPeople - 5; --i) {
                 mCardData.push(res.val()[i]);
-                this.setState ({
-                    cardData : mCardData
-                });
             }
 
-            var mfinalCardResultList = []
             for (i = 0; i < this.state.resultList.length; ++i) {
-                for (var j = 0; j < this.state.cardData.length; ++j) {
-                    if (this.state.resultList[i].type === this.state.cardData[j].type) {
+                for (var j = 0; j < mCardData.length; ++j) {
+                    if (this.state.resultList[i].type === mCardData[j].type) {
                         mfinalCardResultList.push(this.state.resultList[i]);
                     }
                 }
             }
-            
-            this.setState ({
-                finalCardResultList : mfinalCardResultList.reverse()
-            })  
         })
         
         // 가장 많은 DPTI 유형 파이어베이스에서 서치
@@ -94,7 +84,11 @@ class Main extends Component {
             }
 
             this.setState ({
-                mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title
+                cardData : mCardData,
+                finalCardResultList : mfinalCardResultList.reverse(),
+                people : mPeople,
+                mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title,
+                firebaseLoading : true,
             })
         });
     }
@@ -104,7 +98,6 @@ class Main extends Component {
         .get("../json/Result.json")
         .then (( {data }) => {
             this.setState({
-                loading : true,
                 resultList : data.Result
             }, () => {
                 // console.log(this.state.resultList);
@@ -113,15 +106,13 @@ class Main extends Component {
         .catch(e => { 
             // API 호출이 실패할 경우
             console.error(e);
-            this.setState ({
-                loading : false
-            });
+
         });
     };
 
     render() {
         document.title = "디자이너 성향검사 - 디자이너 모여 다 모여!"
-        const result = this.state.finalCardResultList.map((result, index) => (<ArchiveCard key={index} index={index} result={result} gender={this.state.cardData[index].gender} timeStamp={this.state.cardData[index].timeStamp} isMain={true}></ArchiveCard>));
+        const result = this.state.finalCardResultList.map((result, index) => (<ArchiveCard key={index} index={index} result={result} gender={this.state.cardData[index].gender} timeStamp={this.state.cardData[index].timeStamp} isMain={true} firebaseLoading={this.state.firebaseLoading}></ArchiveCard>));
         
         return (
             <>
@@ -194,7 +185,7 @@ class Main extends Component {
                     </div>
                     <div className="dptiResults">
                         <h1 className="secondMainTitle" id="dptiTypeMainTitle">최근 공유된 DPTI 결과</h1>
-                        <div className="resultsContainer">
+                        <div className="resultsContainer mainResultsContainer">
 
                         {result}
                         </div>

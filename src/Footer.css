@@ -5,7 +5,7 @@
     background: var(--ORANGE);
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
     .footer {
         display: block;
         text-align: center;
