@@ -23,7 +23,8 @@ class Main extends Component {
                 { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }, { "colorHex" : "#FFFFFF" }
             ],
             mostPouplarResultListIndex : 0,
-            mostPouplarTypeTitle : "미움받기 쉽지않은 팔방미인 디자이너",
+            mostPouplarTypeTitle : "",
+            mostPopularType : "",
         }
     }
 
@@ -36,7 +37,7 @@ class Main extends Component {
     setScrollPosition = () => {
         const mainresults = document.getElementById("mainResultsContainer");
         const mainresultsMaxWidth = mainresults.scrollWidth;
-        const interval = 70;
+        const interval = 30;
         const desktopWidthSize = 1280;
 
         if (window.innerWidth < desktopWidthSize) {
@@ -48,6 +49,23 @@ class Main extends Component {
                 }
             }, interval);
         }
+    }
+
+    countUpPeople = () => {
+        const { firebaseLoading, people } = this.state;
+        if (firebaseLoading === false) return 0;
+
+        const interval = 10;
+        const peopleText = document.getElementById("participantText");
+        var currentPeople = 0;
+
+        setInterval(() => {
+            if (currentPeople != people) {
+                currentPeople += 1;
+                peopleText.innerHTML = currentPeople + " 명";
+            }
+        }, interval);
+
     }
 
     // 파이어베이스에서 가져오는 데이터 관리
@@ -105,6 +123,7 @@ class Main extends Component {
             this.setState ({
                 cardData : mCardData,
                 finalCardResultList : mfinalCardResultList,
+                mostPopularType : mostPopularType,
                 people : mPeople,
                 mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title,
                 firebaseLoading : true,
@@ -140,7 +159,7 @@ class Main extends Component {
                 <div className="mainTopMargin"></   div>
                 <div className="mainPatternBGContainer">
                     <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
-                    <div data-parallax='{"y":-20, "from-scroll": 0, "distance":100, "smoothness":5}'>
+                    <div data-parallax='{"y":-20, "from-scroll": 0, "distance":100, "smoothness":10}'>
                         <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
                     </div>
                 </div>
@@ -191,14 +210,14 @@ class Main extends Component {
                     <div className="participant">
                         <h1 className="secondMainTitle">현재까지 응시자 수</h1>
                         <div className="participantContainer">
-                            <span className="secondMainText" id="participantText">{this.state.people} 명</span>
+                            <span className="secondMainText" id="participantText">{this.countUpPeople()} 명</span>
                         </div>
                     </div>
                     <div className="dptiType">
                         <h1 className="secondMainTitle">가장 많은 DPTI 유형</h1>
                         <div className="participantContainer">
                             <div className="mainIconContainer">
-                                <img src="./images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
+                                <img src={"./images/result/Icon_" + this.state.mostPopularType + ".svg"} alt="" className="dptiTypeIcon"/>
                             </div>
                             <p className="secondMainText" id="dptiTypeText">{this.state.mostPouplarTypeTitle}</p>
                         </div>

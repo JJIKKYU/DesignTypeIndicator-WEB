@@ -320,7 +320,7 @@
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
     border-radius: 24px 24px 0px 0px;
 
-    padding: 16px;
+    padding: 50px 16px 30px 16px;
     box-sizing: border-box;    
 }
 
@@ -329,6 +329,7 @@
     font-size: 16px;
     line-height: 24px;
     color: #AAAAAA;
+    margin-bottom: 0px;
 }
 
 .participantContainer {
@@ -337,7 +338,12 @@
     box-sizing: border-box;
     border-radius: 16px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 48px;
+}
+
+.participant {
+    padding-top: 16px;
+    border-top: 2px solid var(--ORANGE);
 }
 
 .secondMainText {
@@ -377,14 +383,19 @@
     width: 270px;
     font-size: 24px;
     line-height: 40px;
+    height: 80px;
 }
 
 .dptiType {
-    margin-top: 40px;
+    margin-top: 64px;
+    padding-top: 16px;
+    border-top: 2px solid var(--ORANGE);
 }
 
 .dptiResults {
-    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 2px solid var(--ORANGE);
+    margin-top: 64px;
     height: 490px;
 }
 
@@ -556,6 +567,7 @@
     line-height: 24px;
     text-align: center;
     color: #FFFFFF;
+    margin-top: 48px;
 }
 
 #mainBGPattneDesktop {
@@ -564,8 +576,16 @@
 
 .mainIconContainer {
     margin-bottom: 24px;
+    height: 128px;
 }
 
+.mainResultsContainer {
+    margin-top: 48px;
+}
+
+.dptiTypeIcon {
+    width: 128px;
+}
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -596,6 +616,11 @@
 
     .mainBGPattner {
         width: 100%;
+    }
+
+    .mainResultsContainer #archiveResultCard {
+        margin-left: 6px !important;
+        margin-right: 6px !important;
     }
 }
 
@@ -642,6 +667,10 @@
 
     .dptiResults {
         height: auto;
+        padding-top: 0;
+        margin-top: 0;
+        border: none;
+        margin-top: 40px;
     }
 
     .dptiType {
@@ -668,7 +697,7 @@
         bottom: auto;
         text-align: center;
         margin-top: 40px;
-        margin-bottom: 80px;
+        margin-bottom: 50px;
     }
 
     #dptiTypeMainTitle {
@@ -746,6 +775,7 @@
     }
     .moreDptiTypeButton {
         width: 360px;
+        margin-top: 0px;
     }
 
     .mainBottom {
@@ -756,5 +786,11 @@
         height: 325px;
         padding-top: 8px;
         overflow: hidden;
+        margin-top: 0px;
+    }
+
+    .dptiTypeIcon {
+        width: 64px;
+
     }
 }

@@ -16,7 +16,7 @@ class Result extends Component {
             title : "",
             desc : "",
             color : "",
-            colorHex : "",
+            colorHex : "#FFFFFF",
             shape : "",
             position : "",
             design : ["",""],
@@ -198,7 +198,7 @@ class Result extends Component {
 
                             <div className="positionIconTitleContainer">
                                 <div className="mainIconContainer resultIconContainer">
-                                    <img src="../../images/result/IconTest.svg" alt="" className="dptiTypeIcon"/>
+                                    <img src={"../../images/result/Icon_" + this.state.resultType +".svg"} alt="" className="dptiTypeIcon"/>
                                 </div>
                                 <div className="dptiTypeContainer">
                                     <span className="secondMainText resultMainText" id="dptiTypeText">
