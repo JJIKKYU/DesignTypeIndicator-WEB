@@ -112,7 +112,7 @@ class Main extends Component {
             }
 
             var mostPouplarResultListIndex = 0;
-            mostPopularType = mostPopularType[mostPopularTypeIndex];
+            var mMostPopularType = mostPopularType[mostPopularTypeIndex];
             for (i = 0; i < this.state.resultList.length; ++i) {
                 if (this.state.resultList[i].type === mostPopularType) {
                     mostPouplarResultListIndex = i;
@@ -120,12 +120,14 @@ class Main extends Component {
                 } 
             }
 
+            var mMostPopularTypeTitle = this.state.resultList[mostPouplarResultListIndex].title;
+
             this.setState ({
                 cardData : mCardData,
                 finalCardResultList : mfinalCardResultList,
-                mostPopularType : mostPopularType,
+                mostPopularType : mMostPopularType,
                 people : mPeople,
-                mostPouplarTypeTitle : this.state.resultList[mostPouplarResultListIndex].title,
+                mostPouplarTypeTitle : mMostPopularTypeTitle,
                 firebaseLoading : true,
             })
         });

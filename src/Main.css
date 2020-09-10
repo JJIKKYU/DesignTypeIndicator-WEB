@@ -271,6 +271,7 @@
     text-align: center;
     position: relative;
     height: 140px;
+    overflow: hidden;
 }
 
 .testStartInnerContainer {
@@ -648,12 +649,16 @@
         display: inline-block;
         margin-top: 20px;
     }
+
+    .secondMainTitle:first-child {
+        margin-top: 5px;
+    }
     
     .participantContainer {
         display: inline-block;
         float: right;
         width: auto;
-        margin-top: 6px;
+        margin-top: 0px;
     }
 
     .participant {
