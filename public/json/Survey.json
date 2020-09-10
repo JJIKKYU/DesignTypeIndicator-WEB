@@ -51,7 +51,7 @@
             "color" : "var(--BLUE)"
         },
         "pink" : {
-            "text" : "결과보기 버튼을 눌러줘!",
+            "text" : "'결과보기' 버튼을 눌러줘!",
             "img" : "./images/feedback/feedbackPink.svg",
             "bg" : "./images/feedback/feedbackPinkBG.svg",
             "color" : "var(--PINK)"
