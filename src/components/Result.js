@@ -3,7 +3,9 @@ import { Link } from "react-router-dom"
 import axios from "axios";
 import StickyHeader from './StickyHeader.js'
 import Footer from './Footer'
-
+import Lottie from 'react-lottie'
+import { getType } from './LottieDatas.js'
+  
 
 class Result extends Component {
     constructor(props) {
@@ -126,6 +128,20 @@ class Result extends Component {
     } 
 
     render() {
+        let dataName = this.state.gender + "_" + this.state.resultType; 
+
+        const lottieOptions = {
+            animationData: getType("F_FI"),   
+            loop: true,        
+            autoplay: true,  
+            rendererSettings: {
+              className: 'add-class', // svg에 적용
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          };
+
+          console.log(dataName);
+
         return (
             <>
             <StickyHeader isResultPage={true}></StickyHeader>
@@ -149,7 +165,22 @@ class Result extends Component {
                     <div className="leftCardContainer">
                         <div className="resultCard">
                             <div id="resultTop">
-                                <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="resultChar"/>
+                                {/* <img src={"../../images/result/BC_Char_" + this.state.color + "_" + this.state.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="resultChar"/> */}
+
+
+                                {/* 로띠 적용 */}
+                                <Lottie
+                                    options={lottieOptions}
+                                    isClickToPauseDisabled={false}
+                                    style={{zIndex: 999, position: 'absolute', bottom: 0, right: 0}}
+                                    eventListeners={[
+                                        {
+                                            eventName: 'complete',
+                                            callback: () => console.log('the animation completed'),
+                                        },
+                                    ]}
+                                />
+
                                 <img src={"../../images/result/BC_BG_G_" + this.state.color + ".svg"} id="resultGradient" alt=""/>
                                 <img src={"../../images/result/BC_Type_" + this.state.shape + ".svg"} alt="" id="resultType"/>
                                 <img src={"../../images/result/BC_BG_P_" + this.state.shape + ".svg"} alt="" id="resultPattern"/>
