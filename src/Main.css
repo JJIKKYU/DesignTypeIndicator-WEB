@@ -9,7 +9,7 @@
 }
 
 :root {
-    --systemColor : #FF9173;
+    --systemColor : #FF915A;
     --systemColorBorder : -0.2px 0 var(--systemColor), 0 0.2px var(--systemColor), 0.2px 0 var(--systemColor), 0 -0.2px var(--systemColor);
 
     --whiteColor : #FFFFFF;
@@ -20,30 +20,30 @@
     --textColor : #3C3C3C;
     --textColorBorder01 : -0.1px 0 var(--textColor), 0 0.1px var(--textColor), 0.1px 0 var(--textColor), 0 -0.1px var(--textColor);
 
-    --ORANGE : #FF820F;
+    --ORANGE : #FF915A;
     --ORANGE_BORDER02 : -0.2px 0 var(--ORANGE), 0 0.2px var(--ORANGE), 0.2px 0 var(--ORANGE), 0 -0.2px var(--ORANGE);
 
-    --ORANGE_ACTIVE : #FF6900;
+    --ORANGE_ACTIVE : #FF8737;
     --ORANGE_UNACTIVE : #FFD2AA;
 
-    --YELLOW : #FFD25F;
+    --YELLOW : #FAD26E;
     --YELLOW_LIGHT : #FFF0C8;
-    --YELLOW_DARK : #FFB428;
+    --YELLOW_DARK : #FABE41;
 
-    --PINK : #FF6991;
+    --PINK : #FAA0B4;
     --PINK_LIGHT : #FFDCE6;
-    --PINK_DARK : #F04682;
+    --PINK_DARK : #FA7D9B;
 
-    --BLUE : #32D7E1;
+    --BLUE : #78D7E1;
     --BLUE_LIGHT : #BEFAFF;
-    --BLUT_DARK : #32BECD;
+    --BLUT_DARK : #32C3D7;
     
-    --PURPLE : #5F8CFF;
+    --PURPLE : #7896FF;
     --PURPLE_LIGHT : #D2DCFF;
-    --PURPLE_DARK : #3C6EE6;
+    --PURPLE_DARK : #5A7DF5;
 
-    --TEXT_SMALL : #505050;
-    --TEXT_BIG : #3C3C3C;
+    --TEXT_SMALL : #141414;
+    --TEXT_BIG : #282828;
     --TEXT_BIG_BORDER01 : -0.1px 0 var(--TEXT_BIG), 0 0.1px var(--TEXT_BIG), 0.1px 0 var(--TEXT_BIG), 0 -0.1px var(--TEXT_BIG);
 
 

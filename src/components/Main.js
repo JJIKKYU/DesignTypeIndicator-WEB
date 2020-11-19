@@ -60,7 +60,7 @@ class Main extends Component {
         var currentPeople = 0;
 
         setInterval(() => {
-            if (currentPeople != people) {
+            if (currentPeople !== people) {
                 currentPeople += 1;
                 peopleText.innerHTML = currentPeople + " 명";
             }
