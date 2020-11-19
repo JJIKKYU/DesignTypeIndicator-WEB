@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 import StickyHeader from './StickyHeader.js'
 import Footer from './Footer.js'
+import Lottie from 'react-lottie'
+import { getType } from './LottieDatas.js'
 
 
 class ArchiveCard extends Component {
@@ -49,9 +51,36 @@ class ArchiveCard extends Component {
 
         if (this.props.firebaseLoading === true) {
             this.setDisableLoadingCard();
+
+            let dataName = this.props.gender + "_" + result.type; 
+
+            console.log(dataName);
+
+            const lottieOptions = {
+                animationData: getType(dataName),   
+                loop: true,        
+                autoplay: true,  
+                rendererSettings: {
+                className: 'add-class', // svg에 적용
+                preserveAspectRatio: 'xMidYMid slice'
+                }
+            };
+            
             return(
                 <>                
-                <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/>
+                {/* <img src={"../images/result/BC_Char_" + result.color + "_" + this.props.gender + Math.floor(Math.random() * 4 + 1) + "_" + Math.floor(Math.random() * 4 + 1) + ".svg"} alt="" id="mainResultChar"/> */}
+                {/* 로띠 적용 */}
+                <Lottie
+                    options={lottieOptions}
+                    isClickToPauseDisabled={false}
+                    style={{zIndex: 999, position: 'absolute', bottom: 0, right: 0}}
+                    eventListeners={[
+                        {
+                            eventName: 'complete',
+                            callback: () => console.log('the animation completed'),
+                        },
+                    ]}
+                />
                 <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                 <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
                 <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>

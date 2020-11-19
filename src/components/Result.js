@@ -131,7 +131,7 @@ class Result extends Component {
         let dataName = this.state.gender + "_" + this.state.resultType; 
 
         const lottieOptions = {
-            animationData: getType("F_FI"),   
+            animationData: getType(dataName),   
             loop: true,        
             autoplay: true,  
             rendererSettings: {
@@ -139,8 +139,6 @@ class Result extends Component {
               preserveAspectRatio: 'xMidYMid slice'
             }
           };
-
-          console.log(dataName);
 
         return (
             <>
