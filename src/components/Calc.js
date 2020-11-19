@@ -76,7 +76,7 @@ class Calc extends Component {
             isTypeTF = true;
         }
         
-        // console.log(typeEI + ", " + typeSN + ", " + typeTF + ", " + typeJP);
+        console.log(typeEI + ", " + typeSN + ", " + typeTF + ", " + typeJP);
         // console.log("isTypeEI : " + isTypeEI + ", isTypeSN : " + isTypeSN + ", isTypeJP : " + isTypeJP + ", isTypeTF : " + isTypeTF);
 
         var figureType = "";

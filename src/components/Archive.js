@@ -83,7 +83,7 @@ class ArchiveCard extends Component {
                 />
                 <img src={"../images/result/BC_Type_" + result.shape + ".svg"} alt="" id="mainResultType"/>
                 <img src={"../../images/result/BC_BG_P_" + result.shape + ".svg"} alt="" id="resultPattern"/>
-                <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/>
+                {/* <img src={"../images/result/BC_BG_G_" + result.color + ".svg"} id="resultGradient" alt=""/> */}
                 <h1 id="mainResultTitle">
                     { 
                     String(result.title).split('\n').map((line,index) => {

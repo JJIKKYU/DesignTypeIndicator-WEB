@@ -49,15 +49,16 @@ class SurveySelectBox extends Component {
         var questionNum = this.props.questionNum + 1;
         var reverse = 1;
 
-        if (questionNum === 3 || questionNum === 5 || questionNum === 6 || questionNum === 8 ||
+        if (questionNum === 3 || questionNum === 4 || questionNum === 5 || questionNum === 6 || questionNum === 8 ||
             questionNum === 10 || questionNum === 12 || questionNum === 15 || questionNum === 17 ||
             questionNum === 19 || questionNum === 20) {
-            reverse = -1;
-        } else {
             reverse = 1;
+        } else {
+            reverse = -1;
         }
         this.props.moveCard(1);
         this.props.surveyProgress([targetName], targetValue * reverse);
+        console.log("targetValue" + targetValue * reverse);
     }
 
     render() {
