@@ -68,7 +68,7 @@ class Result extends Component {
             content: {
                 title: document.title,
                 description: "나만의 디자인 성향을 찾아보세요!",
-                imageUrl: "http://dimodamo.com/images/thumb/Thumb.png",
+                imageUrl: "http://dimodamo.com/images/thumb/Thumbnail.png",
                 link: {
                 webUrl: document.location.href,
                 mobileWebUrl: document.location.href

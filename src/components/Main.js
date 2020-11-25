@@ -212,7 +212,7 @@ class Main extends Component {
                     <div className="participant">
                         <h1 className="secondMainTitle">현재까지 응시자 수</h1>
                         <div className="participantContainer">
-                            <span className="secondMainText" id="participantText">{this.countUpPeople()} 명</span>
+                            <span className="secondMainText" id="participantText">{this.state.people} 명</span>
                         </div>
                     </div>
                     <div className="dptiType">
