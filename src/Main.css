@@ -297,9 +297,7 @@
 }
 
 .testStartInnerContainer {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    position: relative;
 }
 
 .testSubTitle {
@@ -312,23 +310,68 @@
     margin-bottom: 6px;
 }
 
+.newParticipant {
+    margin: 0px;
+    padding: 0px;
+}
+
 .DPTITestStartButton {
     cursor: pointer;
-    width: 204px;   
-    height: 56px;
-    background: var(--ORANGE_ACTIVE);
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    height: 52px;
+    background: #3C3C3C;
     border-radius: 16px;
 
-    font-family: Nunito;
+    font-family: GmarketSans;
     font-style: normal;
     font-weight: 900;
+    font-size: 21px;
+    text-align: center;
+    color: var(--WHITE255);
+    border: none;
+    margin-bottom: 12px;
+}
+
+.DPTIParticipantContainer {
+    width: 100%;
+    height: 52px;
+    background: var(--systemColor);
+    border-radius: 16px;
+
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
     font-size: 21px;
     line-height: 29px;
     text-align: center;
     color: var(--WHITE255);
     border: none;
-    margin-bottom: 50px;
+    position: relative;
+}
+
+.newParticipantTitle {
+    font-family: GmarketSans;
+    color: var(--WHITE245);
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-block;
+    position: absolute;
+    left: 24px;
+    top: 12px;
+    text-align: left;
+}
+
+.newParticipantCountTitle {
+    position: absolute;
+    right: 24px;
+    top: 12px;
+    font-family: GmarketSans;
+    color: var(--WHITE245);
+    font-weight: 400;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+    
 }
 
 /* SecondMainContainer */
@@ -866,7 +909,7 @@
     letter-spacing: 10px;
     color: white;
     -webkit-text-stroke: 1px var(--ORANGE_ACTIVE);
-    line-height: 15px;
+    line-height: 4px;
 }
 
 .mainSubTitle {
@@ -875,4 +918,30 @@
     font-size: 9px;
     color: var(--ORANGE_ACTIVE);
     letter-spacing: -0.5px;
+}
+
+.mainTitleImageContainer {
+    width: 100%;
+    height: 335px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.mainTitleBubbleContainer {
+    position: relative;
+    height: 50px;
+    margin-top: 37px;
+    margin-bottom: 10px;
+}
+
+.mainTitleBubble {
+    position: absolute;
+    right: 41px;
+}
+
+.mainTitleHumanImage {
+    height: 230px;
+    position: absolute;
+    right: -57px;
 }

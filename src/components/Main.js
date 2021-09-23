@@ -164,57 +164,28 @@ class Main extends Component {
                 <div className="newMainTitleLine"></div>       
                 <h3 className="mainSubTitle">Designer Personality Type Indicator</h3>
             </div>
-            <StickyHeader></StickyHeader>
 
-            <div className="main">
-                <div className="mainTopMargin"></   div>
-                <div className="mainPatternBGContainer">
-                    <img src="./images/main/mainPattern.svg" alt="" className="mainBGPattner"/>
-                    <div data-parallax='{"y":-20, "from-scroll": 0, "distance":100, "smoothness":10}'>
-                        <img src="./images/main/mainPatternDesktop.svg" alt="" className="mainBGPattner" id="mainBGPattneDesktop"/>
-                    </div>
+            <div className="mainTitleImageContainer">
+                <div className="mainTitleBubbleContainer">
+                    <img src="./images/main/mainTitleBubble.svg" alt="" className="mainTitleBubble"/>
                 </div>
-                <div className="titleBubble" data-parallax='{"y":-20, "from-scroll": 0, "distance":30, "smoothness":5}'>
-                    <img className="bubbleImg" src="./images/main/mainBubble.svg" alt=""/>
-                    {/* <div className="titleBubblePolygon"></div> */}
-                    <div className="titleContainer">
-                        <span className="subTitle">디자이너 모여라! 다 모여라!</span>
-                        <img src="./images/main/dimodamo.svg" alt="DIMODAMO" className="logo"/>
-                        <div className="line"></div>
-                        <img src="./images/main/dptiTest.svg" alt="DPTI TEST" className="logoDPTI"/>
-                        <span className="dptiSubTitle">Design Pattern Type Indicator</span>
-                    </div>
-                </div>
-
-                <div className="peopleBubbleContainer">
-                    <div className="leftBubble" data-parallax='{"x":-6, "from-scroll": 0, "distance":85, "smoothness":10}'>
-                        <div className="titleBubblePolygon" id="leftBubblePolygon"></div>
-                        <div className="bubbleTextContainer">
-                            <span id="bubbleText">나도 몰랐던 나의 조별과제 포지션은?</span>
-                        </div>
-                    </div>
-                    <div className="rightBubble" data-parallax='{"x":6, "from-scroll": 0, "distance":85, "smoothness":10}'>
-                    <div className="titleBubblePolygon" id="rightBubblePolygon"></div>
-                        <div className="bubbleTextContainer">
-                            <span id="bubbleText">미래의 나와 어울리는 디자인 분야는?</span>
-                        </div>
-                    </div>
-                </div>       
-            </div>        
-
-            <div className="peopleContainer">
-                <img src="./images/main/leftPeople.png" alt="" className="leftPeople" data-parallax='{"y":6, "from-scroll": 0, "distance":85, "smoothness":3}'/>
-                <img src="./images/main/leftPeopleDesktop.svg" alt="" className="leftPeople" id="leftPeopleDesktop" data-parallax='{"x":-25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
-                <img src="./images/main/rightPeople.png" alt="" className="rightPeople" data-parallax='{"y":6, "from-scroll": 0, "distance":85, "smoothness":3}'/>
-                <img src="./images/main/rightPeopleDesktop.svg" alt="" className="rightPeople" id="rightPeopleDesktop" data-parallax='{"x":25, "from-scroll": 0, "distance":85, "smoothness":10}'/>
+                
+                <img src="./images/main/mainTitleImage.svg" alt="" className="mainTitleHumanImage"/>
             </div>
+            
 
             <div className="mainBottom">
                 <div className="testStartContainer" >
                     <Link to="/surveyInformation" className="testStartInnerContainer">
-                    <p className="testSubTitle">지금 바로 결과를 확인해보세요!</p>
-                        <input type="button" value="TEST START" className="DPTITestStartButton"/>
+                        <input type="button" value="테스트 START!" className="DPTITestStartButton"/>
                     </Link>
+
+                    <div className="DPTIParticipantContainer">
+                        <p className="newParticipant">
+                            <span className="newParticipantTitle">지금까지 참여자 수</span>
+                            <span className="newParticipantCountTitle">{this.state.people} 명</span>
+                        </p>
+                    </div>
                 </div>
 
                 <div className="secondMainContainer">
