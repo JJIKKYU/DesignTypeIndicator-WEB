@@ -8,6 +8,28 @@
   font-style: normal;
 }
 
+/* 지마켓 산스 */
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
 :root {
     --systemColor : #FF915A;
     --systemColorBorder : -0.2px 0 var(--systemColor), 0 0.2px var(--systemColor), 0.2px 0 var(--systemColor), 0 -0.2px var(--systemColor);
@@ -798,4 +820,59 @@
         width: 64px;
 
     }
+}
+
+
+/* ------------------------------------------- */
+
+/* 새로운 메인 작업 */
+
+.newMain {
+    margin-top: 40px;
+    margin-left: 22px;
+}
+
+.newMainLogo {
+    width: 61px;
+    height: 8px;
+}
+
+.newMainTitleLine {
+    width: 180px;
+    height: 1px;
+    background: var(--ORANGE_ACTIVE);
+}
+
+.mainTitleTop {
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 48px;
+    color: var(--ORANGE_ACTIVE);
+    line-height: 18px;
+}
+
+.mainTitleBottom {
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--ORANGE_ACTIVE);
+    line-height: 24px;
+}
+
+.mainTitleDpti {
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: 10px;
+    color: white;
+    -webkit-text-stroke: 1px var(--ORANGE_ACTIVE);
+    line-height: 15px;
+}
+
+.mainSubTitle {
+    font-family: "GmarketSans";
+    font-weight: 500;
+    font-size: 9px;
+    color: var(--ORANGE_ACTIVE);
+    letter-spacing: -0.5px;
 }

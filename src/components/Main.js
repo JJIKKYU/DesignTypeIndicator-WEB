@@ -155,6 +155,15 @@ class Main extends Component {
         
         return (
             <>
+            <div className="newMain">
+                <img src="./images/main/dimodamo.svg" alt="DIMODAMO" className="newMainLogo"/>
+                <div className="newMainTitleLine"></div>       
+                <h1 className="mainTitleTop">디자이너</h1>
+                <h1 className="mainTitleBottom">성향 테스트</h1>
+                <h1 className="mainTitleDpti">DPTI</h1>
+                <div className="newMainTitleLine"></div>       
+                <h3 className="mainSubTitle">Designer Personality Type Indicator</h3>
+            </div>
             <StickyHeader></StickyHeader>
 
             <div className="main">
