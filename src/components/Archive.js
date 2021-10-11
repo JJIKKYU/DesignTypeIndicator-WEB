@@ -92,6 +92,7 @@ class ArchiveCard extends Component {
                     }   
                 </h1>
                 </>
+                
             );
         }
     }

@@ -223,7 +223,7 @@ class Main extends Component {
                         <h3 className="title">가장 많은 디자인 분야</h3>
                     </div>
                     <div className="newResultCardContainerDivideLine"></div>
-                    <div className="newResultCardContainerIn" id="newDesignTypeContainer">
+                    <div className="newResultCardContainerIn" id="newManyDesignContainer">
                         <div className="firstDeisgnTypeContainer">
                             <h3 className="designTypeNumber">1</h3>
                             <h3 className="designType">텍스트 입력</h3>
@@ -245,15 +245,7 @@ class Main extends Component {
             <div className="mainBottom">
 
                 <div className="secondMainContainer">
-                    <div className="dptiType">
-                        <h1 className="secondMainTitle">가장 많은 DPTI 유형</h1>
-                        <div className="participantContainer">
-                            <div className="mainIconContainer">
-                                <img src={"./images/result/Icon_" + this.state.mostPopularType + ".svg"} alt="" className="dptiTypeIcon"/>
-                            </div>
-                            <p className="secondMainText" id="dptiTypeText">{this.state.mostPouplarTypeTitle}</p>
-                        </div>
-                    </div>
+                    
                     <div className="dptiResults">
                         <h1 className="secondMainTitle" id="dptiTypeMainTitle">최근 공유된 DPTI 결과</h1>
                         <div className="resultsContainer mainResultsContainer" id="mainResultsContainer">
@@ -263,7 +255,8 @@ class Main extends Component {
                     </div>
 
                     <div className="moreDptiTypeContainer">
-                        <Link to="/archive"><input type="button" value="모든 DPTI 유형 보기" className="moreDptiTypeButton"/></Link>
+                        <Link to="/archive"><input type="button" value="모든 유형 보기" className="moreDptiTypeButton"/></Link>
+                        <Link to="/archive"><input type="button" value="친구에게 공유하기" className="shareButton"/></Link>
                     </div>
                 </div>
             </div>
