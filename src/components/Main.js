@@ -210,7 +210,7 @@ class Main extends Component {
                     </div>
                     <div className="newResultCardContainerDivideLine"></div>
                     <div className="newResultCardContainerIn" id="newResultCardContainerInDesignTool">
-                        <img src={"./images/result/Icon_" + this.state.mostPopularType + ".svg"} alt="" className="newResultImage" id="newResultToolIcon"/>
+                        <img src={"./images/tool/" + this.state.mostPopularType + ".png"} alt="" className="newResultImage" id="newResultToolIcon"/>
                         <div className="newResultTypeTitleContainer" id="newDesignToolContainer">
                             <h3 className="newResultTypeTitle" id="designToolTitle">텍스트를 입력해 주세</h3>
                         </div>

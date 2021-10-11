@@ -347,7 +347,7 @@
 .DPTIParticipantContainer {
   width: 100%;
   height: 52px;
-  background: var(--WHITE245);
+  background: var(--ORANGE_ACTIVE);
   border-radius: 8px;
 
   font-family: GmarketSans;
@@ -363,7 +363,7 @@
 
 .newParticipantTitle {
   font-family: GmarketSans;
-  color: var(--textColor);
+  color: var(--WHITE255);
   font-weight: 700;
   font-size: 12px;
   display: inline-block;
@@ -378,7 +378,7 @@
   right: 24px;
   top: 12px;
   font-family: GmarketSans;
-  color: var(--textColor);
+  color: var(--WHITE255);
   font-weight: 400;
   font-size: 18px;
   font-weight: 700;
