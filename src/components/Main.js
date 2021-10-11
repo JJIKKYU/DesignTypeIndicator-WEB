@@ -23,6 +23,10 @@ class Main extends Component {
             ],
             mostPouplarResultListIndex : 0,
             mostPouplarTypeTitle : "",
+            MostPopularToolImage : "",
+            MostPopularToolName : "",
+            MostPopularDesign1 : "",
+            MostPopularDesign2 : "",
             mostPopularType : "",
         }
     }
@@ -120,6 +124,12 @@ class Main extends Component {
             }
 
             var mMostPopularTypeTitle = this.state.resultList[mostPouplarResultListIndex].title;
+            var mMostPopularToolImage = this.state.resultList[mostPouplarResultListIndex].toolImg;
+            var mMostPopularToolName = this.state.resultList[mostPouplarResultListIndex].toolName;
+            var mMostPopularDesign1 = this.state.resultList[mostPouplarResultListIndex].design[0];
+            var mMostPopularDesign2 = this.state.resultList[mostPouplarResultListIndex].design[1];
+
+            console.log(this.state.resultList[mostPouplarResultListIndex])
 
             this.setState ({
                 cardData : mCardData,
@@ -127,6 +137,10 @@ class Main extends Component {
                 mostPopularType : mMostPopularType,
                 people : mPeople,
                 mostPouplarTypeTitle : mMostPopularTypeTitle,
+                MostPopularToolImage : mMostPopularToolImage,
+                MostPopularToolName : mMostPopularToolName,
+                MostPopularDesign1 : mMostPopularDesign1,
+                MostPopularDesign2 : mMostPopularDesign2,
                 firebaseLoading : true,
             })
         });
@@ -167,6 +181,7 @@ class Main extends Component {
             <div className="mainTitleImageContainer">
                 <div className="mainTitleBubbleContainer">
                     <img src="./images/main/mainTitleBubble.svg" alt="" className="mainTitleBubble"/>
+                    <h3 className="mainBubbleTitle">내 조별과제 포지션은?</h3>
                 </div>
                 
                 <img src="./images/main/mainTitleImage.svg" alt="" className="mainTitleHumanImage"/>
@@ -198,7 +213,7 @@ class Main extends Component {
                         </div>
                         
                         <div className="newResultTypeTitleContainer">
-                            <h3 className="newResultTypeTitle">다선글자아 다섯글자아 다섯글자아 다섯글자아</h3>
+                            <h3 className="newResultTypeTitle">{this.state.mostPouplarTypeTitle}</h3>
                         </div>
                     </div>
                 </div>
@@ -210,9 +225,9 @@ class Main extends Component {
                     </div>
                     <div className="newResultCardContainerDivideLine"></div>
                     <div className="newResultCardContainerIn" id="newResultCardContainerInDesignTool">
-                        <img src={"./images/tool/" + this.state.mostPopularType + ".png"} alt="" className="newResultImage" id="newResultToolIcon"/>
+                        <img src={"./images/tool/" + this.state.MostPopularToolImage + ".png"} alt="" className="newResultImage" id="newResultToolIcon"/>
                         <div className="newResultTypeTitleContainer" id="newDesignToolContainer">
-                            <h3 className="newResultTypeTitle" id="designToolTitle">텍스트를 입력해 주세</h3>
+                            <h3 className="newResultTypeTitle" id="designToolTitle">{this.state.MostPopularToolName}</h3>
                         </div>
                     </div>
                 </div>
@@ -226,11 +241,11 @@ class Main extends Component {
                     <div className="newResultCardContainerIn" id="newManyDesignContainer">
                         <div className="firstDeisgnTypeContainer">
                             <h3 className="designTypeNumber">1</h3>
-                            <h3 className="designType">텍스트 입력</h3>
+                            <h3 className="designType">{this.state.MostPopularDesign1}</h3>
                         </div>
                         <div className="secondDeisgnTypeContainer">
                             <h3 className="designTypeNumber">2</h3>
-                            <h3 className="designType">텍스트 입력</h3>
+                            <h3 className="designType">{this.state.MostPopularDesign2}</h3>
                         </div>
                     </div>
                 </div>
