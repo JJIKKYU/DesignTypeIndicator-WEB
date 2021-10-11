@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
-import StickyHeader from './StickyHeader.js'
 import axios from "axios";
 import { fire, getFireResultTypeGender, getFireDBPeople, getFireResultType } from '../firebase.config'
 import { ArchiveCard } from './Archive.js'
@@ -172,29 +171,80 @@ class Main extends Component {
                 
                 <img src="./images/main/mainTitleImage.svg" alt="" className="mainTitleHumanImage"/>
             </div>
-            
 
-            <div className="mainBottom">
-                <div className="testStartContainer" >
-                    <Link to="/surveyInformation" className="testStartInnerContainer">
-                        <input type="button" value="테스트 START!" className="DPTITestStartButton"/>
-                    </Link>
+            <div className="testStartContainer" >
+                <Link to="/surveyInformation" className="testStartInnerContainer">
+                    <input type="button" value="테스트 START!" className="DPTITestStartButton"/>
+                </Link>
 
-                    <div className="DPTIParticipantContainer">
-                        <p className="newParticipant">
-                            <span className="newParticipantTitle">지금까지 참여자 수</span>
-                            <span className="newParticipantCountTitle">{this.state.people} 명</span>
-                        </p>
+                <div className="DPTIParticipantContainer">
+                    <p className="newParticipant">
+                        <span className="newParticipantTitle">지금까지 참여자 수</span>
+                        <span className="newParticipantCountTitle">{this.state.people} 명</span>
+                    </p>
+                </div>
+            </div>
+
+            <div className="newResultContainer">
+                <div className="newResultCardContainer">
+                    <div className="newResultCardContainerTitle">
+                        <img src="./images/main/titlePoint.svg" alt="" className="titlePoint" />
+                        <h3 className="title">가장 많은 조별과제 포지션</h3>
+                    </div>
+                    <div className="newResultCardContainerDivideLine"></div>
+                    <div className="newResultCardContainerIn">
+                        <div className="newResultImageContainer">
+                        <img src={"./images/result/Icon_" + this.state.mostPopularType + ".svg"} alt="" className="newResultImage" />    
+                        </div>
+                        
+                        <div className="newResultTypeTitleContainer">
+                            <h3 className="newResultTypeTitle">다선글자아 다섯글자아 다섯글자아 다섯글자아</h3>
+                        </div>
                     </div>
                 </div>
 
-                <div className="secondMainContainer">
-                    <div className="participant">
-                        <h1 className="secondMainTitle">현재까지 응시자 수</h1>
-                        <div className="participantContainer">
-                            <span className="secondMainText" id="participantText">{this.state.people} 명</span>
+                <div className="newResultCardContainer">
+                    <div className="newResultCardContainerTitle">
+                        <img src="./images/main/titlePoint.svg" alt="" className="titlePoint" />
+                        <h3 className="title">가장 많은 디자인 툴</h3>
+                    </div>
+                    <div className="newResultCardContainerDivideLine"></div>
+                    <div className="newResultCardContainerIn" id="newResultCardContainerInDesignTool">
+                        <img src={"./images/result/Icon_" + this.state.mostPopularType + ".svg"} alt="" className="newResultImage" id="newResultToolIcon"/>
+                        <div className="newResultTypeTitleContainer" id="newDesignToolContainer">
+                            <h3 className="newResultTypeTitle" id="designToolTitle">텍스트를 입력해 주세</h3>
                         </div>
                     </div>
+                </div>
+
+                <div className="newResultCardContainer">
+                    <div className="newResultCardContainerTitle">
+                        <img src="./images/main/titlePoint.svg" alt="" className="titlePoint" />
+                        <h3 className="title">가장 많은 디자인 분야</h3>
+                    </div>
+                    <div className="newResultCardContainerDivideLine"></div>
+                    <div className="newResultCardContainerIn" id="newDesignTypeContainer">
+                        <div className="firstDeisgnTypeContainer">
+                            <h3 className="designTypeNumber">1</h3>
+                            <h3 className="designType">텍스트 입력</h3>
+                        </div>
+                        <div className="secondDeisgnTypeContainer">
+                            <h3 className="designTypeNumber">2</h3>
+                            <h3 className="designType">텍스트 입력</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="informationContainer">
+                    <h3 className="informationTitle">※’가장 많은’ 통계는 1시간마다 갱신됩니다.</h3>
+                    <h3 className="informationTitle">※참여자 수는 실시간으로 반영됩니다.</h3>
+                </div>
+            </div>
+            
+
+            <div className="mainBottom">
+
+                <div className="secondMainContainer">
                     <div className="dptiType">
                         <h1 className="secondMainTitle">가장 많은 DPTI 유형</h1>
                         <div className="participantContainer">
@@ -217,6 +267,7 @@ class Main extends Component {
                     </div>
                 </div>
             </div>
+
             <Footer></Footer>
             </>
         );

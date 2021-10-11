@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 @font-face {
   font-family: 'yg-jalnan';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -290,6 +291,8 @@
 }
 
 .testStartContainer {
+    padding-left: 20px;
+    padding-right: 20px;
     text-align: center;
     position: relative;
     height: 140px;
@@ -320,7 +323,7 @@
     width: 100%;
     height: 52px;
     background: #3C3C3C;
-    border-radius: 16px;
+    border-radius: 8px;
 
     font-family: GmarketSans;
     font-style: normal;
@@ -335,8 +338,8 @@
 .DPTIParticipantContainer {
     width: 100%;
     height: 52px;
-    background: var(--systemColor);
-    border-radius: 16px;
+    background: var(--WHITE245);
+    border-radius: 8px;
 
     font-family: GmarketSans;
     font-style: normal;
@@ -344,14 +347,14 @@
     font-size: 21px;
     line-height: 29px;
     text-align: center;
-    color: var(--WHITE255);
+    color: var(--textColor);
     border: none;
     position: relative;
 }
 
 .newParticipantTitle {
     font-family: GmarketSans;
-    color: var(--WHITE245);
+    color: var(--textColor);
     font-weight: 700;
     font-size: 12px;
     display: inline-block;
@@ -366,7 +369,7 @@
     right: 24px;
     top: 12px;
     font-family: GmarketSans;
-    color: var(--WHITE245);
+    color: var(--textColor);
     font-weight: 400;
     font-size: 18px;
     font-weight: 700;
@@ -878,6 +881,7 @@
 .newMainLogo {
     width: 61px;
     height: 8px;
+    margin-bottom: 4px;
 }
 
 .newMainTitleLine {
@@ -944,4 +948,177 @@
     height: 230px;
     position: absolute;
     right: -57px;
+}
+
+.newResultContainer {
+    background-color: #FFF3EB;
+    height: 605px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.newResultCardContainer {
+    height: 168px;
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+    /* border-color: var(--ORANGE_UNACTIVE); */
+    border: 1px solid var(--ORANGE_UNACTIVE);
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.newResultCardContainerTitle {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.newResultCardContainerTitle .title {
+    color: var(--ORANGE_ACTIVE);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-block;
+    margin: 0 auto;
+    margin-left: 16px;
+}
+
+.titlePoint {
+    position: absolute;
+    top: 19px;
+    left: 15px;
+}
+
+.newResultCardContainerDivideLine {
+    margin-top: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 1px;
+    background-color: var(--ORANGE_ACTIVE);
+    opacity: 20%;
+}
+
+.newResultCardContainerIn {
+    /* margin-left: 42px; */
+    margin-top: 22px;
+    margin-right: 30px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+#newResultCardContainerInDesignTool {
+    /* margin-left: 48px; */
+    margin-top: 27px;
+}
+
+#newDesignTypeContainer {
+}
+
+.newResultImageContainer {
+    display: inline-block;
+}
+
+.newResultImage {
+    width: 70px;
+    height: 70px;
+}
+
+#newResultToolIcon {
+    width: 56px;
+    height: 56px;
+    margin-left: 10px;
+}
+
+.newResultTypeTitleContainer {
+    width: 160px;
+    display: inline-block;
+    margin-left: 33px;
+    margin-top: 15px;
+    position: relative;
+    height: 50px;
+}
+
+#newDesignToolContainer {
+    margin-left: 40px;
+    margin-top: 11px;
+}
+
+.newResultTypeTitle {
+    color: var(--ORANGE_ACTIVE);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#designToolTitle {
+    top: 15px;
+}
+
+.firstDeisgnTypeContainer {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.secondDeisgnTypeContainer {
+    position: relative;
+    display: inline-block;
+    /* margin-right: 30px; */
+}
+
+.designTypeNumber {
+    background-color: var(--ORANGE_ACTIVE);
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 20px;
+    margin: 0 auto;
+    color: var(--whiteColor);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.designType {
+    display: inline-block;
+    color: var(--ORANGE_ACTIVE);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+.informationContainer {
+    /* border: 1px solid black; */
+    margin-left: 20px;
+    height: 40px;
+}
+
+.informationTitle {
+    color: var(--systemColor);
+    font-size: 10px;
+    font-weight: 700;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
