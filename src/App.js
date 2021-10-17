@@ -69,7 +69,7 @@ class App extends Component {
 
   render() {
     return(
-        <>
+        
         <Router>
           <ScrollToTop>
             <Route exact persist path="/" component={Main} />
@@ -88,7 +88,7 @@ class App extends Component {
               render={() => <Archive></Archive>} />
           </ScrollToTop>
         </Router>
-      </>
+      
     );
   }
 }
