@@ -245,7 +245,16 @@ class Archive extends Component {
     render() {
         return (
             <Fragment>
-                <StickyHeader></StickyHeader>
+                <div className="archiveHeaderContainer">
+                    <Link to="/">
+                        <input
+                            type="button"
+                            value="모든 유형 보기"
+                            className="headerBackButton"
+                        />
+                    </Link>
+                    <h3 className="archiveHeaderTitle">모든 유형 보기</h3>
+                </div>
                 <div className="main">
                     <div className="header archiveHeader">
                         <div className="archiveTitleContainer">
@@ -298,7 +307,6 @@ class Archive extends Component {
                         count="16"
                     ></ArchiveCardSection>
                 </div>
-
                 <Footer></Footer>
             </Fragment>
         );
