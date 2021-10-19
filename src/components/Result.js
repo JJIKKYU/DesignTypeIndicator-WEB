@@ -235,6 +235,56 @@ class Result extends Component {
                         </div>
                     </div>
 
+                    <div className="resultBottomContainer">
+                        <div className="resultPositionContainer">
+                            <h3 className="subResultTitle">
+                                내 조별과제 포지션은?
+                            </h3>
+                            <div className="newPositionContainer">
+                                <div className="newPositionImageContainr">
+                                    <img
+                                        src={
+                                            "../../images/result/Icon_" +
+                                            this.state.resultType +
+                                            ".svg"
+                                        }
+                                        alt=""
+                                        className="positionIcon"
+                                    />
+                                </div>
+
+                                <div className="positionDivideLine"></div>
+                                <div className="newPositionDesc">
+                                    {this.lineBreak(this.state.position)}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="resultDesignTypeContainer">
+                            <h3 className="subResultTitle" id="resultTypeTitle">
+                                나와 어울리는 디자인 분야는?
+                            </h3>
+                            <div className="newDesignTypeContainer">
+                                <div className="subDesignTypeContainer one"></div>
+                                <div className="subDesignTypeContainer two"></div>
+                            </div>
+                        </div>
+
+                        <div className="resultDesignToolContainer">
+                            <h3 className="subResultTitle" id="resultToolTitle">
+                                나와 닮은 디자인 툴은?
+                            </h3>
+                            <div className="newDesignToolContainer"></div>
+                        </div>
+
+                        <div className="resultTodoContainer">
+                            <h3 className="subResultTitle" id="resultTodoTitle">
+                                나와 닮은 디자인 툴은?
+                            </h3>
+                            <div className="newDesignTodoContainer"></div>
+                        </div>
+                    </div>
+
                     <div className="resultCardsContainer">
                         <div className="rightCardContainer">
                             <div className="dptiTypeContainerDesktop">
