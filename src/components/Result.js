@@ -274,7 +274,26 @@ class Result extends Component {
                             <h3 className="subResultTitle" id="resultToolTitle">
                                 나와 닮은 디자인 툴은?
                             </h3>
-                            <div className="newDesignToolContainer"></div>
+                            <div className="newDesignToolContainer">
+                                <div className="newDesignToolTopContainer">
+                                    <img
+                                        src={
+                                            "../../images/tool/" +
+                                            this.state.toolImg +
+                                            ".png"
+                                        }
+                                        alt=""
+                                        id="newToolImg"
+                                    />
+                                    <h3 className="newDesignToolTitle">
+                                        {this.state.toolName}
+                                    </h3>
+                                </div>
+                                <div className="newDesignToolDivideLine"></div>
+                                <div className="newDesignToolBottomContainer">
+                                    {this.state.toolDesc}
+                                </div>
+                            </div>
                         </div>
 
                         <div className="resultTodoContainer">
