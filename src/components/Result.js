@@ -298,9 +298,27 @@ class Result extends Component {
 
                         <div className="resultTodoContainer">
                             <h3 className="subResultTitle" id="resultTodoTitle">
-                                나와 닮은 디자인 툴은?
+                                디자인 작업이 막힐 때는?
                             </h3>
-                            <div className="newDesignTodoContainer"></div>
+                            <div className="newDesignTodoContainer">
+                                <div
+                                    className="newDesignToolTopContainer"
+                                    id="todoTopContainer"
+                                >
+                                    <img
+                                        src={"../../images/result/todoImg.svg"}
+                                        alt=""
+                                        id="newTodoImg"
+                                    />
+                                </div>
+                                <div
+                                    className="newDesignToolDivideLine"
+                                    id="todoDivide"
+                                ></div>
+                                <div className="newDesignToolBottomContainer">
+                                    {this.state.todo}
+                                </div>
+                            </div>
                         </div>
                     </div>
 

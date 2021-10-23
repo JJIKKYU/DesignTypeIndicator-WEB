@@ -1437,9 +1437,10 @@ Result Bottom
     margin-right: 20px;
     margin-bottom: 20px;
     font-size: 12px;
-    line-height: 190%;
+    line-height: 170%;
     font-family: "Spoqa Han Sans Neo", "sans-serif";
     word-break: break-all;
+    text-align: left;
 }
 
 .resultTodoContainer {
@@ -1452,6 +1453,19 @@ Result Bottom
 #resultTodoTitle {
     width: 178px;
     margin-top: 36px;
+}
+
+#todoDivide {
+    margin-top: 12px;
+}
+
+#newTodoImg {
+    width: 132px;
+    height: 74px;
+}
+
+#todoTopContainer {
+    height: 74px;
 }
 
 .newDesignTodoContainer {
