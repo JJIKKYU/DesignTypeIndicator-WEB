@@ -366,193 +366,38 @@ class Result extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="resultCardsContainer">
-                        <div className="rightCardContainer">
-                            <div className="dptiTypeContainerDesktop">
-                                <h1 className="cardTitle">나의 DPTI 결과</h1>
+                        <div className="newShareContainer">
+                            <Link to="/">
+                                <input
+                                    className="newGoHome"
+                                    type="button"
+                                    value="홈으로"
+                                />
+                            </Link>
 
-                                <div className="typeColorNameContainer">
-                                    {/* Type */}
-                                    <div className="typeColorName">
-                                        <h1 className="typeColorNameTitle">
-                                            TYPE
-                                        </h1>
-                                        <img
-                                            src={
-                                                "../../images/result/Result_Desktop_" +
-                                                this.state.shape +
-                                                "_" +
-                                                this.state.color +
-                                                "_Type.png"
-                                            }
-                                            alt=""
-                                            className="typeImg"
-                                        />
-                                    </div>
+                            <input
+                                className="shareKaKao"
+                                id="kakao-link-btn"
+                                type="button"
+                                value="내 결과 카톡 공유하기"
+                            />
 
-                                    {/* Color */}
-                                    <div className="typeColorName">
-                                        <h1 className="typeColorNameTitle">
-                                            COLOR
-                                        </h1>
-                                        <img
-                                            src={
-                                                "../../images/result/Result_Desktop_" +
-                                                this.state.shape +
-                                                "_" +
-                                                this.state.color +
-                                                "_Color.svg"
-                                            }
-                                            alt=""
-                                            className="typeImg"
-                                        />
-                                    </div>
-
-                                    {/* Name */}
-                                    <div
-                                        className="typeColorName"
-                                        id="nameContainer"
-                                    >
-                                        <h1 className="typeColorNameTitle">
-                                            COLOR
-                                        </h1>
-                                        <p className="typeNameTitle">
-                                            {this.state.title}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="resultBottom">
-                                <span id="resultDesc">{this.state.desc}</span>
-                            </div>
-
-                            <div className="positionCard">
-                                <h1 className="cardTitle">
-                                    나의 조별과제 포지션 타입
-                                </h1>
-
-                                <div className="positionIconTitleContainer">
-                                    <div className="mainIconContainer resultIconContainer">
-                                        <img
-                                            src={
-                                                "../../images/result/Icon_" +
-                                                this.state.resultType +
-                                                ".svg"
-                                            }
-                                            alt=""
-                                            className="dptiTypeIcon"
-                                        />
-                                    </div>
-                                    <div className="dptiTypeContainer">
-                                        <span
-                                            className="secondMainText resultMainText"
-                                            id="dptiTypeText"
-                                        >
-                                            {this.lineBreak(
-                                                this.state.position
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="designCard">
-                                <h1 className="cardTitle">
-                                    나와 어울리는 디자인 분야
-                                </h1>
-                                <div className="designTypeContainer">
-                                    <div className="designType">
-                                        <p className="number">1</p>
-                                        <p
-                                            className="designTypeText"
-                                            id="designTypeTitle1"
-                                        >
-                                            {this.state.design[0]}
-                                        </p>
-                                    </div>
-                                    <div className="designTypeDesc">
-                                        <span id="desitnTypeDesc1">
-                                            {this.lineBreak(
-                                                this.state.designDesc[0]
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="designTypeContainer">
-                                    <div className="designType">
-                                        <p className="number">2</p>
-                                        <p
-                                            className="designTypeText"
-                                            id="designTypeTitle1"
-                                        >
-                                            {this.state.design[1]}
-                                        </p>
-                                    </div>
-                                    <div className="designTypeDesc">
-                                        <span id="desitnTypeDesc1">
-                                            {this.lineBreak(
-                                                this.state.designDesc[1]
-                                            )}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="toolCard">
-                                <h1 className="cardTitle">
-                                    나와 닮은 디자인 툴
-                                </h1>
-                                <div className="toolContainer">
-                                    <div className="toolImgContainer">
-                                        <img
-                                            src={
-                                                "../../images/tool/" +
-                                                this.state.toolImg +
-                                                ".png"
-                                            }
-                                            alt=""
-                                            id="toolImg"
-                                        />
-                                    </div>
-                                    <div className="toolNameContainer">
-                                        <span id="toolName">
-                                            {this.state.toolName}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="toolDescContainer">
-                                    <span id="toolDesc">
-                                        {this.state.toolDesc}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="todoCard">
-                                <h1 className="cardTitle todoCardTitle">
-                                    디자인 작업이 막힐 때는?
-                                </h1>
-                                <div className="todoDescContainer">
-                                    <span id="todoDesc">{this.state.todo}</span>
-                                </div>
-                            </div>
+                            <input
+                                className="shareStory"
+                                id="kakao-link-btn"
+                                type="button"
+                                value="내 결과 스토리 공유하기"
+                            />
                         </div>
                     </div>
-                    <div className="buttonContainer">
-                        <Link to="/">
-                            <input
-                                className="goHome"
-                                type="button"
-                                value="홈으로"
-                            />
-                        </Link>
-                        <input
-                            className="share"
-                            id="kakao-link-btn"
-                            type="button"
-                            value="카카오톡 공유하기"
+                </div>
+                <div className="resultBottomimageContainer">
+                    <div className="bottomImageContainer">
+                        <img
+                            src={"../../images/result/resultBottomImg.svg"}
+                            alt=""
+                            id="resultType"
                         />
                     </div>
                 </div>

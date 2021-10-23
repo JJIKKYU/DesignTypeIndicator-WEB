@@ -1251,7 +1251,7 @@ Result Bottom
 */
 .resultBottomContainer {
     width: 100%;
-    height: 1500px;
+    height: 1550px;
     background-color: white;
 }
 
@@ -1548,4 +1548,88 @@ Result Bottom
     border: 1px solid #ffd2aa;
     margin-top: 24px;
     box-sizing: border-box;
+}
+
+.newShareContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 180px;
+    margin-top: 10px;
+}
+
+.newGoHome {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    height: 52px;
+    background: var(--ORANGE);
+    border-radius: 16px;
+
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.shareKaKao {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    height: 52px;
+    background: #32a555;
+    border-radius: 16px;
+
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+
+    margin-top: 12px;
+}
+
+.shareStory {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    height: 52px;
+    background: var(--TEXT_BIG);
+    border-radius: 16px;
+
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+
+    margin-top: 12px;
+}
+
+.resultBottomimageContainer {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -60px;
+    margin-bottom: -60px;
+}
+
+.bottomImageContainer {
+    position: absolute;
+    bottom: -40px;
+    z-index: -1;
+}
+
+.resultBottomimage img {
+    position: absolute;
 }
