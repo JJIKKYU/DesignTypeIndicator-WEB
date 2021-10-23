@@ -179,7 +179,7 @@ a {
     width: 366px;
 
     background: #f5f5f5;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border-radius: 24px;
 }
 
@@ -191,7 +191,7 @@ a {
     width: 350px;
 
     background: #f5f5f5;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border-radius: 24px;
 }
 
@@ -409,7 +409,7 @@ a {
     margin-bottom: 32px;
     display: inline-block;
     text-align: left;
-    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.04));
 }
 
 #resultBottom {
@@ -1150,7 +1150,7 @@ a {
     box-sizing: border-box;
     padding: 40px 0px 24px 32px;
     border-radius: 24px;
-    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.04));
 }
 
 .resultNameColorTypeContainer {
@@ -1290,7 +1290,7 @@ Result Bottom
     background-color: white;
     margin-top: 24px;
     border-radius: 8px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border: 1px solid #ffd2aa;
     box-sizing: border-box;
     text-align: left;
@@ -1354,7 +1354,6 @@ Result Bottom
     width: 100%;
     height: 153px;
     background-color: white;
-    display: flex;
     margin-top: 24px;
 }
 
@@ -1363,7 +1362,7 @@ Result Bottom
     height: 153px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border: 1px solid #ffd2aa;
     display: inline-block;
     box-sizing: border-box;
@@ -1371,10 +1370,28 @@ Result Bottom
 
 .one {
     margin-left: 20px;
+    float: left;
 }
 
 .two {
-    margin-left: 15px;
+    margin-right: 20px;
+    float: right;
+}
+
+.subDesignTypeContainerTop {
+    width: 100%;
+    height: 20px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.subDesignTypeContainerDivideLine {
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: var(--ORANGE_UNACTIVE);
+    height: 1px;
 }
 
 .resultDesignToolContainer {
@@ -1384,9 +1401,56 @@ Result Bottom
     text-align: center;
 }
 
+.subDesignTypeContainerBottom {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    text-align: left;
+    height: 60px;
+
+    color: var(--systemColor);
+    margin-top: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 170%;
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
+    word-break: break-all;
+    text-align: left;
+    font-weight: 500;
+}
+
 #resultToolTitle {
     width: 163px;
     margin-top: 24px;
+}
+
+.countNumber {
+    text-align: center;
+    color: var(--WHITE255);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--ORANGE_ACTIVE);
+    border-radius: 11px;
+}
+
+.subTypeTitle {
+    text-align: left;
+    color: var(--ORANGE_ACTIVE);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 8px;
+    line-height: 1.4;
 }
 
 .newDesignToolContainer {
@@ -1395,7 +1459,7 @@ Result Bottom
     height: 283px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border: 1px solid #ffd2aa;
     margin-top: 24px;
     box-sizing: border-box;
@@ -1480,7 +1544,7 @@ Result Bottom
     height: 305px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
     border: 1px solid #ffd2aa;
     margin-top: 24px;
     box-sizing: border-box;

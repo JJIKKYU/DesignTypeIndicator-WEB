@@ -289,8 +289,30 @@ class Result extends Component {
                                 나와 어울리는 디자인 분야는?
                             </h3>
                             <div className="newDesignTypeContainer">
-                                <div className="subDesignTypeContainer one"></div>
-                                <div className="subDesignTypeContainer two"></div>
+                                <div className="subDesignTypeContainer one">
+                                    <div className="subDesignTypeContainerTop">
+                                        <span className="countNumber">1</span>
+                                        <span className="subTypeTitle">
+                                            {this.state.design[0]}
+                                        </span>
+                                    </div>
+                                    <div className="subDesignTypeContainerDivideLine"></div>
+                                    <div className="subDesignTypeContainerBottom">
+                                        {this.state.designDesc[0]}
+                                    </div>
+                                </div>
+                                <div className="subDesignTypeContainer two">
+                                    <div className="subDesignTypeContainerTop">
+                                        <span className="countNumber">1</span>
+                                        <span className="subTypeTitle">
+                                            {this.state.design[1]}
+                                        </span>
+                                    </div>
+                                    <div className="subDesignTypeContainerDivideLine"></div>
+                                    <div className="subDesignTypeContainerBottom">
+                                        {this.state.designDesc[1]}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
