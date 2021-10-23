@@ -109,7 +109,7 @@ a {
 #progress {
     width: 0%;
     height: 4px;
-    background: var(--YELLOW);
+    background: var(--PINK);
     border-radius: 22px;
     transition: ease-in-out 0.5s;
 }
@@ -240,25 +240,30 @@ a {
 }
 
 #questionNum {
-    font-family: Nunito;
+    color: var(--TEXT_SMALL);
+    font-family: GmarketSans;
     font-style: normal;
-    font-weight: 900;
-    font-size: 36px;
-    line-height: 49px;
-    letter-spacing: 0.04em;
-    color: var(--TEXT_BIG);
+    font-weight: 700;
+    font-size: 18px;
 
     margin-top: 0px;
     margin-bottom: 24px;
 }
 
-#questionDesc {
+#questionDesc span {
     font-weight: bold;
     font-size: 18px;
     height: 54px;
-    line-height: 27px;
-    color: var(--TEXT_SMALL);
 
+    color: var(--TEXT_SMALL);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+
+    margin-bottom: 57px;
+}
+
+#questionDesc {
     margin-bottom: 57px;
 }
 
@@ -267,8 +272,8 @@ a {
 }
 
 .answerBoxRadio:checked + label {
-    color: var(--YELLOW);
-    border-color: var(--YELLOW);
+    color: var(--PINK);
+    border-color: var(--PINK);
     transition: ease-in-out 0.1s;
 }
 
@@ -285,6 +290,11 @@ a {
 .answerBoxRadio.pink:checked + label {
     color: var(--PINK);
     border-color: var(--PINK);
+}
+
+.answerBoxRadio.yellow:checked + label {
+    color: var(--YELLOW);
+    border-color: var(--YELLOW);
 }
 
 .answerBoxRadio {
@@ -319,13 +329,86 @@ a {
 }
 
 .mainCardCircle {
-    background: #ffffff;
-    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.16);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    background: var(--PINK);
+    width: 48px;
+    height: 20px;
+    border-radius: 12px;
     display: inline-block;
     float: right;
+    text-align: center;
+    line-height: 22px;
+
+    color: var(--TEXT_SMALL);
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+    font-size: 9px;
+    letter-spacing: -1.2px;
+}
+
+#numberCount_0,
+#numberCount_1,
+#numberCount_2,
+#numberCount_3,
+#numberCount_4 {
+    background: var(--PINK);
+}
+
+.questionNum_0,
+.questionNum_1,
+.questionNum_2,
+.questionNum_3,
+.questionNum_4 {
+    color: var(--PINK) !important;
+}
+
+#numberCount_5,
+#numberCount_6,
+#numberCount_7,
+#numberCount_8,
+#numberCount_9 {
+    background: var(--YELLOW);
+}
+
+.questionNum_5,
+.questionNum_6,
+.questionNum_7,
+.questionNum_8,
+.questionNum_9 {
+    color: var(--YELLOW) !important;
+}
+
+#numberCount_10,
+#numberCount_11,
+#numberCount_12,
+#numberCount_13,
+#numberCount_14 {
+    background: var(--BLUE);
+}
+
+.questionNum_10,
+.questionNum_11,
+.questionNum_12,
+.questionNum_13,
+.questionNum_14 {
+    color: var(--bLUE) !important;
+}
+
+#numberCount_15,
+#numberCount_16,
+#numberCount_17,
+#numberCount_18,
+#numberCount_19 {
+    background: var(--PURPLE);
+}
+
+.questionNum_15,
+.questionNum_16,
+.questionNum_17,
+.questionNum_18,
+.questionNum_19 {
+    color: var(--PURPLE) !important;
 }
 
 /* 
@@ -1632,4 +1715,17 @@ Result Bottom
 
 .resultBottomimage img {
     position: absolute;
+}
+
+/* New Survey */
+.surveyHeader {
+    height: 24px;
+    background-color: black;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#indicatorText {
+    display: none;
 }
