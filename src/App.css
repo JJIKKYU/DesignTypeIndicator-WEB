@@ -1210,6 +1210,11 @@ a {
     box-sizing: border-box;
 }
 
+.colorTypeContainer {
+    text-align: center;
+    margin-top: 18px;
+}
+
 .typeContainer {
     display: inline-block;
     width: 74px;
@@ -1441,6 +1446,7 @@ Result Bottom
     font-family: "Spoqa Han Sans Neo", "sans-serif";
     word-break: break-all;
     text-align: left;
+    font-weight: 500;
 }
 
 .resultTodoContainer {

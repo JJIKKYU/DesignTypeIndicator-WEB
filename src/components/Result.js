@@ -222,11 +222,35 @@ class Result extends Component {
                             </div>
                             <div className="colorContainer">
                                 <h3 className="boxTitle">COLOR</h3>
-                                <div className="colorTypeContainer"></div>
+                                <div className="colorTypeContainer">
+                                    <img
+                                        src={
+                                            "../../images/result/Color=" +
+                                            this.state.shape +
+                                            "_" +
+                                            this.state.color +
+                                            ".svg"
+                                        }
+                                        alt=""
+                                        className="typeImg"
+                                    />
+                                </div>
                             </div>
                             <div className="typeContainer">
                                 <h3 className="boxTitle">TYPE</h3>
-                                <div className="colorTypeContainer"></div>
+                                <div className="colorTypeContainer">
+                                    <img
+                                        src={
+                                            "../../images/result/Type=" +
+                                            this.state.shape +
+                                            "_" +
+                                            this.state.color +
+                                            ".svg"
+                                        }
+                                        alt=""
+                                        className="typeImg"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="expContainer">
