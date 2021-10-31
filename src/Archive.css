@@ -250,3 +250,131 @@
     top: 30px;
     bottom: 10px;
 }
+
+.HeaderScrollContainer {
+    width: 100%;
+    height: 34px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.scrollWrap {
+    width: 1000px;
+    height: 300px;
+    background-color: red;
+}
+
+.typeBtn:active {
+    cursor: pointer;
+    background: var(--ORANGE_ACTIVE);
+    border-radius: 16px;
+    border: none;
+    width: 100px;
+    height: 27px;
+
+    margin-right: 8px;
+
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.typeBtn {
+    cursor: pointer;
+    border: 1px solid var(--ORANGE_ACTIVE);
+    border-radius: 16px;
+    width: 100px;
+    height: 27px;
+    background-color: white;
+
+    margin-right: 8px;
+
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--ORANGE_ACTIVE);
+}
+
+.HeaderSubTitle {
+    color: var(--systemColor);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 190%;
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
+    font-weight: 500;
+
+    margin-top: 16px;
+}
+
+.archiveGenderSelectContainer {
+    margin-left: 20p;
+    margin-right: 20px;
+    height: 28px;
+}
+
+.archiveGenderBtn:active,
+.archiveGenderBtn:hover {
+    background: none;
+    width: 50%;
+
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--ORANGE_ACTIVE);
+    border: none;
+    border-bottom: 2px solid var(--ORANGE_ACTIVE);
+
+    cursor: pointer;
+}
+
+.archiveGenderBtn {
+    background: none;
+    width: 50%;
+
+    font-family: "GmarketSans";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--ORANGE_UNACTIVE);
+    border: none;
+    border-bottom: 1px solid var(--ORANGE_UNACTIVE);
+
+    cursor: pointer;
+}
+
+.archiveCardSectionContainer {
+    margin-top: 24px;
+    width: 100%;
+    height: 1700px;
+}
+
+.cardTagContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+.cardTag {
+    border-radius: 4px;
+    background-color: #ffe6f0;
+    display: inline-block;
+    padding: 6px 10px 6px 10px;
+    font-size: 12px;
+    color: var(--PINK);
+    font-family: "GmarketSans";
+    font-weight: 700;
+    margin: 0 auto;
+    margin-right: 8px;
+}

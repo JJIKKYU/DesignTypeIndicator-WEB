@@ -31,6 +31,19 @@ class ArchiveCard extends Component {
         } else {
         }
     };
+    // 메인일때 태그 삭제
+    mainResultTag = () => {
+        if (this.props.isMain === false) {
+            return (
+                <div className="cardTagContainer">
+                    <h3 className="cardTag">#텍스트</h3>
+                    <h3 className="cardTag">#텍스트트</h3>
+                    <h3 className="cardTag">#텍스트트</h3>
+                    <h3 className="cardTag">#텍스트트</h3>
+                </div>
+            );
+        }
+    };
 
     archiveResultCardAddTag = () => {
         if (this.props.isResult === true) return;
@@ -166,6 +179,7 @@ class ArchiveCard extends Component {
                         </div>
                         {this.mainResultCard()}
                     </div>
+                    {this.mainResultTag()}
                 </Link>
             </Fragment>
         );
@@ -224,17 +238,7 @@ class ArchiveCardSection extends Component {
         return (
             <Fragment>
                 <div className="archiveCardsContainer">
-                    <div className="archiveCardTitleContainer">
-                        <p className="archiveCardTitle">{this.props.title}</p>
-                        <p className="archiveCardDesc">
-                            디자인 성향 검사 이하 DPTI (Design Pattern Type
-                            Indicator)는 디자인 성향을 파악할 수 있는
-                            테스트입니다. 도형, 색상, 캐릭터의 조합으로 결과를
-                            나타내며 총 16가지 유형이 4개의 카테고리로
-                            분류되어있습니다.
-                        </p>
-                    </div>
-                    <div className="resultsContainer">{cards}</div>
+                    <div className="newResultsContainer">{cards}</div>
                 </div>
             </Fragment>
         );
@@ -242,6 +246,55 @@ class ArchiveCardSection extends Component {
 }
 
 class Archive extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick = (params, e) => {
+        e.preventDefault();
+
+        document.getElementById("type_0").style.backgroundColor = "#FFFFFF";
+        document.getElementById("type_0").style.color = "#FF8737";
+
+        document.getElementById("type_1").style.backgroundColor = "#FFFFFF";
+        document.getElementById("type_1").style.color = "#FF8737";
+
+        document.getElementById("type_2").style.backgroundColor = "#FFFFFF";
+        document.getElementById("type_2").style.color = "#FF8737";
+
+        document.getElementById("type_3").style.backgroundColor = "#FFFFFF";
+        document.getElementById("type_3").style.color = "#FF8737";
+
+        switch (params) {
+            case "type_0":
+                console.log("type_0입니다.");
+                document.getElementById(params).style.backgroundColor =
+                    "#FF8737";
+                document.getElementById(params).style.color = "#FFFFFF";
+                break;
+            case "type_1":
+                console.log("type_1입니다.");
+                document.getElementById(params).style.backgroundColor =
+                    "#FF8737";
+                document.getElementById(params).style.color = "#FFFFFF";
+                break;
+            case "type_2":
+                console.log("type_2입니다.");
+                document.getElementById(params).style.backgroundColor =
+                    "#FF8737";
+                document.getElementById(params).style.color = "#FFFFFF";
+                break;
+            case "type_3":
+                console.log("type_3입니다.");
+                document.getElementById(params).style.backgroundColor =
+                    "#FF8737";
+                document.getElementById(params).style.color = "#FFFFFF";
+                break;
+        }
+    };
+
     render() {
         return (
             <Fragment>
@@ -255,32 +308,84 @@ class Archive extends Component {
                     </Link>
                     <h3 className="archiveHeaderTitle">모든 유형 보기</h3>
                 </div>
-                <div className="main">
-                    <div className="header archiveHeader">
-                        <div className="archiveTitleContainer">
-                            <div className="archiveTitle">
-                                <span>모든 DPTI 유형</span>
-                            </div>
-                            <div className="close">
-                                {/* <img src="./images/close.png" alt="close"/> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="headerTitle">
-                        <p className="archiveDesc">
-                            디자인 성향 검사 이하 DPTI{" "}
-                            <span className="orange">
-                                (Design Pattern Type Indicator)
-                            </span>
-                            는 디자인 성향을 파악할 수 있는 테스트입니다.{" "}
-                            <span className="orange">도형, 색상, 캐릭터</span>의
-                            조합으로 결과를 나타내며 총{" "}
-                            <span className="orange">16가지 유형</span>이{" "}
-                            <span className="orange">4개의 카테고리</span>로
-                            분류되어있습니다.
-                        </p>
-                    </div>
+
+                <div className="HeaderScrollContainer">
+                    <button
+                        id="type_0"
+                        className="typeBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_0", e);
+                        }}
+                    >
+                        감정풍부형
+                    </button>
+                    <button
+                        id="type_1"
+                        className="typeBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_1", e);
+                        }}
+                    >
+                        상상표출형
+                    </button>
+                    <button
+                        id="type_2"
+                        className="typeBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_2", e);
+                        }}
+                    >
+                        현실직시형
+                    </button>
+                    <button
+                        id="type_3"
+                        className="typeBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_3", e);
+                        }}
+                    >
+                        자기성찰형
+                    </button>
                 </div>
+
+                <div className="HeaderSubTitle">
+                    텍스트를 입력해 주세요. 텍스트를 입력해 주세요. 텍스트를
+                    입력해 주세요. 텍스트를 입력해 주세요. 텍스트를 입력해
+                    주세요. 텍스트를 입력해 주세요. 텍스트를 입력해 주세요.
+                    텍스트를 입력해 주세요.
+                </div>
+
+                <div className="archiveGenderSelectContainer">
+                    <button
+                        id="type_3"
+                        className="archiveGenderBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_3", e);
+                        }}
+                    >
+                        여자
+                    </button>
+                    <button
+                        id="type_3"
+                        className="archiveGenderBtn"
+                        onClick={(e) => {
+                            this.handleClick("type_3", e);
+                        }}
+                    >
+                        남자
+                    </button>
+                </div>
+
+                <div className="archiveCardSectionContainer">
+                    <ArchiveCardSection
+                        key={2}
+                        title="감정풍부형"
+                        gender="F"
+                        count="8"
+                    ></ArchiveCardSection>
+                </div>
+
+                {/*
                 <div className="secionContainer">
                     <ArchiveCardSection
                         key={1}
@@ -307,6 +412,7 @@ class Archive extends Component {
                         count="16"
                     ></ArchiveCardSection>
                 </div>
+                */}
                 <Footer></Footer>
             </Fragment>
         );
