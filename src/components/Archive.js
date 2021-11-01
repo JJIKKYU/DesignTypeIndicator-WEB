@@ -33,13 +33,23 @@ class ArchiveCard extends Component {
     };
     // 메인일때 태그 삭제
     mainResultTag = () => {
+        var tagName = "cardTag";
+        var colorHex = this.props.result.color;
+        console.log(colorHex);
+        if (colorHex == "Pink") {
+            tagName = "cardTagPink";
+        } else if (colorHex == "Yellow") {
+            tagName = "cardTagYellow";
+        } else if (colorHex == "Blue") {
+            tagName = "cardTagBlue";
+        } else if (colorHex == "Purple") {
+            tagName = "cardTagPurple";
+        }
         if (this.props.isMain === false) {
             return (
                 <div className="cardTagContainer">
-                    <h3 className="cardTag">#텍스트</h3>
-                    <h3 className="cardTag">#텍스트트</h3>
-                    <h3 className="cardTag">#텍스트트</h3>
-                    <h3 className="cardTag">#텍스트트</h3>
+                    <h3 className={tagName}>{this.props.result.hashtag[0]}</h3>
+                    <h3 className={tagName}>{this.props.result.hashtag[1]}</h3>
                 </div>
             );
         }
@@ -188,7 +198,7 @@ class ArchiveCard extends Component {
 
 ArchiveCard.defaultProps = {
     isMain: false,
-    gender: "M",
+    gender: "F",
     firebaseLoading: true,
 };
 
@@ -249,11 +259,29 @@ class Archive extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            selectGender: "F",
+            count: 8,
+        };
         this.handleClick = this.handleClick.bind(this);
+        this.handleClickGender = this.handleClickGender.bind(this);
     }
 
+    // 형관련 클릭 이벤트
     handleClick = (params, e) => {
         e.preventDefault();
+
+        var type_0_color_background = "#FFE6F0";
+        var type_0_color_text = "#FA7D9B";
+        var type_1_color_background = "#FFF0C8";
+        var type_1_color_text = "#FF9600";
+        var type_2_color_background = "#D2F0F0";
+        var type_2_color_text = "#1EB9D7";
+        var type_3_color_background = "#D2DCFA";
+        var type_3_color_text = "#5A7DF5";
+
+        var selectTextColor;
+        var selectBackgroundColor;
 
         document.getElementById("type_0").style.backgroundColor = "#FFFFFF";
         document.getElementById("type_0").style.color = "#FF8737";
@@ -269,28 +297,79 @@ class Archive extends Component {
 
         switch (params) {
             case "type_0":
-                console.log("type_0입니다.");
+                selectTextColor = type_0_color_text;
+                selectBackgroundColor = type_0_color_background;
+
                 document.getElementById(params).style.backgroundColor =
                     "#FF8737";
                 document.getElementById(params).style.color = "#FFFFFF";
+                this.setState({
+                    count: 8,
+                });
                 break;
             case "type_1":
-                console.log("type_1입니다.");
+                selectTextColor = type_1_color_text;
+                selectBackgroundColor = type_1_color_background;
+
                 document.getElementById(params).style.backgroundColor =
                     "#FF8737";
                 document.getElementById(params).style.color = "#FFFFFF";
+                this.setState({
+                    count: 16,
+                });
                 break;
             case "type_2":
-                console.log("type_2입니다.");
+                selectTextColor = type_2_color_text;
+                selectBackgroundColor = type_2_color_background;
                 document.getElementById(params).style.backgroundColor =
                     "#FF8737";
                 document.getElementById(params).style.color = "#FFFFFF";
+                this.setState({
+                    count: 4,
+                });
                 break;
             case "type_3":
-                console.log("type_3입니다.");
+                selectTextColor = type_3_color_text;
+                selectBackgroundColor = type_3_color_background;
+
                 document.getElementById(params).style.backgroundColor =
                     "#FF8737";
                 document.getElementById(params).style.color = "#FFFFFF";
+                this.setState({
+                    count: 12,
+                });
+                break;
+        }
+    };
+
+    // 성별 이벤트
+    handleClickGender = (params, e) => {
+        e.preventDefault();
+        console.log(params + "입니다");
+
+        document.getElementById(params).style.color = "#FF8737";
+        document.getElementById(params).style.borderBottom =
+            "2px solid #FF8737";
+
+        switch (params) {
+            case "gender_female":
+                document.getElementById("gender_male").style.color = "#FFD2AA";
+                document.getElementById("gender_male").style.borderBottom =
+                    "1px solid #FFD2AA";
+
+                this.setState({
+                    selectGender: "F",
+                });
+                break;
+
+            case "gender_male":
+                document.getElementById("gender_female").style.color =
+                    "#FFD2AA";
+                document.getElementById("gender_female").style.borderBottom =
+                    "1px solid #FFD2AA";
+                this.setState({
+                    selectGender: "M",
+                });
                 break;
         }
     };
@@ -312,7 +391,7 @@ class Archive extends Component {
                 <div className="HeaderScrollContainer">
                     <button
                         id="type_0"
-                        className="typeBtn"
+                        className="typeBtn typeBtnSelect"
                         onClick={(e) => {
                             this.handleClick("type_0", e);
                         }}
@@ -357,19 +436,19 @@ class Archive extends Component {
 
                 <div className="archiveGenderSelectContainer">
                     <button
-                        id="type_3"
-                        className="archiveGenderBtn"
+                        id="gender_female"
+                        className="archiveGenderBtnSelect archiveGenderBtn"
                         onClick={(e) => {
-                            this.handleClick("type_3", e);
+                            this.handleClickGender("gender_female", e);
                         }}
                     >
                         여자
                     </button>
                     <button
-                        id="type_3"
+                        id="gender_male"
                         className="archiveGenderBtn"
                         onClick={(e) => {
-                            this.handleClick("type_3", e);
+                            this.handleClickGender("gender_male", e);
                         }}
                     >
                         남자
@@ -380,8 +459,8 @@ class Archive extends Component {
                     <ArchiveCardSection
                         key={2}
                         title="감정풍부형"
-                        gender="F"
-                        count="8"
+                        gender={this.state.selectGender}
+                        count={this.state.count}
                     ></ArchiveCardSection>
                 </div>
 

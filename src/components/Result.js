@@ -383,12 +383,21 @@ class Result extends Component {
                                 value="내 결과 카톡 공유하기"
                             />
 
-                            <input
-                                className="shareStory"
-                                id="kakao-link-btn"
-                                type="button"
-                                value="내 결과 스토리 공유하기"
-                            />
+                            <a
+                                href={
+                                    "../../images/resultImage/" +
+                                    dataName +
+                                    ".jpg"
+                                }
+                                download
+                            >
+                                <input
+                                    className="shareStory"
+                                    id="kakao-link-btn"
+                                    type="button"
+                                    value="내 결과 스토리 공유하기"
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>
