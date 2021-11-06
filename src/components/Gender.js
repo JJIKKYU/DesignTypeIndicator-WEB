@@ -24,6 +24,7 @@ class Gender extends Component {
             () => {
                 document.getElementById("startButton").style.background =
                     "var(--ORANGE_ACTIVE)";
+                // document.getElementById("")
             }
         );
 

@@ -154,6 +154,14 @@ class Result extends Component {
             <>
                 <div className="resultHeaderContainer">
                     <h3 className="resultHeaderTitle">내 DPTI 테스트 결과!</h3>
+                    <Link to="/">
+                        <div className="resultCloseContainer">
+                            <img
+                                src="../../images/survey/close.svg"
+                                alt="close"
+                            />
+                        </div>
+                    </Link>
                 </div>
                 <div className="main">
                     <div className="resultTopContainer">
@@ -217,7 +225,7 @@ class Result extends Component {
                             <div className="nameContainer">
                                 <h3 className="boxTitle">NAME</h3>
                                 <h3 className="nameTitle">
-                                    어쩌어쩌 저쩌저쩌 이러이러 저러저러
+                                    {this.state.title}
                                 </h3>
                             </div>
                             <div className="colorContainer">
@@ -282,6 +290,11 @@ class Result extends Component {
                                     {this.lineBreak(this.state.position)}
                                 </div>
                             </div>
+                            <img
+                                src="../../images/result/resultDeco_0.png"
+                                id="resultDeco0"
+                                alt=""
+                            />
                         </div>
 
                         <div className="resultDesignTypeContainer">
@@ -314,6 +327,11 @@ class Result extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <img
+                                src="../../images/result/resultDeco_1.png"
+                                id="resultDeco1"
+                                alt=""
+                            />
                         </div>
 
                         <div className="resultDesignToolContainer">
@@ -340,6 +358,11 @@ class Result extends Component {
                                     {this.state.toolDesc}
                                 </div>
                             </div>
+                            <img
+                                src="../../images/result/resultDeco_2.png"
+                                id="resultDeco2"
+                                alt=""
+                            />
                         </div>
 
                         <div className="resultTodoContainer">
@@ -365,6 +388,11 @@ class Result extends Component {
                                     {this.state.todo}
                                 </div>
                             </div>
+                            <img
+                                src="../../images/result/resultDeco_3.png"
+                                id="resultDeco3"
+                                alt=""
+                            />
                         </div>
 
                         <div className="newShareContainer">
@@ -410,7 +438,7 @@ class Result extends Component {
                         />
                     </div>
                 </div>
-                <Footer></Footer>
+                <Footer isResult="true"></Footer>
             </>
         );
     }

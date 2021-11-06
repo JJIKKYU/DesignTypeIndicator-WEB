@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Footer extends Component {
     preBtn = () => {
         this.props.moveCard(-1);
-    }
+    };
     render() {
+        var dimodamoURL;
+        if (this.props.isResult === "true") {
+            dimodamoURL = "../../images/main/behanceButton.svg";
+        } else {
+            dimodamoURL = "./images/main/behanceButton.svg";
+        }
+
         return (
             // <div className="footer">
             //     <div className="footerContainer">
@@ -27,11 +34,22 @@ class Footer extends Component {
             // </div>
             <div className="newFooter">
                 <div className="behanceButtonContainer">
-                    <button type="button" class="behanceButton" id="behanceButon"><img src="./images/main/behanceButton.svg" /></button>
+                    <a href="https://www.behance.net/gallery/117973273/DIMODAMO?tracking_source=search_projects_recommended%7Cdimodamo">
+                        <button
+                            type="button"
+                            class="behanceButton"
+                            id="behanceButon"
+                        >
+                            <img src={dimodamoURL} />
+                        </button>
+                    </a>
                 </div>
                 <div className="newFotterTitleContainer">
-                <h3 className="newFotterTitle">해당 테스트는 홍익대학교 조형대학 졸업작품 중 일부입니다.<br/>
-                © copyright 2021. DIMODAMO All right reserved.</h3>
+                    <h3 className="newFotterTitle">
+                        해당 테스트는 홍익대학교 조형대학 졸업작품 중
+                        일부입니다.
+                        <br />© copyright 2021. DIMODAMO All right reserved.
+                    </h3>
                 </div>
                 <div className="newFooterDivideLine"></div>
                 <div className="helpContainer">

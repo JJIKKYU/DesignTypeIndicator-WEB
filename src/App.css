@@ -1,6 +1,7 @@
 #root {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
+    position: relative;
 }
 
 html {
@@ -52,22 +53,28 @@ a {
     text-align: center;
 }
 
+.surveyHeader .prev,
 .header .prev {
     display: inline-block;
-    position: absolute;
-    left: 0;
+    /* position: absolute; */
+    /* left: 0;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: var(--ORANGE);
+    color: var(--ORANGE); */
     visibility: hidden;
     cursor: pointer;
+}
+
+.header .prev img {
+    visibility: hidden;
 }
 
 .header .prevText {
     margin-left: 6px;
     position: relative;
     bottom: 3px;
+    display: none;
 }
 
 .header .indicator {
@@ -80,10 +87,12 @@ a {
     color: var(--ORANGE);
 }
 
+.surveyHeader .close,
 .header .close {
     display: inline-block;
     position: absolute;
-    right: 0;
+    right: 20px;
+    top: 30px;
 }
 
 .header .indicator span {
@@ -100,7 +109,8 @@ a {
 .progressBG {
     margin-top: 35px;
     margin-bottom: 11px;
-    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
     height: 4px;
     background: #ebebeb;
     border-radius: 22px;
@@ -142,11 +152,11 @@ a {
 
 .questionContainer {
     width: 10000px;
-    height: 648px;
+    height: 518px;
     overflow: auto;
     text-align: left;
     margin-left: 50%;
-    transform: translate(-205px);
+    transform: translate(-185px);
     animation: fadeIn 1s;
     transition: ease-in-out 0.5s;
     display: inline-block;
@@ -158,12 +168,14 @@ a {
 }
 
 .card {
-    width: 382px;
-    height: 592px;
+    width: 335px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 488px;
     background: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: 24px;
-    padding: 32px;
+    padding: 40px 24px 24px 24px;
     box-sizing: border-box;
     position: relative;
     margin: 0 auto;
@@ -215,16 +227,20 @@ a {
 #feedbackCard .feedbackText {
     width: 260px;
     margin: 0 auto;
-    margin-top: 132px;
+    margin-top: 96px;
 
+    font-family: GmarketSans;
     font-style: normal;
-    font-weight: 900;
-    font-size: 36px;
+    font-weight: 700;
+
+    font-size: 28px;
     line-height: 53px;
     text-align: center;
     color: #82d773;
     word-break: keep-all;
     /* color: #5A87FA; */
+
+    z-index: 2;
 }
 
 #feedbackCard #feedbackImg {
@@ -236,7 +252,7 @@ a {
 #feedbackCard #feedbackBG {
     position: absolute;
     top: 27px;
-    left: 10px;
+    left: 20px;
 }
 
 #questionNum {
@@ -260,11 +276,11 @@ a {
     font-style: normal;
     font-weight: 700;
 
-    margin-bottom: 57px;
+    margin-bottom: 32px;
 }
 
 #questionDesc {
-    margin-bottom: 57px;
+    margin-bottom: 32px;
 }
 
 .answerBox {
@@ -305,23 +321,22 @@ a {
 .answerBoxText {
     cursor: pointer;
     background: none;
-    border: 2px solid var(--GRAY190);
+    border: 2px solid #ebebeb;
     box-sizing: border-box;
-    border-radius: 16px;
+    border-radius: 8px;
     width: 100%;
-    height: 56px;
-    margin-bottom: 12px;
+    height: 48px;
 
     display: block;
     font-weight: bold;
     font-size: 16px;
-    line-height: 50px;
-    color: var(--GRAY170);
+    line-height: 42px;
+    color: var(--GRAY210);
 
     text-align: left;
-    padding-left: 24px;
+    padding-left: 20px;
     box-sizing: border-box;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .answerBox :last-child {
@@ -417,7 +432,8 @@ a {
 
 .submitSurvey {
     position: relative;
-    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
     height: 56px;
     /* margin-top: 20px; */
     margin-bottom: 20px;
@@ -432,7 +448,7 @@ a {
     height: 100%;
 
     border: none;
-    background: var(--ORANGE_ACTIVE);
+    background: var(--TEXT_BIG);
     border-radius: 16px;
 
     font-style: normal;
@@ -441,11 +457,16 @@ a {
     line-height: 27px;
 
     text-align: center;
-    color: #ffffff;
+    color: var(--WHITE245);
 }
 
 /* Result */
-
+.resultCloseContainer {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+}
 .resultCard {
     width: 100%;
     height: 100%;
@@ -1343,6 +1364,7 @@ Result Bottom
     height: 270px;
     background-color: white;
     text-align: center;
+    position: relative;
 }
 
 .subResultTitle {
@@ -1422,6 +1444,7 @@ Result Bottom
 }
 
 .resultDesignTypeContainer {
+    position: relative;
     height: 270px;
     width: 100%;
     background-color: white;
@@ -1434,6 +1457,7 @@ Result Bottom
 }
 
 .newDesignTypeContainer {
+    position: relative;
     width: 100%;
     height: 153px;
     background-color: white;
@@ -1478,6 +1502,7 @@ Result Bottom
 }
 
 .resultDesignToolContainer {
+    position: relative;
     width: 100%;
     height: 380px;
     background-color: white;
@@ -1597,6 +1622,7 @@ Result Bottom
 }
 
 .resultTodoContainer {
+    position: relative;
     width: 100%;
     height: 405px;
     background-color: white;
@@ -1720,12 +1746,59 @@ Result Bottom
 /* New Survey */
 .surveyHeader {
     height: 24px;
-    background-color: black;
+    /* background-color: black; */
     margin-top: 30px;
     margin-left: 20px;
     margin-right: 20px;
+    display: inline-block;
 }
 
 #indicatorText {
     display: none;
+}
+
+/* Result Deco */
+#resultDeco0 {
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+
+#resultDeco1 {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    z-index: 0;
+}
+
+#resultDeco2 {
+    position: absolute;
+    right: 0;
+    top: 7px;
+}
+
+#resultDeco3 {
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+/* clac */
+
+.calcProgressBG {
+    margin-top: 35px;
+    margin-bottom: 11px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    height: 4px;
+    border-radius: 22px;
+
+    background: linear-gradient(
+        90deg,
+        #faa0b4 0%,
+        #fad26e 32.85%,
+        #78d7e1 67.15%,
+        #7896ff 100%
+    );
 }

@@ -679,6 +679,14 @@
     margin-top: 24px;
 }
 
+.mainResultsContainer > a:first-child {
+    margin-left: 20px;
+}
+
+.mainResultsContainer > a:last-child {
+    margin-right: 20px;
+}
+
 .dptiTypeIcon {
     width: 128px;
 }
@@ -901,6 +909,9 @@
 .newMain {
     margin-top: 40px;
     margin-left: 22px;
+    margin-right: 20px;
+    overflow: hidden;
+    /* width: 100%; */
 }
 
 .newMainLogo {
@@ -1183,4 +1194,21 @@
 
 .mainResultsContainer #mainResultType {
     width: 26px;
+}
+
+/* Deco */
+#mainDeco0 {
+    position: absolute;
+    top: -20px;
+    right: 15px;
+}
+#mainDeco1 {
+    position: absolute;
+    top: 230px;
+    right: 0px;
+}
+#mainDeco2 {
+    position: absolute;
+    top: 380px;
+    left: -5px;
 }

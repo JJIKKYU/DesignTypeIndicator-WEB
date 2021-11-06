@@ -1,10 +1,10 @@
 {
     "Answer" : [
-        "맞아요 매우 그래요",
-        "맞는것 같아요",
+        "매우 맞아요",
+        "맞는 것 같아요",
         "잘 모르겠어요",
-        "아닌것 같아요",
-        "아니요 저는 안그래요"
+        "아닌 것 같아요",
+        "절대 아니예요"
     ],
     "Question" : [
         "모두가 ‘예’라고 말할 때\n‘아니오’라고 말할 수 있어",
@@ -33,25 +33,25 @@
     ],
     "Feedback" : {
         "yellow" : {
-            "text" : "좋아! 아주 멋져~",
+            "text" : "흠 그렇단 말이지~",
             "img" : "./images/feedback/feedbackYellow.svg",
             "bg" : "./images/feedback/feedbackYellowBG.svg",
             "color" : "var(--YELLOW)"
         },
         "purple" : {
-            "text" : "매우 잘하고 있어!",
+            "text" : "결과 보러 가자!",
             "img" : "./images/feedback/feedbackPurple.svg",
             "bg" : "./images/feedback/feedbackPurpleBG.svg",
             "color" : "var(--PURPLE)"
         },
         "blue" : {
-            "text" : "좋아 최고야~",
+            "text" : "와 아주 멋진걸?",
             "img" : "./images/feedback/feedbackBlue.svg",
             "bg" : "./images/feedback/feedbackBlueBG.svg",
             "color" : "var(--BLUE)"
         },
         "pink" : {
-            "text" : "'결과보기' 버튼을 눌러줘!",
+            "text" : "좋아! 잘하고 있어",
             "img" : "./images/feedback/feedbackPink.svg",
             "bg" : "./images/feedback/feedbackPinkBG.svg",
             "color" : "var(--PINK)"

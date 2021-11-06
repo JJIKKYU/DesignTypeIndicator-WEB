@@ -189,8 +189,8 @@ class Survey extends Component {
         this.state = {
             questionList: [],
             number: 1,
-            xPosTransitionStep: 382,
-            currentXpos: -205,
+            xPosTransitionStep: 335,
+            currentXpos: -185,
             people: 0,
         };
     }
@@ -341,16 +341,16 @@ class Survey extends Component {
                 const index = number - 2;
                 switch (number) {
                     case 6:
-                        this.feedbackChange(index, "yellow");
+                        this.feedbackChange(index, "pink");
                         break;
                     case 11:
-                        this.feedbackChange(index, "purple");
+                        this.feedbackChange(index, "yellow");
                         break;
                     case 16:
                         this.feedbackChange(index, "blue");
                         break;
                     case 21:
-                        this.feedbackChange(index, "pink");
+                        this.feedbackChange(index, "purple");
                         break;
                     default:
                         break;
@@ -485,7 +485,7 @@ class Survey extends Component {
                         <Link to="/calc">
                             <input
                                 type="button"
-                                value="결과보기"
+                                value="좋아요!"
                                 onClick={this.increaseFirePeopleDB}
                             />
                         </Link>

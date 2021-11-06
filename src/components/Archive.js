@@ -378,14 +378,21 @@ class Archive extends Component {
         return (
             <Fragment>
                 <div className="archiveHeaderContainer">
-                    <Link to="/">
-                        <input
-                            type="button"
-                            value="모든 유형 보기"
-                            className="headerBackButton"
-                        />
-                    </Link>
-                    <h3 className="archiveHeaderTitle">모든 유형 보기</h3>
+                    <div className="headerBackbuttonContainr">
+                        <Link to="/">
+                            <img
+                                className="headerBackButton"
+                                id="mButtonImg"
+                                htmlFor="mButton"
+                                src="./images/archive/leftArrow.svg"
+                                alt=""
+                            />
+                        </Link>
+                    </div>
+
+                    <div className="archiveHeaderTitleContainer">
+                        <h3 className="archiveHeaderTitle">모든 유형 보기</h3>
+                    </div>
                 </div>
 
                 <div className="HeaderScrollContainer">
@@ -492,6 +499,15 @@ class Archive extends Component {
                     ></ArchiveCardSection>
                 </div>
                 */}
+                <div className="archiveBottomContainer">
+                    <div className="bottomImageContainer">
+                        <img
+                            src={"../../images/archive/archiveBottomImg.svg"}
+                            alt=""
+                            id="archiveImg"
+                        />
+                    </div>
+                </div>
                 <Footer></Footer>
             </Fragment>
         );
