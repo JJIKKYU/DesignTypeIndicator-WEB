@@ -151,6 +151,7 @@
   ##Screen = 1281px to higher resolution desktops
   */
 
+/*
 @media (min-width: 1280px) {
     .archiveDesc {
         text-align: left;
@@ -236,6 +237,7 @@
         margin-bottom: 180px;
     }
 }
+*/
 
 /* 상단 헤더 */
 .archiveHeaderContainer {
@@ -263,6 +265,11 @@
     height: 34px;
     overflow-x: scroll;
     white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.HeaderScrollContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .scrollWrap {

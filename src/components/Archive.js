@@ -435,10 +435,10 @@ class Archive extends Component {
                 </div>
 
                 <div className="HeaderSubTitle">
-                    텍스트를 입력해 주세요. 텍스트를 입력해 주세요. 텍스트를
-                    입력해 주세요. 텍스트를 입력해 주세요. 텍스트를 입력해
-                    주세요. 텍스트를 입력해 주세요. 텍스트를 입력해 주세요.
-                    텍스트를 입력해 주세요.
+                    디자인 성향 검사 이하 DPTI (Design Pattern Type Indicator)는
+                    디자인 성향을 파악할 수 있는 테스트입니다. 도형, 색상,
+                    캐릭터의 조합으로 결과를 나타내며 총 16가지 유형이 4개의
+                    카테고리로 분류되어있습니다.
                 </div>
 
                 <div className="archiveGenderSelectContainer">

@@ -47,6 +47,7 @@ class Main extends Component {
         this.loadItem();
         this.getFireBaseData();
         this.setScrollPosition();
+        this.lotationTitle();
     }
 
     setScrollPosition = () => {
@@ -203,6 +204,43 @@ class Main extends Component {
         });
     };
 
+    lotationTitle = () => {
+        var titleAarr = [
+            "내 조별과제 포지션은?",
+            "나와 닮은 디자인 툴은?",
+            "나랑 어울리는 분야는?",
+        ];
+        var titleBubble = document.getElementById("mainBubble");
+        var titleBubbleContainer = document.getElementById(
+            "mainTitleBubbleContainer"
+        );
+        var secondBubble = document.getElementById("secondBubble");
+        var secondBubbleContainer = document.getElementById(
+            "secondTitleBubbleContainer"
+        );
+
+        var i = 0;
+        setInterval(() => {
+            if (i % 2 == 0) {
+                titleBubbleContainer.style.right = "-300px";
+                titleBubbleContainer.style.opacity = "0";
+
+                secondBubble.innerHTML = titleAarr[(i + 1) % titleAarr.length];
+                secondBubbleContainer.style.right = "35px";
+                secondBubbleContainer.style.opacity = "1";
+            } else {
+                titleBubble.innerHTML = titleAarr[(i + 1) % titleAarr.length];
+                titleBubbleContainer.style.right = "35px";
+                titleBubbleContainer.style.opacity = "1";
+
+                secondBubbleContainer.style.right = "-300px";
+                secondBubbleContainer.style.opacity = "0";
+            }
+
+            i = i + 1;
+        }, 4000);
+    };
+
     loadItem = async () => {
         axios
             .get("../json/Result.json")
@@ -270,13 +308,30 @@ class Main extends Component {
                 </div>
 
                 <div className="mainTitleImageContainer">
-                    <div className="mainTitleBubbleContainer">
+                    <div
+                        className="mainTitleBubbleContainer"
+                        id="mainTitleBubbleContainer"
+                    >
                         <img
                             src="./images/main/mainTitleBubble.svg"
                             alt=""
                             className="mainTitleBubble"
                         />
-                        <h3 className="mainBubbleTitle">
+                        <h3 className="mainBubbleTitle" id="mainBubble">
+                            내 조별과제 포지션은?
+                        </h3>
+                    </div>
+
+                    <div
+                        className="mainTitleBubbleContainer"
+                        id="secondTitleBubbleContainer"
+                    >
+                        <img
+                            src="./images/main/mainTitleBubble.svg"
+                            alt=""
+                            className="mainTitleBubble"
+                        />
+                        <h3 className="mainBubbleTitle" id="secondBubble">
                             내 조별과제 포지션은?
                         </h3>
                     </div>

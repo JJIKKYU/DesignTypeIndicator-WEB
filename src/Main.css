@@ -490,8 +490,7 @@
     border-radius: 24px;
 }
 
-#mainResultChar,
-#loadingResultChar {
+#mainResultChar {
     position: absolute;
     width: 100%;
     right: 0;
@@ -499,6 +498,13 @@
     bottom: 0;
     z-index: 3;
     filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.04));
+}
+
+#loadingResultChar {
+    width: 140px !important;
+    right: 0;
+    bottom: 0;
+    position: absolute;
 }
 
 #mainResultRoadingTitle {
@@ -679,12 +685,16 @@
     margin-top: 24px;
 }
 
+.mainResultsContainer .resultCard {
+    margin-right: 24px;
+}
+
 .mainResultsContainer > a:first-child {
     margin-left: 20px;
 }
 
 .mainResultsContainer > a:last-child {
-    margin-right: 20px;
+    /* margin-right: 20px !important; */
 }
 
 .dptiTypeIcon {
@@ -695,6 +705,7 @@
   ##Screen = B/w 320px to 479px
 */
 
+/*
 @media (min-width: 320px) and (max-width: 480px) {
     .participantContainer {
         width: 100%;
@@ -707,12 +718,12 @@
     .moreDptiTypeContainer {
         position: relative;
         width: 100%;
-    }
+    } 
 
-    .moreDptiTypeContainer input {
+    /* .moreDptiTypeContainer input {
         position: relative;
         width: 100%;
-    }
+    } 
 
     .dptiResults {
         height: 330px;
@@ -727,11 +738,14 @@
         margin-right: 6px !important;
     }
 }
+*/
 
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
     */
+
+/*
 
 @media (min-width: 1280px) {
     .DPTITestStartButton {
@@ -821,7 +835,7 @@
 
         /* width: 100vw;
         position: relative;
-        left: calc(-50vw + 50%); */
+        left: calc(-50vw + 50%); 
     }
 
     .peopleContainer {
@@ -901,6 +915,7 @@
         width: 64px;
     }
 }
+*/
 
 /* ------------------------------------------- */
 
@@ -964,24 +979,32 @@
     width: 100%;
     height: 335px;
     position: relative;
-    text-align: center;
     overflow: hidden;
+    text-align: right;
 }
 
 .mainTitleBubbleContainer {
+    /* display: inline-block; */
     position: relative;
     height: 50px;
     margin-top: 37px;
     margin-bottom: 10px;
+    width: 166px;
+    right: 35px;
+    transition: 2s ease-in-out;
+    position: absolute;
+    z-index: 5;
 }
 
 .mainTitleBubble {
     position: absolute;
-    right: 41px;
+    /* right: 41px; */
+    z-index: -1;
+    left: 0;
 }
 
 .mainBubbleTitle {
-    position: absolute;
+    text-align: center;
     z-index: 3;
     right: 63px;
     color: var(--TEXT_BIG);
@@ -989,12 +1012,25 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
+    width: 100%;
+    line-height: 15px;
+}
+
+#secondTitleBubbleContainer {
+    right: -300px;
+    opacity: 0;
+}
+
+#thirdTitleBubbleContainer {
+    right: -300px;
+    opacity: 0;
 }
 
 .mainTitleHumanImage {
     height: 230px;
-    position: absolute;
+    /* position: absolute; */
     right: -57px;
+    margin-top: 95px;
 }
 
 .newResultContainer {
