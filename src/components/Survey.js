@@ -446,6 +446,13 @@ class Survey extends Component {
         this.moveCard(-1);
     };
 
+    closeBtn = () => {
+        var popupContainer = document.getElementById("popup");
+
+        popupContainer.style.visibility = "hidden";
+        popupContainer.style.opacity = "0";
+    };
+
     render() {
         const questions = this.state.questionList.map((questionText, index) => (
             <SurveyCard
@@ -460,6 +467,31 @@ class Survey extends Component {
 
         return (
             <Fragment>
+                <div className="popupContainer" id="popup">
+                    <div className="popup">
+                        <div className="popupTopContainer">
+                            <h3 className="popupTopContainerTitle">
+                                정말 나가시겠어요?
+                            </h3>
+                        </div>
+                        <div className="popupBottomContainer">
+                            <Link onClick={this.closeBtn}>
+                                <div className="popupBottomLeftContainer">
+                                    <h3 className="popupBottomContainerTitle">
+                                        취소
+                                    </h3>
+                                </div>
+                            </Link>
+                            <Link to="/">
+                                <div className="popupBottomRightContainer">
+                                    <h3 className="popupBottomContainerTitle">
+                                        확인
+                                    </h3>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
                 <div className="main">
                     <Header
                         moveCard={this.moveCard}

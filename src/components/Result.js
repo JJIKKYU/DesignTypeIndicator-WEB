@@ -316,7 +316,12 @@ class Result extends Component {
                                 </div>
                                 <div className="subDesignTypeContainer two">
                                     <div className="subDesignTypeContainerTop">
-                                        <span className="countNumber">1</span>
+                                        <span
+                                            className="countNumber"
+                                            id="countNumber_2"
+                                        >
+                                            2
+                                        </span>
                                         <span className="subTypeTitle">
                                             {this.state.design[1]}
                                         </span>
