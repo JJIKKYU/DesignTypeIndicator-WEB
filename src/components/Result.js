@@ -72,6 +72,40 @@ class Result extends Component {
                 ).style.background = this.state.colorHex;
                 document.title = this.state.title;
 
+                        
+                if (window.Kakao) {
+            
+                    let thumb = this.state.gender + "_" + this.state.resultType;
+                    console.log("http://dimodamo.com/images/resultImage/" + thumb + ".jpg");
+
+                    window.Kakao.Link.createDefaultButton({
+                        container: "#kakao-link-btn",
+                        objectType: "feed",
+                        content: {
+                            title: document.title,
+                            description: this.state.desc,
+                            imageUrl:
+                                // "http://dimodamo.com/images/thumb/Thumbnail.png",
+                                "http://dimodamo.com/images/resultImage/shareThumb/" +
+                                    thumb +
+                                    ".jpg",
+                            link: {
+                                webUrl: document.location.href,
+                                mobileWebUrl: document.location.href,
+                            },
+                        },
+                        buttons: [
+                            {
+                                title: "디자인 성향 확인하기",
+                                link: {
+                                    mobileWebUrl: document.location.href,
+                                    webUrl: document.location.href,
+                                },
+                            },
+                        ],
+                    });
+                }
+
                 
             }
         );
@@ -79,32 +113,7 @@ class Result extends Component {
 
     componentDidMount() {
         this.loadItem();
-        
-        if (window.Kakao) {
-            window.Kakao.Link.createDefaultButton({
-                container: "#kakao-link-btn",
-                objectType: "feed",
-                content: {
-                    title: document.title,
-                    description: "나만의 디자인 성향을 찾아보세요!",
-                    imageUrl:
-                        "http://dimodamo.com/images/thumb/Thumbnail.png",
-                    link: {
-                        webUrl: document.location.href,
-                        mobileWebUrl: document.location.href,
-                    },
-                },
-                buttons: [
-                    {
-                        title: "디자인 성향 확인하기",
-                        link: {
-                            mobileWebUrl: document.location.href,
-                            webUrl: document.location.href,
-                        },
-                    },
-                ],
-            });
-        }
+
     }
 
     componentDidUpdate() {
@@ -153,11 +162,6 @@ class Result extends Component {
     render() {
         let dataName = this.state.gender + "_" + this.state.resultType;
 
-        var koreanTitle = this.state.title + (this.state.gender == "F" ? "_여" : "_남");
-        koreanTitle = koreanTitle.replace(/\n/g, "_");
-
-        console.log(koreanTitle);
-
         const lottieOptions = {
             animationData: getType(dataName),
             loop: true,
@@ -168,6 +172,8 @@ class Result extends Component {
             },
         };
 
+        var koreanTitle = this.state.title + (this.state.gender == "F" ? "_여" : "_남");
+        koreanTitle = koreanTitle.replace(/\n/g, "_");
      
 
         return (
