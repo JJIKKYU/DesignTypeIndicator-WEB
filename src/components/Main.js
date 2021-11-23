@@ -15,6 +15,14 @@ class Main extends Component {
         super(props);
         fire();
 
+        try {
+            if (!window.kakao) {
+                console.log("try!");
+                window.Kakao.init('8f3a72c4fc9d2318eadb8d9f47c06ce1');
+            }
+        } catch(e) { console.log(e); }
+
+
         this.state = {
             firebaseLoading: false,
             people: "0",
@@ -35,11 +43,11 @@ class Main extends Component {
             ],
             mostPouplarResultListIndex: 0,
             mostPouplarTypeTitle: "",
-            MostPopularToolImage: "",
+            MostPopularToolImage: "Loading",
             MostPopularToolName: "",
             MostPopularDesign1: "",
             MostPopularDesign2: "",
-            mostPopularType: "",
+            mostPopularType: "Loading",
         };
     }
 
@@ -48,6 +56,35 @@ class Main extends Component {
         this.getFireBaseData();
         this.setScrollPosition();
         this.lotationTitle();
+
+        if (window.Kakao) {
+            console.log("kakao init");
+
+            window.Kakao.Link.createDefaultButton({
+                container: "#kakao-link-btn",
+                objectType: "feed",
+                content: {
+                    title: document.title,
+                    description: "나만의 디자인 성향을 찾아보세요!",
+                    imageUrl:
+                        "http://dimodamo.com/images/thumb/Thumbnail.png",
+                    link: {
+                        webUrl: document.location.href,
+                        mobileWebUrl: document.location.href,
+                    },
+                },
+                buttons: [
+                    {
+                        title: "디자인 성향 확인하기",
+                        link: {
+                            mobileWebUrl: document.location.href,
+                            webUrl: document.location.href,
+                        },
+                    },
+                ],
+            });
+        }
+
     }
 
     setScrollPosition = () => {
@@ -176,29 +213,7 @@ class Main extends Component {
                     firebaseLoading: true,
                 },
                 () => {
-                    window.Kakao.Link.createDefaultButton({
-                        container: "#kakao-link-btn-main",
-                        objectType: "feed",
-                        content: {
-                            title: document.title,
-                            description: "나만의 디자인 성향을 찾아보세요!",
-                            imageUrl:
-                                "http://dimodamo.com/images/thumb/Thumbnail.png",
-                            link: {
-                                webUrl: document.location.href,
-                                mobileWebUrl: document.location.href,
-                            },
-                        },
-                        buttons: [
-                            {
-                                title: "디자인 성향 확인하기",
-                                link: {
-                                    mobileWebUrl: document.location.href,
-                                    webUrl: document.location.href,
-                                },
-                            },
-                        ],
-                    });
+                    
                 }
             );
         });
@@ -219,21 +234,21 @@ class Main extends Component {
             "secondTitleBubbleContainer"
         );
 
-        var i = 0;
+        var i = 2;
         setInterval(() => {
             if (i % 2 == 0) {
-                titleBubbleContainer.style.right = "-300px";
+                titleBubbleContainer.style.top = "-50px";
                 titleBubbleContainer.style.opacity = "0";
 
                 secondBubble.innerHTML = titleAarr[(i + 1) % titleAarr.length];
-                secondBubbleContainer.style.right = "35px";
+                secondBubbleContainer.style.top = "0px";
                 secondBubbleContainer.style.opacity = "1";
             } else {
                 titleBubble.innerHTML = titleAarr[(i + 1) % titleAarr.length];
-                titleBubbleContainer.style.right = "35px";
+                titleBubbleContainer.style.top = "0px";
                 titleBubbleContainer.style.opacity = "1";
 
-                secondBubbleContainer.style.right = "-300px";
+                secondBubbleContainer.style.top = "-50px";
                 secondBubbleContainer.style.opacity = "0";
             }
 
@@ -503,7 +518,7 @@ class Main extends Component {
                             </Link>
                             <input
                                 type="button"
-                                id="kakao-link-btn-main"
+                                id="kakao-link-btn"
                                 value="친구에게 공유하기"
                                 className="shareButton"
                             />

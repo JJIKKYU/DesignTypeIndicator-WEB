@@ -53,7 +53,7 @@ class Footer extends Component {
                 </div>
                 <div className="newFooterDivideLine"></div>
                 <div className="helpContainer">
-                    <h3 className="helpTitle">문의 | email@address.com</h3>
+                    <h3 className="helpTitle">문의 | dog.devsigner@gmail.com</h3>
                 </div>
             </div>
         );

@@ -1,3 +1,4 @@
+
 #root {
     /* height: 100vh; */
     width: 100%;
@@ -214,7 +215,7 @@ a {
     position: absolute;
     left: 0;
     top: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     box-shadow: none;
     transition: ease-in-out 0.35s;
     opacity: 0;
@@ -408,7 +409,7 @@ a {
 .questionNum_12,
 .questionNum_13,
 .questionNum_14 {
-    color: var(--bLUE) !important;
+    color: var(--BLUE) !important;
 }
 
 #numberCount_15,
@@ -492,15 +493,25 @@ a {
     color: #ffffff;
     /* WHITE - 255 */
     text-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+
+    font-family: "NanumSquareRound", sans-serif;
+    font-style: normal;
 }
 
 .resultCard #resultTitle span,
-.lottieTopAnimationContainer #resultTitle {
-    font-family: "NanumSquareRound", sans-serif;
+.lottieTopAnimationContainer #resultTitle,
+.lottieTopAnimationContainer span
+ {
+    /* font-family: "NanumSquareRound", sans-serif;
+    font-weight: 800;
+    font-style: normal; */
+
+    font-family: GmarketSans;
     font-style: normal;
-    text-shadow: var(--whiteColorBorder04);
+    font-weight: 700;
+    /* text-shadow: var(--whiteColorBorder04);
     -moz-text-shadow: var(--whiteColorBorder04);
-    -webkit-text-shadow: var(--whiteColorBorder04);
+    -webkit-text-shadow: var(--whiteColorBorder04); */
 }
 
 #resultTop {
@@ -884,9 +895,23 @@ a {
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 320px) and (max-width: 414px) {
+@media (min-width: 371px) and (max-width: 429px) {
     body {
         width: 100%;
+    }
+
+    .nameContainer {
+        width : auto !important;
+    }
+
+
+    .nameTitle {
+        margin-left: 38px !important;
+        margin-right: 38px !important;
+    }
+
+    .subDesignTypeContainer {
+        width: 15em;
     }
 }
 
@@ -1368,7 +1393,7 @@ Result Bottom
 }
 
 .subResultTitle {
-    width: 158px;
+    width: 165px;
     height: 24px;
     display: inline-block;
     margin: 0 auto;
@@ -1419,13 +1444,15 @@ Result Bottom
     background-color: var(--ORANGE_UNACTIVE);
     display: inline-block;
     margin-left: 24px;
+    float: left;
 }
 
 .newPositionDesc {
     display: inline-block;
-    width: 163px;
+    width: 60%;
     float: right;
     margin-top: 24px;
+    text-align: center;
 }
 
 .newPositionDesc span {
@@ -1458,14 +1485,15 @@ Result Bottom
 
 .newDesignTypeContainer {
     position: relative;
-    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
     height: 153px;
     background-color: white;
     margin-top: 24px;
 }
 
 .subDesignTypeContainer {
-    width: 160px;
+    width: 47%;
     height: 153px;
     background-color: white;
     border-radius: 8px;
@@ -1476,12 +1504,10 @@ Result Bottom
 }
 
 .one {
-    margin-left: 20px;
     float: left;
 }
 
 .two {
-    margin-right: 20px;
     float: right;
 }
 
@@ -1531,7 +1557,7 @@ Result Bottom
 }
 
 #resultToolTitle {
-    width: 163px;
+    width: 170px;
     margin-top: 24px;
 }
 
@@ -1635,7 +1661,7 @@ Result Bottom
 }
 
 #resultTodoTitle {
-    width: 178px;
+    width: 182px;
     margin-top: 36px;
 }
 

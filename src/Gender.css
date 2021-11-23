@@ -71,6 +71,7 @@
     opacity: 0;
     position: absolute;
     z-index: 1;
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
 }
 
 .man {
@@ -96,23 +97,27 @@ input:focus {
 #mButton:checked ~ label {
     color: var(--ORANGE_ACTIVE);
     border-color: var(--ORANGE_ACTIVE);
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
 }
 
 #mButton:checked ~ div {
     color: var(--ORANGE_ACTIVE);
     border-color: var(--systemColor);
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
 }
 
 #mButton:checked ~ img {
     filter: grayscale(0);
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: ease-in-out 1s;
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
 }
 
 #mButton:not(checked) ~ img {
     transform: scale(1);
     transition: ease-in-out 1s;
+    -webkit-tap-highlight-color : rgba(0,0,0,0);
 }
 
 #fButton {
@@ -125,9 +130,8 @@ input:focus {
 }
 
 #fButton:checked ~ img {
-    scale: 100;
     filter: grayscale(0);
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: ease-in-out 1s;
     opacity: 1;
 }

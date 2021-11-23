@@ -1,7 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap");
-@import url("https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css");
+
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+
+@font-face {
+    font-family: "NanumSquareRound";
+    src: url("https://github.com/innks/NanumSquareRound/raw/master/NanumSquareRoundEB.woff")
+        format("woff");
+    font-weight: 800;
+    font-style: normal;
+}
+
 @font-face {
     font-family: "yg-jalnan";
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
@@ -991,7 +1001,7 @@
     margin-bottom: 10px;
     width: 166px;
     right: 35px;
-    transition: 2s ease-in-out;
+    transition: 0.75s ease-in-out, opacity ease-in-out 0.5s;
     position: absolute;
     z-index: 5;
 }
@@ -1001,6 +1011,7 @@
     /* right: 41px; */
     z-index: -1;
     left: 0;
+    
 }
 
 .mainBubbleTitle {
@@ -1016,13 +1027,18 @@
     line-height: 15px;
 }
 
+#mainTitleBubbleContainer {
+    top: 0px;
+    opacity: 1;
+}
+
 #secondTitleBubbleContainer {
-    right: -300px;
+    top: -50px;
     opacity: 0;
 }
 
 #thirdTitleBubbleContainer {
-    right: -300px;
+    top: -50px;
     opacity: 0;
 }
 
@@ -1113,8 +1129,8 @@
 }
 
 .newResultImage {
-    width: 70px;
-    height: 70px;
+    width: 70px !important;
+    height: 70px !important;
 }
 
 #newResultToolIcon {
@@ -1152,7 +1168,7 @@
 }
 
 #designToolTitle {
-    top: 15px;
+    /* top: 15px; */
     width: 160px;
 }
 

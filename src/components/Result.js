@@ -10,6 +10,13 @@ class Result extends Component {
     constructor(props) {
         super(props);
 
+        try {
+            if (!window.kakao) {
+                console.log("try!");
+                window.Kakao.init('8f3a72c4fc9d2318eadb8d9f47c06ce1');
+            }
+        } catch(e) { console.log(e); }
+
         this.state = {
             loadIndex: false,
             jsonIndex: 0,
@@ -22,7 +29,7 @@ class Result extends Component {
             position: "",
             design: ["", ""],
             designDesc: ["", ""],
-            toolImg: "",
+            toolImg: "Loading",
             toolName: "",
             toolDesc: "",
             todo: "",
@@ -65,39 +72,45 @@ class Result extends Component {
                 ).style.background = this.state.colorHex;
                 document.title = this.state.title;
 
-                window.Kakao.Link.createDefaultButton({
-                    container: "#kakao-link-btn",
-                    objectType: "feed",
-                    content: {
-                        title: document.title,
-                        description: "나만의 디자인 성향을 찾아보세요!",
-                        imageUrl:
-                            "http://dimodamo.com/images/thumb/Thumbnail.png",
-                        link: {
-                            webUrl: document.location.href,
-                            mobileWebUrl: document.location.href,
-                        },
-                    },
-                    buttons: [
-                        {
-                            title: "디자인 성향 확인하기",
-                            link: {
-                                mobileWebUrl: document.location.href,
-                                webUrl: document.location.href,
-                            },
-                        },
-                    ],
-                });
+                
             }
         );
     };
 
     componentDidMount() {
         this.loadItem();
+        
+        if (window.Kakao) {
+            window.Kakao.Link.createDefaultButton({
+                container: "#kakao-link-btn",
+                objectType: "feed",
+                content: {
+                    title: document.title,
+                    description: "나만의 디자인 성향을 찾아보세요!",
+                    imageUrl:
+                        "http://dimodamo.com/images/thumb/Thumbnail.png",
+                    link: {
+                        webUrl: document.location.href,
+                        mobileWebUrl: document.location.href,
+                    },
+                },
+                buttons: [
+                    {
+                        title: "디자인 성향 확인하기",
+                        link: {
+                            mobileWebUrl: document.location.href,
+                            webUrl: document.location.href,
+                        },
+                    },
+                ],
+            });
+        }
     }
 
     componentDidUpdate() {
         this.checkJson();
+
+
     }
 
     loadItem = async () => {
@@ -140,6 +153,11 @@ class Result extends Component {
     render() {
         let dataName = this.state.gender + "_" + this.state.resultType;
 
+        var koreanTitle = this.state.title + (this.state.gender == "F" ? "_여" : "_남");
+        koreanTitle = koreanTitle.replace(/\n/g, "_");
+
+        console.log(koreanTitle);
+
         const lottieOptions = {
             animationData: getType(dataName),
             loop: true,
@@ -149,6 +167,8 @@ class Result extends Component {
                 preserveAspectRatio: "xMidYMid slice",
             },
         };
+
+     
 
         return (
             <>
@@ -419,16 +439,16 @@ class Result extends Component {
                             <a
                                 href={
                                     "../../images/resultImage/" +
-                                    dataName +
+                                    koreanTitle +
                                     ".jpg"
                                 }
                                 download
                             >
                                 <input
                                     className="shareStory"
-                                    id="kakao-link-btn"
+                                    id=""
                                     type="button"
-                                    value="내 결과 스토리 공유하기"
+                                    value="내 결과 이미지로 저장하기"
                                 />
                             </a>
                         </div>

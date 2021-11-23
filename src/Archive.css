@@ -54,9 +54,9 @@
     letter-spacing: 0.02em;
     margin: 0;
     color: var(--ORANGE);
-    text-shadow: var(--ORANGE_BORDER02);
+    /* text-shadow: var(--ORANGE_BORDER02);
     -moz-text-shadow: var(--ORANGE_BORDER02);
-    -webkit-text-shadow: var(--ORANGE_BORDER02);
+    -webkit-text-shadow: var(--ORANGE_BORDER02); */
 }
 
 .archiveCardsContainer {
@@ -64,15 +64,18 @@
 }
 
 #mainResultTitle span {
-    font-family: "NanumSquareRound", sans-serif;
+    /* font-family: "NanumSquareRound", sans-serif;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 800; */
+    font-family: GmarketSans;
+    font-style: normal;
+    font-weight: 700;
     font-size: 22px;
     line-height: 27px;
     color: var(--WHITE255);
-    text-shadow: var(--WHITE255_BORDER02);
+    /* text-shadow: var(--WHITE255_BORDER02);
     -moz-text-shadow: var(--WHITE255_BORDER02);
-    -webkit-text-shadow: var(--WHITE255_BORDER02);
+    -webkit-text-shadow: var(--WHITE255_BORDER02); */
 }
 
 .bottomCardContainer {
